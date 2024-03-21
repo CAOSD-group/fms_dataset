@@ -1,0 +1,65 @@
+namespace FullQA
+
+features
+	FullQA
+		optional
+			Security
+				or
+					Confidentiality
+						mandatory
+							ConfidentialityEncryption
+					AccessControl
+						mandatory
+							Authentication
+								alternative
+									"Usr+pass-aut"
+									CardAut
+									BioAut
+									"Card+pass-aut"
+								optional
+									AuthLogging
+									AuthenticationHash
+					"Non-Repudiation"
+						mandatory
+							AsymmetricEncryption
+					Encryption
+						alternative
+							Symmetric
+							Asymmetric
+							"Password-based"
+						mandatory
+							KeyStorage
+			Usability
+				or
+					Feedback
+						or
+							Logs
+							Alerts
+							ProcessIndication
+					ExecutionControl
+						[0..2]
+							Undo
+							Redo
+						mandatory
+							Cancel
+					ContextualHelp
+			Persistence
+				or
+					FilesStorage
+						optional
+							FilesSchema
+					DatabaseStorage
+						optional
+							DatabaseSchema
+							SecureDBStorage
+					TemporalStorage
+						optional
+							TemporalSchema
+constraints
+    (Authentication or IntegrityHash) => Hash
+	AsymmetricEncryption => Asymmetric
+	ConfidentialityEncryption => Encryption
+	ContextualHelp => Authentication
+	AuthLogging => Logs
+	("Usr+pass-aut" or CardAut or BioAut or "Card-pass-aut") => DatabaseStorage
+	SecureDBStorage => AccessControl

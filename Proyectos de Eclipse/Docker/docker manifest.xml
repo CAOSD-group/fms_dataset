@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extendedFeatureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="842,-73"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Docker Manifest">
+			<graphics key="collapsed" value="false"/>
+			<alt abstract="true" mandatory="true" name="Format">
+				<feature name="YAML"/>
+				<feature name="JSON"/>
+			</alt>
+			<alt abstract="true" mandatory="true" name="type">
+				<feature name="Image Manifest"/>
+				<feature name="Manifest List"/>
+			</alt>
+			<and abstract="true" mandatory="true" name="Data">
+				<alt mandatory="true" name="schemaVersion">
+					<attribute name="Type" type="string" unit="" value="int"/>
+					<feature name="1">
+						<description>deprecated</description>
+					</feature>
+					<feature name="2"/>
+				</alt>
+				<and name="layers">
+					<attribute name="Type" type="string" unit="" value="array"/>
+					<feature mandatory="true" name="size_layer">
+						<attribute name="Type" type="string" unit="bytes" value="int"/>
+					</feature>
+					<feature mandatory="true" name="digest_layer">
+						<attribute name="Type" type="string" unit="" value="string"/>
+					</feature>
+					<alt mandatory="true" name="mediaType_layer">
+						<attribute name="Type" type="string" unit="" value="string"/>
+						<feature name="application/vnd.docker.image.rootfs.diff.tar.gzip_layer"/>
+						<feature name="application/vnd.docker.plugin.v1+json_layer"/>
+					</alt>
+					<feature name="urls_layer">
+						<description>Provides a list of URLs from which the content may be fetched</description>
+						<attribute name="Type" type="string" unit="" value="array"/>
+					</feature>
+				</and>
+				<and name="config">
+					<attribute name="Type" type="string" unit="" value="object"/>
+					<and mandatory="true" name="mediaType_config">
+						<attribute name="Type" type="string" unit="" value="string"/>
+						<feature mandatory="true" name="application/vnd.docker.container.image.v1+json_config"/>
+					</and>
+					<feature mandatory="true" name="size_config">
+						<description>The size in bytes of the object</description>
+						<attribute name="Type" type="string" unit="bytes" value="int"/>
+					</feature>
+					<feature mandatory="true" name="digest_config">
+						<attribute name="Type" type="string" unit="" value="string"/>
+					</feature>
+				</and>
+				<and name="manifests">
+					<attribute name="Type" type="string" unit="" value="array"/>
+					<and name="platform">
+						<attribute name="Type" type="string" unit="" value="object"/>
+						<alt mandatory="true" name="architecture">
+							<description>The platform object describes the platform which the image in the manifest runs on</description>
+							<attribute name="Type" type="string" unit="" value="string"/>
+							<feature name="amd64"/>
+							<feature name="arm"/>
+							<feature name="arm64"/>
+							<feature name="386"/>
+							<feature name="ppc64le"/>
+							<feature name="ppc64"/>
+							<feature name="wasm"/>
+							<feature name="loong64"/>
+							<feature name="mips"/>
+							<feature name="mipsle"/>
+							<feature name="mips64"/>
+							<feature name="mips64le"/>
+							<feature name="riscv64"/>
+							<feature name="s390x"/>
+						</alt>
+						<alt mandatory="true" name="os">
+							<description>The os field specifies the operating system</description>
+							<attribute name="Type" type="string" unit="" value="string"/>
+							<feature name="windows"/>
+							<feature name="linux"/>
+							<feature name="android"/>
+							<feature name="aix"/>
+							<feature name="darwin"/>
+							<feature name="dragonfly"/>
+							<feature name="freebsd"/>
+							<feature name="illumos"/>
+							<feature name="ios"/>
+							<feature name="js"/>
+							<feature name="netbsd"/>
+							<feature name="openbsd"/>
+							<feature name="plan9"/>
+							<feature name="solaris"/>
+							<feature name="wasip1"/>
+						</alt>
+						<and name="features">
+							<description>The optional features field specifies an array of strings, each listing a required CPU feature</description>
+							<attribute name="Type" type="string" unit="" value="array"/>
+							<feature name="sse4"/>
+							<feature name="aes"/>
+						</and>
+						<feature name="variant">
+							<description>The optional variant field specifies a variant of the CPU</description>
+							<attribute name="Type" type="string" unit="" value="string"/>
+						</feature>
+						<feature name="os_version">
+							<description>The optional os.version field specifies the operating system version</description>
+							<attribute name="Type" type="string" unit="" value="string"/>
+						</feature>
+						<feature name="os_features">
+							<description>The optional os.features field specifies an array of strings, each listing a required OS feature</description>
+							<attribute name="Type" type="string" unit="" value="array"/>
+						</feature>
+					</and>
+					<and mandatory="true" name="mediaType_manifest">
+						<attribute name="Type" type="string" unit="" value="string"/>
+						<feature mandatory="true" name="application/vnd.docker.distribution.manifest.v2+json_manifest"/>
+					</and>
+					<feature mandatory="true" name="size_manifest">
+						<attribute name="Type" type="string" unit="bytes" value="int"/>
+					</feature>
+					<feature mandatory="true" name="digest_manifest">
+						<attribute name="type" type="string" unit="" value="string"/>
+					</feature>
+				</and>
+				<alt mandatory="true" name="mediaType">
+					<graphics key="collapsed" value="false"/>
+					<attribute name="Type" type="string" unit="" value="string"/>
+					<feature name="application/vnd.docker.distribution.manifest.list.v2+json"/>
+					<feature name="application/vnd.docker.distribution.manifest.v2+json"/>
+				</alt>
+			</and>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>manifests</var>
+				<var>Manifest List</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>config</var>
+				<var>Image Manifest</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>layers</var>
+				<var>Image Manifest</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>windows</var>
+				<disj>
+					<var>386</var>
+					<disj>
+						<var>amd64</var>
+						<disj>
+							<var>arm</var>
+							<var>arm64</var>
+						</disj>
+					</disj>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>linux</var>
+				<disj>
+					<var>386</var>
+					<disj>
+						<var>amd64</var>
+						<disj>
+							<var>arm</var>
+							<disj>
+								<var>arm64</var>
+								<disj>
+									<var>loong64</var>
+									<disj>
+										<var>mips</var>
+										<disj>
+											<var>mipsle</var>
+											<disj>
+												<var>mips64</var>
+												<disj>
+													<var>mips64le</var>
+													<disj>
+														<var>ppc64</var>
+														<disj>
+															<var>ppc64le</var>
+															<disj>
+																<var>riscv64</var>
+																<var>s390x</var>
+															</disj>
+														</disj>
+													</disj>
+												</disj>
+											</disj>
+										</disj>
+									</disj>
+								</disj>
+							</disj>
+						</disj>
+					</disj>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>android</var>
+				<disj>
+					<var>386</var>
+					<disj>
+						<var>amd64</var>
+						<disj>
+							<var>arm</var>
+							<var>arm64</var>
+						</disj>
+					</disj>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>aix</var>
+				<var>ppc64</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>darwin</var>
+				<disj>
+					<var>arm64</var>
+					<var>amd64</var>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>dragonfly</var>
+				<var>amd64</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>freebsd</var>
+				<disj>
+					<var>386</var>
+					<disj>
+						<var>amd64</var>
+						<var>arm</var>
+					</disj>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>illumos</var>
+				<var>amd64</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>ios</var>
+				<var>arm64</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>js</var>
+				<var>wasm</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>netbsd</var>
+				<disj>
+					<var>386</var>
+					<disj>
+						<var>amd64</var>
+						<var>arm</var>
+					</disj>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>openbsd</var>
+				<disj>
+					<var>386</var>
+					<disj>
+						<var>amd64</var>
+						<disj>
+							<var>arm</var>
+							<var>arm64</var>
+						</disj>
+					</disj>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>plan9</var>
+				<disj>
+					<var>386</var>
+					<disj>
+						<var>amd64</var>
+						<var>arm</var>
+					</disj>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>solaris</var>
+				<var>amd64</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>wasip1</var>
+				<var>wasm</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Image Manifest</var>
+				<var>application/vnd.docker.distribution.manifest.v2+json</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Manifest List</var>
+				<var>application/vnd.docker.distribution.manifest.list.v2+json</var>
+			</imp>
+		</rule>
+	</constraints>
+</extendedFeatureModel>

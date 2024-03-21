@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extendedFeatureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="359,-73"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Docker">
+			<and mandatory="true" name="Docker Engine">
+				<feature name="Credential Helper">
+					<description>utilidad que te permite almacenar credenciales de inicio de sesión de forma segura</description>
+				</feature>
+				<and mandatory="true" name="Docker Daemon">
+					<graphics key="collapsed" value="false"/>
+					<and name="Containerd">
+						<feature name="runc"/>
+						<feature name="Docker Content Trust"/>
+					</and>
+					<feature name="Docker container API"/>
+					<feature name="Docker Network"/>
+				</and>
+				<and mandatory="true" name="Docker CLI">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Docker API"/>
+					<and abstract="true" name="Docker Build">
+						<graphics key="collapsed" value="false"/>
+						<and name="Container Image">
+							<and mandatory="true" name="Dockerfile">
+								<feature mandatory="true" name="FROM">
+									<description>Sets the base image</description>
+								</feature>
+								<feature name="LABEL">
+									<description>Author label or any other label you wish to include</description>
+								</feature>
+								<feature name="ENV">
+									<description>Environment variables to be set in the container</description>
+								</feature>
+								<feature name="WORKDIR">
+									<description>Sets the working directory inside the container</description>
+								</feature>
+								<feature name="COPY">
+									<description>Copies files from the local directory into the container</description>
+								</feature>
+								<feature name="EXPOSE">
+									<description>Exposes a port in the container</description>
+								</feature>
+								<feature name="VOLUME">
+									<description>Defines a volume in the container</description>
+								</feature>
+								<feature name="RUN">
+									<description>Runs commands during the image build</description>
+								</feature>
+								<feature name="ARG">
+									<description>Defines arguments for the image build</description>
+								</feature>
+								<feature name="CMD">
+									<description>Specifies the command to run when starting a container based on the image</description>
+								</feature>
+								<feature name="ENTRYPOINT">
+									<description>Defines the entry point of the container</description>
+								</feature>
+							</and>
+						</and>
+					</and>
+				</and>
+				<alt abstract="true" name="Orchestrator">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Docker Compose"/>
+					<and name="Kubernetes">
+						<and abstract="true" name="Components">
+							<graphics key="collapsed" value="false"/>
+							<and abstract="true" mandatory="true" name="Main components">
+								<and mandatory="true" name="Node Master">
+									<feature mandatory="true" name="kube-apiserver"/>
+									<feature mandatory="true" name="etcd"/>
+									<feature mandatory="true" name="kube-scheduler"/>
+									<feature mandatory="true" name="kube-controller-manager"/>
+									<feature name="Could controller manager"/>
+								</and>
+								<and mandatory="true" name="Kubectl">
+									<feature name="Lens"/>
+								</and>
+								<and mandatory="true" name="Nodes">
+									<feature mandatory="true" name="kubelet"/>
+									<feature mandatory="true" name="kube-proxy"/>
+									<feature mandatory="true" name="Container Runtime"/>
+									<and name="Pod">
+										<feature name="Container"/>
+										<feature name="Volume"/>
+									</and>
+								</and>
+							</and>
+							<or abstract="true" name="Aditional components">
+								<graphics key="collapsed" value="false"/>
+								<feature name="kube-dns/CoreDNS"/>
+								<alt abstract="true" name="Ingress Controller ">
+									<graphics key="collapsed" value="false"/>
+									<feature name="nginx-ingress"/>
+									<feature name="Traefik"/>
+								</alt>
+								<alt abstract="true" name="Dashboard">
+									<graphics key="collapsed" value="false"/>
+									<feature name="Grafana"/>
+									<feature name="KubeSphere"/>
+									<feature name="Kubernetes Dashboard"/>
+								</alt>
+								<feature name="Helm"/>
+								<alt abstract="true" name="Metrics Server">
+									<graphics key="collapsed" value="false"/>
+									<feature name="Heapster"/>
+									<feature name="Prometheus"/>
+									<feature name="OpenTelemetry"/>
+								</alt>
+								<alt abstract="true" name="Logging">
+									<graphics key="collapsed" value="false"/>
+									<feature name="Fluentd"/>
+									<feature name="Elasticsearch"/>
+									<feature name="Kibana"/>
+								</alt>
+								<alt abstract="true" name="Service Mesh ">
+									<graphics key="collapsed" value="false"/>
+									<feature name="Istio"/>
+									<feature name="Linkerd"/>
+								</alt>
+								<alt abstract="true" name="CI/CD Tools ">
+								<graphics key="collapsed" value="false"/>
+								<feature name="Jenkins"/>
+								<feature name="GitLab CI"/>
+							</alt>
+							<alt abstract="true" name="Persistent Storage ">
+								<graphics key="collapsed" value="false"/>
+								<feature name="NFS"/>
+								<feature name="Ceph"/>
+								<feature name="GlusterFS"/>
+							</alt>
+							<feature name="kubeadmin"/>
+						</or>
+					</and>
+					<alt abstract="true" name="Distributions">
+						<feature name="Microk8s"/>
+						<feature name="Minikube"/>
+						<feature name="Kubernetes Anywhere"/>
+						<feature name="K3s"/>
+					</alt>
+				</and>
+			</alt>
+			<and abstract="true" name="Docker Registries">
+				<graphics key="collapsed" value="false"/>
+				<or abstract="true" mandatory="true" name="Repositories">
+					<feature name="ACR">
+						<description>Microsoft Azure Container Registry</description>
+					</feature>
+					<feature name="Docker Hub"/>
+					<feature name="GRC">
+						<description>Google Container Registry</description>
+					</feature>
+				</or>
+				<and abstract="true" mandatory="true" name="Docker Manifest">
+					<graphics key="collapsed" value="false"/>
+					<alt abstract="true" mandatory="true" name="Format">
+						<feature name="YAML"/>
+						<feature name="JSON"/>
+					</alt>
+					<and abstract="true" name="type">
+						<feature name="Image Manifest"/>
+						<feature name="Manifest List"/>
+					</and>
+					<and abstract="true" mandatory="true" name="Data">
+						<feature mandatory="true" name="schemaVersion">
+							<description>Specifies the version of the manifest schema being used</description>
+						</feature>
+						<alt mandatory="true" name="mediaType">
+							<description>Specifies the media type of the manifest file</description>
+							<feature name="list"/>
+							<feature name="individual"/>
+						</alt>
+						<and mandatory="true" name="layers">
+							<feature name="size_layer"/>
+							<feature name="digest_ layer"/>
+							<feature name="mediaType_layer"/>
+							<feature name="urls_layer"/>
+						</and>
+						<and mandatory="true" name="config">
+							<description>An array containing manifests for different platform variants of the image</description>
+							<feature mandatory="true" name="mediaType_config">
+								<description>Media type of the manifest for each platform</description>
+							</feature>
+							<feature mandatory="true" name="size">
+								<description>Size of the manifest</description>
+							</feature>
+							<feature mandatory="true" name="digest">
+								<description>Digest identifying the manifest</description>
+							</feature>
+							<and name="platform">
+								<description>Specifies platform details such as architecture, operating system, and variant</description>
+								<alt mandatory="true" name="architecture">
+									<feature name="amd64"/>
+									<feature name="arm"/>
+									<feature name="arm64"/>
+									<feature name="386"/>
+								</alt>
+								<alt mandatory="true" name="os">
+									<feature name="windows"/>
+									<feature name="linux"/>
+									<feature name="mac"/>
+								</alt>
+								<feature name="variant"/>
+								<feature name="os_version"/>
+								<and name="os_features">
+									<feature name="wink32k"/>
+								</and>
+							</and>
+							<or name="features">
+								<description>Optional field specifying features supported by the platform</description>
+								<feature name="sse4"/>
+								<feature name="aes"/>
+							</or>
+							<feature name="annotations">
+								<description>Optional annotations providing additional metadata about the manifest</description>
+							</feature>
+						</and>
+					</and>
+				</and>
+			</and>
+		</and>
+		<alt abstract="true" mandatory="true" name="Operative System">
+			<graphics key="collapsed" value="false"/>
+			<alt abstract="true" name="Windows">
+				<feature name="Wind10"/>
+				<feature name="Wind11"/>
+			</alt>
+			<alt abstract="true" name="MAC OS">
+				<feature name="MAC OS 14"/>
+				<feature name="MAC OS 13"/>
+				<feature name="MAC OS 12"/>
+			</alt>
+			<alt abstract="true" name="Linux">
+				<feature name="Debian"/>
+				<feature name="Ubuntu"/>
+				<feature name="Fedora"/>
+			</alt>
+			<feature name="Raspberry Pi OS"/>
+		</alt>
+	</and>
+</struct>
+</extendedFeatureModel>

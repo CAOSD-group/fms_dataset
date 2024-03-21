@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="Docker"/>
+	<feature automatic="selected" name="Docker Engine"/>
+	<feature name="Credential Helper"/>
+	<feature automatic="selected" name="Docker Daemon"/>
+	<feature name="Containerd"/>
+	<feature name="runc"/>
+	<feature name="Docker Content Trust"/>
+	<feature name="Docker container API"/>
+	<feature name="Docker Network"/>
+	<feature automatic="selected" name="Docker CLI"/>
+	<feature name="Docker API"/>
+	<feature name="Docker Build"/>
+	<feature name="Container Image"/>
+	<feature name="Dockerfile"/>
+	<feature name="FROM"/>
+	<feature name="LABEL"/>
+	<feature name="ENV"/>
+	<feature name="WORKDIR"/>
+	<feature name="COPY"/>
+	<feature name="EXPOSE"/>
+	<feature name="VOLUME"/>
+	<feature name="RUN"/>
+	<feature name="ARG"/>
+	<feature name="CMD"/>
+	<feature name="ENTRYPOINT"/>
+	<feature automatic="selected" manual="selected" name="Orchestrator"/>
+	<feature automatic="unselected" name="Docker Compose"/>
+	<feature manual="selected" name="Kubernetes"/>
+	<feature name="Components"/>
+	<feature name="Main components"/>
+	<feature name="Node Master"/>
+	<feature name="kube-apiserver"/>
+	<feature name="etcd"/>
+	<feature name="kube-scheduler"/>
+	<feature name="kube-controller-manager"/>
+	<feature name="Could controller manager"/>
+	<feature name="Kubectl"/>
+	<feature name="Lens"/>
+	<feature name="Nodes"/>
+	<feature name="kubelet"/>
+	<feature name="kube-proxy"/>
+	<feature name="Container Runtime"/>
+	<feature name="Pod"/>
+	<feature name="Container"/>
+	<feature name="Volume"/>
+	<feature name="Aditional components"/>
+	<feature name="kube-dns/CoreDNS"/>
+	<feature name="Ingress Controller "/>
+	<feature name="nginx-ingress"/>
+	<feature name="Traefik"/>
+	<feature name="Dashboard"/>
+	<feature name="Grafana"/>
+	<feature name="KubeSphere"/>
+	<feature name="Kubernetes Dashboard"/>
+	<feature name="Helm"/>
+	<feature name="Metrics Server"/>
+	<feature name="Heapster"/>
+	<feature name="Prometheus"/>
+	<feature name="OpenTelemetry"/>
+	<feature name="Logging"/>
+	<feature name="Fluentd"/>
+	<feature name="Elasticsearch"/>
+	<feature name="Kibana"/>
+	<feature name="Service Mesh "/>
+	<feature name="Istio"/>
+	<feature name="Linkerd"/>
+	<feature name="CI/CD Tools "/>
+	<feature name="Jenkins"/>
+	<feature name="GitLab CI"/>
+	<feature name="Persistent Storage "/>
+	<feature name="NFS"/>
+	<feature name="Ceph"/>
+	<feature name="GlusterFS"/>
+	<feature name="kubeadmin"/>
+	<feature name="Distributions"/>
+	<feature name="Microk8s"/>
+	<feature name="Minikube"/>
+	<feature name="Kubernetes Anywhere"/>
+	<feature name="K3s"/>
+	<feature name="Docker Registries"/>
+	<feature name="Repositories"/>
+	<feature name="ACR"/>
+	<feature name="Docker Hub"/>
+	<feature name="GRC"/>
+	<feature name="Docker Manifest"/>
+	<feature name="Format"/>
+	<feature name="YAML"/>
+	<feature name="JSON"/>
+	<feature name="type"/>
+	<feature name="Image Manifest"/>
+	<feature name="Manifest List"/>
+	<feature name="Data"/>
+	<feature name="schemaVersion"/>
+	<feature name="mediaType"/>
+	<feature name="list"/>
+	<feature name="individual"/>
+	<feature name="layers"/>
+	<feature name="size_layer"/>
+	<feature name="digest_ layer"/>
+	<feature name="mediaType_layer"/>
+	<feature name="urls_layer"/>
+	<feature name="config"/>
+	<feature name="mediaType_config"/>
+	<feature name="size"/>
+	<feature name="digest"/>
+	<feature name="platform"/>
+	<feature name="architecture"/>
+	<feature name="amd64"/>
+	<feature name="arm"/>
+	<feature name="arm64"/>
+	<feature name="386"/>
+	<feature name="os"/>
+	<feature name="windows"/>
+	<feature name="linux"/>
+	<feature name="mac"/>
+	<feature name="variant"/>
+	<feature name="os_version"/>
+	<feature name="os_features"/>
+	<feature name="wink32k"/>
+	<feature name="features"/>
+	<feature name="sse4"/>
+	<feature name="aes"/>
+	<feature name="annotations"/>
+	<feature automatic="selected" name="Operative System"/>
+	<feature automatic="selected" name="Windows"/>
+	<feature manual="selected" name="Wind10"/>
+	<feature automatic="unselected" name="Wind11"/>
+	<feature automatic="unselected" name="MAC OS"/>
+	<feature automatic="unselected" name="MAC OS 14"/>
+	<feature automatic="unselected" name="MAC OS 13"/>
+	<feature automatic="unselected" name="MAC OS 12"/>
+	<feature automatic="unselected" name="Linux"/>
+	<feature automatic="unselected" name="Debian"/>
+	<feature automatic="unselected" name="Ubuntu"/>
+	<feature automatic="unselected" name="Fedora"/>
+	<feature automatic="unselected" name="Raspberry Pi OS"/>
+</configuration>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extendedFeatureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="928,-115"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and mandatory="true" name="Kubernetes Manifest">
+			<graphics key="collapsed" value="false"/>
+			<alt abstract="true" name="Format">
+				<feature name="YAML"/>
+				<feature name="JSON"/>
+			</alt>
+			<and mandatory="true" name="apiVersion">
+				<description>Specifies the version of the Kubernetes API you are using</description>
+				<feature name="v1"/>
+				<feature name="apps/v1"/>
+			</and>
+			<alt mandatory="true" name="kind">
+				<description>Indicates the type of Kubernetes object you are creating</description>
+				<graphics key="collapsed" value="false"/>
+				<feature name="Pod"/>
+				<feature name="Service"/>
+				<feature name="Deployment"/>
+			</alt>
+			<or mandatory="true" name="metadata">
+				<description>Contains metadata such as the name of the Pod</description>
+				<feature name="name"/>
+				<feature name="uid"/>
+				<alt name="namespace">
+					<feature name="default"/>
+					<feature name="kube-node-lease"/>
+					<feature name="kube-public"/>
+					<feature name="kube-system"/>
+					<feature name="new_namespace">
+						<description>namespace created by the user</description>
+					</feature>
+				</alt>
+				<feature name="annotations">
+					<description>attach arbitrary non-identifying metadata to objects</description>
+				</feature>
+				<or name="labels">
+					<graphics key="collapsed" value="true"/>
+					<feature name="app.kubernetes.io/name">
+					<description>The name of the application</description>
+					<attribute name="Type" type="string" unit="" value="string"/>
+				</feature>
+				<feature name="app.kubernetes.io/instance">
+				<description>A unique name identifying the instance of an application</description>
+				<attribute name="Type" type="string" unit="" value="string"/>
+			</feature>
+			<feature name="app.kubernetes.io/version">
+			<description>The current version of the application</description>
+			<attribute name="Type" type="string" unit="" value="string"/>
+		</feature>
+		<feature name="app.kubernetes.io/component">
+		<description>The component within the architecture</description>
+		<attribute name="Type" type="string" unit="" value="string"/>
+	</feature>
+	<feature name="app.kubernetes.io/part-of">
+	<description>The name of a higher level application this one is part of</description>
+	<attribute name="Type" type="string" unit="" value="string"/>
+</feature>
+<feature name="app.kubernetes.io/managed-by">
+<description>The tool being used to manage the operation of an application</description>
+<attribute name="Type" type="string" unit="" value="string"/>
+</feature>
+</or>
+</or>
+<and mandatory="true" name="spec">
+<description>Defines the specifications of the Pod, including the containers that will run inside it</description>
+<and name="containers">
+<feature name="name_container"/>
+<feature name="image"/>
+<and name="ports">
+<feature name="containerPort"/>
+</and>
+</and>
+<feature name="replicas"/>
+</and>
+</and>
+</struct>
+<constraints>
+<rule>
+<imp>
+<disj>
+<var>Pod</var>
+<disj>
+<var>Deployment</var>
+<var>Service</var>
+</disj>
+</disj>
+<var>v1</var>
+</imp>
+</rule>
+</constraints>
+</extendedFeatureModel>

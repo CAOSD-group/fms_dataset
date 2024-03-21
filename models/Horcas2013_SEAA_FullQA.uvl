@@ -56,10 +56,10 @@ features
 						optional
 							TemporalSchema
 constraints
-    (Authentication or IntegrityHash) => Hash
+    (Authentication || IntegrityHash) => Hash
 	AsymmetricEncryption => Asymmetric
 	ConfidentialityEncryption => Encryption
 	ContextualHelp => Authentication
 	AuthLogging => Logs
-	("Usr+pass-aut" or CardAut or BioAut or "Card-pass-aut") => DatabaseStorage
+	("Usr+pass-aut" || CardAut || BioAut || "Card-pass-aut") => DatabaseStorage
 	SecureDBStorage => AccessControl

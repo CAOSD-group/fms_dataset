@@ -217,7 +217,7 @@
 									<feature name="wink32k"/>
 								</and>
 							</and>
-							<or name="features">
+							<or name="features_config">
 								<description>Optional field specifying features supported by the platform</description>
 								<feature name="sse4"/>
 								<feature name="aes"/>

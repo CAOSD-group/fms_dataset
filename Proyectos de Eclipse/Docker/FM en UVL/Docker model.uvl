@@ -168,7 +168,7 @@ features
 															os_features
 																optional
 																	wink32k
-													features {featureDescription__ 'Optional field specifying features supported by the platform'}
+													features_config {featureDescription__ 'Optional field specifying features supported by the platform'}
 														or
 															sse4
 															aes

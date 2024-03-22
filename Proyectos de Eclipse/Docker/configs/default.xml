@@ -119,7 +119,7 @@
 	<feature name="os_version"/>
 	<feature name="os_features"/>
 	<feature name="wink32k"/>
-	<feature name="features"/>
+	<feature name="features_config"/>
 	<feature name="sse4"/>
 	<feature name="aes"/>
 	<feature name="annotations"/>

@@ -1,0 +1,115 @@
+namespace "Docker Manifest"
+
+features
+	"Docker Manifest" {abstract true}
+		mandatory
+			Format {abstract true}
+				alternative
+					YAML
+					JSON
+			type {abstract true}
+				alternative
+					"Image Manifest"
+					"Manifest List"
+			Data {abstract true}
+				mandatory
+					schemaVersion
+						alternative
+							"1" {featureDescription__ 'deprecated'}
+							"2"
+				optional
+					layers
+						mandatory
+							size_layer
+							digest_layer
+							mediaType_layer
+								alternative
+									"application/vnd".docker.image.rootfs.diff.tar.gzip_layer
+									"application/vnd".docker.plugin."v1+json_layer"
+						optional
+							urls_layer {featureDescription__ 'Provides a list of URLs from which the content may be fetched'}
+					config
+						mandatory
+							mediaType_config
+								mandatory
+									"application/vnd".docker.container.image."v1+json_config"
+							size_config {featureDescription__ 'The size in bytes of the object'}
+							digest_config
+					manifests
+						optional
+							platform
+								mandatory
+									architecture {featureDescription__ 'The platform object describes the platform which the image in the manifest runs on'}
+										alternative
+											amd64
+											arm
+											arm64
+											"386"
+											ppc64le
+											ppc64
+											wasm
+											loong64
+											mips
+											mipsle
+											mips64
+											mips64le
+											riscv64
+											s390x
+									os {featureDescription__ 'The os field specifies the operating system'}
+										alternative
+											windows
+											linux
+											android
+											aix
+											darwin
+											dragonfly
+											freebsd
+											illumos
+											ios
+											js
+											netbsd
+											openbsd
+											plan9
+											solaris
+											wasip1
+								optional
+									features {featureDescription__ 'The optional features field specifies an array of strings, each listing a required CPU feature'}
+										optional
+											sse4
+											aes
+									variant {featureDescription__ 'The optional variant field specifies a variant of the CPU'}
+									os_version {featureDescription__ 'The optional os.version field specifies the operating system version'}
+									os_features {featureDescription__ 'The optional os.features field specifies an array of strings, each listing a required OS feature'}
+						mandatory
+							mediaType_manifest
+								mandatory
+									"application/vnd".docker.distribution.manifest."v2+json_manifest"
+							size_manifest
+							digest_manifest
+				mandatory
+					mediaType
+						alternative
+							"application/vnd".docker.distribution.manifest.list."v2+json"
+							"application/vnd".docker.distribution.manifest."v2+json"
+
+constraints
+	manifests => "Manifest List"
+	config => "Image Manifest"
+	layers => "Image Manifest"
+	windows => "386" | amd64 | arm | arm64
+	linux => "386" | amd64 | arm | arm64 | loong64 | mips | mipsle | mips64 | mips64le | ppc64 | ppc64le | riscv64 | s390x
+	android => "386" | amd64 | arm | arm64
+	aix => ppc64
+	darwin => arm64 | amd64
+	dragonfly => amd64
+	freebsd => "386" | amd64 | arm
+	illumos => amd64
+	ios => arm64
+	js => wasm
+	netbsd => "386" | amd64 | arm
+	openbsd => "386" | amd64 | arm | arm64
+	plan9 => "386" | amd64 | arm
+	solaris => amd64
+	wasip1 => wasm
+	"Image Manifest" => "application/vnd".docker.distribution.manifest."v2+json"
+	"Manifest List" => "application/vnd".docker.distribution.manifest.list."v2+json"

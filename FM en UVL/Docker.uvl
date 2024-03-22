@@ -1,0 +1,193 @@
+namespace Docker
+
+features
+	Docker {abstract true}
+		mandatory
+			"Docker Engine"
+				optional
+					"Credential Helper" {featureDescription__ 'utilidad que te permite almacenar credenciales de inicio de sesión de forma segura'}
+				mandatory
+					"Docker Daemon"
+						optional
+							Containerd
+								optional
+									runc
+									"Docker Content Trust"
+							"Docker container API"
+							"Docker Network"
+					"Docker CLI"
+						optional
+							"Docker API"
+							"Docker Build" {abstract true}
+								optional
+									"Container Image"
+										mandatory
+											Dockerfile
+												mandatory
+													FROM {featureDescription__ 'Sets the base image'}
+												optional
+													LABEL {featureDescription__ 'Author label or any other label you wish to include'}
+													ENV {featureDescription__ 'Environment variables to be set in the container'}
+													WORKDIR {featureDescription__ 'Sets the working directory inside the container'}
+													COPY {featureDescription__ 'Copies files from the local directory into the container'}
+													EXPOSE {featureDescription__ 'Exposes a port in the container'}
+													VOLUME {featureDescription__ 'Defines a volume in the container'}
+													RUN {featureDescription__ 'Runs commands during the image build'}
+													ARG {featureDescription__ 'Defines arguments for the image build'}
+													CMD {featureDescription__ 'Specifies the command to run when starting a container based on the image'}
+													ENTRYPOINT {featureDescription__ 'Defines the entry point of the container'}
+				optional
+					Orchestrator {abstract true}
+						alternative
+							"Docker Compose"
+							Kubernetes
+								optional
+									Components {abstract true}
+										mandatory
+											"Main components" {abstract true}
+												mandatory
+													"Node Master"
+														mandatory
+															"kube-apiserver"
+															etcd
+															"kube-scheduler"
+															"kube-controller-manager"
+														optional
+															"Could controller manager"
+													Kubectl
+														optional
+															Lens
+													Nodes
+														mandatory
+															kubelet
+															"kube-proxy"
+															"Container Runtime"
+														optional
+															Pod
+																optional
+																	Container
+																	Volume
+										optional
+											"Aditional components" {abstract true}
+												or
+													"kube-dns/CoreDNS"
+													"Ingress Controller " {abstract true}
+														alternative
+															"nginx-ingress"
+															Traefik
+													Dashboard {abstract true}
+														alternative
+															Grafana
+															KubeSphere
+															"Kubernetes Dashboard"
+													Helm
+													"Metrics Server" {abstract true}
+														alternative
+															Heapster
+															Prometheus
+															OpenTelemetry
+													Logging {abstract true}
+														alternative
+															Fluentd
+															Elasticsearch
+															Kibana
+													"Service Mesh " {abstract true}
+														alternative
+															Istio
+															Linkerd
+													"CI/CD Tools " {abstract true}
+														alternative
+															Jenkins
+															"GitLab CI"
+													"Persistent Storage " {abstract true}
+														alternative
+															NFS
+															Ceph
+															GlusterFS
+													kubeadmin
+									Distributions {abstract true}
+										alternative
+											Microk8s
+											Minikube
+											"Kubernetes Anywhere"
+											K3s
+					"Docker Registries" {abstract true}
+						mandatory
+							Repositories {abstract true}
+								or
+									ACR {featureDescription__ 'Microsoft Azure Container Registry'}
+									"Docker Hub"
+									GRC {featureDescription__ 'Google Container Registry'}
+							"Docker Manifest" {abstract true}
+								mandatory
+									Format {abstract true}
+										alternative
+											YAML
+											JSON
+								optional
+									type {abstract true}
+										optional
+											"Image Manifest"
+											"Manifest List"
+								mandatory
+									Data {abstract true}
+										mandatory
+											schemaVersion {featureDescription__ 'Specifies the version of the manifest schema being used'}
+											mediaType {featureDescription__ 'Specifies the media type of the manifest file'}
+												alternative
+													list
+													individual
+											layers
+												optional
+													size_layer
+													"digest_ layer"
+													mediaType_layer
+													urls_layer
+											config {featureDescription__ 'An array containing manifests for different platform variants of the image'}
+												mandatory
+													mediaType_config {featureDescription__ 'Media type of the manifest for each platform'}
+													size {featureDescription__ 'Size of the manifest'}
+													digest {featureDescription__ 'Digest identifying the manifest'}
+												optional
+													platform {featureDescription__ 'Specifies platform details such as architecture, operating system, and variant'}
+														mandatory
+															architecture
+																alternative
+																	amd64
+																	arm
+																	arm64
+																	"386"
+															os
+																alternative
+																	windows
+																	linux
+																	mac
+														optional
+															variant
+															os_version
+															os_features
+																optional
+																	wink32k
+													features {featureDescription__ 'Optional field specifying features supported by the platform'}
+														or
+															sse4
+															aes
+													annotations {featureDescription__ 'Optional annotations providing additional metadata about the manifest'}
+			"Operative System" {abstract true}
+				alternative
+					Windows {abstract true}
+						alternative
+							Wind10
+							Wind11
+					"MAC OS" {abstract true}
+						alternative
+							"MAC OS 14"
+							"MAC OS 13"
+							"MAC OS 12"
+					Linux {abstract true}
+						alternative
+							Debian
+							Ubuntu
+							Fedora
+					"Raspberry Pi OS"
+

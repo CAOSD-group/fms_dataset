@@ -1,0 +1,52 @@
+namespace "Kubernetes Manifest"
+
+features
+	"Kubernetes Manifest"
+		optional
+			Format {abstract true}
+				alternative
+					YAML
+					JSON
+		mandatory
+			apiVersion {featureDescription__ 'Specifies the version of the Kubernetes API you are using'}
+				optional
+					v1
+					"apps/v1"
+			kind {featureDescription__ 'Indicates the type of Kubernetes object you are creating'}
+				alternative
+					Pod
+					Service
+					Deployment
+			metadata {featureDescription__ 'Contains metadata such as the name of the Pod'}
+				or
+					name
+					uid
+					namespace
+						alternative
+							default
+							"kube-node-lease"
+							"kube-public"
+							"kube-system"
+							new_namespace {featureDescription__ 'namespace created by the user'}
+					annotations {featureDescription__ 'attach arbitrary non-identifying metadata to objects'}
+					labels
+						or
+							app.kubernetes."io/name"
+							app.kubernetes."io/instance"
+							app.kubernetes."io/version"
+							app.kubernetes."io/component"
+							app.kubernetes."io/part-of"
+							app.kubernetes."io/managed-by"
+			spec {featureDescription__ 'Defines the specifications of the Pod, including the containers that will run inside it'}
+				optional
+					containers
+						optional
+							name_container
+							image
+							ports
+								optional
+									containerPort
+					replicas
+
+constraints
+	Pod | Deployment | Service => v1

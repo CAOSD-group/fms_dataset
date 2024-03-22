@@ -1,0 +1,18 @@
+namespace Dockerfile
+
+features
+	Dockerfile
+		mandatory
+			FROM {featureDescription__ 'Sets the base image'}
+		optional
+			LABEL {featureDescription__ 'Author label or any other label you wish to include'}
+			ENV {featureDescription__ 'Environment variables to be set in the container'}
+			WORKDIR {featureDescription__ 'Sets the working directory inside the container'}
+			COPY {featureDescription__ 'Copies files from the local directory into the container'}
+			EXPOSE {featureDescription__ 'Exposes a port in the container'}
+			VOLUME {featureDescription__ 'Defines a volume in the container'}
+			RUN {featureDescription__ 'Runs commands during the image build'}
+			ARG {featureDescription__ 'Defines arguments for the image build'}
+			CMD {featureDescription__ 'Specifies the command to run when starting a container based on the image'}
+			ENTRYPOINT {featureDescription__ 'Defines the entry point of the container'}
+

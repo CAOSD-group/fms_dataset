@@ -1,0 +1,91 @@
+namespace "Hardware Infrastructure"
+
+features
+	"Hardware Infrastructure" {abstract true}
+		mandatory
+			Device
+				mandatory
+					Role {abstract true}
+						or
+							Interactive
+							Computing
+					Type {abstract true}
+						alternative
+							Computer
+							Cloud
+							"Smart lock"
+							"IoT gateway"
+							"Mobile phone"
+							Smartwatch
+							Raspberry
+							Alexa
+							"Google Home"
+							Beacon
+							Mote
+					"Power supply"
+						or
+							Battery
+							"Electrical network"
+				optional
+					Peripherals
+						or
+							Screen
+							Camera
+							Speaker
+							Keyboard
+							"Tactile Screen"
+							Microphone
+							"Fingerprint sensor"
+					"Sensing units"
+						or
+							Humidity
+							Pressure
+							Temperature
+							Proximity
+							Smoke
+							Presence
+							Luminosity
+							Gyroscope
+							Dendrometer
+					Virtual
+					CPU
+					GPU
+				mandatory
+					"Network connectivity"
+						mandatory
+							"L1-2 protocol"
+								mandatory
+									"Type_L1-2 protocol"
+										alternative
+											Discovering
+											Direct
+								optional
+									"Network communication technologies" {abstract true}
+										alternative
+											"WiFi 5GHz"
+											"WiFi 2"."4GHz"
+											Bluethooth
+											"IEEE 802"."15"."4"
+											Ethernet
+											"BLE_L1-2"
+											"Bluethooth miltuhop"
+							"L3 protocol"
+								alternative
+									ZigBee
+									IPv6
+									IPv4
+									IPSec
+									RLP
+									ICMP
+									"6LoWPAN"
+							"L4 protocol"
+								alternative
+									MQTT
+									HTTP2
+									"ZiBee App"
+									BLE_L4
+					Owner
+						or
+							Public
+							Other
+

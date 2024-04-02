@@ -1,0 +1,47 @@
+namespace PlanetARium
+
+features
+	PlanetARium {abstract true}
+		mandatory
+			"Interactions with the user" {abstract true}
+				or
+					Screen
+					Speaker
+			"Augmented Elements" {abstract true}
+				or
+					"Location Based" {abstract true}
+						or
+							Beacons
+							GPS
+					"Visual Elements" {abstract true}
+						or
+							Markers {abstract true}
+								or
+									"Bar code - Galaxies"
+									"QR - Planets"
+									"ArUco - Constellations"
+										optional
+											"Overlapping zodiacal symbols"
+							"Natural Elements" {abstract true}
+								or
+									Circles
+									Gout
+		optional
+			"Virtual Background" {abstract true}
+				alternative
+					"Starry Sky"
+					"Clear Sky"
+					"Outer Space"
+					"Darkened Background"
+		mandatory
+			"Video Quality"
+				mandatory
+					Resolution
+						alternative
+							"640x480"
+							"320x240"
+							"1024x768"
+		optional
+			"Disable/enable features at runtime"
+			"Night mode"
+

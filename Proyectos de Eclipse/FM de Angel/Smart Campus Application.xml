@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extendedFeatureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="1006,0"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Smart Campus Application">
+			<and abstract="true" mandatory="true" name="Augmented reality">
+				<or abstract="true" mandatory="true" name="Based on...">
+					<feature name="Position"/>
+					<or name="Visual elements">
+						<feature name="Markers"/>
+						<feature name="Natural elements"/>
+					</or>
+				</or>
+				<and abstract="true" mandatory="true" name="Video Quality">
+					<alt mandatory="true" name="Resolution">
+						<feature name="720P"/>
+						<feature name="480P"/>
+						<feature name="1080P"/>
+					</alt>
+					<alt mandatory="true" name="FPS">
+						<feature name="30"/>
+						<feature name="45"/>
+						<feature name="60"/>
+					</alt>
+				</and>
+			</and>
+			<or abstract="true" name="Enviromental conditions">
+				<attribute name="Location" type="string" unit=""/>
+				<feature name="Wind sensor"/>
+				<feature name="Humidity"/>
+				<feature name="Temperature"/>
+			</or>
+		</and>
+	</struct>
+</extendedFeatureModel>

@@ -1,0 +1,33 @@
+namespace "Smart Campus Application"
+
+features
+	"Smart Campus Application" {extended__ true, abstract true}
+		mandatory
+			"Augmented reality" {abstract true}
+				mandatory
+					"Based on" {abstract true}
+						or
+							Position
+							"Visual elements"
+								or
+									Markers
+									"Natural elements"
+					"Video Quality" {abstract true}
+						mandatory
+							Resolution
+								alternative
+									"720P"
+									"480P"
+									"1080P"
+							FPS
+								alternative
+									"30"
+									"45"
+									"60"
+		optional
+			"Enviromental conditions" {abstract true, Location {type 'string'}}
+				or
+					"Wind sensor"
+					Humidity
+					Temperature
+

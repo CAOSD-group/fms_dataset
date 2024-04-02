@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extendedFeatureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="431,-65"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="PlanetARium">
+			<or abstract="true" mandatory="true" name="Interactions with the user">
+				<feature name="Screen"/>
+				<feature name="Speaker"/>
+			</or>
+			<or abstract="true" mandatory="true" name="Augmented Elements">
+				<or abstract="true" name="Location Based">
+					<feature name="Beacons"/>
+					<feature name="GPS"/>
+				</or>
+				<or abstract="true" name="Visual Elements">
+					<or abstract="true" name="Markers">
+						<feature name="Bar code - Galaxies"/>
+						<feature name="QR - Planets"/>
+						<and name="ArUco - Constellations">
+							<feature name="Overlapping zodiacal symbols"/>
+						</and>
+					</or>
+					<or abstract="true" name="Natural Elements">
+						<feature name="Circles"/>
+						<feature name="Gout"/>
+					</or>
+				</or>
+			</or>
+			<alt abstract="true" name="Virtual Background">
+				<feature name="Starry Sky"/>
+				<feature name="Clear Sky"/>
+				<feature name="Outer Space"/>
+				<feature name="Darkened Background"/>
+			</alt>
+			<and mandatory="true" name="Video Quality">
+				<attribute name="FPS" type="string" unit=""/>
+				<alt mandatory="true" name="Resolution">
+					<feature name="640x480"/>
+					<feature name="320x240"/>
+					<feature name="1024x768"/>
+				</alt>
+			</and>
+			<feature name="Disable/enable features at runtime"/>
+			<feature name="Night mode"/>
+		</and>
+	</struct>
+</extendedFeatureModel>

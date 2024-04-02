@@ -45,8 +45,8 @@
 						</alt>
 					</alt>
 				</alt>
-				<alt name="Virtualiization">
-					<and name="Lightweigh virtualization">
+				<alt abstract="true" name="Virtualization">
+					<and abstract="true" name="Lightweigh virtualization">
 						<feature name="Orchestation system">
 							<attribute name="Orchestrated nodes' ID" type="string" unit=""/>
 						</feature>
@@ -66,7 +66,7 @@
 							</alt>
 						</and>
 					</and>
-					<and name="Hardware/OS virtualization">
+					<and abstract="true" name="Hardware/OS virtualization">
 					<feature name="Infrastructure Hardware">
 						<description>Link to another feature</description>
 					</feature>
@@ -84,7 +84,7 @@
 				<feature name="C++"/>
 				<feature name="Python"/>
 			</or>
-			<or name="Network virtualization">
+			<or abstract="true" name="Network virtualization">
 				<and name="SDN">
 					<feature name="Layered model"/>
 					<alt abstract="true" name="Control mechanism">
@@ -102,7 +102,7 @@
 					</alt>
 				</and>
 			</or>
-			<and name="Platform">
+			<and abstract="true" name="Platform">
 				<alt abstract="true" mandatory="true" name="Comunication type">
 					<feature name="MQTT"/>
 					<feature name="HTTP"/>
@@ -111,11 +111,11 @@
 					<feature name="FTP"/>
 				</alt>
 				<alt abstract="true" name="Cloud computing">
-					<alt name="Cloud">
+					<alt abstract="true" name="Cloud">
 						<feature name="AWS"/>
 						<feature name="Azure"/>
 					</alt>
-					<alt name="IoT">
+					<alt abstract="true" name="IoT">
 						<feature name="AWS IoT"/>
 						<feature name="Cisco IoT"/>
 					</alt>

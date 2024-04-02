@@ -22,6 +22,7 @@ features
 							"Google Home"
 							Beacon
 							Mote
+							"Home appliance"
 					"Power supply"
 						or
 							Battery
@@ -51,7 +52,7 @@ features
 					CPU
 					GPU
 				mandatory
-					"Network connectivity"
+					"Network connectivity" {abstract true}
 						mandatory
 							"L1-2 protocol"
 								mandatory

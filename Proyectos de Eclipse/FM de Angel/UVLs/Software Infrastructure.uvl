@@ -1,91 +1,106 @@
-namespace "Hardware Infrastructure"
+namespace "Software Infrastructure"
 
 features
-	"Hardware Infrastructure" {abstract true}
+	"Software Infrastructure" {abstract true}
 		mandatory
 			Device
-				mandatory
-					Role {abstract true}
-						or
-							Interactive
-							Computing
-					Type {abstract true}
-						alternative
-							Computer
-							Cloud
-							"Smart lock"
-							"IoT gateway"
-							"Mobile phone"
-							Smartwatch
-							Raspberry
-							Alexa
-							"Google Home"
-							Beacon
-							Mote
-					"Power supply"
-						or
-							Battery
-							"Electrical network"
 				optional
-					Peripherals
+					"Interaction ways" {abstract true}
 						or
-							Screen
-							Camera
-							Speaker
-							Keyboard
-							"Tactile Screen"
-							Microphone
-							"Fingerprint sensor"
-					"Sensing units"
-						or
-							Humidity
-							Pressure
-							Temperature
-							Proximity
-							Smoke
-							Presence
-							Luminosity
-							Gyroscope
-							Dendrometer
-					Virtual
-					CPU
-					GPU
+							"Text introduction"
+							"Voice recognition"
+							"Sound recorder"
 				mandatory
-					"Network connectivity"
-						mandatory
-							"L1-2 protocol"
-								mandatory
-									"Type_L1-2 protocol"
-										alternative
-											Discovering
-											Direct
-								optional
-									"Network communication technologies" {abstract true}
-										alternative
-											"WiFi 5GHz"
-											"WiFi 2"."4GHz"
-											Bluethooth
-											"IEEE 802"."15"."4"
-											Ethernet
-											"BLE_L1-2"
-											"Bluethooth miltuhop"
-							"L3 protocol"
+					"Operating System"
+						alternative
+							"User node OS" {abstract true}
 								alternative
-									ZigBee
-									IPv6
-									IPv4
-									IPSec
-									RLP
-									ICMP
-									"6LoWPAN"
-							"L4 protocol"
+									Android
+									IOS
+							"Generic OS" {abstract true}
+								alternative
+									Windows
+									Linux
+							"CPS node OS" {abstract true}
+								alternative
+									"Own microOS"
+									"IoT object OS" {abstract true}
+										alternative
+											LiteOS
+											"Inbed/win"
+											TinyOS
+											AndroidThings
+											Contiki
+											RTOS {abstract true}
+												alternative
+													SafeRTOS
+													FreeRTOS
+				optional
+					Virtualization {abstract true}
+						alternative
+							"Lightweigh virtualization" {abstract true}
+								optional
+									"Orchestation system"
+									Containers
+										optional
+											OS {featureDescription__ 'Link to another feature'}
+											"RAM limitation"
+											"Container Technologies" {abstract true}
+												alternative
+													Docker
+													"CoreOS rkt"
+							"Hardware/OS virtualization" {abstract true}
+								optional
+									"Infrastructure Hardware" {featureDescription__ 'Link to another feature'}
+									"Virualization tools" {abstract true}
+										alternative
+											QEMU
+											VirtualBox
+											VMWare
+				mandatory
+					"Third-party libraries" {abstract true}
+						or
+							DirectX
+							Java
+							"C++"
+							Python
+				optional
+					"Network virtualization" {abstract true}
+						or
+							SDN
+								optional
+									"Layered model"
+									"Control mechanism" {abstract true}
+										alternative
+											"Big Switch Networks"
+											Cisco
+											Cumulus
+											VMWare_CM
+							FNV
+								optional
+									"Abstract function" {abstract true}
+										alternative
+											Firewall
+											"Load balancing"
+											"Path calculation"
+					Platform {abstract true}
+						mandatory
+							"Comunication type" {abstract true}
 								alternative
 									MQTT
-									HTTP2
-									"ZiBee App"
-									BLE_L4
-					Owner
-						or
-							Public
-							Other
+									HTTP
+									SSH
+									WebSockets
+									FTP
+						optional
+							"Cloud computing" {abstract true}
+								alternative
+									Cloud {abstract true}
+										alternative
+											AWS
+											Azure
+									IoT {abstract true}
+										alternative
+											"AWS IoT"
+											"Cisco IoT"
 

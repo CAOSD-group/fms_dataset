@@ -38,6 +38,7 @@
 					<feature name="Mote">
 						<attribute name="Controller device ID" type="string" unit=""/>
 					</feature>
+					<feature name="Home appliance"/>
 				</alt>
 				<or mandatory="true" name="Power supply">
 					<feature name="Battery">
@@ -76,7 +77,7 @@
 					<attribute name="RAM" type="string" unit=""/>
 					<attribute name="Core clocks" type="string" unit="MHz"/>
 				</feature>
-				<and mandatory="true" name="Network connectivity">
+				<and abstract="true" mandatory="true" name="Network connectivity">
 					<attribute name="P(Rx)" type="string" unit=""/>
 					<attribute name="P(Tx)" type="string" unit=""/>
 					<attribute name="R(Rx)" type="string" unit=""/>

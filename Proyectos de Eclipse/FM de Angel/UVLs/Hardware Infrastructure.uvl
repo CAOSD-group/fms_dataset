@@ -1,9 +1,9 @@
 namespace "Hardware Infrastructure"
 
 features
-	"Hardware Infrastructure" {abstract true}
+	"Hardware Infrastructure" {extended__ true, abstract true}
 		mandatory
-			Device
+			Device {ew {type 'string'}, Alpha {type 'string'}, ID {type 'string'}, Disk {type 'string'}, Emax {type 'string'}, RAM {type 'string'}}
 				mandatory
 					Role {abstract true}
 						or
@@ -21,14 +21,14 @@ features
 							Alexa
 							"Google Home"
 							Beacon
-							Mote
+							Mote {"Controller device ID" {type 'string'}}
 							"Home appliance"
 					"Power supply"
 						or
-							Battery
+							Battery {Capacity {type 'string'}}
 							"Electrical network"
 				optional
-					Peripherals
+					Peripherals {abstract true}
 						or
 							Screen
 							Camera
@@ -37,7 +37,7 @@ features
 							"Tactile Screen"
 							Microphone
 							"Fingerprint sensor"
-					"Sensing units"
+					"Sensing units" {abstract true}
 						or
 							Humidity
 							Pressure
@@ -48,11 +48,11 @@ features
 							Luminosity
 							Gyroscope
 							Dendrometer
-					Virtual
-					CPU
-					GPU
+					Virtual {"ID physical node" {type 'string'}}
+					CPU {GHz {type 'string'}, "N Cores" {type 'string'}}
+					GPU {"Core clocks" {unit 'MHz', type 'string'}, RAM {type 'string'}}
 				mandatory
-					"Network connectivity" {abstract true}
+					"Network connectivity" {"R(Tx)" {type 'string'}, "P(Rx)" {type 'string'}, abstract true, "R(Rx)" {type 'string'}, "P(Tx)" {type 'string'}}
 						mandatory
 							"L1-2 protocol"
 								mandatory
@@ -69,7 +69,7 @@ features
 											"IEEE 802"."15"."4"
 											Ethernet
 											"BLE_L1-2"
-											"Bluethooth miltuhop"
+											"Bluethooth miltuhop" {"N Hops" {type 'string'}}
 							"L3 protocol"
 								alternative
 									ZigBee
@@ -85,8 +85,8 @@ features
 									HTTP2
 									"ZiBee App"
 									BLE_L4
-					Owner
+					Owner {abstract true}
 						or
 							Public
-							Other
+							Other {Name {type 'string'}}
 

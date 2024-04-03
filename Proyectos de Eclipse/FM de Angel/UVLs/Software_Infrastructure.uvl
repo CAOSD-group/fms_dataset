@@ -1,5 +1,8 @@
 namespace "Software Infrastructure"
 
+imports
+	Hardware_Infrastructure as HI
+
 features
 	"Software Infrastructure" {extended__ true, abstract true}
 		mandatory
@@ -52,12 +55,12 @@ features
 													"CoreOS rkt"
 							"Hardware/OS virtualization" {abstract true}
 								optional
-									"Infrastructure Hardware" {featureDescription__ 'Link to another feature'}
 									"Virualization tools" {abstract true}
 										alternative
 											QEMU
 											VirtualBox
 											VMWare
+									HI."Hardware Infrastructure"
 				mandatory
 					"Third-party libraries" {abstract true}
 						or
@@ -105,3 +108,14 @@ features
 											"AWS IoT"
 											"Cisco IoT"
 
+constraints
+	HI.Alexa | HI."Google Home" | HI.Smartwatch | HI."Home appliance" => HI.Interactive
+	"Text introduction" => HI.Keyboard & HI.Screen | HI."Tactile Screen"
+	"Sound recorder" | "Voice recognition" => HI.Microphone
+	HI.Computer => Windows | Linux | IOS | Android
+	HI.Cloud => Windows | Linux | IOS
+	HI."Home appliance" | HI.Smartwatch | HI."Smart lock" => "CPS node OS"
+	HI."Mobile phone" => "User node OS"
+	HI.Alexa | HI."Google Home" => Linux
+	HI.Raspberry => Windows | Linux
+	HI.Smartwatch | HI."Smart lock" => !HI.Ethernet

@@ -12,16 +12,16 @@
 		<graphics key="layoutalgorithm" value="1"/>
 	</properties>
 	<struct>
-		<and abstract="true" mandatory="true" name="Smart Campus Application">
-			<and abstract="true" mandatory="true" name="Augmented reality">
-				<or abstract="true" mandatory="true" name="Based on...">
+		<and abstract="true" mandatory="true" name="Smart_Campus_Application">
+			<and abstract="true" mandatory="true" name="Augmented_reality">
+				<or abstract="true" mandatory="true" name="Based_on">
 					<feature name="Position"/>
-					<or name="Visual elements">
+					<or name="Visual_elements">
 						<feature name="Markers"/>
-						<feature name="Natural elements"/>
+						<feature name="Natural_elements"/>
 					</or>
 				</or>
-				<and abstract="true" mandatory="true" name="Video Quality">
+				<and abstract="true" mandatory="true" name="Video_Quality">
 					<alt mandatory="true" name="Resolution">
 						<feature name="720P"/>
 						<feature name="480P"/>
@@ -34,9 +34,9 @@
 					</alt>
 				</and>
 			</and>
-			<or abstract="true" name="Enviromental conditions">
+			<or abstract="true" name="Enviromental_conditions">
 				<attribute name="Location" type="string" unit=""/>
-				<feature name="Wind sensor"/>
+				<feature name="Wind_sensor"/>
 				<feature name="Humidity"/>
 				<feature name="Temperature"/>
 			</or>

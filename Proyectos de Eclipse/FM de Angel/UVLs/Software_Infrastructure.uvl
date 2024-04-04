@@ -1,30 +1,30 @@
-namespace "Software Infrastructure"
+namespace Software_Infrastructure
 
 features
-	"Software Infrastructure" {extended__ true, abstract true}
+	Software_Infrastructure {abstract true}
 		mandatory
-			Device {Role {type 'string'}, "ID physical/Virtual node" {type 'string'}}
+			Software_Device
 				optional
-					"Interaction ways" {abstract true}
+					Interaction_ways {abstract true}
 						or
-							"Text introduction"
-							"Voice recognition"
-							"Sound recorder"
+							Text_introduction
+							Voice_recognition
+							Sound_recorder
 				mandatory
-					"Operating System"
+					Operating_System
 						alternative
-							"User node OS" {abstract true}
+							User_node_OS {abstract true}
 								alternative
 									Android
 									IOS
-							"Generic OS" {abstract true}
+							Generic_OS {abstract true}
 								alternative
 									Windows
 									Linux
-							"CPS node OS" {abstract true}
+							CPS_node_OS {abstract true}
 								alternative
-									"Own microOS"
-									"IoT object OS" {abstract true}
+									Own_microOS
+									IoT_Object_OS {abstract true}
 										alternative
 											LiteOS
 											"Inbed/win"
@@ -38,55 +38,55 @@ features
 				optional
 					Virtualization {abstract true}
 						alternative
-							"Lightweigh virtualization" {abstract true}
+							Lightweigh_virtualization {abstract true}
 								optional
-									"Orchestation system" {"Orchestrated nodes' ID" {type 'string'}}
-									Containers {CPU {type 'string'}, GPU {type 'string'}}
+									Orchestation_system
+									Containers
 										mandatory
 											OS {featureDescription__ 'Link to another feature'}
 										optional
-											"RAM limitation" {"HD swapping" {type 'string'}, RAM {type 'string'}}
-											"Container Technologies" {abstract true}
+											RAM_limitation
+											Container_Technologies {abstract true}
 												alternative
 													Docker
-													"CoreOS rkt"
-							"Hardware/OS virtualization" {abstract true}
+													CoreOS_rkt
+							"Hardware/OS_virtualization" {abstract true}
 								optional
-									"Infrastructure Hardware" {featureDescription__ 'Link to another feature'}
-									"Virualization tools" {abstract true}
+									Infrastructure_Hardware {featureDescription__ 'Link to another feature'}
+									Virualization_tools {abstract true}
 										alternative
 											QEMU
 											VirtualBox
 											VMWare
 				mandatory
-					"Third-party libraries" {abstract true}
+					Third_party_libraries {abstract true}
 						or
 							DirectX
 							Java
 							"C++"
 							Python
 				optional
-					"Network virtualization" {abstract true}
+					Network_virtualization {abstract true}
 						or
 							SDN
 								optional
-									"Layered model"
-									"Control mechanism" {abstract true}
+									Layered_model
+									Control_mechanism {abstract true}
 										alternative
-											"Big Switch Networks"
+											Big_Switch_Networks
 											Cisco
 											Cumulus
 											VMWare_CM
 							FNV
 								optional
-									"Abstract function" {abstract true}
+									Abstract_function {abstract true}
 										alternative
 											Firewall
-											"Load balancing"
-											"Path calculation"
+											Load_balancing
+											Path_calculation
 					Platform {abstract true}
 						mandatory
-							"Comunication type" {abstract true}
+							Comunication_type {abstract true}
 								alternative
 									MQTT
 									HTTP
@@ -94,7 +94,7 @@ features
 									WebSockets
 									FTP
 						optional
-							"Cloud computing" {abstract true}
+							Cloud_computing {abstract true}
 								alternative
 									Cloud {abstract true}
 										alternative
@@ -102,6 +102,6 @@ features
 											Azure
 									IoT {abstract true}
 										alternative
-											"AWS IoT"
-											"Cisco IoT"
+											AWS_IoT
+											Cisco_IoT
 

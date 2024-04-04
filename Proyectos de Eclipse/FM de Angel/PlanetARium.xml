@@ -13,36 +13,36 @@
 	</properties>
 	<struct>
 		<and abstract="true" mandatory="true" name="PlanetARium">
-			<or abstract="true" mandatory="true" name="Interactions with the user">
+			<or abstract="true" mandatory="true" name="Interactions _with_the_user">
 				<feature name="Screen"/>
 				<feature name="Speaker"/>
 			</or>
-			<or abstract="true" mandatory="true" name="Augmented Elements">
-				<or abstract="true" name="Location Based">
+			<or abstract="true" mandatory="true" name="Augmented_Elements">
+				<or abstract="true" name="Location_Based">
 					<feature name="Beacons"/>
 					<feature name="GPS"/>
 				</or>
-				<or abstract="true" name="Visual Elements">
+				<or abstract="true" name="Visual_Elements">
 					<or abstract="true" name="Markers">
-						<feature name="Bar code - Galaxies"/>
-						<feature name="QR - Planets"/>
-						<and name="ArUco - Constellations">
-							<feature name="Overlapping zodiacal symbols"/>
+						<feature name="Bar_code_Galaxies"/>
+						<feature name="QR_Planets"/>
+						<and name="ArUco_Constellations">
+							<feature name="Overlapping_zodiacal_symbols"/>
 						</and>
 					</or>
-					<or abstract="true" name="Natural Elements">
+					<or abstract="true" name="Natural_Elements">
 						<feature name="Circles"/>
 						<feature name="Gout"/>
 					</or>
 				</or>
 			</or>
-			<alt abstract="true" name="Virtual Background">
-				<feature name="Starry Sky"/>
-				<feature name="Clear Sky"/>
-				<feature name="Outer Space"/>
-				<feature name="Darkened Background"/>
+			<alt abstract="true" name="Virtual_Background">
+				<feature name="Starry_Sky"/>
+				<feature name="Clear _Sky"/>
+				<feature name="Outer_Space"/>
+				<feature name="Darkened_Background"/>
 			</alt>
-			<and mandatory="true" name="Video Quality">
+			<and mandatory="true" name="Video_Quality">
 				<attribute name="FPS" type="string" unit=""/>
 				<alt mandatory="true" name="Resolution">
 					<feature name="640x480"/>
@@ -50,8 +50,8 @@
 					<feature name="1024x768"/>
 				</alt>
 			</and>
-			<feature name="Disable/enable features at runtime"/>
-			<feature name="Night mode"/>
+			<feature name="Disable/enable_features_at_runtime"/>
+			<feature name="Night_mode"/>
 		</and>
 	</struct>
 </extendedFeatureModel>

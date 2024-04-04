@@ -1,32 +1,32 @@
-namespace "Hardware Infrastructure"
+namespace Hardware_Infrastructure
 
 features
-	"Hardware Infrastructure" {extended__ true, abstract true}
+	Hardware_Infrastructure {abstract true}
 		mandatory
-			"Hardware device" {ew {type 'string'}, Alpha {type 'string'}, ID {type 'string'}, Disk {type 'string'}, Emax {type 'string'}, RAM {type 'string'}}
+			Hardware_device
 				mandatory
 					Role {abstract true}
 						or
 							Interactive
 							Computing
-					"Device type" {abstract true}
+					Device_type {abstract true}
 						alternative
 							Computer
 							Cloud
-							"Smart lock"
-							"IoT gateway"
-							"Mobile phone"
+							Smart_lock
+							IoT_gateway
+							Mobile_phone
 							Smartwatch
 							Raspberry
 							Alexa
-							"Google Home"
+							Google_Home
 							Beacon
-							Mote {"Controller device ID" {type 'string'}}
-							"Home appliance"
-					"Power supply"
+							Mote
+							Home_appliance
+					Power_supply
 						or
-							Battery {Capacity {type 'string'}}
-							"Electrical network"
+							Battery
+							Electrical_network
 				optional
 					Peripherals {abstract true}
 						or
@@ -34,10 +34,10 @@ features
 							Camera
 							Speaker
 							Keyboard
-							"Tactile Screen"
+							Tactile_Screen
 							Microphone
-							"Fingerprint sensor"
-					"Sensing units" {abstract true}
+							Fingerprint_sensor
+					Sensing_units {abstract true}
 						or
 							Humidity
 							Pressure
@@ -48,29 +48,29 @@ features
 							Luminosity
 							Gyroscope
 							Dendrometer
-					Virtual {"ID physical node" {type 'string'}}
-					CPU {GHz {type 'string'}, "N Cores" {type 'string'}}
-					GPU {"Core clocks" {unit 'MHz', type 'string'}, RAM {type 'string'}}
+					Virtual
+					CPU
+					GPU
 				mandatory
-					"Network connectivity" {"R(Tx)" {type 'string'}, "P(Rx)" {type 'string'}, abstract true, "R(Rx)" {type 'string'}, "P(Tx)" {type 'string'}}
+					Network_connectivity {abstract true}
 						mandatory
-							"L1-2 protocol"
+							L1_2_protocol
 								mandatory
-									"Type_L1-2 protocol"
+									Type_L1_2_protocol
 										alternative
 											Discovering
 											Direct
 								optional
-									"Network communication technologies" {abstract true}
+									Network_communication_technologies {abstract true}
 										alternative
-											"WiFi 5GHz"
-											"WiFi 2'4GHz"
+											WiFi_5GHz
+											WiFi_2_4GHz
 											Bluethooth
-											"IEEE 802-15-4"
+											IEEE_802_15_4
 											Ethernet
-											"BLE_L1-2"
-											"Bluethooth multihop" {"N Hops" {type 'string'}}
-							"L3 protocol"
+											BLE_L1_2
+											Bluethooth_multihop
+							L3_protocol
 								alternative
 									ZigBee
 									IPv6
@@ -79,17 +79,17 @@ features
 									RLP
 									ICMP
 									"6LoWPAN"
-							"L4 protocol"
+							L4_protocol
 								alternative
 									MQTT
 									HTTP2
-									"ZiBee App"
+									ZiBee_App
 									BLE_L4
 					Owner {abstract true}
 						or
 							Public
-							Other {Name {type 'string'}}
+							Other
 
 constraints
-	Alexa | "Google Home" | Smartwatch | "Home appliance" => Interactive
-	Smartwatch | "Smart lock" => !Ethernet
+	Alexa | Google_Home | Smartwatch | Home_appliance => Interactive
+	Smartwatch | Smart_lock => !Ethernet

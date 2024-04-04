@@ -11,9 +11,9 @@
 		<graphics key="layoutalgorithm" value="1"/>
 	</properties>
 	<struct>
-		<and abstract="true" mandatory="true" name="Hardware Infrastructure">
+		<and abstract="true" mandatory="true" name="Hardware_Infrastructure">
 			<graphics key="collapsed" value="false"/>
-			<and mandatory="true" name="Hardware device">
+			<and mandatory="true" name="Hardware_device">
 				<graphics key="collapsed" value="false"/>
 				<attribute name="ew" type="string" unit=""/>
 				<attribute name="Alpha" type="string" unit=""/>
@@ -26,29 +26,29 @@
 					<feature name="Interactive"/>
 					<feature name="Computing"/>
 				</or>
-				<alt abstract="true" mandatory="true" name="Device type">
+				<alt abstract="true" mandatory="true" name="Device_type">
 					<graphics key="collapsed" value="false"/>
 					<feature name="Computer"/>
 					<feature name="Cloud"/>
-					<feature name="Smart lock"/>
-					<feature name="IoT gateway"/>
-					<feature name="Mobile phone"/>
+					<feature name="Smart_lock"/>
+					<feature name="IoT_gateway"/>
+					<feature name="Mobile_phone"/>
 					<feature name="Smartwatch"/>
 					<feature name="Raspberry"/>
 					<feature name="Alexa"/>
-					<feature name="Google Home"/>
+					<feature name="Google_Home"/>
 					<feature name="Beacon"/>
 					<feature name="Mote">
 						<attribute name="Controller device ID" type="string" unit=""/>
 					</feature>
-					<feature name="Home appliance"/>
+					<feature name="Home_appliance"/>
 				</alt>
-				<or mandatory="true" name="Power supply">
+				<or mandatory="true" name="Power_supply">
 					<graphics key="collapsed" value="false"/>
 					<feature name="Battery">
 						<attribute name="Capacity" type="string" unit=""/>
 					</feature>
-					<feature name="Electrical network"/>
+					<feature name="Electrical_network"/>
 				</or>
 				<or abstract="true" name="Peripherals">
 					<graphics key="collapsed" value="false"/>
@@ -56,11 +56,11 @@
 					<feature name="Camera"/>
 					<feature name="Speaker"/>
 					<feature name="Keyboard"/>
-					<feature name="Tactile Screen"/>
+					<feature name="Tactile_Screen"/>
 					<feature name="Microphone"/>
-					<feature name="Fingerprint sensor"/>
+					<feature name="Fingerprint_sensor"/>
 				</or>
-				<or abstract="true" name="Sensing units">
+				<or abstract="true" name="Sensing_units">
 					<graphics key="collapsed" value="false"/>
 					<feature name="Humidity"/>
 					<feature name="Pressure"/>
@@ -83,33 +83,33 @@
 					<attribute name="RAM" type="string" unit=""/>
 					<attribute name="Core clocks" type="string" unit="MHz"/>
 				</feature>
-				<and abstract="true" mandatory="true" name="Network connectivity">
+				<and abstract="true" mandatory="true" name="Network_connectivity">
 					<graphics key="collapsed" value="false"/>
 					<attribute name="P(Rx)" type="string" unit=""/>
 					<attribute name="P(Tx)" type="string" unit=""/>
 					<attribute name="R(Rx)" type="string" unit=""/>
 					<attribute name="R(Tx)" type="string" unit=""/>
-					<and mandatory="true" name="L1-2 protocol">
+					<and mandatory="true" name="L1_2_protocol">
 						<graphics key="collapsed" value="false"/>
-						<alt mandatory="true" name="Type_L1-2 protocol">
+						<alt mandatory="true" name="Type_L1_2_protocol">
 							<graphics key="collapsed" value="false"/>
 							<feature name="Discovering"/>
 							<feature name="Direct"/>
 						</alt>
-						<alt abstract="true" name="Network communication technologies">
+						<alt abstract="true" name="Network_communication_technologies">
 							<graphics key="collapsed" value="false"/>
-							<feature name="WiFi 5GHz"/>
-							<feature name="WiFi 2'4GHz"/>
+							<feature name="WiFi_5GHz"/>
+							<feature name="WiFi_2_4GHz"/>
 							<feature name="Bluethooth"/>
-							<feature name="IEEE 802-15-4"/>
+							<feature name="IEEE_802_15_4"/>
 							<feature name="Ethernet"/>
-							<feature name="BLE_L1-2"/>
-							<feature name="Bluethooth multihop">
+							<feature name="BLE_L1_2"/>
+							<feature name="Bluethooth_multihop">
 								<attribute name="N Hops" type="string" unit=""/>
 							</feature>
 						</alt>
 					</and>
-					<alt mandatory="true" name="L3 protocol">
+					<alt mandatory="true" name="L3_protocol">
 						<graphics key="collapsed" value="false"/>
 						<feature name="ZigBee"/>
 						<feature name="IPv6"/>
@@ -119,11 +119,11 @@
 						<feature name="ICMP"/>
 						<feature name="6LoWPAN"/>
 					</alt>
-					<alt mandatory="true" name="L4 protocol">
+					<alt mandatory="true" name="L4_protocol">
 						<graphics key="collapsed" value="false"/>
 						<feature name="MQTT"/>
 						<feature name="HTTP2"/>
-						<feature name="ZiBee App"/>
+						<feature name="ZiBee_App"/>
 						<feature name="BLE_L4"/>
 					</alt>
 				</and>
@@ -143,10 +143,10 @@
 				<disj>
 					<var>Alexa</var>
 					<disj>
-						<var>Google Home</var>
+						<var>Google_Home</var>
 						<disj>
 							<var>Smartwatch</var>
-							<var>Home appliance</var>
+							<var>Home_appliance</var>
 						</disj>
 					</disj>
 				</disj>
@@ -157,7 +157,7 @@
 			<imp>
 				<disj>
 					<var>Smartwatch</var>
-					<var>Smart lock</var>
+					<var>Smart_lock</var>
 				</disj>
 				<not>
 					<var>Ethernet</var>

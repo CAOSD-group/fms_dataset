@@ -1,33 +1,33 @@
-namespace "Software Infrastructure"
+namespace Software_Infrastructure
 
 imports
 	Hardware_Infrastructure as HI
 
 features
-	"Software Infrastructure" {extended__ true, abstract true}
+	Software_Infrastructure {abstract true}
 		mandatory
-			Device {Role {type 'string'}, "ID physical/Virtual node" {type 'string'}}
+			Software_Device
 				optional
-					"Interaction ways" {abstract true}
+					Interaction_ways {abstract true}
 						or
-							"Text introduction"
-							"Voice recognition"
-							"Sound recorder"
+							Text_introduction
+							Voice_recognition
+							Sound_recorder
 				mandatory
-					"Operating System"
+					Operating_System
 						alternative
-							"User node OS" {abstract true}
+							User_node_OS {abstract true}
 								alternative
 									Android
 									IOS
-							"Generic OS" {abstract true}
+							Generic_OS {abstract true}
 								alternative
 									Windows
 									Linux
-							"CPS node OS" {abstract true}
+							CPS_node_OS {abstract true}
 								alternative
-									"Own microOS"
-									"IoT object OS" {abstract true}
+									Own_microOS
+									IoT_Object_OS {abstract true}
 										alternative
 											LiteOS
 											"Inbed/win"
@@ -41,55 +41,142 @@ features
 				optional
 					Virtualization {abstract true}
 						alternative
-							"Lightweigh virtualization" {abstract true}
+							Lightweigh_virtualization {abstract true}
 								optional
-									"Orchestation system" {"Orchestrated nodes' ID" {type 'string'}}
-									Containers {CPU {type 'string'}, GPU {type 'string'}}
+									Orchestation_system
+									Containers
 										mandatory
 											OS {featureDescription__ 'Link to another feature'}
 										optional
-											"RAM limitation" {"HD swapping" {type 'string'}, RAM {type 'string'}}
-											"Container Technologies" {abstract true}
+											RAM_limitation
+											Container_Technologies {abstract true}
 												alternative
 													Docker
-													"CoreOS rkt"
-							"Hardware/OS virtualization" {abstract true}
+													CoreOS_rkt
+							"Hardware/OS_virtualization" {abstract true}
 								optional
-									"Virualization tools" {abstract true}
+									Hardware_Infrastructure {abstract true}
+										mandatory
+											Hardware_device
+												mandatory
+													Role {abstract true}
+														or
+															Interactive
+															Computing
+													Device_type {abstract true}
+														alternative
+															Computer
+															Cloud
+															Smart_lock
+															IoT_gateway
+															Mobile_phone
+															Smartwatch
+															Raspberry
+															Alexa
+															Google_Home
+															Beacon
+															Mote
+															Home_appliance
+													Power_supply
+														or
+															Battery
+															Electrical_network
+												optional
+													Peripherals {abstract true}
+														or
+															Screen
+															Camera
+															Speaker
+															Keyboard
+															Tactile_Screen
+															Microphone
+															Fingerprint_sensor
+													Sensing_units {abstract true}
+														or
+															Humidity
+															Pressure
+															Temperature
+															Proximity
+															Smoke
+															Presence
+															Luminosity
+															Gyroscope
+															Dendrometer
+													Virtual
+													CPU
+													GPU
+												mandatory
+													Network_connectivity {abstract true}
+														mandatory
+															L1_2_protocol
+																mandatory
+																	Type_L1_2_protocol
+																		alternative
+																			Discovering
+																			Direct
+																optional
+																	Network_communication_technologies {abstract true}
+																		alternative
+																			WiFi_5GHz
+																			WiFi_2_4GHz
+																			Bluethooth
+																			IEEE_802_15_4
+																			Ethernet
+																			BLE_L1_2
+																			Bluethooth_multihop
+															L3_protocol
+																alternative
+																	ZigBee
+																	IPv6
+																	IPv4
+																	IPSec
+																	RLP
+																	ICMP
+																	"6LoWPAN"
+															L4_protocol
+																alternative
+																	MQTT
+																	HTTP2
+																	ZiBee_App
+																	BLE_L4
+													Owner {abstract true}
+														or
+															Public
+															Other
+									Virualization_tools {abstract true}
 										alternative
 											QEMU
 											VirtualBox
 											VMWare
-									HI."Hardware Infrastructure"
 				mandatory
-					"Third-party libraries" {abstract true}
+					Third_party_libraries {abstract true}
 						or
 							DirectX
 							Java
 							"C++"
 							Python
 				optional
-					"Network virtualization" {abstract true}
+					Network_virtualization {abstract true}
 						or
 							SDN
 								optional
-									"Layered model"
-									"Control mechanism" {abstract true}
+									Layered_model
+									Control_mechanism {abstract true}
 										alternative
-											"Big Switch Networks"
+											Big_Switch_Networks
 											Cisco
 											Cumulus
 											VMWare_CM
 							FNV
 								optional
-									"Abstract function" {abstract true}
+									Abstract_function {abstract true}
 										alternative
 											Firewall
-											"Load balancing"
-											"Path calculation"
+											Load_balancing
+											Path_calculation
 					Platform {abstract true}
 						mandatory
-							"Comunication type" {abstract true}
+							Comunication_type {abstract true}
 								alternative
 									MQTT
 									HTTP
@@ -97,7 +184,7 @@ features
 									WebSockets
 									FTP
 						optional
-							"Cloud computing" {abstract true}
+							Cloud_computing {abstract true}
 								alternative
 									Cloud {abstract true}
 										alternative
@@ -105,15 +192,17 @@ features
 											Azure
 									IoT {abstract true}
 										alternative
-											"AWS IoT"
-											"Cisco IoT"
+											AWS_IoT
+											Cisco_IoT
 
 constraints
-	"Text introduction" => HI.Keyboard & HI.Screen | HI."Tactile Screen"
-	"Sound recorder" | "Voice recognition" => HI.Microphone
-	HI.Computer => Windows | Linux | IOS | Android
-	HI.Cloud => Windows | Linux | IOS
-	HI."Home appliance" | HI.Smartwatch | HI."Smart lock" => "CPS node OS"
-	HI."Mobile phone" => "User node OS"
-	HI.Alexa | HI."Google Home" => Linux
-	HI.Raspberry => Windows | Linux
+	Alexa | Google_Home | Smartwatch | Home_appliance => Interactive
+	Smartwatch | Smart_lock => !Ethernet
+	Text_introduction => Keyboard & Screen | Tactile_Screen
+	Sound_recorder | Voice_recognition => Microphone
+	Computer => Windows | Linux | IOS | Android
+	Cloud => Windows | Linux | IOS
+	Home_appliance | Smartwatch | Smart_lock => CPS_node_OS
+	Mobile_phone => User_node_OS
+	Alexa | Google_Home => Linux
+	Raspberry => Windows | Linux

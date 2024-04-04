@@ -2,7 +2,7 @@
 <extendedFeatureModel>
 	<properties>
 		<graphics key="autolayoutconstraints" value="false"/>
-		<graphics key="legendposition" value="524,-50"/>
+		<graphics key="legendposition" value="442,-50"/>
 		<graphics key="legendautolayout" value="false"/>
 		<graphics key="showconstraints" value="true"/>
 		<graphics key="showshortnames" value="false"/>
@@ -12,27 +12,27 @@
 		<graphics key="layoutalgorithm" value="1"/>
 	</properties>
 	<struct>
-		<and abstract="true" mandatory="true" name="Software Infrastructure">
-			<and mandatory="true" name="Device">
+		<and abstract="true" mandatory="true" name="Software_Infrastructure">
+			<and mandatory="true" name="Software_Device">
 				<attribute name="Role" type="string" unit=""/>
 				<attribute name="ID physical/Virtual node" type="string" unit=""/>
-				<or abstract="true" name="Interaction ways">
-					<feature name="Text introduction"/>
-					<feature name="Voice recognition"/>
-					<feature name="Sound recorder"/>
+				<or abstract="true" name="Interaction_ways">
+					<feature name="Text_introduction"/>
+					<feature name="Voice_recognition"/>
+					<feature name="Sound_recorder"/>
 				</or>
-				<alt mandatory="true" name="Operating System">
-					<alt abstract="true" name="User node OS">
+				<alt mandatory="true" name="Operating_System">
+					<alt abstract="true" name="User_node_OS">
 						<feature name="Android"/>
 						<feature name="IOS"/>
 					</alt>
-					<alt abstract="true" name="Generic OS">
+					<alt abstract="true" name="Generic_OS">
 						<feature name="Windows"/>
 						<feature name="Linux"/>
 					</alt>
-					<alt abstract="true" name="CPS node OS">
-						<feature name="Own microOS"/>
-						<alt abstract="true" name="IoT object OS">
+					<alt abstract="true" name="CPS_node_OS">
+						<feature name="Own_microOS"/>
+						<alt abstract="true" name="IoT_Object_OS">
 							<feature name="LiteOS"/>
 							<feature name="Inbed/win"/>
 							<feature name="TinyOS"/>
@@ -46,8 +46,8 @@
 					</alt>
 				</alt>
 				<alt abstract="true" name="Virtualization">
-					<and abstract="true" name="Lightweigh virtualization">
-						<feature name="Orchestation system">
+					<and abstract="true" name="Lightweigh_virtualization">
+						<feature name="Orchestation_system">
 							<attribute name="Orchestrated nodes' ID" type="string" unit=""/>
 						</feature>
 						<and name="Containers">
@@ -56,21 +56,21 @@
 							<feature mandatory="true" name="OS">
 								<description>Link to another feature</description>
 							</feature>
-							<feature name="RAM limitation">
+							<feature name="RAM_limitation">
 								<attribute name="RAM" type="string" unit=""/>
 								<attribute name="HD swapping" type="string" unit=""/>
 							</feature>
-							<alt abstract="true" name="Container Technologies">
+							<alt abstract="true" name="Container_Technologies">
 								<feature name="Docker"/>
-								<feature name="CoreOS rkt"/>
+								<feature name="CoreOS_rkt"/>
 							</alt>
 						</and>
 					</and>
-					<and abstract="true" name="Hardware/OS virtualization">
-					<feature name="Infrastructure Hardware">
+					<and abstract="true" name="Hardware/OS_virtualization">
+					<feature name="Infrastructure_Hardware">
 						<description>Link to another feature</description>
 					</feature>
-					<alt abstract="true" name="Virualization tools">
+					<alt abstract="true" name="Virualization_tools">
 						<graphics key="collapsed" value="false"/>
 						<feature name="QEMU"/>
 						<feature name="VirtualBox"/>
@@ -78,46 +78,46 @@
 					</alt>
 				</and>
 			</alt>
-			<or abstract="true" mandatory="true" name="Third-party libraries">
+			<or abstract="true" mandatory="true" name="Third_party_libraries">
 				<feature name="DirectX"/>
 				<feature name="Java"/>
 				<feature name="C++"/>
 				<feature name="Python"/>
 			</or>
-			<or abstract="true" name="Network virtualization">
+			<or abstract="true" name="Network_virtualization">
 				<and name="SDN">
-					<feature name="Layered model"/>
-					<alt abstract="true" name="Control mechanism">
-						<feature name="Big Switch Networks"/>
+					<feature name="Layered_model"/>
+					<alt abstract="true" name="Control_mechanism">
+						<feature name="Big_Switch_Networks"/>
 						<feature name="Cisco"/>
 						<feature name="Cumulus"/>
 						<feature name="VMWare_CM"/>
 					</alt>
 				</and>
 				<and name="FNV">
-					<alt abstract="true" name="Abstract function">
+					<alt abstract="true" name="Abstract_function">
 						<feature name="Firewall"/>
-						<feature name="Load balancing"/>
-						<feature name="Path calculation"/>
+						<feature name="Load_balancing"/>
+						<feature name="Path_calculation"/>
 					</alt>
 				</and>
 			</or>
 			<and abstract="true" name="Platform">
-				<alt abstract="true" mandatory="true" name="Comunication type">
+				<alt abstract="true" mandatory="true" name="Comunication_type">
 					<feature name="MQTT"/>
 					<feature name="HTTP"/>
 					<feature name="SSH"/>
 					<feature name="WebSockets"/>
 					<feature name="FTP"/>
 				</alt>
-				<alt abstract="true" name="Cloud computing">
+				<alt abstract="true" name="Cloud_computing">
 					<alt abstract="true" name="Cloud">
 						<feature name="AWS"/>
 						<feature name="Azure"/>
 					</alt>
 					<alt abstract="true" name="IoT">
-						<feature name="AWS IoT"/>
-						<feature name="Cisco IoT"/>
+						<feature name="AWS_IoT"/>
+						<feature name="Cisco_IoT"/>
 					</alt>
 				</alt>
 			</and>

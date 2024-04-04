@@ -117,7 +117,7 @@
 						<feature name="IPSec"/>
 						<feature name="RLP"/>
 						<feature name="ICMP"/>
-						<feature name="6LoWPAN"/>
+						<feature name="IPv6_LoWPAN"/>
 					</alt>
 					<alt mandatory="true" name="L4_protocol">
 						<graphics key="collapsed" value="false"/>

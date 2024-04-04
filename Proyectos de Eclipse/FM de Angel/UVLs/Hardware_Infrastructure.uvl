@@ -78,7 +78,7 @@ features
 									IPSec
 									RLP
 									ICMP
-									"6LoWPAN"
+									IPv6_LoWPAN
 							L4_protocol
 								alternative
 									MQTT

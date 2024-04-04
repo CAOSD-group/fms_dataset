@@ -1,8 +1,5 @@
 namespace Software_Infrastructure
 
-imports
-	Hardware_Infrastructure as HI
-
 features
 	Software_Infrastructure {abstract true}
 		mandatory
@@ -30,7 +27,7 @@ features
 									IoT_Object_OS {abstract true}
 										alternative
 											LiteOS
-											"Inbed/win"
+											Inbed_win
 											TinyOS
 											AndroidThings
 											Contiki
@@ -46,14 +43,14 @@ features
 									Orchestation_system
 									Containers
 										mandatory
-											OS {featureDescription__ 'Link to another feature'}
+											OS
 										optional
 											RAM_limitation
 											Container_Technologies {abstract true}
 												alternative
 													Docker
 													CoreOS_rkt
-							"Hardware/OS_virtualization" {abstract true}
+							Hardware_or_OS_virtualization {abstract true}
 								optional
 									Hardware_Infrastructure {abstract true}
 										mandatory
@@ -132,7 +129,7 @@ features
 																	IPSec
 																	RLP
 																	ICMP
-																	"6LoWPAN"
+																	IPv6_LoWPAN
 															L4_protocol
 																alternative
 																	MQTT
@@ -153,7 +150,7 @@ features
 						or
 							DirectX
 							Java
-							"C++"
+							C_plus_plus
 							Python
 				optional
 					Network_virtualization {abstract true}

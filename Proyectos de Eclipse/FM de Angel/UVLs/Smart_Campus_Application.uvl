@@ -16,14 +16,14 @@ features
 						mandatory
 							Resolution
 								alternative
-									"720P"
-									"480P"
-									"1080P"
+									px_720
+									px_480
+									px_1080
 							FPS
 								alternative
-									"30"
-									"45"
-									"60"
+									fps_30
+									fps_45
+									fps_60
 		optional
 			Enviromental_conditions {abstract true}
 				or

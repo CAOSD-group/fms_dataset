@@ -34,7 +34,7 @@
 						<feature name="Own_microOS"/>
 						<alt abstract="true" name="IoT_Object_OS">
 							<feature name="LiteOS"/>
-							<feature name="Inbed/win"/>
+							<feature name="Inbed_win"/>
 							<feature name="TinyOS"/>
 							<feature name="AndroidThings"/>
 							<feature name="Contiki"/>
@@ -53,9 +53,7 @@
 						<and name="Containers">
 							<attribute name="GPU" type="string" unit=""/>
 							<attribute name="CPU" type="string" unit=""/>
-							<feature mandatory="true" name="OS">
-								<description>Link to another feature</description>
-							</feature>
+							<feature mandatory="true" name="OS"/>
 							<feature name="RAM_limitation">
 								<attribute name="RAM" type="string" unit=""/>
 								<attribute name="HD swapping" type="string" unit=""/>
@@ -66,62 +64,60 @@
 							</alt>
 						</and>
 					</and>
-					<and abstract="true" name="Hardware/OS_virtualization">
-					<feature name="Infrastructure_Hardware">
-						<description>Link to another feature</description>
-					</feature>
-					<alt abstract="true" name="Virualization_tools">
-						<graphics key="collapsed" value="false"/>
-						<feature name="QEMU"/>
-						<feature name="VirtualBox"/>
-						<feature name="VMWare"/>
-					</alt>
-				</and>
-			</alt>
-			<or abstract="true" mandatory="true" name="Third_party_libraries">
-				<feature name="DirectX"/>
-				<feature name="Java"/>
-				<feature name="C++"/>
-				<feature name="Python"/>
-			</or>
-			<or abstract="true" name="Network_virtualization">
-				<and name="SDN">
-					<feature name="Layered_model"/>
-					<alt abstract="true" name="Control_mechanism">
-						<feature name="Big_Switch_Networks"/>
-						<feature name="Cisco"/>
-						<feature name="Cumulus"/>
-						<feature name="VMWare_CM"/>
-					</alt>
-				</and>
-				<and name="FNV">
-					<alt abstract="true" name="Abstract_function">
-						<feature name="Firewall"/>
-						<feature name="Load_balancing"/>
-						<feature name="Path_calculation"/>
-					</alt>
-				</and>
-			</or>
-			<and abstract="true" name="Platform">
-				<alt abstract="true" mandatory="true" name="Comunication_type">
-					<feature name="MQTT"/>
-					<feature name="HTTP"/>
-					<feature name="SSH"/>
-					<feature name="WebSockets"/>
-					<feature name="FTP"/>
+					<and abstract="true" name="Hardware_or_OS_virtualization">
+						<feature name="Infrastructure_Hardware"/>
+						<alt abstract="true" name="Virualization_tools">
+							<graphics key="collapsed" value="false"/>
+							<feature name="QEMU"/>
+							<feature name="VirtualBox"/>
+							<feature name="VMWare"/>
+						</alt>
+					</and>
 				</alt>
-				<alt abstract="true" name="Cloud_computing">
-					<alt abstract="true" name="Cloud">
-						<feature name="AWS"/>
-						<feature name="Azure"/>
+				<or abstract="true" mandatory="true" name="Third_party_libraries">
+					<feature name="DirectX"/>
+					<feature name="Java"/>
+					<feature name="C_plus_plus"/>
+					<feature name="Python"/>
+				</or>
+				<or abstract="true" name="Network_virtualization">
+					<and name="SDN">
+						<feature name="Layered_model"/>
+						<alt abstract="true" name="Control_mechanism">
+							<feature name="Big_Switch_Networks"/>
+							<feature name="Cisco"/>
+							<feature name="Cumulus"/>
+							<feature name="VMWare_CM"/>
+						</alt>
+					</and>
+					<and name="FNV">
+						<alt abstract="true" name="Abstract_function">
+							<feature name="Firewall"/>
+							<feature name="Load_balancing"/>
+							<feature name="Path_calculation"/>
+						</alt>
+					</and>
+				</or>
+				<and abstract="true" name="Platform">
+					<alt abstract="true" mandatory="true" name="Comunication_type">
+						<feature name="MQTT"/>
+						<feature name="HTTP"/>
+						<feature name="SSH"/>
+						<feature name="WebSockets"/>
+						<feature name="FTP"/>
 					</alt>
-					<alt abstract="true" name="IoT">
-						<feature name="AWS_IoT"/>
-						<feature name="Cisco_IoT"/>
+					<alt abstract="true" name="Cloud_computing">
+						<alt abstract="true" name="Cloud">
+							<feature name="AWS"/>
+							<feature name="Azure"/>
+						</alt>
+						<alt abstract="true" name="IoT">
+							<feature name="AWS_IoT"/>
+							<feature name="Cisco_IoT"/>
+						</alt>
 					</alt>
-				</alt>
+				</and>
 			</and>
 		</and>
-	</and>
-</struct>
+	</struct>
 </extendedFeatureModel>

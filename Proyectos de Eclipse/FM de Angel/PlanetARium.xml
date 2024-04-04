@@ -13,7 +13,7 @@
 	</properties>
 	<struct>
 		<and abstract="true" mandatory="true" name="PlanetARium">
-			<or abstract="true" mandatory="true" name="Interactions _with_the_user">
+			<or abstract="true" mandatory="true" name="Interactions_with_the_user">
 				<feature name="Screen"/>
 				<feature name="Speaker"/>
 			</or>
@@ -38,19 +38,19 @@
 			</or>
 			<alt abstract="true" name="Virtual_Background">
 				<feature name="Starry_Sky"/>
-				<feature name="Clear _Sky"/>
+				<feature name="Clear_Sky"/>
 				<feature name="Outer_Space"/>
 				<feature name="Darkened_Background"/>
 			</alt>
 			<and mandatory="true" name="Video_Quality">
 				<attribute name="FPS" type="string" unit=""/>
 				<alt mandatory="true" name="Resolution">
-					<feature name="640x480"/>
-					<feature name="320x240"/>
-					<feature name="1024x768"/>
+					<feature name="px_640x480"/>
+					<feature name="px_320x240"/>
+					<feature name="px_1024x768"/>
 				</alt>
 			</and>
-			<feature name="Disable/enable_features_at_runtime"/>
+			<feature name="Disable_enable_features_at_runtime"/>
 			<feature name="Night_mode"/>
 		</and>
 	</struct>

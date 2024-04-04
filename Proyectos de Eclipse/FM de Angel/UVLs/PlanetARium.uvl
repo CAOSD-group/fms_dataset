@@ -3,7 +3,7 @@ namespace PlanetARium
 features
 	PlanetARium {abstract true}
 		mandatory
-			"Interactions _with_the_user" {abstract true}
+			Interactions_with_the_user {abstract true}
 				or
 					Screen
 					Speaker
@@ -30,7 +30,7 @@ features
 			Virtual_Background {abstract true}
 				alternative
 					Starry_Sky
-					"Clear _Sky"
+					Clear_Sky
 					Outer_Space
 					Darkened_Background
 		mandatory
@@ -38,10 +38,10 @@ features
 				mandatory
 					Resolution
 						alternative
-							"640x480"
-							"320x240"
-							"1024x768"
+							px_640x480
+							px_320x240
+							px_1024x768
 		optional
-			"Disable/enable_features_at_runtime"
+			Disable_enable_features_at_runtime
 			Night_mode
 

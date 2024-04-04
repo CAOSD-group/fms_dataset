@@ -27,7 +27,7 @@ features
 									IoT_Object_OS {abstract true}
 										alternative
 											LiteOS
-											"Inbed/win"
+											Inbed_win
 											TinyOS
 											AndroidThings
 											Contiki
@@ -43,16 +43,16 @@ features
 									Orchestation_system
 									Containers
 										mandatory
-											OS {featureDescription__ 'Link to another feature'}
+											OS
 										optional
 											RAM_limitation
 											Container_Technologies {abstract true}
 												alternative
 													Docker
 													CoreOS_rkt
-							"Hardware/OS_virtualization" {abstract true}
+							Hardware_or_OS_virtualization {abstract true}
 								optional
-									Infrastructure_Hardware {featureDescription__ 'Link to another feature'}
+									Infrastructure_Hardware
 									Virualization_tools {abstract true}
 										alternative
 											QEMU
@@ -63,7 +63,7 @@ features
 						or
 							DirectX
 							Java
-							"C++"
+							C_plus_plus
 							Python
 				optional
 					Network_virtualization {abstract true}

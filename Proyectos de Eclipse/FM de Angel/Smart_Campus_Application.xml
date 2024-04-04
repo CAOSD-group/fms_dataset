@@ -23,14 +23,14 @@
 				</or>
 				<and abstract="true" mandatory="true" name="Video_Quality">
 					<alt mandatory="true" name="Resolution">
-						<feature name="720P"/>
-						<feature name="480P"/>
-						<feature name="1080P"/>
+						<feature name="px_720P"/>
+						<feature name="px_480P"/>
+						<feature name="px_1080P"/>
 					</alt>
 					<alt mandatory="true" name="FPS">
-						<feature name="30"/>
-						<feature name="45"/>
-						<feature name="60"/>
+						<feature name="fps_30"/>
+						<feature name="fps_45"/>
+						<feature name="fps_60"/>
 					</alt>
 				</and>
 			</and>

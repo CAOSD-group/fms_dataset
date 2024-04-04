@@ -90,3 +90,6 @@ features
 							Public
 							Other {Name {type 'string'}}
 
+constraints
+	Alexa | "Google Home" | Smartwatch | "Home appliance" => Interactive
+	Smartwatch | "Smart lock" => !Ethernet

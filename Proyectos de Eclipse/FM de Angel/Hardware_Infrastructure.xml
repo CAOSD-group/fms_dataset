@@ -137,4 +137,32 @@
 			</and>
 		</and>
 	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<disj>
+					<var>Alexa</var>
+					<disj>
+						<var>Google Home</var>
+						<disj>
+							<var>Smartwatch</var>
+							<var>Home appliance</var>
+						</disj>
+					</disj>
+				</disj>
+				<var>Interactive</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<disj>
+					<var>Smartwatch</var>
+					<var>Smart lock</var>
+				</disj>
+				<not>
+					<var>Ethernet</var>
+				</not>
+			</imp>
+		</rule>
+	</constraints>
 </extendedFeatureModel>

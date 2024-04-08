@@ -1,0 +1,202 @@
+features
+	Dockerfile
+		mandatory
+			Boolean FROM 
+				mandatory
+					String image 
+				optional
+					String platform 
+					String tag 
+					String digest 
+					String name 
+		optional
+			Boolean LABEL
+				mandatory
+					String LABEL_key
+					String LABEL_value
+			Boolean ENV 
+				mandatory
+					String ENV_key
+					String ENV_value
+			Boolean ADD 
+				mandatory
+					String ADD_source
+					String ADD_destiny
+				alternative
+					Boolean ADD_keep_git_dir 
+					Boolean ADD_checksum 
+						mandatory
+							String ADD_CHECKSUM_VALUE
+					Boolean ADD_chown //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String ADD_CHOWN_source
+							String ADD_CHOWN_destiny
+							String ADD_CHOWN_users
+							String ADD_CHOWN_group 
+					Boolean link
+						mandatory
+							String ADD_LINK_source
+							String ADD_LINK_destiny
+					Boolean exclude 
+						mandatory
+							String ADD_EXCLUDE_PATH
+							String ADD_EXCLUDE_source
+							String ADD_EXCLUDE_destiny
+			Boolean WORKDIR 
+				mandatory
+					String WORKDIR_path
+			Boolean COPY 
+				mandatory
+					String COPY_source
+					String COPY_destiny
+				alternative
+					Boolean COPY_from
+						mandatory
+							String FROM_options
+					Boolean COPY_chown //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String COPY_CHOWN_source
+							String COPY_CHOWN_destiny
+							String COPY_CHOWN_users
+							String COPY_CHOWN_group
+					Boolean COPY_chmod //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String COPY_CHMOD_perms
+					Boolean COPY_link
+						mandatory
+							String COPY_LINK_source
+							String COPY_LINK_destiny
+					Boolean COPY_parents
+						mandatory
+							String COPY_PARENTS_source
+							String COPY_PARENTS_destiny
+					Boolean COPY_exclude
+						mandatory
+							String COPY_EXCLUDE_PATH
+							String COPY_EXCLUDE_source
+							String Copy_EXCLUDE_destiny
+					
+			Boolean EXPOSE 
+				mandatory	
+					String EXPOSE_port
+				optional
+					Boolean protocol
+						alternative
+							String PROTOCOL_name
+							
+			Boolean VOLUME 
+				mandatory
+					String VOLUME_arguments
+			Boolean RUN 
+				mandatory
+					String RUN_command
+				or
+					Boolean mount 
+						mandatory
+							Boolean MOUNT_option {abstract true}
+								or
+									Boolean MOUNT_target
+										mandatory 
+											String MOUNT_TARGET_value
+									Boolean MOUNT_source
+										mandatory 
+											String MOUNT_SOURCE_value
+									Boolean MOUNT_from 
+										mandatory 
+											String MOUNT_FROM_value
+									Boolean MOUNT_readwrite
+									Boolean MOUNT_id
+										mandatory
+											Integer MOUNT_ID_value
+									Boolean MOUNT_readonly 
+									Boolean MOUNT_mode
+										mandatory 
+											String MOUNT_MODE_value
+									Boolean MOUNT_uid 
+										mandatory 
+											String MOUNT_UID_value
+									Boolean MOUNT_gid 
+										mandatory 
+											String MOUNT_GID_value
+									Boolean MOUNT_size 
+										mandatory
+											Integer MOUNT_SIZE_value
+											String MOUNT_SIZE_unit
+									Boolean MOUNT_required 
+									Boolean MOUNT_sharing 
+										or 
+											Boolean MOUNT_SHARING_shared 
+											Boolean MOUNT_SHARING_private 
+											Boolean MOUNT_SHARING_locked 
+							Boolean MOUNT_type {abstract true}
+								or
+									Boolean bind
+									Boolean cache
+									Boolean tmpfs
+									Boolean secret
+									Boolean ssh
+					Boolean network
+						or
+							Boolean default
+							Boolean none
+							Boolean host
+				 	Boolean security 
+						or
+							Boolean sandbox
+							Boolean insecure
+			Boolean ARG 
+				mandatory
+					String ARG_name
+					String ARG_value
+			Boolean CMD 
+			Boolean ENTRYPOINT 
+				mandatory
+					String ENTRYPOINT_command
+					String ENTRYPOINT_param1
+					String ENTRYPOINT_param2
+			Boolean USER
+				or
+					Boolean usernameANDgroup
+						mandatory 
+							String USER_username
+							String USER_group
+					Boolean uidANDgid
+						mandatory
+							String USER_uid
+							String USER_gid
+			Boolean ONBUILD
+				mandatory
+					String ONBUILD_instruction
+			Boolean STOPSIGNAL
+				mandatory
+					String STOPSIGNAL_signal
+			Boolean HEALTHCHECK
+				or
+					Boolean HEALTHCHECK_none
+					Boolean HEALTHCHECK_options
+						mandatory
+							String HEALTHCHECK_cmdCommand
+						alternative
+							Boolean HEALTHCHECK_interval
+								mandatory
+									Integer HEALTHCHECK_intervalValue
+							Boolean HEALTHCHECK_timeout
+								mandatory
+									Integer HEALTHCHECK_timeoutValue
+							Boolean HEALTHCHECK_startPeriod
+								mandatory
+									Integer HEALTHCHECK_StartPeriodValue
+							Boolean HEALTHCHECK_startInterval
+								mandatory
+									Integer HEALTHCHECK_StartIntervalValue
+							Boolean HEALTHCHECK_retries
+								mandatory
+									Integer HEALTHCHECK_RetriesValue
+			Boolean SHELL
+				mandatory
+					String SHELL_json	
+constraints
+	bind => (MOUNT_target | MOUNT_source | MOUNT_from | MOUNT_readwrite)
+	cache => (MOUNT_id | MOUNT_target | MOUNT_readonly | MOUNT_sharing | MOUNT_from | MOUNT_source | MOUNT_mode | MOUNT_uid | MOUNT_gid)
+	tmpfs => (MOUNT_target | MOUNT_size)
+	(secret | ssh) => (MOUNT_id | MOUNT_target | MOUNT_required | MOUNT_mode | MOUNT_uid | MOUNT_gid)

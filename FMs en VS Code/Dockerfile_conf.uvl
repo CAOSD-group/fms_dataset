@@ -5,10 +5,18 @@ features
 				mandatory
 					String image 
 				optional
-					String platform 
-					String tag 
-					String digest 
-					String name 
+					Boolean platform 
+						mandatory
+							String PLATFORM_value
+					Boolean tag 
+						mandatory
+							String TAG_value
+					Boolean digest 
+						mandatory
+							String DIGEST_value
+					Boolean name 
+						mandatory
+							String NAME_value
 		optional
 			Boolean LABEL
 				mandatory
@@ -80,9 +88,10 @@ features
 				mandatory	
 					String EXPOSE_port
 				optional
-					Boolean protocol
-						alternative
-							String PROTOCOL_name
+					Boolean EXPOSE_protocol
+						or
+							Boolean PROTOCOL_udp
+							Boolean PROTOCOL_tcp
 							
 			Boolean VOLUME 
 				mandatory
@@ -149,6 +158,10 @@ features
 					String ARG_name
 					String ARG_value
 			Boolean CMD 
+				mandatory
+					String CMD_command
+					String CMD_param1
+					String CMD_param2
 			Boolean ENTRYPOINT 
 				mandatory
 					String ENTRYPOINT_command
@@ -196,6 +209,8 @@ features
 				mandatory
 					String SHELL_json	
 constraints
+	digest => !tag
+	tag => !digest
 	bind => (MOUNT_target | MOUNT_source | MOUNT_from | MOUNT_readwrite)
 	cache => (MOUNT_id | MOUNT_target | MOUNT_readonly | MOUNT_sharing | MOUNT_from | MOUNT_source | MOUNT_mode | MOUNT_uid | MOUNT_gid)
 	tmpfs => (MOUNT_target | MOUNT_size)

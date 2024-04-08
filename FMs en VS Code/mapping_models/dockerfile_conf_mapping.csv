@@ -1,0 +1,19 @@
+Feature, Handler, Value
+image, image, 
+platform, platform, -
+PLATFORM_value, PLATFORM_value, 
+tag, tag, -
+TAG_value, TAG_value, 
+name, name, -
+NAME_value, NAME_value, 
+digest, digest, -
+DIGEST_value, DIGEST_value, 
+CMD, CMD, -
+CMD_command, CMD_command, 
+CMD_param1, CMD_param1, 
+CMD_param2, CMD_param2, 
+EXPOSE, EXPOSE, -
+EXPOSE_port, EXPOSE_port, 
+EXPOSE_protocol, EXPOSE_protocol, -
+PROTOCOL_udp, PROTOCOL_udp, udp 
+PROTOCOL_tcp, PROTOCOL_tcp, tcp

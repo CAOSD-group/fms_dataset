@@ -1,0 +1,10 @@
+{
+  "file": "Dockerfile_conf.uvl",
+  "config": {
+    "EXPOSE": true,
+    "EXPOSE_port": "8080",
+    "EXPOSE_protocol": true,
+    "PROTOCOL_udp": true,
+    "PROTOCOL_tcp": true
+  }
+}

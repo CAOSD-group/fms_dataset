@@ -1,0 +1,8 @@
+{# Comando From#}
+FROM {% if platform %}--platform={{PLATFORM_value}} {% endif %}{{image}}{% if tag %}:{{TAG_value}}{% endif %}{% if digest %}@{{DIGEST_value}}{% endif %}{% if name %} AS {{NAME_value}}{% endif %}
+{# Comando EXPOSE#}
+{% if EXPOSE %}EXPOSE {% if not EXPOSE_protocol %}{{EXPOSE_port}} {% elif EXPOSE_protocol %}{% if PROTOCOL_udp %}{{EXPOSE_port}}/udp {% endif %}{% if PROTOCOL_tcp %}{{EXPOSE_port}}/tcp{% endif %}{% endif %}{% endif %}
+{# Comando CMD#}
+{% if CMD %}CMD {{CMD_command}} {{CMD_param1}} {{CMD_param2}} {% endif %}
+
+

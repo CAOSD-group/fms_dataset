@@ -1,10 +1,11 @@
 {
-  "file": "Dockerfile_conf.uvl",
+  "file": "dockerfile_conf.uvl",
   "config": {
-    "EXPOSE": true,
-    "EXPOSE_port": "8080",
-    "EXPOSE_protocol": true,
-    "PROTOCOL_udp": true,
-    "PROTOCOL_tcp": true
+    "ADD": true,
+    "ADD_source": "/home",
+    "ADD_destiny": "/documents",
+    "ADD_keep_git_dir": false,
+    "ADD_checksum": true,
+    "ADD_CHECKSUM_value": "sha256:837483749738247"
   }
 }

@@ -34,25 +34,22 @@ features
 					Boolean ADD_keep_git_dir 
 					Boolean ADD_checksum 
 						mandatory
-							String ADD_CHECKSUM_VALUE
-					Boolean ADD_chown //SOLO PARA SISTEMAS LINUX
-						mandatory
-							String ADD_CHOWN_source
-							String ADD_CHOWN_destiny
-							String ADD_CHOWN_users
-							String ADD_CHOWN_group 
+							String ADD_CHECKSUM_value
 					Boolean link
-						mandatory
-							String ADD_LINK_source
-							String ADD_LINK_destiny
 					Boolean exclude 
 						mandatory
-							String ADD_EXCLUDE_PATH
-							String ADD_EXCLUDE_source
-							String ADD_EXCLUDE_destiny
-			Boolean WORKDIR 
-				mandatory
-					String WORKDIR_path
+							String ADD_EXCLUDE_path
+				or
+					Boolean ADD_chown //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String ADD_CHOWN_users
+						optional
+							String ADD_CHOWN_group 
+								mandatory 
+									String ADD_CHOWN_GROUP_value
+					Boolean ADD_chmod //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String ADD_CHMOD_perms
 			Boolean COPY 
 				mandatory
 					String COPY_source
@@ -60,30 +57,23 @@ features
 				alternative
 					Boolean COPY_from
 						mandatory
-							String FROM_options
+							String COPY_FROM_options
+					Boolean COPY_link
+					Boolean COPY_parents
+					Boolean COPY_exclude
+						mandatory
+							String COPY_EXCLUDE_path
+				or
 					Boolean COPY_chown //SOLO PARA SISTEMAS LINUX
 						mandatory
-							String COPY_CHOWN_source
-							String COPY_CHOWN_destiny
 							String COPY_CHOWN_users
-							String COPY_CHOWN_group
+						optional
+							Boolean COPY_CHOWN_group
+								mandatory
+									String COPY_CHOWN_GROUP_value
 					Boolean COPY_chmod //SOLO PARA SISTEMAS LINUX
 						mandatory
 							String COPY_CHMOD_perms
-					Boolean COPY_link
-						mandatory
-							String COPY_LINK_source
-							String COPY_LINK_destiny
-					Boolean COPY_parents
-						mandatory
-							String COPY_PARENTS_source
-							String COPY_PARENTS_destiny
-					Boolean COPY_exclude
-						mandatory
-							String COPY_EXCLUDE_PATH
-							String COPY_EXCLUDE_source
-							String Copy_EXCLUDE_destiny
-					
 			Boolean EXPOSE 
 				mandatory	
 					String EXPOSE_port
@@ -92,7 +82,9 @@ features
 						or
 							Boolean PROTOCOL_udp
 							Boolean PROTOCOL_tcp
-							
+			Boolean WORKDIR 
+				mandatory
+					String WORKDIR_path				
 			Boolean VOLUME 
 				mandatory
 					String VOLUME_arguments
@@ -215,3 +207,4 @@ constraints
 	cache => (MOUNT_id | MOUNT_target | MOUNT_readonly | MOUNT_sharing | MOUNT_from | MOUNT_source | MOUNT_mode | MOUNT_uid | MOUNT_gid)
 	tmpfs => (MOUNT_target | MOUNT_size)
 	(secret | ssh) => (MOUNT_id | MOUNT_target | MOUNT_required | MOUNT_mode | MOUNT_uid | MOUNT_gid)
+	COPY_chmod => COPY_chown

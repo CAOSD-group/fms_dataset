@@ -17,3 +17,33 @@ EXPOSE_port, EXPOSE_port,
 EXPOSE_protocol, EXPOSE_protocol, -
 PROTOCOL_udp, PROTOCOL_udp, udp 
 PROTOCOL_tcp, PROTOCOL_tcp, tcp
+WORKDIR, WORKDIR, -
+WORKDIR_path, WORKDIR_path, 
+COPY, COPY, -
+COPY_source, COPY_source, 
+COPY_destiny, COPY_destiny, 
+COPY_link, COPY_link, --link
+COPY_parents, COPY_parents, --parents
+COPY_from, COPY_from, --from=
+COPY_FROM_options, COPY_FROM_options, 
+COPY_exclude, COPY_exclude, --exclude=
+COPY_EXCLUDE_path, COPY_EXCLUDE_path, 
+COPY_chown, COPY_chown, --chown=
+COPY_CHOWN_users, COPY_CHOWN_users, 
+COPY_CHOWN_group, COPY_CHOWN_group, -
+COPY_CHOWN_GROUP_value, COPY_CHOWN_GROUP_value, 
+COPY_chmod, COPY_chmod, --chmod=
+COPY_CHMOD_perms, COPY_CHMOD_perms, 
+ADD, ADD, -
+ADD_source, ADD_source, 
+ADD_destiny, ADD_destiny, 
+ADD_link, ADD_link, --link
+ADD_chown, ADD_chown, --chown=
+ADD_CHOWN_users, ADD_CHOWN_users, 
+ADD_CHOWN_group, ADD_CHOWN_group, -
+ADD_CHOWN_GROUP_value, ADD_CHOWN_GROUP_value, 
+ADD_chmod, ADD_chmod, --chmod==
+ADD_CHMOD_perms, ADD_CHMOD_perms, 
+ADD_keep_git_dir, ADD_keep_git_dir, --keep-git-dir=true
+ADD_checksum, ADD_checksum, --checksum=
+ADD_CHECKSUM_value, ADD_CHECKSUM_value, 

@@ -78,7 +78,7 @@ features
 				mandatory	
 					String EXPOSE_port
 				optional
-					Boolean EXPOSE_protocol
+					Boolean EXPOSE_protocol {abstract}
 						or
 							Boolean PROTOCOL_udp
 							Boolean PROTOCOL_tcp
@@ -91,10 +91,10 @@ features
 			Boolean RUN 
 				mandatory
 					String RUN_command
-				or
+				optional
 					Boolean mount 
 						mandatory
-							Boolean MOUNT_option {abstract true}
+							Boolean MOUNT_option {abstract}
 								or
 									Boolean MOUNT_target
 										mandatory 
@@ -121,28 +121,27 @@ features
 											String MOUNT_GID_value
 									Boolean MOUNT_size 
 										mandatory
-											Integer MOUNT_SIZE_value
-											String MOUNT_SIZE_unit
+											String MOUNT_SIZE_value
 									Boolean MOUNT_required 
 									Boolean MOUNT_sharing 
-										or 
+										alternative 
 											Boolean MOUNT_SHARING_shared 
 											Boolean MOUNT_SHARING_private 
 											Boolean MOUNT_SHARING_locked 
-							Boolean MOUNT_type {abstract true}
-								or
+							Boolean MOUNT_type {abstract}
+								alternative
 									Boolean bind
 									Boolean cache
 									Boolean tmpfs
 									Boolean secret
 									Boolean ssh
 					Boolean network
-						or
+						alternative
 							Boolean default
 							Boolean none
 							Boolean host
 				 	Boolean security 
-						or
+						alternative
 							Boolean sandbox
 							Boolean insecure
 			Boolean ARG 
@@ -157,18 +156,14 @@ features
 			Boolean ENTRYPOINT 
 				mandatory
 					String ENTRYPOINT_command
+				optional
 					String ENTRYPOINT_param1
 					String ENTRYPOINT_param2
 			Boolean USER
-				or
-					Boolean usernameANDgroup
-						mandatory 
-							String USER_username
-							String USER_group
-					Boolean uidANDgid
-						mandatory
-							String USER_uid
-							String USER_gid
+				mandatory
+					String USER_name
+				optional
+					String USER_group
 			Boolean ONBUILD
 				mandatory
 					String ONBUILD_instruction
@@ -176,27 +171,17 @@ features
 				mandatory
 					String STOPSIGNAL_signal
 			Boolean HEALTHCHECK
-				or
+				alternative
 					Boolean HEALTHCHECK_none
 					Boolean HEALTHCHECK_options
 						mandatory
 							String HEALTHCHECK_cmdCommand
-						alternative
-							Boolean HEALTHCHECK_interval
-								mandatory
-									Integer HEALTHCHECK_intervalValue
-							Boolean HEALTHCHECK_timeout
-								mandatory
-									Integer HEALTHCHECK_timeoutValue
-							Boolean HEALTHCHECK_startPeriod
-								mandatory
-									Integer HEALTHCHECK_StartPeriodValue
-							Boolean HEALTHCHECK_startInterval
-								mandatory
-									Integer HEALTHCHECK_StartIntervalValue
-							Boolean HEALTHCHECK_retries
-								mandatory
-									Integer HEALTHCHECK_RetriesValue
+						optional
+							String HEALTHCHECK_interval
+							String HEALTHCHECK_timeout
+							String HEALTHCHECK_startPeriod
+							String HEALTHCHECK_startInterval
+							String HEALTHCHECK_retries
 			Boolean SHELL
 				mandatory
 					String SHELL_json	
@@ -208,3 +193,4 @@ constraints
 	tmpfs => (MOUNT_target | MOUNT_size)
 	(secret | ssh) => (MOUNT_id | MOUNT_target | MOUNT_required | MOUNT_mode | MOUNT_uid | MOUNT_gid)
 	COPY_chmod => COPY_chown
+	HEALTHCHECK_options => !CMD

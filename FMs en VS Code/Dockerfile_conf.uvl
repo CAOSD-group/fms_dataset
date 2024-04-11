@@ -151,6 +151,7 @@ features
 			Boolean CMD 
 				mandatory
 					String CMD_command
+				optional
 					String CMD_param1
 					String CMD_param2
 			Boolean ENTRYPOINT 
@@ -193,4 +194,5 @@ constraints
 	tmpfs => (MOUNT_target | MOUNT_size)
 	(secret | ssh) => (MOUNT_id | MOUNT_target | MOUNT_required | MOUNT_mode | MOUNT_uid | MOUNT_gid)
 	COPY_chmod => COPY_chown
-	HEALTHCHECK_options => !CMD
+	tag => !digest
+	digest => !tag

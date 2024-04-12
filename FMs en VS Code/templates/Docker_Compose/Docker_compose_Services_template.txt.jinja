@@ -1,0 +1,10 @@
+services:
+    {{SERVICE_name}}:
+        image: {{SERVICE_image}}
+    {% if Build %}
+        build:
+    {% endif %}
+    {% if Deploy %}
+        deploy:
+            {% if DEPLOY_endpointMode %}endpoint_mode: {{ENDPOINTMODE_vip}}{{ENDPOINTMODE_dnsrr}}{% endif %}
+    {% endif %}

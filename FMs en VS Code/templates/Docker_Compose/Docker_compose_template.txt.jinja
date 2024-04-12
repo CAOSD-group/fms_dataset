@@ -1,0 +1,12 @@
+{% if VERSION_ver%}version: {{VERSION_ver}} {% endif %}
+{% if VERSION_name%}name: {{VERSION_name}} {% endif %}
+
+{% if SERVICES %}{% include 'Docker_compose_Services_template.txt.jinja' %}{% endif %}
+
+{% if NETWORKS %}{% include 'Docker_compose_Networks_template.txt.jinja' %}{% endif %}
+
+{% if VOLUMES %}{% include 'Docker_compose_Volumes_template.txt.jinja' %}{% endif %}
+
+{% if CONFIGS %}{% include 'Docker_compose_Configs_template.txt.jinja' %}{% endif %}
+
+{% if SECRETS %}{% include 'Docker_compose_Secrets_template.txt.jinja' %}{% endif %}

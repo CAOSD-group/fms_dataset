@@ -1,0 +1,25 @@
+features
+    Docker_compose
+        optional
+            Boolean VERSION
+                mandatory
+                    String VERSION_ver
+                optional
+                    String VERSION_name
+            Boolean SERVICES
+                mandatory
+                    String SERVICE_name
+                    String SERVICE_image
+                optional
+                    Boolean Build
+                    Boolean Deploy
+                        optional
+                            Boolean DEPLOY_endpointMode
+                                alternative
+                                    Boolean ENDPOINTMODE_vip
+                                    Boolean ENDPOINTMODE_dnsrr
+
+            Boolean NETWORKS
+            Boolean VOLUMES
+            Boolean CONFIGS
+            Boolean SECRETS

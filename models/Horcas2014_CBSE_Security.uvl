@@ -1,0 +1,42 @@
+// DOI: https://doi.org/10.1145/2602458.2602460
+
+namespace Security_CBSE
+
+features
+	Security
+		or
+			Confidentiality
+				optional
+					Privacy
+			Authentication
+				optional
+					AuthLogging
+					PseudonymousCertificate
+					LimitedSession
+				alternative
+					UserPassAuth
+					CardAuth
+					BioAuth
+			Integrity
+			Encryption
+				mandatory
+					KeyStorage
+				alternative
+					Asymmetric
+						or
+							DSA
+							RSA
+							ECDSA
+					Symmetric
+						or
+							AES
+							DES
+			Hash
+				alternative
+					MD5
+					"SHA-1"
+					"SHA-2"
+constraints
+	Confidentiality => Encryption
+	Privacy => Authentication
+	Integrity => Hash

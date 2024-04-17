@@ -1,6 +1,6 @@
 // DOI: https://doi.org/10.1109/SEAA.2013.20
 
-namespace FullQA
+namespace FullQA_SEAA_fixed
 
 features
 	FullQA
@@ -58,12 +58,9 @@ features
 						optional
 							TemporalSchema
 constraints
-	(AuthenticationHash | IntegrityHash) => Hash  // ERROR: IntegrityHash and Hash are not present in the model.
 	AsymmetricEncryption => Asymmetric
 	ConfidentialityEncryption => Encryption
 	ContextualHelp => Authentication
 	AuthLogging => Logs
 	("Usr+pass-aut" | CardAuth | BioAut | "Card+pass-aut") => DatabaseStorage
 	SecureDBStorage => AccessControl
-
-

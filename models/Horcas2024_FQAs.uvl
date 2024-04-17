@@ -1,0 +1,100 @@
+// Sources: 
+// * Horcas2013_SEAA: https://doi.org/10.1109/SEAA.2013.20
+// * Horcas2014_CBSE: https://doi.org/10.1145/2602458.2602460
+
+namespace FQAs
+
+features
+	FQAs
+		or
+			Security
+				or
+					Confidentiality
+						optional
+							Privacy
+					AccessControl
+						mandatory
+							Authentication
+								optional
+									AuthLogging
+									PseudonymousCertificate
+									LimitedSession
+									AuthHash
+								alternative
+									UserPassAuth
+									CardAuth
+									BioAuth
+									CardPassAuth
+					NonRepudiation
+					Integrity
+					Encryption
+						mandatory
+							KeyStorage
+						alternative
+							Asymmetric
+								or
+									DSA
+									RSA
+									ECDSA
+							Symmetric
+								or
+									AES
+									DES
+							PasswordBased
+					Hash
+						alternative
+							MD5
+							SHA1
+							SHA2
+			ContextAwareness
+				or
+					TimeAware
+					LocationAware
+						mandatory
+							GPS
+						optional
+							ProximitySensor
+					UserAware
+						or 
+							LicenseDetector
+							Weariness
+			Usability
+				or
+					Feedback
+						or
+							Alerts
+							Logs
+								optional
+									HistoryLogs
+							ProcessIndication
+					ExecutionControl
+						[0..2]
+								Undo
+								Redo
+							mandatory
+								Cancel
+					ContextualHelp
+			Persistence
+				or
+					FilesStorage
+						optional
+							FilesSchema
+					DatabaseStorage
+						optional
+							DatabaseSchema
+							SecureDBStorage
+					TemporalStorage
+						optional
+							TemporalSchema
+constraints
+	Confidentiality => Encryption
+	Privacy => Authentication
+	Integrity | AuthHash => Hash
+	AuthLogging => HistoryLogs
+	LimitedSession => TimeAware
+	Weariness => Alerts
+	ContextualHelp => Authentication
+	NonRepudiation => Asymmetric
+	ContextualHelp => Authentication
+	(UserPassAuth | CardAuth | BioAuth | CardPassAuth) => DatabaseStorage
+	SecureDBStorage => AccessControl

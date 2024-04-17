@@ -1,0 +1,69 @@
+features
+	FiveGuys {abstract}
+		optional
+			Hamburger
+			HotDog
+			Extras
+				optional
+					Cheese
+						optional
+							GrilledCheese
+					Bacon
+			Size
+				optional
+					Little
+			SinPan
+			Sandwich
+				optional
+					BLT
+			Toppings
+				or
+					Mayonesa
+					Lechuga
+					Pepinillos
+					Tomate
+					CebollaPlancha
+					ChampinyonesPlancha
+					Ketchup
+					Mostaza
+					Relish
+					Cebolla
+					Jalapenyos
+					PimientoVerde
+					SalsaSteak
+					SalsaBarbacoa
+					SalsaPicante
+				optional
+					AllTheWay
+			Patatas
+				alternative
+					Pequenyas
+					Medianas
+					Grandes
+			Bebidas
+				alternative
+					Refresco
+					AguaMineral
+					Budweiser
+					Corona
+					GooseIslandIpa
+			Batidos
+				or
+					Vainilla
+					Chocolate
+					Fresa
+					Cereza
+					GalletaOREO
+					MantequillaCacahuete
+					LecheMalteada
+					CarameloSalado
+					Platano
+					Cafe
+constraints
+	GrilledCheese => Sandwich
+	Sandwich & Bacon => BLT
+	BLT => Bacon & Lechuga & Tomate & Mayonesa
+	BLT => !Cheese
+	AllTheWay => Mayonesa & Lechuga & Pepinillos & Tomate & CebollaPlancha & ChampinyonesPlancha & Ketchup & Mostaza
+	Sandwich => !SinPan
+	Toppings => Hamburger | HotDog | Sandwich

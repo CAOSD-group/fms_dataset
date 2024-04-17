@@ -1,0 +1,33 @@
+{
+  "file": "Kubernetes_manifest.uvl",
+  "config": {
+    "GROUP_admissionregistration": false,
+    "GROUP_apiextensions": false,
+    "GROUP_apiregistration": false,
+    "GROUP_apps": true,
+    "GROUP_authentication": false,
+    "GROUP_authorization": false,
+    "GROUP_autoscaling": false,
+    "GROUP_batch": false,
+    "GROUP_certificates": false,
+    "GROUP_coordination": false,
+    "GROUP_core": false,
+    "GROUP_discovery": false,
+    "GROUP_events": false,
+    "GROUP_flowcontrol_apiserver": false,
+    "GROUP_internal_apiserver": false,
+    "GROUP_networking": false,
+    "GROUP_node": false,
+    "GROUP_policy": false,
+    "GROUP_rbac_authorization": false,
+    "GROUP_resource": false,
+    "GROUP_scheduling": false,
+    "GROUP_storage": false,
+    "VERSION_v1": true,
+    "VERSION_v1beta1": false,
+    "VERSION_v1beta3": false,
+    "VERSION_v1alpha1": false,
+    "VERSION_v1alpha2": false,
+    "VERSION_v2": false
+  }
+}

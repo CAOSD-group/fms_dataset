@@ -1,0 +1,80 @@
+features 
+    Kubernetes_manifest
+        mandatory
+            Boolean ApiVersion
+                mandatory
+                    Group
+                        alternative
+                            Boolean GROUP_admissionregistration
+                            Boolean GROUP_apiextensions
+                            Boolean GROUP_apiregistration
+                            Boolean GROUP_apps
+                            Boolean GROUP_authentication
+                            Boolean GROUP_authorization
+                            Boolean GROUP_autoscaling
+                            Boolean GROUP_batch
+                            Boolean GROUP_certificates
+                            Boolean GROUP_coordination
+                            Boolean GROUP_core
+                            Boolean GROUP_discovery
+                            Boolean GROUP_events
+                            Boolean GROUP_flowcontrol_apiserver
+                            Boolean GROUP_internal_apiserver
+                            Boolean GROUP_networking
+                            Boolean GROUP_node
+                            Boolean GROUP_policy
+                            Boolean GROUP_rbac_authorization
+                            Boolean GROUP_resource
+                            Boolean GROUP_scheduling
+                            Boolean GROUP_storage
+                    Version
+                        alternative
+                            Boolean VERSION_v1
+                            Boolean VERSION_v1beta1
+                            Boolean VERSION_v1beta3
+                            Boolean VERSION_v1alpha1
+                            Boolean VERSION_v1alpha2
+                            Boolean VERSION_v2
+            Boolean Kind
+                alternative
+                    Boolean KIND_Container
+                    Boolean KIND_CronJob
+                    Boolean KIND_DaemonSet
+                    Boolean KIND_Deployment
+                    Boolean KIND_Job
+                    Boolean KIND_Pod
+                    Boolean KIND_ReplicaSet
+                    Boolean KIND_ReplicationController
+                    Boolean KIND_StatefullSet
+                    Boolean KIND_Endpoints
+                    Boolean KIND_EndpintSlice
+                    Boolean KIND_Ingress
+                    Boolean KIND_IngressClass
+                    Boolean KIND_Service
+                    Boolean KIND_ConfigMap
+                    Boolean KIND_CSIDriver
+                    Boolean KIND_CSINode
+                    Boolean KIND_Secret
+                    Boolean KIND_PersistentVolumeClaim
+                    Boolean KIND_StorageClass
+                    Boolean KIND_CSIStorageCapacity
+                    Boolean KIND_Volume
+                    Boolean KIND_VolumeAttachment
+                    Boolean KIND_VolumeAttributesClass
+            Boolean Metadata
+            Boolean Spec
+        optional
+
+constraints
+    (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1
+    (GROUP_admissionregistration | GROUP_authentication) => VERSION_v1beta1 | VERSION_v1
+    (GROUP_admissionregistration | GROUP_authentication | GROUP_certificates | GROUP_internal_apiserver | GROUP_networking | GROUP_storage) => VERSION_v1alpha1 | VERSION_v1
+    GROUP_autoscaling => VERSION_v2 | VERSION_v1 
+    GROUP_flowcontrol_apiserver => VERSION_v1beta3 | VERSION_v1
+    GROUP_resource => VERSION_v1alpha2 | VERSION_v1
+    (KIND_DaemonSet | KIND_Deployment | KIND_ReplicaSet | KIND_StatefullSet) => GROUP_apps
+    (KIND_Container | KIND_Pod | KIND_ReplicationController | KIND_Service | KIND_Endpoints | KIND_ConfigMap | KIND_Secret | KIND_PersistentVolumeClaim | KIND_Volume) => GROUP_core
+    (KIND_CronJob | KIND_Job) => GROUP_batch
+    KIND_EndpintSlice => GROUP_discovery
+    (KIND_Ingress | KIND_IngressClass) => GROUP_networking
+    (KIND_CSIDriver | KIND_CSINode | KIND_StorageClass | KIND_CSIStorageCapacity | KIND_VolumeAttachment | KIND_VolumeAttributesClass) => GROUP_storage

@@ -58,7 +58,6 @@ features
 						optional
 							TemporalSchema
 constraints
-	(AuthenticationHash | IntegrityHash) => Hash  // ERROR: IntegrityHash and Hash are not present in the model.
 	AsymmetricEncryption => Asymmetric
 	ConfidentialityEncryption => Encryption
 	ContextualHelp => Authentication

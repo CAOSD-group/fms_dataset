@@ -1,0 +1,31 @@
+// DOI: https://doi.org/10.1145/2892664.2892686
+
+namespace NFQAs_LASSY
+
+features
+	"Quality Attributes"
+		or
+			"Security Level"
+				alternative
+					Low
+					Medium
+					High
+			"Usability Level"
+				alternative
+					Low
+					Medium
+					High
+			Efficiency
+				or 
+					"Time behaviour"
+						mandatory
+							"Response Time"
+								mandatory
+									Integer RTMilliseconds
+					"Resource utilisation"
+						mandatory
+							"Memory Consumption"
+								mandatory
+									Integer Percentage
+constraints
+

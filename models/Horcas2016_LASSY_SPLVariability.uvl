@@ -1,0 +1,24 @@
+// DOI: https://doi.org/10.1145/2892664.2892686
+
+namespace SPLVariability_LASSY
+
+imports
+	Context_LASSY as "User preferences, resources, context information,..."
+	NFQAs_LASSY as "Non-Functional Quality Attributes"
+	QAFs_LASSY as "Quality Attribute functionalities"
+	EVotingApplication_LASSY as "EVotingApplication"
+features
+	"SPL Variability"
+		or 
+			"User preferences, resources, context information,...".ContextDevice
+			"Non-Functional Quality Attributes"."Quality Attributes"
+			"Quality Attribute functionalities"."QA Functionalities"
+			"EVotingApplication".Election
+
+constraints
+	"User preferences, resources, context information,...".Smartphone => "Non-Functional Quality Attributes"."Usability Level".High | "Non-Functional Quality Attributes"."Usability Level".Medium  // ERROR: Constraints referencing to a duplicate feature
+	"Non-Functional Quality Attributes"."Security Level".High => "Quality Attribute functionalities".DigitalCertificate | "Quality Attribute functionalities".BioAuth
+	"Non-Functional Quality Attributes"."Usability Level".High => "Quality Attribute functionalities".SocialIdentity | "Quality Attribute functionalities".UserPassword
+	"Non-Functional Quality Attributes".Percentage > 80 => !("Quality Attribute functionalities".RSA | "Quality Attribute functionalities".ECDSA)
+	"EVotingApplication".National => "Non-Functional Quality Attributes"."Security Level".High
+	"EVotingApplication".Social => ! "Non-Functional Quality Attributes"."Security Level".High

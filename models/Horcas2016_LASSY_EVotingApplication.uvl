@@ -1,0 +1,11 @@
+// DOI: https://doi.org/10.1145/2892664.2892686
+
+namespace EVotingApplication_LASSY
+
+features
+	Election
+		alternative
+			National
+			Corporative
+			Social
+constraints

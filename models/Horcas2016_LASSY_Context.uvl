@@ -1,0 +1,12 @@
+// DOI: https://doi.org/10.1145/2892664.2892686
+
+namespace Context_LASSY
+
+features
+	ContextDevice
+		alternative
+			Smartphone
+			Desktop
+
+constraints
+

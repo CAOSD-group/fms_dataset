@@ -1,0 +1,26 @@
+// DOI: https://doi.org/10.1007/978-3-319-09970-5_29
+
+namespace Authentication_ECSA
+
+features
+	Authentication
+		mandatory
+			String Identity  // NOTE: Originally it is not String, it is Object.
+		alternative
+			DigitalCertificate
+				mandatory
+					Credentials
+						mandatory
+							"X.509Certificate"
+							SessionKey
+								mandatory
+									String KeyAlias
+									String KeyStore
+					TrustedCA
+						mandatory
+							String CommonName
+							String OrganizationUnit
+							String Organization
+							String Country
+			UserPassword			
+constraints

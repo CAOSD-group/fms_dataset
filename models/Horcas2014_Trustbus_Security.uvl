@@ -1,0 +1,42 @@
+// DOI: https://doi.org/10.1007/978-3-319-09770-1_10
+
+namespace Security_Trustbus
+
+imports
+	Authentication_Trustbus as Authentication
+
+features
+	Security
+		[0..*]
+			AccessControl cardinality [1..*]
+				alternative
+					Authentication.Authentication
+					Authorization
+			TrustInteroperability cardinality [1..*] 
+				mandatory
+					Trust
+			Privacy cardinality [1..*]
+				alternative
+					Unlinkability
+					Pseudonymity
+			ChannelProtection cardinality [1..*]
+				alternative
+					IPSec
+					WifiSecurity
+			Filtering cardinality [1..*]
+				alternative
+					Filtering  // ERROR: duplicate feature
+			MessageSecurity cardinality [1..*]
+				or
+					Authenticity
+						mandatory
+							Signature
+					Integrity
+						mandatory
+							Hashing
+					Confidentiality
+			DataSecurity cardinality [1..*]
+				mandatory
+					Cypher 
+constraints
+	Authenticity => Integrity

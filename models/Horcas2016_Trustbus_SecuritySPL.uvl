@@ -1,0 +1,34 @@
+// DOI: https://doi.org/10.1007/978-3-319-44341-6_2
+
+namespace SecuritySPL_Trustbus
+
+imports
+	CommunicationEncryption_Trustbus as "Communication Encryption"
+	StorageEncryption_Trustbus as "Storage Encryption"
+
+features
+	"Security SPL"
+		mandatory
+			Encryption cardinality [1..*] 
+				mandatory
+					CompositionPatterns
+						or
+							"Communication Encryption".CommunicationEncryption
+							"Response Encryption"
+							"Storage Encryption".StorageEncryption
+							"Communication & Storage Encryption"
+					Functionality
+						mandatory
+							KeyManagement
+						alternative
+							Symmetric
+								alternative
+									AES
+									TDES
+							Assymetric
+								alternative
+									RSA
+									ECDSA
+									DSA
+
+constraints

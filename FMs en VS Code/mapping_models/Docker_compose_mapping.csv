@@ -1,0 +1,16 @@
+Feature, Handler, Value
+VERSION, VERSION, -
+VERSION_ver, VERSION_ver, 
+VERSION_name, VERSION_name, 
+SERVICES, SERVICES, -
+NETWORKS,NETWORKS, -
+VOLUMES, VOLUMES, -
+CONFIGS, CONFIGS, -
+SECRETS, SECRETS, -
+SERVICE_name, SERVICE_name, 
+SERVICE_image, SERVICE_image, 
+Build, Build, -
+Deploy, Deploy, 
+DEPLOY_endpointMode, DEPLOY_endpointMode, 
+ENDPOINTMODE_vip, ENDPOINTMODE_vip, vip
+ENDPOINTMODE_dnsrr, ENDPOINTMODE_dnsrr, dnsrr

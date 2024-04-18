@@ -1,0 +1,25 @@
+digraph FeatureModel {
+rankdir="TB"
+newrank=true
+bgcolor="#1e1e1e"
+edge [color=white]
+node [style=filled fontcolor="white" fontname="Arial Unicode MS, Arial"];
+
+ver [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+Version -> ver [arrowhead="dot", arrowtail="none", dir="both"]
+name [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+Version -> name [arrowhead="odot", arrowtail="none", dir="both"]
+Version [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+Docker_compose -> Version [arrowhead="odot", arrowtail="none", dir="both"]
+Services [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+Docker_compose -> Services [arrowhead="odot", arrowtail="none", dir="both"]
+Networks [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+Docker_compose -> Networks [arrowhead="odot", arrowtail="none", dir="both"]
+Volumes [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+Docker_compose -> Volumes [arrowhead="odot", arrowtail="none", dir="both"]
+Configs [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+Docker_compose -> Configs [arrowhead="odot", arrowtail="none", dir="both"]
+Secrets [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+Docker_compose -> Secrets [arrowhead="odot", arrowtail="none", dir="both"]
+Docker_compose [fillcolor="#ABACEA" tooltip="Cardinality: None" shape="box"]
+}

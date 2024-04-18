@@ -1,0 +1,15 @@
+{
+  "file": "Docker_compose.uvl",
+  "config": {
+    "VERSION": true,
+    "VERSION_ver": "3.8",
+    "VERSION_name": "my-app",
+    "SERVICES": true,
+    "SERVICE_name": "foo",
+    "SERVICE_image": "busybox",
+    "Deploy": true,
+    "DEPLOY_endpointMode": true,
+    "ENDPOINTMODE_vip": false,
+    "ENDPOINTMODE_dnsrr": true
+  }
+}

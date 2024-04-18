@@ -6,6 +6,8 @@
     "TAG_value": "14",
     "name": true,
     "NAME_value": "myNode",
+    "platform": true,
+    "PLATFORM_value": "linux/arm64",
     "LABEL": true,
     "LABEL_key": "multi.label",
     "LABEL_value": "value1",
@@ -81,6 +83,8 @@
     "HEALTHCHECK_startInterval": "5s",
     "HEALTHCHECK_retries": "3",
     "SHELL": true,
-    "SHELL_json": "'powershell', '-command'"
+    "SHELL_json": "'powershell', '-command'",
+    "CMD": true,
+    "CMD_command": "sudo apt-get upgrade"
   }
 }

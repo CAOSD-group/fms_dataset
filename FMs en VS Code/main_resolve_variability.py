@@ -1,6 +1,7 @@
 import os
 import argparse
 import csv
+import sys
 from typing import Any
 
 import jinja2
@@ -8,8 +9,14 @@ import jinja2
 from spl_implementation.utils import utils
 from spl_implementation.models import VEngine
 
-# CONSTANTS
 
+
+def print_without_blank_lines(text):
+    for line in text.splitlines():
+        if line.strip():  # Verifica si la línea no está en blanco
+            sys.stdout.write(line + '\n')  # Escribe la línea en stdout
+
+# CONSTANTS
 
 if __name__ == '__main__':
     # parser = argparse.ArgumentParser(description='Variability resolution with Jinja templates.')
@@ -45,8 +52,28 @@ if __name__ == '__main__':
     #     print('|-Error: Wrong mapping model file extension. Use a .csv file.')
 
     vengine = VEngine()
-    vengine.load_configuration('configurations/Dockerfile_conf.uvl.json')
-    vengine.load_mapping_model('mapping_models/dockerfile_conf_mapping.csv')
-    vengine.load_template('templates/dockerfile_conf_template.txt')
+
+    # Dockerfile_conf
+    #vengine.load_configuration('configurations/Dockerfile_conf.uvl.json')
+    #vengine.load_mapping_model('mapping_models/dockerfile_conf_mapping.csv')
+    #vengine.load_template('templates/dockerfile_conf_template.txt.jinja')
+ 
+
+    #Docker_compose
+    #vengine.load_configuration('configurations/Docker_compose.uvl.json')
+    #vengine.load_mapping_model('mapping_models/docker_compose_mapping.csv')
+    #vengine.load_template('templates/Docker_compose/docker_compose_template.txt.jinja')
+
+    #Kubernetes_manifest
+    vengine.load_configuration('configurations/Kubernetes_manifest.uvl.json')
+    vengine.load_mapping_model('mapping_models/Kubernetes_manifest_mapping.csv')
+    vengine.load_template('templates/Kubernetes_manifest/Kubernetes_manifest_template.txt.jinja')
+
+
     result = vengine.resolve_variability()
-    print(result)
+
+    print_without_blank_lines(result)
+
+
+
+    

@@ -47,7 +47,7 @@
 					<description>attach arbitrary non-identifying metadata to objects</description>
 				</feature>
 				<or name="labels">
-					<graphics key="collapsed" value="true"/>
+					<graphics key="collapsed" value="false"/>
 					<feature name="app.kubernetes.io/name">
 					<description>The name of the application</description>
 					<attribute name="Type" type="string" unit="" value="string"/>

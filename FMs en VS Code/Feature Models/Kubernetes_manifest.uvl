@@ -4,7 +4,7 @@ features
             Boolean ApiVersion
                 mandatory
                     Group 
-                        alternative
+                        or
                             Boolean GROUP_admission_registration
                             Boolean GROUP_apiextensions
                             Boolean GROUP_apiregistration
@@ -28,7 +28,7 @@ features
                             Boolean GROUP_scheduling
                             Boolean GROUP_storage
                     Version 
-                        alternative
+                        or
                             Boolean VERSION_v1
                             Boolean VERSION_v1beta1
                             Boolean VERSION_v1beta3
@@ -36,9 +36,9 @@ features
                             Boolean VERSION_v1alpha2
                             Boolean VERSION_v2
             Boolean Kind
-                alternative
+                or
                     Boolean Workloads_APIs {abstract}
-                        alternative
+                        or
                             Boolean KIND_Container
                             Boolean KIND_CronJob
                             Boolean KIND_DaemonSet
@@ -49,14 +49,14 @@ features
                             Boolean KIND_ReplicationController
                             Boolean KIND_StatefullSet
                     Boolean Service_APIs {abstract}
-                        alternative
+                        or
                             Boolean KIND_Endpoints
                             Boolean KIND_EndpintSlice
                             Boolean KIND_Ingress
                             Boolean KIND_IngressClass
                             Boolean KIND_Service
                     Boolean Confing_and_storage_APIs {abstract}
-                        alternative
+                        or
                             Boolean KIND_ConfigMap
                             Boolean KIND_CSIDriver
                             Boolean KIND_CSINode
@@ -68,7 +68,7 @@ features
                             Boolean KIND_VolumeAttachment
                             Boolean KIND_VolumeAttributesClass
                     Boolean Metadata_APIs {abstract}
-                        alternative
+                        or
                             Boolean KIND_ClusterTrustBundle
                             Boolean KIND_ControllerRevision
                             Boolean KIND_CustomerResourceDefinition
@@ -87,7 +87,7 @@ features
                             Boolean KIND_ValidatingAdmissionPolicy
                             Boolean KIND_ValidatingAdmissionPolicyBinding
                     Boolean Cluster_APIs {abstract}
-                        alternative
+                        or
                             Boolean KIND_APIService
                             Boolean KIND_Binding
                             Boolean KIND_CertificateSigningRequest
@@ -116,9 +116,22 @@ features
                             Boolean KIND_TokenRequest
                             Boolean KIND_TokenReview
                             Boolean KIND_NetworkPolicy
-
-
             Boolean Metadata
+                mandatory
+                    String METADATA_name
+                optional
+                    String METADATA_uid
+                    String METADATA_namespace
+                    String METADATA_cluster
+                    Boolean METADATA_labels cardinality [0..*]
+                        mandatory
+                            String LABELS_key
+                            String LABELS_value
+                    Boolean METADATA_annotations cardinality [0..*]
+                        mandatory
+                            String ANNOTATIONS_key
+                            String ANNOTATIONS_value
+
             Boolean Spec
         optional
 

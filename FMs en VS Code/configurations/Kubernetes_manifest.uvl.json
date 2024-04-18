@@ -2,10 +2,38 @@
   "file": "Kubernetes_manifest.uvl",
   "config": {
     "Kubernetes_manifest": true,
+    "ApiVersion": true,
     "GROUP_apps": true,
     "VERSION_v1": true,
     "Kind": true,
-    "Workloads_APIs": true,
-    "KIND_Deployment": true
+    "KIND_Deployment": true,
+    "Metadata": true,
+    "METADATA_name": "mi-deployment",
+    "METADATA_namespace": "namespace-prueba",
+    "METADATA_cluster": "my-cluster",
+    "METADATA_labels": [
+      {
+        "METADATA_labels": true,
+        "LABELS_key": "app",
+        "LABELS_value": "my-app"
+      },
+      {
+        "METADATA_labels": true,
+        "LABELS_key": "key2",
+        "LABELS_value": "value2"
+      }
+    ],
+    "METADATA_annotations": [
+      {
+        "METADATA_annotations": true,
+        "ANNOTATIONS_key": "createdBy",
+        "ANNOTATIONS_value": "John Doe"
+      },
+      {
+        "METADATA_annotations": true,
+        "ANNOTATIONS_key": "description",
+        "ANNOTATIONS_value": "This is a sample pod for demonstration purposes."
+      }
+    ]
   }
 }

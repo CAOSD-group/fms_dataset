@@ -96,3 +96,12 @@ KIND_SubjectAccessReview, KIND_SubjectAccessReview, SubjectAccessReview
 KIND_TokenRequest, KIND_TokenRequest, TokenRequest
 KIND_TokenReview, KIND_TokenReview, TokenReview
 KIND_NetworkPolicy, KIND_NetworkPolicy, NetworkPolicy
+METADATA_name, METADATA_name, 
+METADATA_namespace, METADATA_namespace, 
+METADATA_labels, METADATA_labels, -
+LABELS_key, lab.key, 
+LABELS_value, lab.value, 
+METADATA_annotations, METADATA_annotations, -
+ANNOTATIONS_key, an.key, 
+ANNOTATIONS_value, an.value
+METADATA_cluster,METADATA_cluster, 

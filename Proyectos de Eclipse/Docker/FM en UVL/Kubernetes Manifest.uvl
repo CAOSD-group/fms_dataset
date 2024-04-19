@@ -1,52 +1,166 @@
-namespace "Kubernetes Manifest"
+namespace Kubernetes_manifest
 
 features
-	"Kubernetes Manifest"
-		optional
-			Format {abstract true}
-				alternative
-					YAML
-					JSON
+	Kubernetes_manifest
 		mandatory
-			apiVersion {featureDescription__ 'Specifies the version of the Kubernetes API you are using'}
-				optional
-					v1
-					"apps/v1"
-			kind {featureDescription__ 'Indicates the type of Kubernetes object you are creating'}
-				alternative
-					Pod
-					Service
-					Deployment
-			metadata {featureDescription__ 'Contains metadata such as the name of the Pod'}
-				or
-					name
-					uid
-					namespace
-						alternative
-							default
-							"kube-node-lease"
-							"kube-public"
-							"kube-system"
-							new_namespace {featureDescription__ 'namespace created by the user'}
-					annotations {featureDescription__ 'attach arbitrary non-identifying metadata to objects'}
-					labels
+			ApiVersion
+				mandatory
+					Group
 						or
-							app.kubernetes."io/name"
-							app.kubernetes."io/instance"
-							app.kubernetes."io/version"
-							app.kubernetes."io/component"
-							app.kubernetes."io/part-of"
-							app.kubernetes."io/managed-by"
-			spec {featureDescription__ 'Defines the specifications of the Pod, including the containers that will run inside it'}
+							GROUP_admission_registration
+							GROUP_apiextensions
+							GROUP_apiregistration
+							GROUP_apps
+							GROUP_authentication
+							GROUP_authorization
+							GROUP_autoscaling
+							GROUP_batch
+							GROUP_certificates
+							GROUP_coordination
+							GROUP_core
+							GROUP_discovery
+							GROUP_events
+							GROUP_flowcontrol_apiserver
+							GROUP_internal_apiserver
+							GROUP_networking
+							GROUP_node
+							GROUP_policy
+							GROUP_rbac_authorization
+							GROUP_resource
+							GROUP_scheduling
+							GROUP_storage
+					Version
+						or
+							VERSION_v1
+							VERSION_v1beta1
+							VERSION_v1beta3
+							VERSION_v1alpha1
+							VERSION_v1alpha2
+							VERSION_v2
+			Kind
+				or
+					Workloads_APIs {abstract true}
+						or
+							KIND_Container
+							KIND_CronJob
+							KIND_DaemonSet
+							KIND_Deployment
+							KIND_Job
+							KIND_Pod
+							KIND_ReplicaSet
+							KIND_ReplicationController
+							KIND_StatefullSet
+					Service_APIs {abstract true}
+						or
+							KIND_Endpoints
+							KIND_EndpintSlice
+							KIND_Ingress
+							KIND_IngressClass
+							KIND_Service
+					Confing_and_storage_APIs {abstract true}
+						or
+							KIND_ConfigMap
+							KIND_CSIDriver
+							KIND_CSINode
+							KIND_Secret
+							KIND_PersistentVolumeClaim
+							KIND_StorageClass
+							KIND_CSIStorageCapacity
+							KIND_Volume
+							KIND_VolumeAttachment
+							KIND_VolumeAttributesClass
+					Metadata_APIs {abstract true}
+						or
+							KIND_ClusterTrustBundle
+							KIND_ControllerRevision
+							KIND_CustomerResourceDefinition
+							KIND_Event
+							KIND_LimitRange
+							KIND_HorizontalPodAutoscaler
+							KIND_MutatingWebhookConfiguration
+							KIND_ValidatingWebhookConfiguration
+							KIND_PodSchedulingContext
+							KIND_PodTemplate
+							KIND_PodDisruptionBudget
+							KIND_PriorityClass
+							KIND_ResourceClaim
+							KIND_ResourceClaimTemplate
+							KIND_ResourceClass
+							KIND_ValidatingAdmissionPolicy
+							KIND_ValidatingAdmissionPolicyBinding
+					Cluster_APIs {abstract true}
+						or
+							KIND_APIService
+							KIND_Binding
+							KIND_CertificateSigningRequest
+							KIND_ClusterRole
+							KIND_ClusterRoleBinding
+							KIND_ComponentStatus
+							KIND_FlowSchema
+							KIND_IPAddress
+							KIND_Lease
+							KIND_LocalSubjectAccessReview
+							KIND_Namespace
+							KIND_Node
+							KIND_PersistentVolume
+							KIND_PriorityLevelConfiguration
+							KIND_ResourceQuota
+							KIND_Role
+							KIND_RoleBinding
+							KIND_RuntimeClass
+							KIND_SelfSubjectAccessReview
+							KIND_SelfSubjectReview
+							KIND_SelfSubjectRulesReview
+							KIND_ServiceAccount
+							KIND_ServiceCIDR
+							KIND_StorageVersion
+							KIND_SubjectAccessReview
+							KIND_TokenRequest
+							KIND_TokenReview
+							KIND_NetworkPolicy
+			Metadata
+				mandatory
+					METADATA_name
 				optional
-					containers
-						optional
-							name_container
-							image
-							ports
-								optional
-									containerPort
-					replicas
+					METADATA_uid
+					METADATA_namespace
+					METADATA_cluster
+					METADATA_labels
+						mandatory
+							LABELS_key
+							LABELS_value
+					METADATA_annotations
+						mandatory
+							ANNOTATIONS_key
+							ANNOTATIONS_value
+			Spec
 
 constraints
-	Pod | Deployment | Service => v1
+	GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling => VERSION_v1
+	GROUP_admission_registration | GROUP_authentication => VERSION_v1 | VERSION_v1beta1 | VERSION_v1alpha1
+	GROUP_certificates | GROUP_internal_apiserver | GROUP_networking | GROUP_storage => VERSION_v1 | VERSION_v1alpha1
+	GROUP_autoscaling => VERSION_v2 | VERSION_v1
+	GROUP_flowcontrol_apiserver => VERSION_v1beta3 | VERSION_v1
+	GROUP_resource => VERSION_v1alpha2 | VERSION_v1
+	KIND_DaemonSet | KIND_Deployment | KIND_ReplicaSet | KIND_StatefullSet | KIND_ControllerRevision => GROUP_apps
+	KIND_Container | KIND_Pod | KIND_ReplicationController | KIND_Service | KIND_Endpoints | KIND_ConfigMap | KIND_Secret | KIND_PersistentVolumeClaim | KIND_Volume | KIND_LimitRange | KIND_PodTemplate | KIND_Binding | KIND_ComponentStatus | KIND_Namespace | KIND_Node | KIND_PersistentVolume | KIND_ResourceQuota | KIND_ServiceAccount => GROUP_core
+	KIND_CronJob | KIND_Job => GROUP_batch
+	KIND_EndpintSlice => GROUP_discovery
+	KIND_Ingress | KIND_IngressClass | KIND_IPAddress | KIND_ServiceCIDR | KIND_NetworkPolicy => GROUP_networking
+	KIND_CSIDriver | KIND_CSINode | KIND_StorageClass | KIND_CSIStorageCapacity | KIND_VolumeAttachment | KIND_VolumeAttributesClass => GROUP_storage
+	KIND_ClusterTrustBundle | KIND_CertificateSigningRequest => GROUP_certificates
+	KIND_CustomerResourceDefinition => GROUP_apiextensions
+	KIND_Event => GROUP_events
+	KIND_HorizontalPodAutoscaler => GROUP_autoscaling
+	KIND_MutatingWebhookConfiguration | KIND_ValidatingWebhookConfiguration | KIND_ValidatingAdmissionPolicy | KIND_ValidatingAdmissionPolicyBinding => GROUP_admission_registration
+	KIND_PodSchedulingContext | KIND_ResourceClaim | KIND_ResourceClaimTemplate | KIND_ResourceClass => GROUP_resource
+	KIND_PodDisruptionBudget => GROUP_policy
+	KIND_PriorityClass => GROUP_scheduling
+	KIND_APIService => GROUP_apiregistration
+	KIND_LocalSubjectAccessReview | KIND_SelfSubjectAccessReview | KIND_SelfSubjectRulesReview | KIND_SubjectAccessReview => GROUP_authorization
+	KIND_FlowSchema | KIND_PriorityLevelConfiguration => GROUP_flowcontrol_apiserver
+	KIND_Lease => GROUP_coordination
+	KIND_RuntimeClass => GROUP_node
+	KIND_SelfSubjectReview | KIND_TokenRequest | KIND_TokenReview => GROUP_authentication
+	KIND_StorageVersion => GROUP_internal_apiserver
+	KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding => GROUP_rbac_authorization

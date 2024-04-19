@@ -5,18 +5,10 @@ features
 				mandatory
 					String image 
 				optional
-					Boolean platform 
-						mandatory
-							String PLATFORM_value
-					Boolean tag 
-						mandatory
-							String TAG_value
-					Boolean digest 
-						mandatory
-							String DIGEST_value
-					Boolean name 
-						mandatory
-							String NAME_value
+					String platform 
+					String tag 
+					String digest 
+					String name 
 		optional
 			Boolean LABEL
 				mandatory
@@ -32,65 +24,37 @@ features
 					String ADD_destiny
 				alternative
 					Boolean ADD_keep_git_dir 
-					Boolean ADD_checksum 
-						mandatory
-							String ADD_CHECKSUM_value
+					String ADD_checksum 
 					Boolean link
-					Boolean exclude 
-						mandatory
-							String ADD_EXCLUDE_path
+					String exclude 
 				or
-					Boolean ADD_chown //SOLO PARA SISTEMAS LINUX
-						mandatory
-							String ADD_CHOWN_users
+					String ADD_chown //SOLO PARA SISTEMAS LINUX
 						optional
 							String ADD_CHOWN_group 
-								mandatory 
-									String ADD_CHOWN_GROUP_value
-					Boolean ADD_chmod //SOLO PARA SISTEMAS LINUX
-						mandatory
-							String ADD_CHMOD_perms
+					String ADD_chmod //SOLO PARA SISTEMAS LINUX
 			Boolean COPY 
 				mandatory
 					String COPY_source
 					String COPY_destiny
 				alternative
-					Boolean COPY_from
-						mandatory
-							String COPY_FROM_options
+					String COPY_from
 					Boolean COPY_link
 					Boolean COPY_parents
-					Boolean COPY_exclude
-						mandatory
-							String COPY_EXCLUDE_path
+					String COPY_exclude
 				or
-					Boolean COPY_chown //SOLO PARA SISTEMAS LINUX
-						mandatory
-							String COPY_CHOWN_users
+					String COPY_chown //SOLO PARA SISTEMAS LINUX
 						optional
-							Boolean COPY_CHOWN_group
-								mandatory
-									String COPY_CHOWN_GROUP_value
-					Boolean COPY_chmod //SOLO PARA SISTEMAS LINUX
-						mandatory
-							String COPY_CHMOD_perms
-			Boolean EXPOSE 
-				mandatory	
-					String EXPOSE_port
+							String COPY_CHOWN_group
+					String COPY_chmod //SOLO PARA SISTEMAS LINUX
+			String EXPOSE 
 				optional
 					Boolean EXPOSE_protocol {abstract}
 						or
 							Boolean PROTOCOL_udp
 							Boolean PROTOCOL_tcp
-			Boolean WORKDIR 
-				mandatory
-					String WORKDIR_path				
-			Boolean VOLUME 
-				mandatory
-					String VOLUME_arguments
-			Boolean RUN 
-				mandatory
-					String RUN_command
+			String WORKDIR 			
+			String VOLUME 
+			String RUN 
 				optional
 					Boolean mount 
 						mandatory
@@ -124,7 +88,7 @@ features
 											String MOUNT_SIZE_value
 									Boolean MOUNT_required 
 									Boolean MOUNT_sharing 
-										alternative 
+										alternative
 											Boolean MOUNT_SHARING_shared 
 											Boolean MOUNT_SHARING_private 
 											Boolean MOUNT_SHARING_locked 
@@ -148,33 +112,23 @@ features
 				mandatory
 					String ARG_name
 					String ARG_value
-			Boolean CMD 
-				mandatory
-					String CMD_command
+			String CMD
 				optional
 					String CMD_param1
 					String CMD_param2
-			Boolean ENTRYPOINT 
-				mandatory
-					String ENTRYPOINT_command
+			String ENTRYPOINT
 				optional
 					String ENTRYPOINT_param1
 					String ENTRYPOINT_param2
-			Boolean USER
-				mandatory
-					String USER_name
+			String USER
 				optional
 					String USER_group
-			Boolean ONBUILD
-				mandatory
-					String ONBUILD_instruction
-			Boolean STOPSIGNAL
-				mandatory
-					String STOPSIGNAL_signal
+			String ONBUILD
+			String STOPSIGNAL
 			Boolean HEALTHCHECK
 				alternative
 					Boolean HEALTHCHECK_none
-					Boolean HEALTHCHECK_options
+					Boolean HEALTHCHECK_options {abstract}
 						mandatory
 							String HEALTHCHECK_cmdCommand
 						optional
@@ -183,16 +137,13 @@ features
 							String HEALTHCHECK_startPeriod
 							String HEALTHCHECK_startInterval
 							String HEALTHCHECK_retries
-			Boolean SHELL
-				mandatory
-					String SHELL_json	
+			String SHELL
 constraints
-	digest => !tag
-	tag => !digest
+	!(digest == '') => (tag == '')
+	!(tag == '') => (digest == '')
 	bind => (MOUNT_target | MOUNT_source | MOUNT_from | MOUNT_readwrite)
 	cache => (MOUNT_id | MOUNT_target | MOUNT_readonly | MOUNT_sharing | MOUNT_from | MOUNT_source | MOUNT_mode | MOUNT_uid | MOUNT_gid)
 	tmpfs => (MOUNT_target | MOUNT_size)
 	(secret | ssh) => (MOUNT_id | MOUNT_target | MOUNT_required | MOUNT_mode | MOUNT_uid | MOUNT_gid)
-	COPY_chmod => COPY_chown
-	tag => !digest
-	digest => !tag
+	!(COPY_chmod == '') => !(COPY_chown == '')
+	!(ADD_chmod == '') => !(ADD_chown == '')

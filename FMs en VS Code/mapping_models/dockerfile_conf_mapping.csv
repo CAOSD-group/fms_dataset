@@ -1,9 +1,9 @@
 Feature, Handler, Value
-image, image,
-platform, platform,
-tag, tag,
-name, name,
-digest, digest,
+FROM_image, image,
+FROM_platform, platform,
+FROM_tag, tag,
+FROM_name, name,
+FROM_digest, digest,
 CMD, CMD,
 CMD_param1, CMD_param1,
 CMD_param2, CMD_param2,
@@ -59,12 +59,12 @@ HEALTHCHECK_startPeriod, HEALTHCHECK_startPeriod,
 HEALTHCHECK_startInterval, HEALTHCHECK_startInterval,
 HEALTHCHECK_retries, HEALTHCHECK_retries,
 RUN, RUN,
-mount, mount, --mount=type=
-bind, bind, bind
-cache, cache, cache
-tmpfs, tmpfs, tmpfs
-secret, secret, secret
-ssh, ssh, ssh
+Mount_Type_mount, mount, --mount=type=
+Mount_Type_bind, bind, bind
+Mount_Type_cache, cache, cache
+Mount_Type_tmpfs, tmpfs, tmpfs
+Mount_Type_secret, secret, secret
+Mount_Type_ssh, ssh, ssh
 MOUNT_target, MOUNT_target, target=
 MOUNT_TARGET_value, MOUNT_TARGET_value,
 MOUNT_source, MOUNT_source, source=
@@ -89,9 +89,9 @@ MOUNT_SHARING_shared, MOUNT_SHARING_shared, shared
 MOUNT_SHARING_private,MOUNT_SHARING_private, private
 MOUNT_SHARING_locked, MOUNT_SHARING_locked, locked
 network, network, --network=
-default, default, default
-none, none_, none
-host, host, host
+NETWORK_default, default, default
+NETWORK_none, none_, none
+NETWORK_host, host, host
 security, security, --security=
-sandbox, sandbox, sandbox
-insecure, insecure, insecure
+SECURITY_sandbox, sandbox, sandbox
+SECURITY_insecure, insecure, insecure

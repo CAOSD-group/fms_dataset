@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extendedFeatureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Docker">
+			<and mandatory="true" name="Docker Engine">
+				<feature name="Credential Helper">
+					<description>utilidad que te permite almacenar credenciales de inicio de sesión de forma segura</description>
+				</feature>
+				<and mandatory="true" name="Docker Daemon">
+					<graphics key="collapsed" value="false"/>
+					<and name="Containerd">
+						<feature name="runc"/>
+						<feature name="Docker Content Trust"/>
+					</and>
+					<feature name="Docker container API"/>
+					<feature name="Docker Network"/>
+				</and>
+				<and mandatory="true" name="Docker CLI">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Docker API"/>
+					<and name="Docker Build">
+						<graphics key="collapsed" value="false"/>
+						<and name="Container Image">
+							<feature mandatory="true" name="Dockerfile"/>
+						</and>
+					</and>
+					<or abstract="true" name="Orchestrator">
+						<graphics key="collapsed" value="false"/>
+						<feature name="Docker Compose"/>
+						<feature name="Kubernetes"/>
+					</or>
+					<and abstract="true" name="Docker Registries">
+						<graphics key="collapsed" value="false"/>
+						<or abstract="true" mandatory="true" name="Repositories">
+							<graphics key="collapsed" value="false"/>
+							<feature name="ACR">
+								<description>Microsoft Azure Container Registry</description>
+							</feature>
+							<feature name="Docker Hub"/>
+							<feature name="GRC">
+								<description>Google Container Registry</description>
+							</feature>
+						</or>
+						<feature mandatory="true" name="Docker Manifest">
+							<graphics key="collapsed" value="false"/>
+						</feature>
+					</and>
+				</and>
+				<alt abstract="true" mandatory="true" name="Operative System">
+					<graphics key="collapsed" value="false"/>
+					<alt name="Windows">
+						<feature name="Wind10"/>
+						<feature name="Wind11"/>
+					</alt>
+					<alt name="MAC OS">
+						<feature name="MAC OS 14"/>
+						<feature name="MAC OS 13"/>
+						<feature name="MAC OS 12"/>
+					</alt>
+					<alt name="Linux">
+						<feature name="Debian"/>
+						<feature name="Ubuntu"/>
+						<feature name="Fedora"/>
+					</alt>
+					<feature name="Raspberry Pi OS"/>
+				</alt>
+			</and>
+		</and>
+	</struct>
+</extendedFeatureModel>

@@ -3,16 +3,199 @@ namespace Dockerfile
 features
 	Dockerfile
 		mandatory
-			FROM {featureDescription__ 'Sets the base image'}
+			Boolean FROM 
+				mandatory
+					String image 
+				optional
+					Boolean platform 
+						mandatory
+							String PLATFORM_value
+					Boolean tag 
+						mandatory
+							String TAG_value
+					Boolean digest 
+						mandatory
+							String DIGEST_value
+					Boolean name 
+						mandatory
+							String NAME_value
 		optional
-			LABEL {featureDescription__ 'Author label or any other label you wish to include'}
-			ENV {featureDescription__ 'Environment variables to be set in the container'}
-			WORKDIR {featureDescription__ 'Sets the working directory inside the container'}
-			COPY {featureDescription__ 'Copies files from the local directory into the container'}
-			EXPOSE {featureDescription__ 'Exposes a port in the container'}
-			VOLUME {featureDescription__ 'Defines a volume in the container'}
-			RUN {featureDescription__ 'Runs commands during the image build'}
-			ARG {featureDescription__ 'Defines arguments for the image build'}
-			CMD {featureDescription__ 'Specifies the command to run when starting a container based on the image'}
-			ENTRYPOINT {featureDescription__ 'Defines the entry point of the container'}
+			Boolean LABEL
+				mandatory
+					String LABEL_key
+					String LABEL_value
+			Boolean ENV 
+				mandatory
+					String ENV_key
+					String ENV_value
+			Boolean ADD 
+				mandatory
+					String ADD_source
+					String ADD_destiny
+				alternative
+					Boolean ADD_keep_git_dir 
+					Boolean ADD_checksum 
+						mandatory
+							String ADD_CHECKSUM_value
+					Boolean link
+					Boolean exclude 
+						mandatory
+							String ADD_EXCLUDE_path
+				or
+					Boolean ADD_chown //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String ADD_CHOWN_users
+						optional
+							String ADD_CHOWN_group 
+								mandatory 
+									String ADD_CHOWN_GROUP_value
+					Boolean ADD_chmod //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String ADD_CHMOD_perms
+			Boolean COPY 
+				mandatory
+					String COPY_source
+					String COPY_destiny
+				alternative
+					Boolean COPY_from
+						mandatory
+							String COPY_FROM_options
+					Boolean COPY_link
+					Boolean COPY_parents
+					Boolean COPY_exclude
+						mandatory
+							String COPY_EXCLUDE_path
+				or
+					Boolean COPY_chown //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String COPY_CHOWN_users
+						optional
+							Boolean COPY_CHOWN_group
+								mandatory
+									String COPY_CHOWN_GROUP_value
+					Boolean COPY_chmod //SOLO PARA SISTEMAS LINUX
+						mandatory
+							String COPY_CHMOD_perms
+			Boolean EXPOSE 
+				mandatory	
+					String EXPOSE_port
+				optional
+					Boolean EXPOSE_protocol {abstract}
+						or
+							Boolean PROTOCOL_udp
+							Boolean PROTOCOL_tcp
+			Boolean WORKDIR 
+				mandatory
+					String WORKDIR_path				
+			Boolean VOLUME 
+				mandatory
+					String VOLUME_arguments
+			Boolean RUN 
+				mandatory
+					String RUN_command
+				optional
+					Boolean mount 
+						mandatory
+							Boolean MOUNT_option {abstract}
+								or
+									Boolean MOUNT_target
+										mandatory 
+											String MOUNT_TARGET_value
+									Boolean MOUNT_source
+										mandatory 
+											String MOUNT_SOURCE_value
+									Boolean MOUNT_from 
+										mandatory 
+											String MOUNT_FROM_value
+									Boolean MOUNT_readwrite
+									Boolean MOUNT_id
+										mandatory
+											Integer MOUNT_ID_value
+									Boolean MOUNT_readonly 
+									Boolean MOUNT_mode
+										mandatory 
+											String MOUNT_MODE_value
+									Boolean MOUNT_uid 
+										mandatory 
+											String MOUNT_UID_value
+									Boolean MOUNT_gid 
+										mandatory 
+											String MOUNT_GID_value
+									Boolean MOUNT_size 
+										mandatory
+											String MOUNT_SIZE_value
+									Boolean MOUNT_required 
+									Boolean MOUNT_sharing 
+										alternative 
+											Boolean MOUNT_SHARING_shared 
+											Boolean MOUNT_SHARING_private 
+											Boolean MOUNT_SHARING_locked 
+							Boolean MOUNT_type {abstract}
+								alternative
+									Boolean bind
+									Boolean cache
+									Boolean tmpfs
+									Boolean secret
+									Boolean ssh
+					Boolean network
+						alternative
+							Boolean default
+							Boolean none
+							Boolean host
+				 	Boolean security 
+						alternative
+							Boolean sandbox
+							Boolean insecure
+			Boolean ARG 
+				mandatory
+					String ARG_name
+					String ARG_value
+			Boolean CMD 
+				mandatory
+					String CMD_command
+				optional
+					String CMD_param1
+					String CMD_param2
+			Boolean ENTRYPOINT 
+				mandatory
+					String ENTRYPOINT_command
+				optional
+					String ENTRYPOINT_param1
+					String ENTRYPOINT_param2
+			Boolean USER
+				mandatory
+					String USER_name
+				optional
+					String USER_group
+			Boolean ONBUILD
+				mandatory
+					String ONBUILD_instruction
+			Boolean STOPSIGNAL
+				mandatory
+					String STOPSIGNAL_signal
+			Boolean HEALTHCHECK
+				alternative
+					Boolean HEALTHCHECK_none
+					Boolean HEALTHCHECK_options
+						mandatory
+							String HEALTHCHECK_cmdCommand
+						optional
+							String HEALTHCHECK_interval
+							String HEALTHCHECK_timeout
+							String HEALTHCHECK_startPeriod
+							String HEALTHCHECK_startInterval
+							String HEALTHCHECK_retries
+			Boolean SHELL
+				mandatory
+					String SHELL_json	
+constraints
+	digest => !tag
+	tag => !digest
+	bind => (MOUNT_target | MOUNT_source | MOUNT_from | MOUNT_readwrite)
+	cache => (MOUNT_id | MOUNT_target | MOUNT_readonly | MOUNT_sharing | MOUNT_from | MOUNT_source | MOUNT_mode | MOUNT_uid | MOUNT_gid)
+	tmpfs => (MOUNT_target | MOUNT_size)
+	(secret | ssh) => (MOUNT_id | MOUNT_target | MOUNT_required | MOUNT_mode | MOUNT_uid | MOUNT_gid)
+	COPY_chmod => COPY_chown
+	tag => !digest
+	digest => !tag
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="415,-87"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and mandatory="true" name="Kubernetes">
+			<and abstract="true" mandatory="true" name="Main components">
+				<and mandatory="true" name="Node Master">
+					<feature mandatory="true" name="kube-apiserver"/>
+					<feature mandatory="true" name="etcd"/>
+					<feature mandatory="true" name="kube-scheduler"/>
+					<feature mandatory="true" name="kube-controller-manager"/>
+					<feature name="Could controller manager"/>
+				</and>
+				<and mandatory="true" name="Kubectl">
+					<feature name="Lens"/>
+				</and>
+				<and mandatory="true" name="Nodes">
+					<feature mandatory="true" name="kubelet"/>
+					<feature mandatory="true" name="kube-proxy"/>
+					<feature mandatory="true" name="Container Runtime"/>
+					<and name="Pod">
+						<feature name="Container"/>
+						<feature name="Volume"/>
+					</and>
+				</and>
+			</and>
+			<or abstract="true" name="Aditional components">
+				<graphics key="collapsed" value="false"/>
+				<feature name="kube-dns/CoreDNS"/>
+				<alt abstract="true" name="Ingress Controller ">
+					<graphics key="collapsed" value="false"/>
+					<feature name="nginx-ingress"/>
+					<feature name="Traefik"/>
+				</alt>
+				<alt abstract="true" name="Dashboard">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Grafana"/>
+					<feature name="KubeSphere"/>
+					<feature name="Kubernetes Dashboard"/>
+				</alt>
+				<feature name="Helm"/>
+				<alt abstract="true" name="Metrics Server">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Heapster"/>
+					<feature name="Prometheus"/>
+					<feature name="OpenTelemetry"/>
+				</alt>
+				<alt abstract="true" name="Logging">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Fluentd"/>
+					<feature name="Elasticsearch"/>
+					<feature name="Kibana"/>
+				</alt>
+				<alt abstract="true" name="Service Mesh ">
+					<graphics key="collapsed" value="false"/>
+					<feature name="Istio"/>
+					<feature name="Linkerd"/>
+				</alt>
+				<alt abstract="true" name="CI/CD Tools ">
+				<graphics key="collapsed" value="false"/>
+				<feature name="Jenkins"/>
+				<feature name="GitLab CI"/>
+			</alt>
+			<alt abstract="true" name="Persistent Storage ">
+				<graphics key="collapsed" value="false"/>
+				<feature name="NFS"/>
+				<feature name="Ceph"/>
+				<feature name="GlusterFS"/>
+			</alt>
+			<feature name="kubeadmin"/>
+		</or>
+	</and>
+</struct>
+</featureModel>

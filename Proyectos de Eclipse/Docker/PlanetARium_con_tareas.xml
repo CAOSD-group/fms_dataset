@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extendedFeatureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendposition" value="265,-76"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="PlanetARium">
+			<and abstract="true" mandatory="true" name="Interactions_with_the_user">
+				<feature name="Screen"/>
+				<feature name="Speaker"/>
+				<feature name="Camera"/>
+			</and>
+			<or abstract="true" mandatory="true" name="Augmented_Elements">
+				<or abstract="true" name="Location_Based">
+					<feature name="Beacons"/>
+					<feature name="GPS"/>
+				</or>
+				<or abstract="true" name="Visual_Elements">
+					<or abstract="true" name="Markers">
+						<feature name="Bar_code_Galaxies"/>
+						<feature name="QR_Planets"/>
+						<and name="ArUco_Constellations">
+							<feature name="Overlapping_zodiacal_symbols"/>
+						</and>
+					</or>
+					<or abstract="true" name="Natural_Elements">
+						<feature name="Circles"/>
+						<feature name="Gout"/>
+					</or>
+				</or>
+			</or>
+			<alt abstract="true" name="Virtual_Background">
+				<feature name="Starry_Sky"/>
+				<feature name="Clear_Sky"/>
+				<feature name="Outer_Space"/>
+				<feature name="Darkened_Background"/>
+			</alt>
+			<and mandatory="true" name="Video_Quality">
+				<attribute name="FPS" type="string" unit=""/>
+				<alt mandatory="true" name="Resolution">
+					<feature name="px_640x480"/>
+					<feature name="px_320x240"/>
+					<feature name="px_1024x768"/>
+				</alt>
+			</and>
+			<feature name="Disable_enable_features_at_runtime"/>
+			<feature name="Night_mode"/>
+			<or abstract="true" mandatory="true" name="Task">
+				<feature name="Planet_tracker"/>
+				<feature name="Galaxy_tracker"/>
+				<feature name="Feature_communicator"/>
+				<feature name="Filter_selector"/>
+				<feature name="Video_capturer"/>
+				<feature name="Visualizer"/>
+			</or>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>Visualizer</var>
+				<var>Screen</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Feature_communicator</var>
+				<var>Camera</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Planet_tracker</var>
+				<var>QR_Planets</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Galaxy_tracker</var>
+				<var>Bar_code_Galaxies</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Virtual_Background</var>
+				<var>Filter_selector</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>Camera</var>
+				<var>Video_Quality</var>
+			</imp>
+		</rule>
+	</constraints>
+</extendedFeatureModel>

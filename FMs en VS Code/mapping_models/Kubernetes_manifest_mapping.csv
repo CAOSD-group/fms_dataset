@@ -105,3 +105,5 @@ METADATA_annotations, METADATA_annotations, -
 ANNOTATIONS_key, an.key, 
 ANNOTATIONS_value, an.value
 METADATA_cluster,METADATA_cluster, 
+KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
+KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice

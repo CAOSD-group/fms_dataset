@@ -96,6 +96,8 @@ KIND_SubjectAccessReview, KIND_SubjectAccessReview, SubjectAccessReview
 KIND_TokenRequest, KIND_TokenRequest, TokenRequest
 KIND_TokenReview, KIND_TokenReview, TokenReview
 KIND_NetworkPolicy, KIND_NetworkPolicy, NetworkPolicy
+KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
+KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice
 METADATA_name, METADATA_name, 
 METADATA_namespace, METADATA_namespace, 
 METADATA_labels, METADATA_labels, -
@@ -105,5 +107,15 @@ METADATA_annotations, METADATA_annotations, -
 ANNOTATIONS_key, an.key, 
 ANNOTATIONS_value, an.value
 METADATA_cluster,METADATA_cluster, 
-KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
-KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice
+Containers,Containers, -
+CONTAINER_image, CONTAINER_image, 
+CONTAINER_name, CONTAINER_name, 
+Ports, Ports, -
+PORTS_ContainerPort, PORTS_ContainerPort, 
+CONTAINER_resources, CONTAINER_resources, -
+RESOURCES_request, RESOURCES_request, -
+REQUEST_cpu, REQUEST_cpu, 
+REQUEST_memory, REQUEST_memory
+RESOURCES_limits, RESOURCES_limits, -
+LIMITS_cpu, LIMITS_cpu, 
+LIMITS_memory, LIMITS_memory, 

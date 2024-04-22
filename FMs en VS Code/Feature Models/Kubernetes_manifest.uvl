@@ -133,8 +133,26 @@ features
                         mandatory
                             String ANNOTATIONS_key
                             String ANNOTATIONS_value
-
             Boolean Spec
+                optional
+                    Boolean Containers
+                        mandatory   
+                            String CONTAINER_image
+                        optional
+                            String CONTAINER_name
+                            Boolean CONTAINER_resources
+                                or
+                                    Boolean RESOURCES_request
+                                        mandatory
+                                            String REQUEST_cpu
+                                            String REQUEST_memory
+                                    Boolean RESOURCES_limits
+                                        mandatory
+                                            String LIMITS_cpu
+                                            String LIMITS_memory
+                    Boolean Ports
+                        alternative
+                            Integer  PORTS_ContainerPort
         optional
 
 constraints
@@ -167,3 +185,5 @@ constraints
     (KIND_SelfSubjectReview | KIND_TokenRequest | KIND_TokenReview) => GROUP_authentication
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
+
+    Containers => KIND_Container

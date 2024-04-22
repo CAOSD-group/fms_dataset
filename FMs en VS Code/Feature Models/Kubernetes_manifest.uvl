@@ -82,6 +82,8 @@ features
                             Boolean KIND_PodDisruptionBudget
                             Boolean KIND_PriorityClass
                             Boolean KIND_ResourceClaim
+                            Boolean KIND_ResourceClaimParameters
+                            Boolean KIND_ResourceSlice
                             Boolean KIND_ResourceClaimTemplate
                             Boolean KIND_ResourceClass
                             Boolean KIND_ValidatingAdmissionPolicy
@@ -154,7 +156,7 @@ constraints
     KIND_Event => GROUP_events
     KIND_HorizontalPodAutoscaler => GROUP_autoscaling
     (KIND_MutatingWebhookConfiguration | KIND_ValidatingWebhookConfiguration | KIND_ValidatingAdmissionPolicy | KIND_ValidatingAdmissionPolicyBinding) => GROUP_admission_registration
-    (KIND_PodSchedulingContext | KIND_ResourceClaim | KIND_ResourceClaimTemplate | KIND_ResourceClass) => GROUP_resource
+    (KIND_PodSchedulingContext | KIND_ResourceClaim | KIND_ResourceClaimTemplate | KIND_ResourceClass | KIND_ResourceClaimParameters | KIND_ResourceSlice) => GROUP_resource
     KIND_PodDisruptionBudget => GROUP_policy
     KIND_PriorityClass => GROUP_scheduling
     KIND_APIService => GROUP_apiregistration

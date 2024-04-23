@@ -3,7 +3,7 @@ features
         mandatory
             Boolean ApiVersion
                 mandatory
-                    Group 
+                    Boolean Group {abstract}
                         or
                             Boolean GROUP_admission_registration
                             Boolean GROUP_apiextensions
@@ -27,7 +27,7 @@ features
                             Boolean GROUP_resource
                             Boolean GROUP_scheduling
                             Boolean GROUP_storage
-                    Version 
+                    Boolean Version {abstract}
                         or
                             Boolean VERSION_v1
                             Boolean VERSION_v1beta1
@@ -118,6 +118,7 @@ features
                             Boolean KIND_TokenRequest
                             Boolean KIND_TokenReview
                             Boolean KIND_NetworkPolicy
+        optional
             Boolean Metadata
                 mandatory
                     String METADATA_name
@@ -153,7 +154,6 @@ features
                     Boolean Ports
                         alternative
                             Integer  PORTS_ContainerPort
-        optional
 
 constraints
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1

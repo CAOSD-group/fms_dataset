@@ -54,9 +54,9 @@ if __name__ == '__main__':
     vengine = VEngine()
 
     # Dockerfile_conf
-    vengine.load_configuration('configurations/Dockerfile_conf.uvl.json')
-    vengine.load_mapping_model('mapping_models/dockerfile_conf_mapping.csv')
-    vengine.load_template('templates/dockerfile_conf_template.txt.jinja')
+    #vengine.load_configuration('configurations/Dockerfile_conf.uvl.json')
+    #vengine.load_mapping_model('mapping_models/dockerfile_conf_mapping.csv')
+    #vengine.load_template('templates/dockerfile_conf_template.txt.jinja')
  
 
     #Docker_compose
@@ -65,9 +65,9 @@ if __name__ == '__main__':
     #vengine.load_template('templates/Docker_compose/docker_compose_template.txt.jinja')
 
     #Kubernetes_manifest
-    #vengine.load_configuration('configurations/Kubernetes_manifest.uvl.json')
-    #vengine.load_mapping_model('mapping_models/Kubernetes_manifest_mapping.csv')
-    #vengine.load_template('templates/Kubernetes_manifest/Kubernetes_manifest_template.txt.jinja')
+    vengine.load_configuration('configurations/Kubernetes_manifest.uvl.json')
+    vengine.load_mapping_model('mapping_models/Kubernetes_manifest_mapping.csv')
+    vengine.load_template('templates/Kubernetes_manifest/Kubernetes_manifest_template.txt.jinja')
 
 
     result = vengine.resolve_variability()

@@ -3,7 +3,7 @@ features
         mandatory
             Boolean ApiVersion
                 mandatory
-                    Group 
+                    Boolean Group {abstract} 
                         or
                             Boolean GROUP_admission_registration
                             Boolean GROUP_apiextensions
@@ -27,7 +27,7 @@ features
                             Boolean GROUP_resource
                             Boolean GROUP_scheduling
                             Boolean GROUP_storage
-                    Version 
+                    Boolean Version {abstract}
                         or
                             Boolean VERSION_v1
                             Boolean VERSION_v1beta1
@@ -82,6 +82,8 @@ features
                             Boolean KIND_PodDisruptionBudget
                             Boolean KIND_PriorityClass
                             Boolean KIND_ResourceClaim
+                            Boolean KIND_ResourceClaimParameters
+                            Boolean KIND_ResourceSlice
                             Boolean KIND_ResourceClaimTemplate
                             Boolean KIND_ResourceClass
                             Boolean KIND_ValidatingAdmissionPolicy
@@ -133,16 +135,72 @@ features
                             String ANNOTATIONS_value
 
             Boolean Spec
-        optional
+                optional
+                    Integer SPEC_Replicas
+                    Boolean SPEC_Selector
+                        or
+                            Boolean SELECTOR_matchLabels cardinality [0..*]
+                                mandatory 
+                                    String SELECTOR_matchLabels_key
+                                    String SELECTOR_matchLabels_value
+                            Boolean SELECTOR_matchExpressions cardinality [0..*]
+                                mandatory   
+                                    String SELECTOR_matchExpressions_key
+                                    Boolean SELECTOR_matchExpressions_values cardinality [0..*]
+                                        mandatory
+                                            String SELECTOR_matchExpressions_value
+                                    Boolean SELECTOR_matchExpressions_operator
+                                        or
+                                            Boolean OPERATOR_in
+                                            Boolean OPERATOR_notIn
+                                            Boolean OPERATOR_exist
+                                            Boolean OPERATOR_doesNotExist
+                                            Boolean OPERATOR_gt
+                                            Boolean OPERATOR_lt
+                    Boolean SPEC_Template 
+                        optional
+                            Boolean TEMPLATE_Metadata
+                                optional
+                                    Boolean TEMPLATE_METADATA_labels cardinality [0..*]
+                                        mandatory
+                                            String TEMPLATE_METADATA_LABELS_key
+                                            String TEMPLATE_METADATA_LABELS_value
+                            Boolean TEMPLATE_Spec 
+                                optional
+                                    Boolean TEMPLATE_SPEC_Containers cardinality [0..*]
+                                        mandatory    
+                                            String CONTAINER_image
+                                        optional     
+                                            String CONTAINER_name  
+                                            Boolean CONTAINER_ports cardinality [0..*]
+                                                mandatory   
+                                                    Integer CONTAINER_PORTS_containerPort
+                                                optional 
+                                                    String CONTAINER_PORTS_name 
+                                            Boolean CONTAINER_env cardinality [0..*]
+                                                mandatory
+                                                    String CONTAINER_ENV_name
+                                                    String CONTAINER_ENV_value
+                                            Boolean CONTAINER_resources
+                                                or
+                                                    Boolean RESOURCES_request
+                                                        mandatory
+                                                            String REQUEST_cpu
+                                                            String REQUEST_memory
+                                                    Boolean RESOURCES_limits
+                                                        mandatory
+                                                            String LIMITS_cpu
+                                                            String LIMITS_memory
 
 constraints
+    // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1
     (GROUP_admission_registration | GROUP_authentication) => VERSION_v1 | VERSION_v1beta1 | VERSION_v1alpha1
     (GROUP_certificates | GROUP_internal_apiserver | GROUP_networking | GROUP_storage) => VERSION_v1 | VERSION_v1alpha1 
     GROUP_autoscaling => VERSION_v2 | VERSION_v1 
     GROUP_flowcontrol_apiserver => VERSION_v1beta3 | VERSION_v1
     GROUP_resource => VERSION_v1alpha2 | VERSION_v1
-
+    // Restricciones de Kind
     (KIND_DaemonSet | KIND_Deployment | KIND_ReplicaSet | KIND_StatefullSet | KIND_ControllerRevision) => GROUP_apps
     (KIND_Container | KIND_Pod | KIND_ReplicationController | KIND_Service | KIND_Endpoints | KIND_ConfigMap | KIND_Secret | KIND_PersistentVolumeClaim | KIND_Volume | KIND_LimitRange | KIND_PodTemplate | KIND_Binding | KIND_ComponentStatus | KIND_Namespace | KIND_Node | KIND_PersistentVolume | KIND_ResourceQuota | KIND_ServiceAccount) => GROUP_core
     (KIND_CronJob | KIND_Job) => GROUP_batch
@@ -154,7 +212,7 @@ constraints
     KIND_Event => GROUP_events
     KIND_HorizontalPodAutoscaler => GROUP_autoscaling
     (KIND_MutatingWebhookConfiguration | KIND_ValidatingWebhookConfiguration | KIND_ValidatingAdmissionPolicy | KIND_ValidatingAdmissionPolicyBinding) => GROUP_admission_registration
-    (KIND_PodSchedulingContext | KIND_ResourceClaim | KIND_ResourceClaimTemplate | KIND_ResourceClass) => GROUP_resource
+    (KIND_PodSchedulingContext | KIND_ResourceClaim | KIND_ResourceClaimTemplate | KIND_ResourceClass | KIND_ResourceClaimParameters | KIND_ResourceSlice) => GROUP_resource
     KIND_PodDisruptionBudget => GROUP_policy
     KIND_PriorityClass => GROUP_scheduling
     KIND_APIService => GROUP_apiregistration

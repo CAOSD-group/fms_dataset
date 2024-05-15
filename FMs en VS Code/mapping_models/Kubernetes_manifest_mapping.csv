@@ -96,12 +96,54 @@ KIND_SubjectAccessReview, KIND_SubjectAccessReview, SubjectAccessReview
 KIND_TokenRequest, KIND_TokenRequest, TokenRequest
 KIND_TokenReview, KIND_TokenReview, TokenReview
 KIND_NetworkPolicy, KIND_NetworkPolicy, NetworkPolicy
+KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
+KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice
 METADATA_name, METADATA_name, 
 METADATA_namespace, METADATA_namespace, 
-METADATA_labels, METADATA_labels, -
+METADATA_labels, METADATA_labels,
 LABELS_key, lab.key, 
 LABELS_value, lab.value, 
-METADATA_annotations, METADATA_annotations, -
+METADATA_annotations, METADATA_annotations,
 ANNOTATIONS_key, an.key, 
 ANNOTATIONS_value, an.value
 METADATA_cluster,METADATA_cluster, 
+KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
+KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice
+SPEC_Replicas, SPEC_Replicas, 
+SPEC_Selector, SPEC_Selector, -
+SELECTOR_matchLabels, SELECTOR_matchLabels, -
+SELECTOR_matchLabels_key, SELECTOR_matchLabels_key, 
+SELECTOR_matchLabels_value, SELECTOR_matchLabels_value, 
+SELECTOR_matchExpressions, SELECTOR_matchExpressions, -
+SELECTOR_matchExpressions_key, SELECTOR_matchExpressions_key, 
+SELECTOR_matchExpressions_values, SELECTOR_matchExpressions_values, -
+SELECTOR_matchExpressions_value, SELECTOR_matchExpressions_value, 
+SELECTOR_matchExpressions_operator, SELECTOR_matchExpressions_operator, -
+OPERATOR_in, OPERATOR_in, In
+OPERATOR_notIn, OPERATOR_notIn, NotIn
+OPERATOR_exist, OPERATOR_exist, Exist
+OPERATOR_doesNotExist, OPERATOR_doesNotExist, DoesNotExist
+OPERATOR_gt, OPERATOR_gt, Gt
+OPERATOR_lt, OPERATOR_lt, Lt
+SPEC_Template, SPEC_Template, -
+TEMPLATE_Metadata, TEMPLATE_Metadata, -
+TEMPLATE_METADATA_labels, TEMPLATE_METADATA_labels, -
+TEMPLATE_METADATA_LABELS_key, TEMPLATE_METADATA_LABELS_key, 
+TEMPLATE_METADATA_LABELS_value,TEMPLATE_METADATA_LABELS_value, 
+TEMPLATE_Spec, TEMPLATE_Spec, -
+TEMPLATE_SPEC_Containers, TEMPLATE_SPEC_Containers, -
+CONTAINER_name, CONTAINER_name, 
+CONTAINER_image, CONTAINER_image, 
+CONTAINER_ports, CONTAINER_ports, -
+CONTAINER_PORTS_containerPort, CONTAINER_PORTS_containerPort, 
+CONTAINER_PORTS_name, CONTAINER_PORTS_name, 
+CONTAINER_env, CONTAINER_env, -
+CONTAINER_ENV_name, CONTAINER_ENV_name, 
+CONTAINER_ENV_value, CONTAINER_ENV_value, 
+CONTAINER_resources, CONTAINER_resources, -
+RESOURCES_request, RESOURCES_request, -
+REQUEST_cpu, REQUEST_cpu, 
+REQUEST_memory, REQUEST_memory
+RESOURCES_limits, RESOURCES_limits, -
+LIMITS_cpu, LIMITS_cpu, 
+LIMITS_memory, LIMITS_memory, 

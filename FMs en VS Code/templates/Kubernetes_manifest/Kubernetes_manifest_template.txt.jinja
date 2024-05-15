@@ -75,6 +75,22 @@ spec:
     {%endif%}
         
 
+    {%if Containers%}containers: 
+    -   image: {{CONTAINER_image}}
+        {%if CONTAINER_name%}name: {{CONTAINER_name}}{%endif%}
+        {%if CONTAINER_resources%}resources:
+            {%if RESOURCES_request%}request:
+                {%if REQUEST_cpu%}cpu: {{REQUEST_cpu}}{%endif%}
+                {%if REQUEST_memory%}memory: {{REQUEST_memory}}{%endif%}
+            {%endif%}
+            {%if RESOURCES_limits%}limits:
+                {%if LIMITS_cpu%}cpu: {{LIMITS_cpu}}{%endif%}
+                {%if LIMITS_memory%}memory: {{LIMITS_memory}}{%endif%}
+            {%endif%}
+        {%endif%}
+    {%endif%}  
 
-
-
+    {%if Ports%}ports:
+    -   {%if PORTS_ContainerPort%}containerPort: {{PORTS_ContainerPort}}{%endif%}
+    {%endif%}
+    

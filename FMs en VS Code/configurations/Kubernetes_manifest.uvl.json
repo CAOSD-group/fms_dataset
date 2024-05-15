@@ -82,9 +82,22 @@
           }
         ]
       }
-    ]
+    ],
 
 
+    "Spec": true,
+    "Containers": true,
+    "CONTAINER_image":"nginx:1.14.2",
+    "CONTAINER_name":"nginx",
+    "Ports":true,
+    "PORTS_ContainerPort": 80,
+    "CONTAINER_resources": true,
+    "RESOURCES_request":true,
+    "REQUEST_cpu":"200m",
+    "REQUEST_memory":"200Mi",
+    "RESOURCES_limits": true,
+    "LIMITS_cpu":"500m",
+    "LIMITS_memory":"500Mi"
   }
 }
 

@@ -147,3 +147,17 @@ REQUEST_memory, REQUEST_memory
 RESOURCES_limits, RESOURCES_limits, -
 LIMITS_cpu, LIMITS_cpu, 
 LIMITS_memory, LIMITS_memory, 
+SPEC_Type, SPEC_Type, -
+TYPE_ExternalName, TYPE_ExternalName, ExternalName
+TYPE_ClusterIP, TYPE_ClusterIP, ClusterIP
+TYPE_NodePort, TYPE_NodePort, NodePort
+TYPE_LoadBalancer,TYPE_LoadBalancer, LoadBalancer
+SPEC_Ports, SPEC_Ports, -
+SPEC_PORTS_port, SPEC_PORTS_port, 
+SPEC_PORTS_name, SPEC_PORTS_name, 
+SPEC_PORTS_protocol, SPEC_PORTS_protocol, -
+PORTS_PROTOCOL_tcp,PORTS_PROTOCOL_tcp, TCP
+PORTS_PROTOCOL_udp, PORTS_PROTOCOL_udp, UDP
+PORTS_PROTOCOL_sctp, PORTS_PROTOCOL_sctp, SCTP
+SPEC_PORTS_nodePort, SPEC_PORTS_nodePort, 
+SPEC_PORTS_targetPort, SPEC_PORTS_targetPort, 

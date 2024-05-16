@@ -11,7 +11,7 @@
     "Metadata": true,
     "METADATA_name": "aruco-tracker",
     "Spec": true,
-    "SPEC_Replicas": 1.0,
+    "SPEC_Replicas": 1,
     "SPEC_Selector": true,
     "SELECTOR_matchLabels": [
       {
@@ -35,17 +35,10 @@
         "TEMPLATE_SPEC_Containers": true,
         "CONTAINER_image": "enriquelpzenc/aruco_tracker_http:latest",
         "CONTAINER_name": "aruco-tracker",
-        "CONTAINER_resources": true,
-        "RESOURCES_request":true,
-        "REQUEST_cpu":"200m",
-        "REQUEST_memory":"200Mi",
-        "RESOURCES_limits": true,
-        "LIMITS_cpu":"500m",
-        "LIMITS_memory":"500Mi",
         "CONTAINER_ports": [
           {
             "CONTAINER_ports": true,
-            "CONTAINER_PORTS_containerPort": 5002.0
+            "CONTAINER_PORTS_containerPort": 5002
           }
         ],
         "CONTAINER_env": [

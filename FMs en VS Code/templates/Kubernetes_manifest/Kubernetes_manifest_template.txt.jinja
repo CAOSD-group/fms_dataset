@@ -16,6 +16,9 @@ metadata:
         {%endfor%}
     {%endif%}
 spec:
+
+    {%if SPEC_Type%}type: {{TYPE_ExternalName}}{{TYPE_ClusterIP}}{{TYPE_NodePort}}{{TYPE_LoadBalancer}} {%endif%}
+
     {%if SPEC_Replicas%}replicas: {{SPEC_Replicas}}{%endif%}
     {%if SPEC_Selector%}selector:
         {%if SELECTOR_matchLabels%}matchLabels:
@@ -34,6 +37,7 @@ spec:
             {%endfor%}
         {%endif%}
     {%endif%}
+
     {%if SPEC_Template%}template:
         {%if TEMPLATE_Metadata%}metadata:
             {%if TEMPLATE_METADATA_labels%}labels:
@@ -56,7 +60,7 @@ spec:
                 {%if container.CONTAINER_env%}env: 
                     {%for env in container.CONTAINER_env%}
                     - name: {{env.CONTAINER_ENV_name}}
-                      value: {{env.CONTAINER_ENV_value}}
+                      value: "{{env.CONTAINER_ENV_value}}"
                     {%endfor%}
                 {%endif%}
                 {%if container.CONTAINER_resources%}resources:
@@ -92,5 +96,15 @@ spec:
 
     {%if Ports%}ports:
     -   {%if PORTS_ContainerPort%}containerPort: {{PORTS_ContainerPort}}{%endif%}
+    {%endif%}
+
+    {%if SPEC_Ports%}ports:
+        {%for port in SPEC_Ports%}
+        - port {{port.SPEC_PORTS_port}}
+          {%if port.SPEC_PORTS_name%}name: "{{port.SPEC_PORTS_name}}" {%endif%}
+          {%if port.SPEC_PORTS_nodePort%}nodePort: {{port.SPEC_PORTS_nodePort}} {%endif%}
+          {%if port.SPEC_PORTS_targetPort%}targetPort: {{port.SPEC_PORTS_targetPort}} {%endif%}
+          {%if port.SPEC_PORTS_protocol%}protocol: {{port.PORTS_PROTOCOL_tcp}}{{port.PORTS_PROTOCOL_udp}}{{port.PORTS_PROTOCOL_sctp}} {%endif%}
+        {%endfor%}
     {%endif%}
     

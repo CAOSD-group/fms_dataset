@@ -4,7 +4,7 @@ features
             Boolean ApiVersion
                 mandatory
                     Boolean Group {abstract} 
-                        or
+                        alternative
                             Boolean GROUP_admission_registration
                             Boolean GROUP_apiextensions
                             Boolean GROUP_apiregistration
@@ -28,7 +28,7 @@ features
                             Boolean GROUP_scheduling
                             Boolean GROUP_storage
                     Boolean Version {abstract}
-                        or
+                        alternative
                             Boolean VERSION_v1
                             Boolean VERSION_v1beta1
                             Boolean VERSION_v1beta3
@@ -36,9 +36,9 @@ features
                             Boolean VERSION_v1alpha2
                             Boolean VERSION_v2
             Boolean Kind
-                or
+                alternative
                     Boolean Workloads_APIs {abstract}
-                        or
+                        alternative
                             Boolean KIND_Container
                             Boolean KIND_CronJob
                             Boolean KIND_DaemonSet
@@ -49,14 +49,14 @@ features
                             Boolean KIND_ReplicationController
                             Boolean KIND_StatefullSet
                     Boolean Service_APIs {abstract}
-                        or
+                        alternative
                             Boolean KIND_Endpoints
                             Boolean KIND_EndpintSlice
                             Boolean KIND_Ingress
                             Boolean KIND_IngressClass
                             Boolean KIND_Service
                     Boolean Confing_and_storage_APIs {abstract}
-                        or
+                        alternative
                             Boolean KIND_ConfigMap
                             Boolean KIND_CSIDriver
                             Boolean KIND_CSINode
@@ -68,7 +68,7 @@ features
                             Boolean KIND_VolumeAttachment
                             Boolean KIND_VolumeAttributesClass
                     Boolean Metadata_APIs {abstract}
-                        or
+                        alternative
                             Boolean KIND_ClusterTrustBundle
                             Boolean KIND_ControllerRevision
                             Boolean KIND_CustomerResourceDefinition
@@ -89,7 +89,7 @@ features
                             Boolean KIND_ValidatingAdmissionPolicy
                             Boolean KIND_ValidatingAdmissionPolicyBinding
                     Boolean Cluster_APIs {abstract}
-                        or
+                        alternative
                             Boolean KIND_APIService
                             Boolean KIND_Binding
                             Boolean KIND_CertificateSigningRequest
@@ -126,11 +126,11 @@ features
                     String METADATA_uid
                     String METADATA_namespace
                     String METADATA_cluster
-                    Boolean METADATA_labels cardinality [0..*]
+                    Boolean METADATA_labels cardinality [1..*]
                         mandatory
                             String LABELS_key
                             String LABELS_value
-                    Boolean METADATA_annotations cardinality [0..*]
+                    Boolean METADATA_annotations cardinality [1..*]
                         mandatory
                             String ANNOTATIONS_key
                             String ANNOTATIONS_value
@@ -138,19 +138,19 @@ features
                 optional
                     Integer SPEC_Replicas
                     Boolean SPEC_Selector
-                        or
-                            Boolean SELECTOR_matchLabels cardinality [0..*]
+                        or 
+                            Boolean SELECTOR_matchLabels cardinality [1..*]
                                 mandatory 
                                     String SELECTOR_matchLabels_key
                                     String SELECTOR_matchLabels_value
-                            Boolean SELECTOR_matchExpressions cardinality [0..*]
+                            Boolean SELECTOR_matchExpressions cardinality [1..*]
                                 mandatory   
                                     String SELECTOR_matchExpressions_key
-                                    Boolean SELECTOR_matchExpressions_values cardinality [0..*]
+                                    Boolean SELECTOR_matchExpressions_values cardinality [1..*]
                                         mandatory
                                             String SELECTOR_matchExpressions_value
                                     Boolean SELECTOR_matchExpressions_operator
-                                        or
+                                        alternative
                                             Boolean OPERATOR_in
                                             Boolean OPERATOR_notIn
                                             Boolean OPERATOR_exist
@@ -161,23 +161,23 @@ features
                         optional
                             Boolean TEMPLATE_Metadata
                                 optional
-                                    Boolean TEMPLATE_METADATA_labels cardinality [0..*]
+                                    Boolean TEMPLATE_METADATA_labels cardinality [1..*]
                                         mandatory
                                             String TEMPLATE_METADATA_LABELS_key
                                             String TEMPLATE_METADATA_LABELS_value
                             Boolean TEMPLATE_Spec 
                                 optional
-                                    Boolean TEMPLATE_SPEC_Containers cardinality [0..*]
+                                    Boolean TEMPLATE_SPEC_Containers cardinality [1..*]
                                         mandatory    
                                             String CONTAINER_image
                                         optional     
                                             String CONTAINER_name  
-                                            Boolean CONTAINER_ports cardinality [0..*]
+                                            Boolean CONTAINER_ports cardinality [1..*]
                                                 mandatory   
                                                     Integer CONTAINER_PORTS_containerPort
                                                 optional 
                                                     String CONTAINER_PORTS_name 
-                                            Boolean CONTAINER_env cardinality [0..*]
+                                            Boolean CONTAINER_env cardinality [1..*]
                                                 mandatory
                                                     String CONTAINER_ENV_name
                                                     String CONTAINER_ENV_value
@@ -191,6 +191,25 @@ features
                                                         mandatory
                                                             String LIMITS_cpu
                                                             String LIMITS_memory
+                    Boolean SPEC_Type
+                        alternative   
+                            Boolean TYPE_ExternalName
+                            Boolean TYPE_ClusterIP
+                            Boolean TYPE_NodePort
+                            Boolean TYPE_LoadBalancer
+                    Boolean SPEC_Ports cardinality [1..*]
+                        mandatory   
+                            Integer SPEC_PORTS_port
+                        optional
+                            String SPEC_PORTS_name
+                            Boolean SPEC_PORTS_protocol
+                                alternative
+                                    Boolean PORTS_PROTOCOL_tcp
+                                    Boolean PORTS_PROTOCOL_udp
+                                    Boolean PORTS_PROTOCOL_sctp
+                            Integer SPEC_PORTS_nodePort
+                            String SPEC_PORTS_targetPort
+
 
 constraints
     // Restrincciones de Group
@@ -223,5 +242,6 @@ constraints
     (KIND_SelfSubjectReview | KIND_TokenRequest | KIND_TokenReview) => GROUP_authentication
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
-
-    Containers => KIND_Container
+    // Resto de restricciones
+    SPEC_Type => KIND_Service
+    (TYPE_NodePort | TYPE_LoadBalancer) => (SPEC_PORTS_nodePort > 0)

@@ -1,0 +1,36 @@
+{
+  "file": "Kubernetes_manifest.uvl",
+  "config": {
+    "Group": true,
+    "GROUP_core": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "Kind": true,
+    "Service_APIs": true,
+    "KIND_Service": true,
+    "Metadata": true,
+    "METADATA_name": "aruco-tracker-service",
+    "Spec": true,
+    "SPEC_Selector": true,
+    "SELECTOR_matchLabels": [
+      {
+        "SELECTOR_matchLabels": true,
+        "SELECTOR_matchLabels_key": "app",
+        "SELECTOR_matchLabels_value": "aruco-tracker"
+      }
+    ],
+    "SPEC_Type": true,
+    "TYPE_LoadBalancer": true,
+    "SPEC_Ports": [
+      {
+        "SPEC_Ports": true,
+        "SPEC_PORTS_port": 5002,
+        "SPEC_PORTS_name": "http",
+        "SPEC_PORTS_protocol": true,
+        "PORTS_PROTOCOL_tcp": true,
+        "SPEC_PORTS_nodePort": 30002,
+        "SPEC_PORTS_targetPort": "5002"
+      }
+    ]
+  }
+}

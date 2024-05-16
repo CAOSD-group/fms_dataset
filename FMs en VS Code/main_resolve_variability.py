@@ -11,10 +11,11 @@ from spl_implementation.models import VEngine
 
 
 
-def print_without_blank_lines(text):
+def print_without_blank_lines(text, file):
     for line in text.splitlines():
         if line.strip():  # Verifica si la línea no está en blanco
             sys.stdout.write(line + '\n')  # Escribe la línea en stdout
+            file.write(line + '\n')
 
 # CONSTANTS
 
@@ -72,8 +73,9 @@ if __name__ == '__main__':
 
     result = vengine.resolve_variability()
 
-    print_without_blank_lines(result)
-
+    with open("salida.txt", "w") as f:
+        print_without_blank_lines(result, f)
+        
 
 
     

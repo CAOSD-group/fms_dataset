@@ -4,13 +4,13 @@ metadata:
     name: {{METADATA_name}}
     {% if METADATA_namespace %}namespace: {{METADATA_namespace}}{%endif%}
     {% if METADATA_cluster%}clusterName: {{METADATA_cluster}}{%endif%}
-    {%if METADATA_labels%}labels:
+    {%if METADATA_labels %}labels:
         {%for lab in METADATA_labels%}
         {{lab.key}}: {{lab.value}}
         {%endfor%}
     {%endif%}
 
-    {%if METADATA_annotations%}annotations:
+    {%if METADATA_annotations %}annotations:
         {%for an in METADATA_annotations%}
         {{an.key}}: {{an.value}}
         {%endfor%}
@@ -21,12 +21,12 @@ spec:
 
     {%if SPEC_Replicas%}replicas: {{SPEC_Replicas}}{%endif%}
     {%if SPEC_Selector%}selector:
-        {%if SELECTOR_matchLabels%}matchLabels:
+        {%if SELECTOR_matchLabels %}matchLabels:
             {%for matchLabel in SELECTOR_matchLabels%}
             {{matchLabel.SELECTOR_matchLabels_key}}: {{matchLabel.SELECTOR_matchLabels_value}}
             {%endfor%}
         {%endif%}
-        {%if SELECTOR_matchExpressions%}matchExpressions:
+        {%if SELECTOR_matchExpressions %}matchExpressions:
             {%for matchExpresion in SELECTOR_matchExpressions%}
             - key: {{matchExpresion.SELECTOR_matchExpressions_key}}
               operator: {{matchExpresion.OPERATOR_in}}{{matchExpresion.OPERATOR_notIn}}{{matchExpresion.OPERATOR_exist}}{{matchExpresion.OPERATOR_doesNotExist}}{{matchExpresion.OPERATOR_gt}}{{matchExpresion.OPERATOR_lt}}
@@ -57,7 +57,7 @@ spec:
                     - containerPort: {{port.CONTAINER_PORTS_containerPort}}
                     {%endfor%}
                 {%endif%}
-                {%if container.CONTAINER_env%}env: 
+                {%if container.CONTAINER_env %}env: 
                     {%for env in container.CONTAINER_env%}
                     - name: {{env.CONTAINER_ENV_name}}
                       value: "{{env.CONTAINER_ENV_value}}"
@@ -98,7 +98,7 @@ spec:
     -   {%if PORTS_ContainerPort%}containerPort: {{PORTS_ContainerPort}}{%endif%}
     {%endif%}
 
-    {%if SPEC_Ports%}ports:
+    {%if SPEC_Ports %}ports:
         {%for port in SPEC_Ports%}
         - port {{port.SPEC_PORTS_port}}
           {%if port.SPEC_PORTS_name%}name: "{{port.SPEC_PORTS_name}}" {%endif%}

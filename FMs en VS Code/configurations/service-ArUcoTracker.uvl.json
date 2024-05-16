@@ -24,11 +24,11 @@
     "SPEC_Ports": [
       {
         "SPEC_Ports": true,
-        "SPEC_PORTS_port": 5002,
+        "SPEC_PORTS_port": 5002.0,
         "SPEC_PORTS_name": "http",
         "SPEC_PORTS_protocol": true,
         "PORTS_PROTOCOL_tcp": true,
-        "SPEC_PORTS_nodePort": 30002,
+        "SPEC_PORTS_nodePort": 30002.0,
         "SPEC_PORTS_targetPort": "5002"
       }
     ]

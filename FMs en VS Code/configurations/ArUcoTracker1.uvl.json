@@ -1,0 +1,71 @@
+{
+  "file": "Kubernetes_manifest.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "ApiVersion": true,
+    "Group": true,
+    "GROUP_apps": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "Kind": true,
+    "Workloads_APIs": true,
+    "KIND_Deployment": true,
+    "Metadata": true,
+    "METADATA_name": "aruco-tracker",
+    "Spec": true,
+    "SPEC_Replicas": 1.0,
+    "SPEC_Selector": true,
+    "SELECTOR_matchLabels": [
+      {
+        "SELECTOR_matchLabels": true,
+        "SELECTOR_matchLabels_key": "app",
+        "SELECTOR_matchLabels_value": "aruco-tracker"
+      }
+    ],
+    "SPEC_Template": true,
+    "TEMPLATE_Metadata": true,
+    "TEMPLATE_METADATA_labels": [
+      {
+        "TEMPLATE_METADATA_labels": true,
+        "TEMPLATE_METADATA_LABELS_key": "app",
+        "TEMPLATE_METADATA_LABELS_value": "aruco-tracker"
+      }
+    ],
+    "TEMPLATE_Spec": true,
+    "TEMPLATE_SPEC_Containers": [
+      {
+        "TEMPLATE_SPEC_Containers": true,
+        "CONTAINER_image": "enriquelpzenc/aruco_tracker_http:latest",
+        "CONTAINER_name": "aruco-tracker",
+        "CONTAINER_ports": [
+          {
+            "CONTAINER_ports": true,
+            "CONTAINER_PORTS_containerPort": 5002
+          }
+        ],
+        "CONTAINER_env": [
+          {
+            "CONTAINER_env": true,
+            "CONTAINER_ENV_name": "own_host",
+            "CONTAINER_ENV_value": "0.0.0.0"
+          },
+          {
+            "CONTAINER_env": true,
+            "CONTAINER_ENV_name": "own_port",
+            "CONTAINER_ENV_value": "5002"
+          },
+          {
+            "CONTAINER_env": true,
+            "CONTAINER_ENV_name": "Visualizer_ip",
+            "CONTAINER_ENV_value": "192.168.49.2"
+          },
+          {
+            "CONTAINER_env": true,
+            "CONTAINER_ENV_name": "Visualizer_port",
+            "CONTAINER_ENV_value": "30002"
+          }
+        ]
+      }
+    ]
+  }
+}

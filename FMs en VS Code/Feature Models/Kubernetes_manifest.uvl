@@ -138,6 +138,9 @@ features
                 optional
                     Integer SPEC_Replicas
                     Boolean SPEC_Selector
+                        optional
+                            String SELECTOR_key
+                            String SELECTOR_value
                         or 
                             Boolean SELECTOR_matchLabels cardinality [1..*]
                                 mandatory 

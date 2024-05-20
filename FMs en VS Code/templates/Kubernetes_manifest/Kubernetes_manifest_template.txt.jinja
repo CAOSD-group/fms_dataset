@@ -1,110 +1,96 @@
-apiVersion: {{GROUP_admissionregistration}}{{GROUP_apiextensions}}{{GROUP_apiregistration}}{{GROUP_apps}}{{GROUP_authentication}}{{GROUP_authorization}}{{GROUP_autoscaling}}{{GROUP_batch}}{{GROUP_certificates}}{{GROUP_coordination}}{{GROUP_core}}{{GROUP_discovery}}{{GROUP_events}}{{GROUP_flowcontrol_apiserver}}{{GROUP_internal_apiserver}}{{GROUP_networking}}{{GROUP_node}}{{GROUP_policy}}{{GROUP_rbac_authorization}}{{GROUP_resource}}{{GROUP_scheduling}}{{GROUP_storage}}/{{VERSION_v1}}{{VERSION_v2}}{{VERSION_v1beta1}}{{VERSION_v1beta3}}{{VERSION_v1alpha1}}{{VERSION_v1alpha2}}
+apiVersion: {{GROUP_admissionregistration}}{{GROUP_apiextensions}}{{GROUP_apiregistration}}{{GROUP_apps}}{{GROUP_authentication}}{{GROUP_authorization}}{{GROUP_autoscaling}}{{GROUP_batch}}{{GROUP_certificates}}{{GROUP_coordination}}{{GROUP_discovery}}{{GROUP_events}}{{GROUP_flowcontrol_apiserver}}{{GROUP_internal_apiserver}}{{GROUP_networking}}{{GROUP_node}}{{GROUP_policy}}{{GROUP_rbac_authorization}}{{GROUP_resource}}{{GROUP_scheduling}}{{GROUP_storage}}{%if GROUP_core%}{%else%}/{%endif%}{{VERSION_v1}}{{VERSION_v2}}{{VERSION_v1beta1}}{{VERSION_v1beta3}}{{VERSION_v1alpha1}}{{VERSION_v1alpha2}}
 kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{KIND_Job}}{{KIND_Pod}}{{KIND_ReplicaSet}}{{KIND_ReplicationController}}{{KIND_StatefullSet}}{{KIND_Endpoints}}{{KIND_EndpintSlice}}{{KIND_Ingress}}{{KIND_IngressClass}}{{KIND_Service}}{{KIND_ConfigMap}}{{KIND_CSIDriver}}{{KIND_CSINode}}{{KIND_Secret}}{{KIND_PersistentVolumeClaim}}{{KIND_StorageClass}}{{KIND_CSIStorageCapacity}}{{KIND_Volume}}{{KIND_VolumeAttachment}}{{KIND_VolumeAttributesClass}}{{KIND_ClusterTrustBundle}}{{KIND_ControllerRevision}}{{KIND_CustomerResourceDefinition}}{{KIND_Event}}{{KIND_LimitRange}}{{KIND_HorizontalPodAutoscaler}}{{KIND_MutatingWebhookConfiguration}}{{KIND_ValidatingWebhookConfiguration}}{{KIND_PodSchedulingContext}}{{KIND_PodTemplate}}{{KIND_PodDisruptionBudget}}{{KIND_PriorityClass}}{{KIND_ResourceClaim}}{{KIND_ResourceClaimTemplate}}{{KIND_ResourceClass}}{{KIND_ValidatingAdmissionPolicy}}{{KIND_ValidatingAdmissionPolicyBinding}}{{KIND_APIService}}{{KIND_Binding}}{{KIND_CertificateSigningRequest}}{{KIND_ClusterRole}}{{KIND_ClusterRoleBinding}}{{KIND_ComponentStatus}}{{KIND_FlowSchema}}{{KIND_IPAddress}}{{KIND_Lease}}{{KIND_LocalSubjectAccessReview}}{{KIND_Namespace}}{{KIND_Node}}{{KIND_PersistentVolume}}{{KIND_PriorityLevelConfiguration}}{{KIND_ResourceQuota}}{{KIND_Role}}{{KIND_RoleBinding}}{{KIND_RuntimeClass}}{{KIND_SelfSubjectAccessReview}}{{KIND_SelfSubjectReview}}{{KIND_SelfSubjectRulesReview}}{{KIND_ServiceAccount}}{{KIND_ServiceCIDR}}{{KIND_StorageVersion}}{{KIND_SubjectAccessReview}}{{KIND_TokenRequest}}{{KIND_TokenReview}}{{KIND_NetworkPolicy}}{{KIND_ResourceClaimParameters}}{{KIND_ResourceSlice}}
-metadata:
-    name: {{METADATA_name}}
-    {% if METADATA_namespace %}namespace: {{METADATA_namespace}}{%endif%}
-    {% if METADATA_cluster%}clusterName: {{METADATA_cluster}}{%endif%}
-    {%if METADATA_labels %}labels:
-        {%for lab in METADATA_labels%}
-        {{lab.key}}: {{lab.value}}
-        {%endfor%}
-    {%endif%}
 
-    {%if METADATA_annotations %}annotations:
-        {%for an in METADATA_annotations%}
-        {{an.key}}: {{an.value}}
-        {%endfor%}
-    {%endif%}
+metadata:
+  name: {{METADATA_name}}
+  {% if METADATA_namespace %}namespace: {{METADATA_namespace}}{%endif%}
+  {% if METADATA_cluster%}clusterName: {{METADATA_cluster}}{%endif%}
+  {%if METADATA_labels %}labels:
+    {%for lab in METADATA_labels%}
+    {{lab.key}}: {{lab.value}}
+    {%endfor%}
+  {%endif%}
+  {%if METADATA_annotations %}annotations:
+  {%for an in METADATA_annotations%}
+    {{an.key}}: {{an.value}}
+    {%endfor%}
+  {%endif%}
+
 spec:
 
-    {%if SPEC_Type%}type: {{TYPE_ExternalName}}{{TYPE_ClusterIP}}{{TYPE_NodePort}}{{TYPE_LoadBalancer}} {%endif%}
+  {%if SPEC_Type%}type: {{TYPE_ExternalName}}{{TYPE_ClusterIP}}{{TYPE_NodePort}}{{TYPE_LoadBalancer}} {%endif%}
 
-    {%if SPEC_Replicas%}replicas: {{SPEC_Replicas}}{%endif%}
-    {%if SPEC_Selector%}selector:
-        {%if SELECTOR_matchLabels %}matchLabels:
-            {%for matchLabel in SELECTOR_matchLabels%}
-            {{matchLabel.SELECTOR_matchLabels_key}}: {{matchLabel.SELECTOR_matchLabels_value}}
-            {%endfor%}
-        {%endif%}
-        {%if SELECTOR_matchExpressions %}matchExpressions:
-            {%for matchExpresion in SELECTOR_matchExpressions%}
-            - key: {{matchExpresion.SELECTOR_matchExpressions_key}}
-              operator: {{matchExpresion.OPERATOR_in}}{{matchExpresion.OPERATOR_notIn}}{{matchExpresion.OPERATOR_exist}}{{matchExpresion.OPERATOR_doesNotExist}}{{matchExpresion.OPERATOR_gt}}{{matchExpresion.OPERATOR_lt}}
-              values:
-                {%for value in matchExpresion.SELECTOR_matchExpressions_values%}
-                - {{value.SELECTOR_matchExpressions_value}}
-                {%endfor%}
-            {%endfor%}
-        {%endif%}
+  {%if SPEC_Replicas%}replicas: {{SPEC_Replicas|int}}{%endif%}
+  {%if SPEC_Selector%}selector:
+    {%if KIND_Service%}
+    {%if SELECTOR_key%}{{SELECTOR_key}}: {{SELECTOR_value}} {%endif%}
+    {%else%}
+    {%if SELECTOR_matchLabels %}matchLabels:
+      {%for matchLabel in SELECTOR_matchLabels%}
+      {{matchLabel.SELECTOR_matchLabels_key}}: {{matchLabel.SELECTOR_matchLabels_value}}
+      {%endfor%}
     {%endif%}
-
-    {%if SPEC_Template%}template:
-        {%if TEMPLATE_Metadata%}metadata:
-            {%if TEMPLATE_METADATA_labels%}labels:
-            {%for label in TEMPLATE_METADATA_labels%}
-                {{label.TEMPLATE_METADATA_LABELS_key}}: {{label.TEMPLATE_METADATA_LABELS_value}}
-            {%endfor%}
-            {%endif%}
-        {%endif%}
-        {%if TEMPLATE_Spec%}spec:
-            {%if TEMPLATE_SPEC_Containers%}containers:
-                {%for container in TEMPLATE_SPEC_Containers%}
-                - image: {{container.CONTAINER_image}}
-                {%if container.CONTAINER_name %}  name: {{container.CONTAINER_name }} {%endif%}
-                {%if container.CONTAINER_ports %}  ports: 
-                    {%for port in container.CONTAINER_ports %} 
-                    {%if port.CONTAINER_PORTS_name%}- name: {{port.CONTAINER_PORTS_name}} {%endif%}
-                    - containerPort: {{port.CONTAINER_PORTS_containerPort}}
-                    {%endfor%}
-                {%endif%}
-                {%if container.CONTAINER_env %}env: 
-                    {%for env in container.CONTAINER_env%}
-                    - name: {{env.CONTAINER_ENV_name}}
-                      value: "{{env.CONTAINER_ENV_value}}"
-                    {%endfor%}
-                {%endif%}
-                {%if container.CONTAINER_resources%}resources:
-                    {%if container.RESOURCES_request%}request:
-                        {%if container.REQUEST_cpu%}cpu: {{container.REQUEST_cpu}}{%endif%}
-                        {%if container.REQUEST_memory%}memory: {{container.REQUEST_memory}}{%endif%}
-                    {%endif%}
-                    {%if container.RESOURCES_limits%}limits:
-                        {%if container.LIMITS_cpu%}cpu: {{container.LIMITS_cpu}}{%endif%}
-                        {%if container.LIMITS_memory%}memory: {{container.LIMITS_memory}}{%endif%}
-                    {%endif%}
-                {%endif%}
-                {%endfor%}
-            {%endif%}
-        {%endif%}
     {%endif%}
-        
+      {%if SELECTOR_matchExpressions %}matchExpressions:
+          {%for matchExpresion in SELECTOR_matchExpressions%}
+          - key: {{matchExpresion.SELECTOR_matchExpressions_key}}
+            operator: {{matchExpresion.OPERATOR_in}}{{matchExpresion.OPERATOR_notIn}}{{matchExpresion.OPERATOR_exist}}{{matchExpresion.OPERATOR_doesNotExist}}{{matchExpresion.OPERATOR_gt}}{{matchExpresion.OPERATOR_lt}}
+            values:
+              {%for value in matchExpresion.SELECTOR_matchExpressions_values%}
+              - {{value.SELECTOR_matchExpressions_value}}
+              {%endfor%}
+          {%endfor%}
+      {%endif%}
+  {%endif%}
 
-    {%if Containers%}containers: 
-    -   image: {{CONTAINER_image}}
-        {%if CONTAINER_name%}name: {{CONTAINER_name}}{%endif%}
-        {%if CONTAINER_resources%}resources:
-            {%if RESOURCES_request%}request:
-                {%if REQUEST_cpu%}cpu: {{REQUEST_cpu}}{%endif%}
-                {%if REQUEST_memory%}memory: {{REQUEST_memory}}{%endif%}
-            {%endif%}
-            {%if RESOURCES_limits%}limits:
-                {%if LIMITS_cpu%}cpu: {{LIMITS_cpu}}{%endif%}
-                {%if LIMITS_memory%}memory: {{LIMITS_memory}}{%endif%}
-            {%endif%}
-        {%endif%}
-    {%endif%}  
-
-    {%if Ports%}ports:
-    -   {%if PORTS_ContainerPort%}containerPort: {{PORTS_ContainerPort}}{%endif%}
-    {%endif%}
-
-    {%if SPEC_Ports %}ports:
-        {%for port in SPEC_Ports%}
-        - port {{port.SPEC_PORTS_port}}
-          {%if port.SPEC_PORTS_name%}name: "{{port.SPEC_PORTS_name}}" {%endif%}
-          {%if port.SPEC_PORTS_nodePort%}nodePort: {{port.SPEC_PORTS_nodePort}} {%endif%}
-          {%if port.SPEC_PORTS_targetPort%}targetPort: {{port.SPEC_PORTS_targetPort}} {%endif%}
-          {%if port.SPEC_PORTS_protocol%}protocol: {{port.PORTS_PROTOCOL_tcp}}{{port.PORTS_PROTOCOL_udp}}{{port.PORTS_PROTOCOL_sctp}} {%endif%}
+  {%if SPEC_Template%}template:
+    {%if TEMPLATE_Metadata%}metadata:
+      {%if TEMPLATE_METADATA_labels%}labels:
+        {%for label in TEMPLATE_METADATA_labels%}
+        {{label.TEMPLATE_METADATA_LABELS_key}}: {{label.TEMPLATE_METADATA_LABELS_value}}
         {%endfor%}
+      {%endif%}
     {%endif%}
+
+    {%if TEMPLATE_Spec%}spec:
+      {%if TEMPLATE_SPEC_Containers%}containers:
+        {%for container in TEMPLATE_SPEC_Containers%}
+        - image: {{container.CONTAINER_image}}
+          {%if container.CONTAINER_name %}name: {{container.CONTAINER_name }} {%endif%}
+          {%if container.CONTAINER_ports %}ports: 
+            {%for port in container.CONTAINER_ports %} 
+            - containerPort: {{port.CONTAINER_PORTS_containerPort|int}}
+            {%if port.CONTAINER_PORTS_name%}name: {{port.CONTAINER_PORTS_name}} {%endif%}
+            {%endfor%}
+          {%endif%}
+          {%if container.CONTAINER_env %}env: 
+            {%for env in container.CONTAINER_env%}
+            - name: {{env.CONTAINER_ENV_name}}
+              value: "{{env.CONTAINER_ENV_value}}"
+            {%endfor%}
+          {%endif%}
+        {%if container.CONTAINER_resources%}resources:
+          {%if container.RESOURCES_request%}request:
+            {%if container.REQUEST_cpu%}cpu: {{container.REQUEST_cpu}}{%endif%}
+            {%if container.REQUEST_memory%}memory: {{container.REQUEST_memory}}{%endif%}
+          {%endif%}
+          {%if container.RESOURCES_limits%}limits:
+            {%if container.LIMITS_cpu%}cpu: {{container.LIMITS_cpu}}{%endif%}
+            {%if container.LIMITS_memory%}memory: {{container.LIMITS_memory}}{%endif%}
+          {%endif%}
+        {%endif%}
+        {%endfor%}
+      {%endif%}
+    {%endif%}
+  {%endif%}
+
+  {%if SPEC_Ports %}ports:
+    {%for port in SPEC_Ports%}
+    - port: {{port.SPEC_PORTS_port|int}}
+      {%if port.SPEC_PORTS_name%}name: "{{port.SPEC_PORTS_name}}" {%endif%}
+      {%if port.SPEC_PORTS_nodePort%}nodePort: {{port.SPEC_PORTS_nodePort|int}} {%endif%}
+      {%if port.SPEC_PORTS_targetPort%}targetPort: {{port.SPEC_PORTS_targetPort}} {%endif%}
+      {%if port.SPEC_PORTS_protocol%}protocol: {{port.PORTS_PROTOCOL_tcp}}{{port.PORTS_PROTOCOL_udp}}{{port.PORTS_PROTOCOL_sctp}} {%endif%}
+    {%endfor%}
+  {%endif%}
     

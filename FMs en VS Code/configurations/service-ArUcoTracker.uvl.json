@@ -12,13 +12,8 @@
     "METADATA_name": "aruco-tracker-service",
     "Spec": true,
     "SPEC_Selector": true,
-    "SELECTOR_matchLabels": [
-      {
-        "SELECTOR_matchLabels": true,
-        "SELECTOR_matchLabels_key": "app",
-        "SELECTOR_matchLabels_value": "aruco-tracker"
-      }
-    ],
+    "SELECTOR_key": "app",
+    "SELECTOR_value": "aruco-tracker",
     "SPEC_Type": true,
     "TYPE_LoadBalancer": true,
     "SPEC_Ports": [

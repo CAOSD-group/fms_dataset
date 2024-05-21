@@ -194,6 +194,14 @@ features
                                                         mandatory
                                                             String LIMITS_cpu
                                                             String LIMITS_memory
+                                            Boolean CONTAINER_VolumeMounts cardinality [1..*]
+                                                mandatory   
+                                                    String VOLUMEMOUNTS_mountPath
+                                                    String VOLUMEMOUNTS_name
+                                    Boolean TEMPLATE_SPEC_Volumes cardinality [1..*]
+                                                mandatory   
+                                                    String VOLUMES_name
+                                                    String VOLUMES_emptyDir
                     Boolean SPEC_Type
                         alternative   
                             Boolean TYPE_ExternalName

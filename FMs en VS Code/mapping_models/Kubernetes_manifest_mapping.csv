@@ -163,3 +163,9 @@ SPEC_PORTS_nodePort, SPEC_PORTS_nodePort,
 SPEC_PORTS_targetPort, SPEC_PORTS_targetPort, 
 SELECTOR_key, SELECTOR_key, 
 SELECTOR_value, SELECTOR_value,
+CONTAINER_VolumeMounts, CONTAINER_VolumeMounts, -
+VOLUMEMOUNTS_mountPath, VOLUMEMOUNTS_mountPath, 
+VOLUMEMOUNTS_name, VOLUMEMOUNTS_name, 
+TEMPLATE_SPEC_Volumes, TEMPLATE_SPEC_Volumes, -
+VOLUMES_name, VOLUMES_name, 
+VOLUMES_emptyDir, VOLUMES_emptyDir, 

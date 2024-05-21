@@ -1,14 +1,25 @@
-apiVersion: v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: aruco-tracker-service
+  name: mi-deployment
+  namespace: namespace-prueba
+  clusterName: my-cluster
+  labels:
+    app: my-app
+    key2: value2
+  annotations:
+    createdBy: John Doe
+    description: This is a sample pod for demonstration purposes.
 spec:
-  type: LoadBalancer 
+  replicas: 1
   selector:
-    app: aruco-tracker 
-  ports:
-    - port: 5002
-      name: "http" 
-      nodePort: 30002 
-      targetPort: 5002 
-      protocol: TCP 
+      matchExpressions:
+          - key: enviroment
+            operator: In
+            values:
+              - production
+              - staging
+          - key: tier
+            operator: NotIn
+            values:
+              - frontend

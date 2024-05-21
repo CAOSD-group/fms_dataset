@@ -63,12 +63,14 @@ spec:
             {%if port.CONTAINER_PORTS_name%}name: {{port.CONTAINER_PORTS_name}} {%endif%}
             {%endfor%}
           {%endif%}
+
           {%if container.CONTAINER_env %}env: 
             {%for env in container.CONTAINER_env%}
             - name: {{env.CONTAINER_ENV_name}}
               value: "{{env.CONTAINER_ENV_value}}"
             {%endfor%}
           {%endif%}
+
         {%if container.CONTAINER_resources%}resources:
           {%if container.RESOURCES_request%}request:
             {%if container.REQUEST_cpu%}cpu: {{container.REQUEST_cpu}}{%endif%}
@@ -78,9 +80,25 @@ spec:
             {%if container.LIMITS_cpu%}cpu: {{container.LIMITS_cpu}}{%endif%}
             {%if container.LIMITS_memory%}memory: {{container.LIMITS_memory}}{%endif%}
           {%endif%}
+
         {%endif%}
+        {%if container.CONTAINER_VolumeMounts%}volumeMounts:
+        {%for volMount in container.CONTAINER_VolumeMounts%}
+          - mountPath: {{volMount.VOLUMEMOUNTS_mountPath}}
+            name: {{volMount.VOLUMEMOUNTS_name}}
+        {%endfor%}
+        {%endif%}
+
         {%endfor%}
       {%endif%}
+
+      {%if TEMPLATE_SPEC_Volumes%}volumes:
+        {%for vol in TEMPLATE_SPEC_Volumes%}
+        - name: {{VOLUMES_name}}
+          emptyDir: {{VOLUMES_emptyDir}}
+        {%endfor%}
+      {%endif%}
+
     {%endif%}
   {%endif%}
 

@@ -26,7 +26,7 @@ class VEngine:
         environment = jinja2.Environment(loader=template_loader)
         template = environment.get_template(self._template_file)
         maps = self._build_template_maps(self._configuration.elements)
-        print(maps)
+        #print(maps)
         content = template.render(maps)
         return content
 

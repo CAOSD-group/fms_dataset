@@ -256,3 +256,4 @@ constraints
     // Resto de restricciones
     SPEC_Type => KIND_Service
     (TYPE_NodePort | TYPE_LoadBalancer) => (SPEC_PORTS_nodePort > 0)
+    SELECTOR_matchLabels | SELECTOR_matchExpressions => !KIND_Service

@@ -161,6 +161,7 @@ REQUEST_memory, REQUEST_memory
 RESOURCES_limits, RESOURCES_limits, -
 LIMITS_cpu, LIMITS_cpu, 
 LIMITS_memory, LIMITS_memory, 
+TEMPLATE_SPEC_activeDeadlineSeconds, TEMPLATE_SPEC_activeDeadlineSeconds, 
 SPEC_Type, SPEC_Type, -
 TYPE_ExternalName, TYPE_ExternalName, ExternalName
 TYPE_ClusterIP, TYPE_ClusterIP, ClusterIP
@@ -182,3 +183,14 @@ VOLUMEMOUNTS_mountPath, VOLUMEMOUNTS_mountPath,
 VOLUMEMOUNTS_name, VOLUMEMOUNTS_name, 
 TEMPLATE_SPEC_Volumes, TEMPLATE_SPEC_Volumes, -
 VOLUMES_name, VOLUMES_name, 
+SPEC_allocateLoadBalancerNodePorts, SPEC_allocateLoadBalancerNodePorts, 
+SPEC_clusterIP, SPEC_clusterIP, -
+CLUSTERIP_none, CLUSTERIP_none, None
+CLUSTERIP_emptyString, CLUSTERIP_emptyString, -
+CLUSTERIP_IP, CLUSTERIP_IP, 
+SPEC_clusterIPs, SPEC_clusterIPs, -
+CLUSTERIPS_none, CLUSTERIPS_none, None
+CLUSTERIPS_emptyString, CLUSTERIPS_emptyString, -
+CLUSTERIPS_IPs, CLUSTERIPS_IPs, 
+SPEC_externalIPs, SPEC_externalIPs, 
+SPEC_externalName, SPEC_externalName, 

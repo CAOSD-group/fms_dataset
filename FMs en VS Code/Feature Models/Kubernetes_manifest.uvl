@@ -171,7 +171,7 @@ features
                                     Boolean RollingUpdate
                                         mandatory
                                             String maxUnavailable
-                                        alternative
+                                        optional
                                             String maxSurge
                     Boolean SPEC_Template 
                         optional
@@ -189,7 +189,7 @@ features
                                             String TEMPLATE_ANNOTATIONS_value
                                         
                             Boolean TEMPLATE_Spec 
-                                optional
+                                mandatory
                                     Boolean TEMPLATE_SPEC_Containers cardinality [1..*]
                                         mandatory    
                                             String CONTAINER_image
@@ -220,6 +220,7 @@ features
                                                     String VOLUMEMOUNTS_name
                                     Boolean TEMPLATE_SPEC_Volumes cardinality [1..*]
                                                 mandatory   
+                                                    String VOLUMES_name
                                                     Boolean VOLUMES_type
                                                         or   
                                                             Boolean emptyDir
@@ -250,8 +251,8 @@ features
                                                             Boolean scaleIO
                                                             Boolean storageos
                                                             Boolean vsphereVolume
-
-                                                    String VOLUMES_name
+                                optional 
+                                    Integer TEMPLATE_SPEC_activeDeadlineSeconds
                     Boolean SPEC_Type
                         alternative   
                             Boolean TYPE_ExternalName
@@ -270,7 +271,19 @@ features
                                     Boolean PORTS_PROTOCOL_sctp
                             Integer SPEC_PORTS_nodePort
                             String SPEC_PORTS_targetPort
-
+                    Boolean SPEC_allocateLoadBalancerNodePorts
+                    Boolean  SPEC_clusterIP
+                        alternative
+                            Boolean CLUSTERIP_none
+                            Boolean CLUSTERIP_emptyString
+                            String CLUSTERIP_IP
+                    Boolean  SPEC_clusterIPs
+                        alternative
+                            Boolean CLUSTERIPS_none
+                            Boolean CLUSTERIPS_emptyString
+                            String CLUSTERIPS_IPs
+                    String SPEC_externalIPs
+                    String SPEC_externalName
 
 constraints
     // Restrincciones de Group
@@ -304,8 +317,13 @@ constraints
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
     // Resto de restricciones
-    SPEC_Type => !KIND_Deployment
-    (SPEC_minReadySeconds > 0) | (SPEC_progressDeadlineSeconds > 0) | (SPEC_revisionHistoryLimit > 0) | SELECTOR_matchLabels | SELECTOR_matchExpressions=> KIND_Deployment
+    SPEC_Type | SPEC_allocateLoadBalancerNodePorts | SPEC_Ports => KIND_Service
+    (SPEC_minReadySeconds > 0) | (SPEC_progressDeadlineSeconds > 0) | (SPEC_revisionHistoryLimit > 0) | SELECTOR_matchLabels | SELECTOR_matchExpressions | TEMPLATE_SPEC_Containers | TEMPLATE_SPEC_Volumes => KIND_Deployment
     (TYPE_NodePort | TYPE_LoadBalancer) => (SPEC_PORTS_nodePort > 0)
     SELECTOR_matchLabels | SELECTOR_matchExpressions => !KIND_Service
     (maxUnavailable == '0') => (maxSurge == '')
+    SPEC_strategy => KIND_Deployment   
+    SPEC_clusterIP => !TYPE_ExternalName
+    SPEC_clusterIP => !SPEC_clusterIPs
+    SPEC_clusterIPs => !SPEC_clusterIP
+    (SPEC_externalName == '') => TYPE_ExternalName

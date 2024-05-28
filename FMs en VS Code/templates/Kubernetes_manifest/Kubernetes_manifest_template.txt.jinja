@@ -117,6 +117,7 @@ spec:
         {%endfor%}
       {%endif%}
 
+      {%if TEMPLATE_SPEC_activeDeadlineSeconds%}activeDeadlineSeconds: {{TEMPLATE_SPEC_activeDeadlineSeconds}}{%endif%}
     {%endif%}
   {%endif%}
 
@@ -129,4 +130,10 @@ spec:
       {%if port.SPEC_PORTS_protocol%}protocol: {{port.PORTS_PROTOCOL_tcp}}{{port.PORTS_PROTOCOL_udp}}{{port.PORTS_PROTOCOL_sctp}} {%endif%}
     {%endfor%}
   {%endif%}
-    
+  
+  {%if SPEC_allocateLoadBalancerNodePorts%}allocateLoadBalancerNodePorts: {{SPEC_allocateLoadBalancerNodePorts}}{%endif%}
+  {%if SPEC_clusterIP%}clusterIP: "{{CLUSTERIP_IP}}{{CLUSTERIP_none}}{{CLUSTERIP_emptyString}}"{%endif%}
+  {%if SPEC_clusterIPs%}clusterIPs: "{{CLUSTERIPS_IPs}}{{CLUSTERIPS_none}}{{CLUSTERIPS_emptyString}}"{%endif%}
+  {%if SPEC_externalIPs%}externalIPs: "{{SPEC_externalIPs}}"{%endif%}
+  {%if SPEC_externalName%}externalName: {{SPEC_externalName}}{%endif%}
+  

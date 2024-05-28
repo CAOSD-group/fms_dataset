@@ -175,12 +175,19 @@ features
                                             String maxSurge
                     Boolean SPEC_Template 
                         optional
-                            Boolean TEMPLATE_Metadata
+                            Boolean TEMPLATE_Metadata    
                                 optional
+                                    String TEMPLATE_METADATA_name
+                                    String TEMPLATE_METADATA_namespace
                                     Boolean TEMPLATE_METADATA_labels cardinality [1..*]
                                         mandatory
                                             String TEMPLATE_METADATA_LABELS_key
                                             String TEMPLATE_METADATA_LABELS_value
+                                    Boolean TEMPLATE_METADATA_annotations cardinality [1..*]
+                                        mandatory
+                                            String TEMPLATE_ANNOTATIONS_key
+                                            String TEMPLATE_ANNOTATIONS_value
+                                        
                             Boolean TEMPLATE_Spec 
                                 optional
                                     Boolean TEMPLATE_SPEC_Containers cardinality [1..*]

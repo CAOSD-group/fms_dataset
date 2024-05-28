@@ -57,9 +57,16 @@ spec:
 
   {%if SPEC_Template%}template:
     {%if TEMPLATE_Metadata%}metadata:
+      {%if TEMPLATE_METADATA_name%}name: {{TEMPLATE_METADATA_name}}{%endif%}
+      {% if TEMPLATE_METADATA_namespace %}namespace: {{TEMPLATE_METADATA_namespace}}{%endif%}
       {%if TEMPLATE_METADATA_labels%}labels:
         {%for label in TEMPLATE_METADATA_labels%}
         {{label.TEMPLATE_METADATA_LABELS_key}}: {{label.TEMPLATE_METADATA_LABELS_value}}
+        {%endfor%}
+      {%endif%}
+      {%if TEMPLATE_METADATA_annotations %}annotations:
+        {%for an in TEMPLATE_METADATA_annotations%}
+        {{an.TEMPLATE_ANNOTATIONS_key}}: {{an.TEMPLATE_ANNOTATIONS_value}}
         {%endfor%}
       {%endif%}
     {%endif%}

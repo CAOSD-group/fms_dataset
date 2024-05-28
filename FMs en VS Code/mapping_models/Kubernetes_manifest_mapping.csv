@@ -110,6 +110,9 @@ METADATA_cluster,METADATA_cluster,
 KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
 KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice
 SPEC_Replicas, SPEC_Replicas, 
+SPEC_minReadySeconds, SPEC_minReadySeconds, 
+SPEC_paused, SPEC_paused, 
+SPEC_progressDeadlineSeconds, SPEC_progressDeadlineSeconds, 
 SPEC_Selector, SPEC_Selector, -
 SELECTOR_matchLabels, SELECTOR_matchLabels, -
 SELECTOR_matchLabels_key, SELECTOR_matchLabels_key, 
@@ -125,6 +128,13 @@ OPERATOR_exist, OPERATOR_exist, Exist
 OPERATOR_doesNotExist, OPERATOR_doesNotExist, DoesNotExist
 OPERATOR_gt, OPERATOR_gt, Gt
 OPERATOR_lt, OPERATOR_lt, Lt
+SPEC_strategy, SPEC_strategy, -
+STRATEGY_type, STRATEGY_type, -
+Recreate, Recreate, -
+RollingUpdate, RollingUpdate, -
+maxUnavailable, maxUnavailable, 
+maxSurge, maxSurge,  
+
 SPEC_Template, SPEC_Template, -
 TEMPLATE_Metadata, TEMPLATE_Metadata, -
 TEMPLATE_METADATA_labels, TEMPLATE_METADATA_labels, -
@@ -168,4 +178,3 @@ VOLUMEMOUNTS_mountPath, VOLUMEMOUNTS_mountPath,
 VOLUMEMOUNTS_name, VOLUMEMOUNTS_name, 
 TEMPLATE_SPEC_Volumes, TEMPLATE_SPEC_Volumes, -
 VOLUMES_name, VOLUMES_name, 
-VOLUMES_emptyDir, VOLUMES_emptyDir, 

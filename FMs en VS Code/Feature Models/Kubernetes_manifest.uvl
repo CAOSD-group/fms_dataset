@@ -123,7 +123,6 @@ features
                 mandatory
                     String METADATA_name
                 optional
-                    String METADATA_uid
                     String METADATA_namespace
                     String METADATA_cluster
                     Boolean METADATA_labels cardinality [1..*]
@@ -137,6 +136,10 @@ features
             Boolean Spec
                 optional
                     Integer SPEC_Replicas
+                    Integer SPEC_minReadySeconds
+                    Integer SPEC_progressDeadlineSeconds
+                    Integer SPEC_revisionHistoryLimit
+                    Boolean SPEC_paused
                     Boolean SPEC_Selector
                         optional
                             String SELECTOR_key
@@ -160,6 +163,16 @@ features
                                             Boolean OPERATOR_doesNotExist
                                             Boolean OPERATOR_gt
                                             Boolean OPERATOR_lt
+                    Boolean SPEC_strategy
+                        mandatory
+                            Boolean STRATEGY_type
+                                or
+                                    Boolean Recreate
+                                    Boolean RollingUpdate
+                                        mandatory
+                                            String maxUnavailable
+                                        alternative
+                                            String maxSurge
                     Boolean SPEC_Template 
                         optional
                             Boolean TEMPLATE_Metadata
@@ -200,8 +213,38 @@ features
                                                     String VOLUMEMOUNTS_name
                                     Boolean TEMPLATE_SPEC_Volumes cardinality [1..*]
                                                 mandatory   
+                                                    Boolean VOLUMES_type
+                                                        or   
+                                                            Boolean emptyDir
+                                                            Boolean hostPath
+                                                            Boolean persistentVolumeClaim
+                                                            Boolean configMap
+                                                            Boolean secret
+                                                            Boolean nfs
+                                                            Boolean awsElasticBlockStore
+                                                            Boolean gcePersistentDisk
+                                                            Boolean azureDisk
+                                                            Boolean csi
+                                                            Boolean azureFile
+                                                            Boolean cephfs
+                                                            Boolean cinder
+                                                            Boolean downwardAPI
+                                                            Boolean ephemeral
+                                                            Boolean fc
+                                                            Boolean flexVolume
+                                                            Boolean flocker
+                                                            Boolean glusterfs
+                                                            Boolean iscsi
+                                                            Boolean photonPersistentDisk
+                                                            Boolean portworxVolume
+                                                            Boolean projected
+                                                            Boolean quobyte
+                                                            Boolean rbd
+                                                            Boolean scaleIO
+                                                            Boolean storageos
+                                                            Boolean vsphereVolume
+
                                                     String VOLUMES_name
-                                                    String VOLUMES_emptyDir
                     Boolean SPEC_Type
                         alternative   
                             Boolean TYPE_ExternalName
@@ -254,6 +297,8 @@ constraints
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
     // Resto de restricciones
-    SPEC_Type => KIND_Service
+    SPEC_Type => !KIND_Deployment
+    (SPEC_minReadySeconds > 0) | (SPEC_progressDeadlineSeconds > 0) | (SPEC_revisionHistoryLimit > 0) | SELECTOR_matchLabels | SELECTOR_matchExpressions=> KIND_Deployment
     (TYPE_NodePort | TYPE_LoadBalancer) => (SPEC_PORTS_nodePort > 0)
     SELECTOR_matchLabels | SELECTOR_matchExpressions => !KIND_Service
+    (maxUnavailable == '0') => (maxSurge == '')

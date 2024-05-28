@@ -21,6 +21,10 @@ spec:
   {%if SPEC_Type%}type: {{TYPE_ExternalName}}{{TYPE_ClusterIP}}{{TYPE_NodePort}}{{TYPE_LoadBalancer}} {%endif%}
 
   {%if SPEC_Replicas%}replicas: {{SPEC_Replicas|int}}{%endif%}
+  {%if SPEC_minReadySeconds%}minReadySeconds: {{SPEC_minReadySeconds|int}}{%endif%}
+  {%if SPEC_paused%}paused: {{SPEC_paused}}{%endif%}
+  {%if SPEC_progressDeadlineSeconds%}progressDeadlineSeconds: {{SPEC_progressDeadlineSeconds|int}}{%endif%}
+  {%if SPEC_revisionHistoryLimit%}revisionHistoryLimit: {{SPEC_revisionHistoryLimit|int}}{%endif%}
   {%if SPEC_Selector%}selector:
     {%if KIND_Service%}
     {%if SELECTOR_key%}{{SELECTOR_key}}: {{SELECTOR_value}} {%endif%}
@@ -41,6 +45,14 @@ spec:
               {%endfor%}
           {%endfor%}
       {%endif%}
+  {%endif%}
+
+  {%if SPEC_strategy%}strategy:
+    type: {{Recreate}}{{RollingUpdate}}
+    {%if RollingUpdate%}
+      maxUnavailable: {{maxUnavailable}}
+      {%if maxSurge%}maxSurge: {{maxSurge}}{%endif%}
+    {%endif%}
   {%endif%}
 
   {%if SPEC_Template%}template:
@@ -95,7 +107,6 @@ spec:
       {%if TEMPLATE_SPEC_Volumes%}volumes:
         {%for vol in TEMPLATE_SPEC_Volumes%}
         - name: {{VOLUMES_name}}
-          emptyDir: {{VOLUMES_emptyDir}}
         {%endfor%}
       {%endif%}
 

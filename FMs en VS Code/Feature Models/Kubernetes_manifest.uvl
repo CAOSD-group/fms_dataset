@@ -253,6 +253,13 @@ features
                                                             Boolean vsphereVolume
                                 optional 
                                     Integer TEMPLATE_SPEC_activeDeadlineSeconds
+                                    Boolean TEMPLATE_SPEC_automountServiceAccountToken
+                                    Boolean TEMPLATE_SPEC_dnsPolicy
+                                        alternative
+                                            Boolean DNSPOLICY_ClusterFirstWithHostNet
+                                            Boolean DNSPOLICY_ClusterFirst
+                                            Boolean DNSPOLICY_Default
+                                            Boolean DNSPOLICY_None
                     Boolean SPEC_Type
                         alternative   
                             Boolean TYPE_ExternalName
@@ -284,7 +291,6 @@ features
                             String CLUSTERIPS_IPs
                     String SPEC_externalIPs
                     String SPEC_externalName
-
 constraints
     // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1

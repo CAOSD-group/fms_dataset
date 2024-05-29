@@ -136,4 +136,6 @@ spec:
   {%if SPEC_clusterIPs%}clusterIPs: "{{CLUSTERIPS_IPs}}{{CLUSTERIPS_none}}{{CLUSTERIPS_emptyString}}"{%endif%}
   {%if SPEC_externalIPs%}externalIPs: "{{SPEC_externalIPs}}"{%endif%}
   {%if SPEC_externalName%}externalName: {{SPEC_externalName}}{%endif%}
+  {%if TEMPLATE_SPEC_automountServiceAccountToken%}automountServiceAccountToken: {{TEMPLATE_SPEC_automountServiceAccountToken}}{%endif%}
+  {%if TEMPLATE_SPEC_dnsPolicy%}dnsPolicy: {{DNSPOLICY_ClusterFirstWithHostNet}}{{DNSPOLICY_ClusterFirst}}{{DNSPOLICY_Default}}{{DNSPOLICY_None}}{%endif%}
   

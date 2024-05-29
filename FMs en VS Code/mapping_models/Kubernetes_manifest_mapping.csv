@@ -194,3 +194,9 @@ CLUSTERIPS_emptyString, CLUSTERIPS_emptyString, -
 CLUSTERIPS_IPs, CLUSTERIPS_IPs, 
 SPEC_externalIPs, SPEC_externalIPs, 
 SPEC_externalName, SPEC_externalName, 
+TEMPLATE_SPEC_automountServiceAccountToken, TEMPLATE_SPEC_automountServiceAccountToken, 
+TEMPLATE_SPEC_dnsPolicy, TEMPLATE_SPEC_dnsPolicy, -
+DNSPOLICY_ClusterFirstWithHostNet, DNSPOLICY_ClusterFirstWithHostNet, ClusterFirstWithHostNet
+DNSPOLICY_ClusterFirst, DNSPOLICY_ClusterFirst, ClusterFirst
+DNSPOLICY_Default, DNSPOLICY_Default, Default
+DNSPOLICY_None, DNSPOLICY_None, None

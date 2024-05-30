@@ -4,7 +4,6 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 metadata:
   name: {{METADATA_name}}
   {% if METADATA_namespace %}namespace: {{METADATA_namespace}}{%endif%}
-  {% if METADATA_cluster%}clusterName: {{METADATA_cluster}}{%endif%}
   {%if METADATA_labels %}labels:
     {%for lab in METADATA_labels%}
     {{lab.key}}: {{lab.value}}
@@ -138,4 +137,11 @@ spec:
   {%if SPEC_externalName%}externalName: {{SPEC_externalName}}{%endif%}
   {%if TEMPLATE_SPEC_automountServiceAccountToken%}automountServiceAccountToken: {{TEMPLATE_SPEC_automountServiceAccountToken}}{%endif%}
   {%if TEMPLATE_SPEC_dnsPolicy%}dnsPolicy: {{DNSPOLICY_ClusterFirstWithHostNet}}{{DNSPOLICY_ClusterFirst}}{{DNSPOLICY_Default}}{{DNSPOLICY_None}}{%endif%}
+  {%if TEMPLATE_SPEC_enableServiceLinks%}enableServiceLinks: {{TEMPLATE_SPEC_enableServiceLinks}}{%endif%}
+  {%if TEMPLATE_SPEC_hostIPC%}hostIPC: {{TEMPLATE_SPEC_hostIPC}}{%endif%}
+  {%if TEMPLATE_SPEC_hostNetwork%}hostNetwork: {{TEMPLATE_SPEC_hostNetwork}}{%endif%}
+  {%if TEMPLATE_SPEC_hostPID%}hostPID: {{TEMPLATE_SPEC_hostPID}}{%endif%}
+  {%if TEMPLATE_SPEC_hostUsers%}hostUsers: {{TEMPLATE_SPEC_hostUsers}}{%endif%}
+  {%if TEMPLATE_SPEC_hostname%}hostname: {{TEMPLATE_SPEC_hostname}}{%endif%}
+  
   

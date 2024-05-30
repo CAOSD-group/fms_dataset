@@ -124,7 +124,6 @@ features
                     String METADATA_name
                 optional
                     String METADATA_namespace
-                    String METADATA_cluster
                     Boolean METADATA_labels cardinality [1..*]
                         mandatory
                             String LABELS_key
@@ -221,7 +220,7 @@ features
                                     Boolean TEMPLATE_SPEC_Volumes cardinality [1..*]
                                                 mandatory   
                                                     String VOLUMES_name
-                                                    Boolean VOLUMES_type
+                                                    Boolean VOLUMES_type {abstract}
                                                         or   
                                                             Boolean emptyDir
                                                             Boolean hostPath
@@ -254,12 +253,19 @@ features
                                 optional 
                                     Integer TEMPLATE_SPEC_activeDeadlineSeconds
                                     Boolean TEMPLATE_SPEC_automountServiceAccountToken
-                                    Boolean TEMPLATE_SPEC_dnsPolicy
+                                    Boolean TEMPLATE_SPEC_dnsPolicy {abstract}
                                         alternative
                                             Boolean DNSPOLICY_ClusterFirstWithHostNet
                                             Boolean DNSPOLICY_ClusterFirst
                                             Boolean DNSPOLICY_Default
                                             Boolean DNSPOLICY_None
+                                    Boolean TEMPLATE_SPEC_enableServiceLinks
+                                    Boolean TEMPLATE_SPEC_hostIPC
+                                    Boolean TEMPLATE_SPEC_hostNetwork
+                                    Boolean TEMPLATE_SPEC_hostPID
+                                    Boolean TEMPLATE_SPEC_hostUsers
+                                    String TEMPLATE_SPEC_hostname
+                                    String TEMPLATE_SPEC_nodeName
                     Boolean SPEC_Type
                         alternative   
                             Boolean TYPE_ExternalName
@@ -271,7 +277,7 @@ features
                             Integer SPEC_PORTS_port
                         optional
                             String SPEC_PORTS_name
-                            Boolean SPEC_PORTS_protocol
+                            Boolean SPEC_PORTS_protocol {abstract}
                                 alternative
                                     Boolean PORTS_PROTOCOL_tcp
                                     Boolean PORTS_PROTOCOL_udp
@@ -279,12 +285,12 @@ features
                             Integer SPEC_PORTS_nodePort
                             String SPEC_PORTS_targetPort
                     Boolean SPEC_allocateLoadBalancerNodePorts
-                    Boolean  SPEC_clusterIP
+                    Boolean  SPEC_clusterIP {abstract}
                         alternative
                             Boolean CLUSTERIP_none
                             Boolean CLUSTERIP_emptyString
                             String CLUSTERIP_IP
-                    Boolean  SPEC_clusterIPs
+                    Boolean  SPEC_clusterIPs {abstract}
                         alternative
                             Boolean CLUSTERIPS_none
                             Boolean CLUSTERIPS_emptyString
@@ -326,7 +332,6 @@ constraints
     SPEC_Type | SPEC_allocateLoadBalancerNodePorts | SPEC_Ports => KIND_Service
     (SPEC_minReadySeconds > 0) | (SPEC_progressDeadlineSeconds > 0) | (SPEC_revisionHistoryLimit > 0) | SELECTOR_matchLabels | SELECTOR_matchExpressions | TEMPLATE_SPEC_Containers | TEMPLATE_SPEC_Volumes => KIND_Deployment
     (TYPE_NodePort | TYPE_LoadBalancer) => (SPEC_PORTS_nodePort > 0)
-    SELECTOR_matchLabels | SELECTOR_matchExpressions => !KIND_Service
     (maxUnavailable == '0') => (maxSurge == '')
     SPEC_strategy => KIND_Deployment   
     SPEC_clusterIP => !TYPE_ExternalName

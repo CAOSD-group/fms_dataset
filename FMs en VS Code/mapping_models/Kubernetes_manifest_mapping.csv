@@ -106,7 +106,6 @@ LABELS_value, lab.value,
 METADATA_annotations, METADATA_annotations,
 ANNOTATIONS_key, an.key, 
 ANNOTATIONS_value, an.value
-METADATA_cluster,METADATA_cluster, 
 KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
 KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice
 SPEC_Replicas, SPEC_Replicas, 
@@ -200,3 +199,10 @@ DNSPOLICY_ClusterFirstWithHostNet, DNSPOLICY_ClusterFirstWithHostNet, ClusterFir
 DNSPOLICY_ClusterFirst, DNSPOLICY_ClusterFirst, ClusterFirst
 DNSPOLICY_Default, DNSPOLICY_Default, Default
 DNSPOLICY_None, DNSPOLICY_None, None
+TEMPLATE_SPEC_enableServiceLinks, TEMPLATE_SPEC_enableServiceLinks, 
+TEMPLATE_SPEC_hostIPC, TEMPLATE_SPEC_hostIPC, 
+TEMPLATE_SPEC_hostNetwork, TEMPLATE_SPEC_hostNetwork, 
+TEMPLATE_SPEC_hostPID, TEMPLATE_SPEC_hostPID, 
+TEMPLATE_SPEC_hostUsers, TEMPLATE_SPEC_hostUsers, 
+TEMPLATE_SPEC_hostname, TEMPLATE_SPEC_hostname, 
+TEMPLATE_SPEC_nodeName, TEMPLATE_SPEC_nodeName,

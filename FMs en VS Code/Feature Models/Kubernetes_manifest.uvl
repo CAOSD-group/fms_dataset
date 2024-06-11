@@ -82,8 +82,8 @@ features
                             Boolean KIND_PodDisruptionBudget
                             Boolean KIND_PriorityClass
                             Boolean KIND_ResourceClaim
-                            Boolean KIND_ResourceClaimParameters
-                            Boolean KIND_ResourceSlice
+                            Boolean KIND_ResourceClaimParameters {added_version 1.30}
+                            Boolean KIND_ResourceSlice {added_version 1.30}
                             Boolean KIND_ResourceClaimTemplate
                             Boolean KIND_ResourceClass
                             Boolean KIND_ValidatingAdmissionPolicy

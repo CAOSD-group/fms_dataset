@@ -1,0 +1,10 @@
+Kubernetes
+
+Con fallo
+python .\main_resolve_variability.py --config .\configurations\Kubernetes_manifest.uvl.json --map .\mapping_models\Kubernetes_manifest_mapping.csv --template .\templates\Kubernetes_manifest\Kubernetes_manifest_template.txt.jinja --kubernetes --details
+
+Sin fallo
+python .\main_resolve_variability.py --config .\configurations\ArUcoTracker.uvl.json --map .\mapping_models\Kubernetes_manifest_mapping.csv --template .\templates\Kubernetes_manifest\Kubernetes_manifest_template.txt.jinja --kubernetes --details  
+
+Docker
+python .\main_resolve_variability.py --config .\configurations\Dockerfile_conf.uvl.json --map .\mapping_models\dockerfile_conf_mapping.csv --template .\templates\dockerfile_conf_template.txt.jinja --dockerfile

@@ -133,7 +133,7 @@ features
                             String ANNOTATIONS_key
                             String ANNOTATIONS_value
             Boolean Spec
-                optional
+                optional 
                     Boolean DeploymentSpec {abstract}
                         optional   
                             Integer DEPLOYMENTSPEC_minReadySeconds
@@ -207,20 +207,88 @@ features
                                         mandatory
                                             String CONTAINER_ENV_name
                                             String CONTAINER_ENV_value
-                                            Boolean CONTAINER_ENV_valueFrom {NO_TERMINADO}
-                                                optional   
+                                            Boolean CONTAINER_ENV_valueFrom
+                                                alternative   
                                                     Boolean configMapKeyRef
+                                                        mandatory
+                                                            String CONFIGMAPKEYREF_key
+                                                            String CONFIGMAPKEYREF_name
+                                                            Boolean CONFIGMAPKEYREF_optional
                                                     Boolean fieldRef
+                                                        mandatory
+                                                            String FIELDREF_apiversion
+                                                            String FIELDREF_fieldPath
                                                     Boolean resourceFieldRef
+                                                        mandatory
+                                                            String RESOURCFIELDREF_containerName
+                                                            String RESOURCFIELDREF_divisor
+                                                            String RESOURCFIELDREF_resource
                                                     Boolean secretKeyRef
-                                    String CONTAINER_image    
+                                                        mandatory
+                                                            String SECRETKEYREF_key
+                                                            String SECRETKEYREF_name
+                                                            Boolean SECRETKEYREF_optional
+                                    Boolean CONTAINER_envFrom
+                                        mandatory   
+                                            Boolean ENVFROM_configMapRef
+                                                mandatory   
+                                                    String CONFIGMAPREF_name
+                                                    Boolean CONFIGMAPREF_optional
+                                            String ENVFROM_prefix
+                                            Boolean ENVFROM_secretRef
+                                                mandatory   
+                                                    String SECRETREF_name
+                                                    Boolean SECRETREF_optional
+                                    String CONTAINER_image   
+                                    Boolean CONTAINER_imagePullPolicy
+                                        alternative   
+                                            Boolean IMAGEPULLPOLICY_always
+                                            Boolean IMAGEPULLPOLICY_never
+                                            Boolean IMAGEPULLPOLICY_ifNotPresent
+                                    Boolean CONTAINER_lifecycle
+                                        optional
+                                            Boolean LIFECYCLE_postStart
+                                                alternative   
+                                                    Boolean POSTSTART_exec
+                                                        mandatory   
+                                                            String POSTSTART_EXEC_command
+                                                    Boolean POSTSTART_httpGet
+                                                        mandatory   
+                                                            String POSTSTART_HTTPGET_host
+                                                            Boolean POSTSTART_HTTPGET_httpHeaders
+                                                                mandatory
+                                                                    String POSTSTART_HTTPHEADERS_name       
+                                                                    String POSTSTART_HTTPHEADERS_value
+                                                            String POSTSTART_HTTPGET_path
+                                                            String POSTSTART_HTTPGET_port
+                                                            String POSTSTART_HTTPGET_scheme
+                                                    Boolean POSTSTART_sleep
+                                                        mandatory
+                                                            Integer POSTSTART_SLEEP_seconds
+                                            Boolean LIFECYCLE_preStop
+                                                alternative   
+                                                    Boolean PRESTOP_exec
+                                                        mandatory   
+                                                            String PRESTOP_EXEC_command
+                                                    Boolean PRESTOP_httpGet
+                                                        mandatory   
+                                                            String PRESTOP_HTTPGET_host
+                                                            Boolean PRESTOP_HTTPGET_httpHeaders
+                                                                mandatory
+                                                                    String PRESTOP_HTTPHEADERS_name       
+                                                                    String PRESTOP_HTTPHEADERS_value
+                                                            String PRESTOP_HTTPGET_path
+                                                            String PRESTOP_HTTPGET_port
+                                                            String PRESTOP_HTTPGET_scheme
+                                                    Boolean PRESTOP_sleep
+                                                        mandatory
+                                                            Integer PRESTOP_SLEEP_seconds
                                     String CONTAINER_name  
                                     Boolean CONTAINER_ports cardinality [0..*]
                                         mandatory   
                                             Integer CONTAINER_PORTS_containerPort
                                         optional 
-                                            String CONTAINER_PORTS_name 
-                                    
+                                            String CONTAINER_PORTS_name
                                     Boolean CONTAINER_resources
                                         or
                                             Boolean RESOURCES_request

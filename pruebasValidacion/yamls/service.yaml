@@ -1,0 +1,15 @@
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: aruco-tracker-service # Nombre que le damos al servicio (solo para identificarlo).
+spec:
+  type: LoadBalancer # Tipo de servicio. con loadbalancer, el proveedor se encarga de darle una ip externa. minikube le asigna una para desarrollo local.
+  selector:
+    app: aruco-tracker # Define qué pods serán seleccionados por este servicio.
+  ports:
+    - protocol: TCP # Protocolo habilitado en el puerto.
+      port: 5002 # Es el puerto en el que el servicio estará disponible externamente
+      targetPort: 5002 # Es el puerto en el que los pods seleccionados están escuchando.
+      nodePort: 30002 # Es el puerto expuesto del nodo en el que el servicio recibirá las solicitudes
+      name: "http" # Es el nombre del puerto.

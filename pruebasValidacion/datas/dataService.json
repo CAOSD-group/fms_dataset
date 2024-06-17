@@ -1,0 +1,22 @@
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "name": "aruco-tracker-service"
+  },
+  "spec": {
+    "type": "LoadBalancer",
+    "selector": {
+      "app": "aruco-tracker"
+    },
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 5002,
+        "targetPort": 5002,
+        "nodePort": 30002,
+        "name": "http"
+      }
+    ]
+  }
+}

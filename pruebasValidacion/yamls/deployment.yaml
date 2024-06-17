@@ -1,0 +1,29 @@
+# aruco-tracker-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aruco-tracker
+spec: # Configuracion del deployment
+  replicas: 1 # Indica el número deseado de réplicas del conjunto de pods que el Deployment debe mantener en funcionamiento en todo momento.
+  selector: # Especifica cómo el Deployment encuentra qué pods administrar. 
+    matchLabels: # Define las etiquetas que deben coincidir con las etiquetas de los pods para que sean seleccionados por este Deployment. 
+      app: aruco-tracker
+  template: # Define la plantilla para crear nuevos pods administrados por el Deployment.
+    metadata:
+      labels: # Especifica las etiquetas que se asignarán a los pods creados por este Deployment.
+        app: aruco-tracker
+    spec:
+      containers:
+      - name: aruco-tracker # Nombre del contenedor
+        image: enriquelpzenc/aruco_tracker_http:latest # Imagen usada para el contenedor.
+        ports: # Define los puertos que el contenedor debe exponer.
+        - containerPort: 5002 # Especifica el puerto en el que el contenedor escuchará las conexiones entrantes.
+        env:  # Variables del servicio.
+          - name: own_host
+            value: "0.0.0.0"
+          - name: own_port
+            value: "5002"
+          - name: Visualizer_ip
+            value: "192.168.49.2"
+          - name: Visualizer_port
+            value: "30003"

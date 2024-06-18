@@ -283,12 +283,84 @@ features
                                                     Boolean PRESTOP_sleep
                                                         mandatory
                                                             Integer PRESTOP_SLEEP_seconds
+                                    Boolean CONTAINER_livenessProbe
+                                        mandatory
+                                            Boolean LIVENESSPROBE_exec
+                                                mandatory
+                                                    String LIVENESSPROBE_EXEC_command
+                                            Integer LIVENESSPROBE_failureThreshold
+                                            Boolean LIVENESSPROBE_grpc
+                                                mandatory   
+                                                    Integer LIVENESSPROBE_GRPC_port
+                                                    String LIVENESSPROBE_GRPC_service
+                                            Boolean LIVENESSPROBE_httpGet
+                                                optional   
+                                                    String LIVENESSPROBE_HTTPGET_host
+                                                    Boolean LIVENESSPROBE_HTTPGET_httpHeaders
+                                                        mandatory   
+                                                            String LIVENESSPROBE_HTTPHEADERS_name
+                                                            String LIVENESSPROBE_HTTPHEADERS_value
+                                                    String LIVENESSPROBE_HTTPGET_path
+                                                    Integer LIVENESSPROBE_HTTPGET_port
+                                                    String LIVENESSPROBE_HTTPGET_scheme
+                                            Integer LIVENESSPROBE_initialDelaySeconds
+                                            Integer LIVENESSPROBE_periodSeconds
+                                            Integer LIVENESSPROBE_successThreshold
+                                            Boolean LIVENESSPROBE_tcpSocket
+                                                mandatory   
+                                                    Boolean LIVENESSPROBE_TCPSOCKET_host
+                                                    Boolean LIVENESSPROBE_TCPSOCKET_port
+                                            Integer LIVENESSPROBE_terminationGracePeriodSeconds
+                                            Integer LIVENESSPROBE_timeoutSeconds
                                     String CONTAINER_name  
                                     Boolean CONTAINER_ports cardinality [0..*]
                                         mandatory   
                                             Integer CONTAINER_PORTS_containerPort
                                         optional 
+                                            String CONTAINER_PORTS_hostIP
+                                            Integer CONTAINER_PORTS_hostPort
                                             String CONTAINER_PORTS_name
+                                            Boolean CONTAINER_PORTS_protocol
+                                                alternative   
+                                                    Boolean PROTOCOL_UDP
+                                                    Boolean PROTOCOL_TCP
+                                                    Boolean PROTOCOL_SCTP
+                                    Boolean CONTAINER_readinessProbe
+                                        mandatory
+                                            Boolean READINESSPROBE_exec
+                                                mandatory
+                                                    String READINESSPROBE_EXEC_command
+                                            Integer READINESSPROBE_failureThreshold
+                                            Boolean READINESSPROBE_grpc
+                                                mandatory   
+                                                    Integer READINESSPROBE_GRPC_port
+                                                    String READINESSPROBE_GRPC_service
+                                            Boolean READINESSPROBE_httpGet
+                                                optional   
+                                                    String READINESSPROBE_HTTPGET_host
+                                                    Boolean READINESSPROBE_HTTPGET_httpHeaders
+                                                        mandatory   
+                                                            String READINESSPROBE_HTTPHEADERS_name
+                                                            String READINESSPROBE_HTTPHEADERS_value
+                                                    String READINESSPROBE_HTTPGET_path
+                                                    Integer READINESSPROBE_HTTPGET_port
+                                                    String READINESSPROBE_HTTPGET_scheme
+                                            Integer READINESSPROBE_initialDelaySeconds
+                                            Integer READINESSPROBE_periodSeconds
+                                            Integer READINESSPROBE_successThreshold
+                                            Boolean READINESSPROBE_tcpSocket
+                                                mandatory   
+                                                    Boolean READINESSPROBE_TCPSOCKET_host
+                                                    Boolean READINESSPROBE_TCPSOCKET_port
+                                            Integer READINESSPROBE_terminationGracePeriodSeconds
+                                            Integer READINESSPROBE_timeoutSeconds
+                                    Boolean CONTAINER_resizePolicy cardinality [0..*]
+                                        mandatory   
+                                            Boolean RESIZEPOLICY_resourceName
+                                                alternative   
+                                                    Boolean CONTAINER_RESIZEPOLICY_RESOURCENAME_cpu
+                                                    Boolean CONTAINER_RESIZEPOLICY_RESOURCENAME_memory
+                                            String RESIZEPOLICY_restartPolicy
                                     Boolean CONTAINER_resources
                                         or
                                             Boolean RESOURCES_request
@@ -299,10 +371,56 @@ features
                                                 mandatory
                                                     String LIMITS_cpu
                                                     String LIMITS_memory
-                                    Boolean CONTAINER_VolumeMounts cardinality [0..*]
+                                            Boolean RESOURCES_claims
+                                                mandatory
+                                                    String RESOURCES_CLAIMS_name
+                                    Boolean CONTAINER_securityContext {NO_TERMIADO}
+                                    Boolean CONTAINER_startupProbe
+                                        mandatory
+                                            Boolean STARTUPPROBE_exec
+                                                mandatory
+                                                    String STARTUPPROBE_EXEC_command
+                                            Integer STARTUPPROBE_failureThreshold
+                                            Boolean STARTUPPROBE_grpc
+                                                mandatory   
+                                                    Integer STARTUPPROBE_GRPC_port
+                                                    String STARTUPPROBE_GRPC_service
+                                            Boolean STARTUPPROBE_httpGet
+                                                optional   
+                                                    String STARTUPPROBE_HTTPGET_host
+                                                    Boolean STARTUPPROBE_HTTPGET_httpHeaders
+                                                        mandatory   
+                                                            String STARTUPPROBE_HTTPHEADERS_name
+                                                            String STARTUPPROBE_HTTPHEADERS_value
+                                                    String STARTUPPROBE_HTTPGET_path
+                                                    Integer STARTUPPROBE_HTTPGET_port
+                                                    String STARTUPPROBE_HTTPGET_scheme
+                                            Integer STARTUPPROBE_initialDelaySeconds
+                                            Integer STARTUPPROBE_periodSeconds
+                                            Integer STARTUPPROBE_successThreshold
+                                            Boolean STARTUPPROBE_tcpSocket
+                                                mandatory   
+                                                    Boolean STARTUPPROBE_TCPSOCKET_host
+                                                    Boolean RSTARTUPPROBE_TCPSOCKET_port
+                                            Integer STARTUPPROBE_terminationGracePeriodSeconds
+                                            Integer STARTUPPROBE_timeoutSeconds
+                                    Boolean CONTAINER_stdin
+                                    Boolean CONTAINER_stdinOnce
+                                    String CONTAINER_terminationMessagePath
+                                    String CONTAINER_terminationMessagePolicy
+                                    Boolean CONTAINER_tty
+                                    Boolean CONTAINER_volumeDevices cardinality [0..*]
+                                        mandatory
+                                            String VOLUMEDEVICES_devicePath
+                                            String VOLUMEDEVICES_name
+                                    Boolean CONTAINER_volumeMounts cardinality [0..*]
                                         mandatory   
                                             String VOLUMEMOUNTS_mountPath
                                             String VOLUMEMOUNTS_name
+                                    Boolean CONTAINER_workingDir
+
+
+                                    
                             Boolean PODSPEC_dnsPolicy 
                                 alternative
                                     Boolean DNSPOLICY_ClusterFirstWithHostNet
@@ -473,4 +591,30 @@ constraints
     (SERVICESPEC_loadBalancerClass == '') => TYPE_LoadBalancer
     SESSIONAFFINITY_ClientIP => (CLIENTIP_timeoutSeconds > 0) & (CLIENTIP_timeoutSeconds < 86401)
     PODSPEC_activeDeadlineSeconds > 0
+    LIVENESSPROBE_GRPC_port > 0 & LIVENESSPROBE_GRPC_port < 65535
+    LIVENESSPROBE_HTTPGET_port > 0 & LIVENESSPROBE_HTTPGET_port < 65535
+    LIVENESSPROBE_failureThreshold > 0
+    LIVENESSPROBE_periodSeconds > 0
+    LIVENESSPROBE_successThreshold > 0
+    LIVENESSPROBE_terminationGracePeriodSeconds > 0
+    LIVENESSPROBE_timeoutSeconds > 0
+    CONTAINER_PORTS_hostPort > 0 & CONTAINER_PORTS_hostPort < 65535
+    READINESSPROBE_GRPC_port > 0 & READINESSPROBE_GRPC_port < 65535
+    READINESSPROBE_HTTPGET_port > 0 & READINESSPROBE_HTTPGET_port < 65535
+    READINESSPROBE_failureThreshold > 0
+    READINESSPROBE_periodSeconds > 0
+    READINESSPROBE_successThreshold > 0
+    READINESSPROBE_terminationGracePeriodSeconds > 0
+    READINESSPROBE_timeoutSeconds > 0
+    STARTUPPROBE_GRPC_port > 0 & STARTUPPROBE_GRPC_port < 65535
+    STARTUPPROBE_HTTPGET_port > 0 & STARTUPPROBE_HTTPGET_port < 65535
+    STARTUPPROBE_failureThreshold > 0
+    STARTUPPROBE_periodSeconds > 0
+    STARTUPPROBE_successThreshold > 0
+    STARTUPPROBE_terminationGracePeriodSeconds > 0
+    STARTUPPROBE_timeoutSeconds > 0
+    
+
+    
+    
     

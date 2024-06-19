@@ -1,0 +1,1273 @@
+apiVersion: {}
+kind: {}
+metadata:
+  annotations: {}
+  creationTimestamp: {}
+  deletionGracePeriodSeconds: {}
+  deletionTimestamp: {}
+  finalizers:
+    items: {}
+  generateName: {}
+  generation: {}
+  labels: {}
+  managedFields:
+    items:
+      apiVersion: {}
+      fieldsType: {}
+      fieldsV1: {}
+      manager: {}
+      operation: {}
+      subresource: {}
+      time: {}
+  name: {}
+  namespace: {}
+  ownerReferences:
+    items:
+      apiVersion: {}
+      blockOwnerDeletion: {}
+      controller: {}
+      kind: {}
+      name: {}
+      uid: {}
+  resourceVersion: {}
+  selfLink: {}
+  uid: {}
+spec:
+  minReadySeconds: {}
+  paused: {}
+  progressDeadlineSeconds: {}
+  replicas: {}
+  revisionHistoryLimit: {}
+  selector:
+    matchExpressions:
+      items:
+        key: {}
+        operator: {}
+        values:
+          items: {}
+    matchLabels: {}
+  strategy:
+    rollingUpdate:
+      maxSurge: {}
+      maxUnavailable: {}
+  template:
+    metadata:
+      annotations: {}
+      creationTimestamp: {}
+      deletionGracePeriodSeconds: {}
+      deletionTimestamp: {}
+      finalizers:
+        items: {}
+      generateName: {}
+      generation: {}
+      labels: {}
+      managedFields:
+        items:
+          apiVersion: {}
+          fieldsType: {}
+          fieldsV1: {}
+          manager: {}
+          operation: {}
+          subresource: {}
+          time: {}
+      name: {}
+      namespace: {}
+      ownerReferences:
+        items:
+          apiVersion: {}
+          blockOwnerDeletion: {}
+          controller: {}
+          kind: {}
+          name: {}
+          uid: {}
+      resourceVersion: {}
+      selfLink: {}
+      uid: {}
+    spec:
+      activeDeadlineSeconds: {}
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            items:
+              preference:
+                matchExpressions:
+                  items:
+                    key: {}
+                    operator: {}
+                    values:
+                      items: {}
+                matchFields:
+                  items:
+                    key: {}
+                    operator: {}
+                    values:
+                      items: {}
+              weight: {}
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              items:
+                matchExpressions:
+                  items:
+                    key: {}
+                    operator: {}
+                    values:
+                      items: {}
+                matchFields:
+                  items:
+                    key: {}
+                    operator: {}
+                    values:
+                      items: {}
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            items:
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    items:
+                      key: {}
+                      operator: {}
+                      values:
+                        items: {}
+                  matchLabels: {}
+                matchLabelKeys:
+                  items: {}
+                mismatchLabelKeys:
+                  items: {}
+                namespaceSelector:
+                  matchExpressions:
+                    items:
+                      key: {}
+                      operator: {}
+                      values:
+                        items: {}
+                  matchLabels: {}
+                namespaces:
+                  items: {}
+                topologyKey: {}
+              weight: {}
+          requiredDuringSchedulingIgnoredDuringExecution:
+            items:
+              labelSelector:
+                matchExpressions:
+                  items:
+                    key: {}
+                    operator: {}
+                    values:
+                      items: {}
+                matchLabels: {}
+              matchLabelKeys:
+                items: {}
+              mismatchLabelKeys:
+                items: {}
+              namespaceSelector:
+                matchExpressions:
+                  items:
+                    key: {}
+                    operator: {}
+                    values:
+                      items: {}
+                matchLabels: {}
+              namespaces:
+                items: {}
+              topologyKey: {}
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            items:
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    items:
+                      key: {}
+                      operator: {}
+                      values:
+                        items: {}
+                  matchLabels: {}
+                matchLabelKeys:
+                  items: {}
+                mismatchLabelKeys:
+                  items: {}
+                namespaceSelector:
+                  matchExpressions:
+                    items:
+                      key: {}
+                      operator: {}
+                      values:
+                        items: {}
+                  matchLabels: {}
+                namespaces:
+                  items: {}
+                topologyKey: {}
+              weight: {}
+          requiredDuringSchedulingIgnoredDuringExecution:
+            items:
+              labelSelector:
+                matchExpressions:
+                  items:
+                    key: {}
+                    operator: {}
+                    values:
+                      items: {}
+                matchLabels: {}
+              matchLabelKeys:
+                items: {}
+              mismatchLabelKeys:
+                items: {}
+              namespaceSelector:
+                matchExpressions:
+                  items:
+                    key: {}
+                    operator: {}
+                    values:
+                      items: {}
+                matchLabels: {}
+              namespaces:
+                items: {}
+              topologyKey: {}
+      automountServiceAccountToken: {}
+      containers:
+        items:
+          args:
+            items: {}
+          command:
+            items: {}
+          env:
+            items:
+              name: {}
+              value: {}
+              valueFrom:
+                configMapKeyRef:
+                  key: {}
+                  name: {}
+                  optional: {}
+                fieldRef:
+                  apiVersion: {}
+                  fieldPath: {}
+                resourceFieldRef:
+                  containerName: {}
+                  divisor: {}
+                  resource: {}
+                secretKeyRef:
+                  key: {}
+                  name: {}
+                  optional: {}
+          envFrom:
+            items:
+              configMapRef:
+                name: {}
+                optional: {}
+              prefix: {}
+              secretRef:
+                name: {}
+                optional: {}
+          image: {}
+          imagePullPolicy: {}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  items: {}
+              httpGet:
+                host: {}
+                httpHeaders:
+                  items:
+                    name: {}
+                    value: {}
+                path: {}
+                port: {}
+                scheme: {}
+              sleep:
+                seconds: {}
+              tcpSocket:
+                host: {}
+                port: {}
+            preStop:
+              exec:
+                command:
+                  items: {}
+              httpGet:
+                host: {}
+                httpHeaders:
+                  items:
+                    name: {}
+                    value: {}
+                path: {}
+                port: {}
+                scheme: {}
+              sleep:
+                seconds: {}
+              tcpSocket:
+                host: {}
+                port: {}
+          livenessProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          name: {}
+          ports:
+            items:
+              containerPort: {}
+              hostIP: {}
+              hostPort: {}
+              name: {}
+              protocol: {}
+          readinessProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          resizePolicy:
+            items:
+              resourceName: {}
+              restartPolicy: {}
+          resources:
+            claims:
+              items:
+                name: {}
+            limits: {}
+            requests: {}
+          restartPolicy: {}
+          securityContext:
+            allowPrivilegeEscalation: {}
+            appArmorProfile:
+              localhostProfile: {}
+            capabilities:
+              add:
+                items: {}
+              drop:
+                items: {}
+            privileged: {}
+            procMount: {}
+            readOnlyRootFilesystem: {}
+            runAsGroup: {}
+            runAsNonRoot: {}
+            runAsUser: {}
+            seLinuxOptions:
+              level: {}
+              role: {}
+              user: {}
+            seccompProfile:
+              localhostProfile: {}
+            windowsOptions:
+              gmsaCredentialSpec: {}
+              gmsaCredentialSpecName: {}
+              hostProcess: {}
+              runAsUserName: {}
+          startupProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          stdin: {}
+          stdinOnce: {}
+          terminationMessagePath: {}
+          terminationMessagePolicy: {}
+          tty: {}
+          volumeDevices:
+            items:
+              devicePath: {}
+              name: {}
+          volumeMounts:
+            items:
+              mountPath: {}
+              mountPropagation: {}
+              name: {}
+              readOnly: {}
+              recursiveReadOnly: {}
+              subPath: {}
+              subPathExpr: {}
+          workingDir: {}
+      dnsConfig:
+        nameservers:
+          items: {}
+        options:
+          items:
+            name: {}
+            value: {}
+        searches:
+          items: {}
+      dnsPolicy: {}
+      enableServiceLinks: {}
+      ephemeralContainers:
+        items:
+          args:
+            items: {}
+          command:
+            items: {}
+          env:
+            items:
+              name: {}
+              value: {}
+              valueFrom:
+                configMapKeyRef:
+                  key: {}
+                  name: {}
+                  optional: {}
+                fieldRef:
+                  apiVersion: {}
+                  fieldPath: {}
+                resourceFieldRef:
+                  containerName: {}
+                  divisor: {}
+                  resource: {}
+                secretKeyRef:
+                  key: {}
+                  name: {}
+                  optional: {}
+          envFrom:
+            items:
+              configMapRef:
+                name: {}
+                optional: {}
+              prefix: {}
+              secretRef:
+                name: {}
+                optional: {}
+          image: {}
+          imagePullPolicy: {}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  items: {}
+              httpGet:
+                host: {}
+                httpHeaders:
+                  items:
+                    name: {}
+                    value: {}
+                path: {}
+                port: {}
+                scheme: {}
+              sleep:
+                seconds: {}
+              tcpSocket:
+                host: {}
+                port: {}
+            preStop:
+              exec:
+                command:
+                  items: {}
+              httpGet:
+                host: {}
+                httpHeaders:
+                  items:
+                    name: {}
+                    value: {}
+                path: {}
+                port: {}
+                scheme: {}
+              sleep:
+                seconds: {}
+              tcpSocket:
+                host: {}
+                port: {}
+          livenessProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          name: {}
+          ports:
+            items:
+              containerPort: {}
+              hostIP: {}
+              hostPort: {}
+              name: {}
+              protocol: {}
+          readinessProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          resizePolicy:
+            items:
+              resourceName: {}
+              restartPolicy: {}
+          resources:
+            claims:
+              items:
+                name: {}
+            limits: {}
+            requests: {}
+          restartPolicy: {}
+          securityContext:
+            allowPrivilegeEscalation: {}
+            appArmorProfile:
+              localhostProfile: {}
+            capabilities:
+              add:
+                items: {}
+              drop:
+                items: {}
+            privileged: {}
+            procMount: {}
+            readOnlyRootFilesystem: {}
+            runAsGroup: {}
+            runAsNonRoot: {}
+            runAsUser: {}
+            seLinuxOptions:
+              level: {}
+              role: {}
+              user: {}
+            seccompProfile:
+              localhostProfile: {}
+            windowsOptions:
+              gmsaCredentialSpec: {}
+              gmsaCredentialSpecName: {}
+              hostProcess: {}
+              runAsUserName: {}
+          startupProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          stdin: {}
+          stdinOnce: {}
+          targetContainerName: {}
+          terminationMessagePath: {}
+          terminationMessagePolicy: {}
+          tty: {}
+          volumeDevices:
+            items:
+              devicePath: {}
+              name: {}
+          volumeMounts:
+            items:
+              mountPath: {}
+              mountPropagation: {}
+              name: {}
+              readOnly: {}
+              recursiveReadOnly: {}
+              subPath: {}
+              subPathExpr: {}
+          workingDir: {}
+      hostAliases:
+        items:
+          hostnames:
+            items: {}
+          ip: {}
+      hostIPC: {}
+      hostNetwork: {}
+      hostPID: {}
+      hostUsers: {}
+      hostname: {}
+      imagePullSecrets:
+        items:
+          name: {}
+      initContainers:
+        items:
+          args:
+            items: {}
+          command:
+            items: {}
+          env:
+            items:
+              name: {}
+              value: {}
+              valueFrom:
+                configMapKeyRef:
+                  key: {}
+                  name: {}
+                  optional: {}
+                fieldRef:
+                  apiVersion: {}
+                  fieldPath: {}
+                resourceFieldRef:
+                  containerName: {}
+                  divisor: {}
+                  resource: {}
+                secretKeyRef:
+                  key: {}
+                  name: {}
+                  optional: {}
+          envFrom:
+            items:
+              configMapRef:
+                name: {}
+                optional: {}
+              prefix: {}
+              secretRef:
+                name: {}
+                optional: {}
+          image: {}
+          imagePullPolicy: {}
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  items: {}
+              httpGet:
+                host: {}
+                httpHeaders:
+                  items:
+                    name: {}
+                    value: {}
+                path: {}
+                port: {}
+                scheme: {}
+              sleep:
+                seconds: {}
+              tcpSocket:
+                host: {}
+                port: {}
+            preStop:
+              exec:
+                command:
+                  items: {}
+              httpGet:
+                host: {}
+                httpHeaders:
+                  items:
+                    name: {}
+                    value: {}
+                path: {}
+                port: {}
+                scheme: {}
+              sleep:
+                seconds: {}
+              tcpSocket:
+                host: {}
+                port: {}
+          livenessProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          name: {}
+          ports:
+            items:
+              containerPort: {}
+              hostIP: {}
+              hostPort: {}
+              name: {}
+              protocol: {}
+          readinessProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          resizePolicy:
+            items:
+              resourceName: {}
+              restartPolicy: {}
+          resources:
+            claims:
+              items:
+                name: {}
+            limits: {}
+            requests: {}
+          restartPolicy: {}
+          securityContext:
+            allowPrivilegeEscalation: {}
+            appArmorProfile:
+              localhostProfile: {}
+            capabilities:
+              add:
+                items: {}
+              drop:
+                items: {}
+            privileged: {}
+            procMount: {}
+            readOnlyRootFilesystem: {}
+            runAsGroup: {}
+            runAsNonRoot: {}
+            runAsUser: {}
+            seLinuxOptions:
+              level: {}
+              role: {}
+              user: {}
+            seccompProfile:
+              localhostProfile: {}
+            windowsOptions:
+              gmsaCredentialSpec: {}
+              gmsaCredentialSpecName: {}
+              hostProcess: {}
+              runAsUserName: {}
+          startupProbe:
+            exec:
+              command:
+                items: {}
+            failureThreshold: {}
+            grpc:
+              port: {}
+              service: {}
+            httpGet:
+              host: {}
+              httpHeaders:
+                items:
+                  name: {}
+                  value: {}
+              path: {}
+              port: {}
+              scheme: {}
+            initialDelaySeconds: {}
+            periodSeconds: {}
+            successThreshold: {}
+            tcpSocket:
+              host: {}
+              port: {}
+            terminationGracePeriodSeconds: {}
+            timeoutSeconds: {}
+          stdin: {}
+          stdinOnce: {}
+          terminationMessagePath: {}
+          terminationMessagePolicy: {}
+          tty: {}
+          volumeDevices:
+            items:
+              devicePath: {}
+              name: {}
+          volumeMounts:
+            items:
+              mountPath: {}
+              mountPropagation: {}
+              name: {}
+              readOnly: {}
+              recursiveReadOnly: {}
+              subPath: {}
+              subPathExpr: {}
+          workingDir: {}
+      nodeName: {}
+      nodeSelector: {}
+      os:
+        name: {}
+      overhead: {}
+      preemptionPolicy: {}
+      priority: {}
+      priorityClassName: {}
+      readinessGates:
+        items:
+          conditionType: {}
+      resourceClaims:
+        items:
+          name: {}
+          source:
+            resourceClaimName: {}
+            resourceClaimTemplateName: {}
+      restartPolicy: {}
+      runtimeClassName: {}
+      schedulerName: {}
+      schedulingGates:
+        items:
+          name: {}
+      securityContext:
+        appArmorProfile:
+          localhostProfile: {}
+        fsGroup: {}
+        fsGroupChangePolicy: {}
+        runAsGroup: {}
+        runAsNonRoot: {}
+        runAsUser: {}
+        seLinuxOptions:
+          level: {}
+          role: {}
+          user: {}
+        seccompProfile:
+          localhostProfile: {}
+        supplementalGroups:
+          items: {}
+        sysctls:
+          items:
+            name: {}
+            value: {}
+        windowsOptions:
+          gmsaCredentialSpec: {}
+          gmsaCredentialSpecName: {}
+          hostProcess: {}
+          runAsUserName: {}
+      serviceAccount: {}
+      serviceAccountName: {}
+      setHostnameAsFQDN: {}
+      shareProcessNamespace: {}
+      subdomain: {}
+      terminationGracePeriodSeconds: {}
+      tolerations:
+        items:
+          effect: {}
+          key: {}
+          operator: {}
+          tolerationSeconds: {}
+          value: {}
+      topologySpreadConstraints:
+        items:
+          labelSelector:
+            matchExpressions:
+              items:
+                key: {}
+                operator: {}
+                values:
+                  items: {}
+            matchLabels: {}
+          matchLabelKeys:
+            items: {}
+          maxSkew: {}
+          minDomains: {}
+          nodeAffinityPolicy: {}
+          nodeTaintsPolicy: {}
+          topologyKey: {}
+          whenUnsatisfiable: {}
+      volumes:
+        items:
+          awsElasticBlockStore:
+            fsType: {}
+            partition: {}
+            readOnly: {}
+            volumeID: {}
+          azureDisk:
+            cachingMode: {}
+            diskName: {}
+            diskURI: {}
+            fsType: {}
+            kind: {}
+            readOnly: {}
+          azureFile:
+            readOnly: {}
+            secretName: {}
+            shareName: {}
+          cephfs:
+            monitors:
+              items: {}
+            path: {}
+            readOnly: {}
+            secretFile: {}
+            secretRef:
+              name: {}
+            user: {}
+          cinder:
+            fsType: {}
+            readOnly: {}
+            secretRef:
+              name: {}
+            volumeID: {}
+          configMap:
+            defaultMode: {}
+            items:
+              items:
+                key: {}
+                mode: {}
+                path: {}
+            name: {}
+            optional: {}
+          csi:
+            driver: {}
+            fsType: {}
+            nodePublishSecretRef:
+              name: {}
+            readOnly: {}
+            volumeAttributes: {}
+          downwardAPI:
+            defaultMode: {}
+            items:
+              items:
+                fieldRef:
+                  apiVersion: {}
+                  fieldPath: {}
+                mode: {}
+                path: {}
+                resourceFieldRef:
+                  containerName: {}
+                  divisor: {}
+                  resource: {}
+          emptyDir:
+            medium: {}
+            sizeLimit: {}
+          ephemeral:
+            volumeClaimTemplate:
+              metadata:
+                annotations: {}
+                creationTimestamp: {}
+                deletionGracePeriodSeconds: {}
+                deletionTimestamp: {}
+                finalizers:
+                  items: {}
+                generateName: {}
+                generation: {}
+                labels: {}
+                managedFields:
+                  items:
+                    apiVersion: {}
+                    fieldsType: {}
+                    fieldsV1: {}
+                    manager: {}
+                    operation: {}
+                    subresource: {}
+                    time: {}
+                name: {}
+                namespace: {}
+                ownerReferences:
+                  items:
+                    apiVersion: {}
+                    blockOwnerDeletion: {}
+                    controller: {}
+                    kind: {}
+                    name: {}
+                    uid: {}
+                resourceVersion: {}
+                selfLink: {}
+                uid: {}
+              spec:
+                accessModes:
+                  items: {}
+                dataSource:
+                  apiGroup: {}
+                  kind: {}
+                  name: {}
+                dataSourceRef:
+                  apiGroup: {}
+                  kind: {}
+                  name: {}
+                  namespace: {}
+                resources:
+                  limits: {}
+                  requests: {}
+                selector:
+                  matchExpressions:
+                    items:
+                      key: {}
+                      operator: {}
+                      values:
+                        items: {}
+                  matchLabels: {}
+                storageClassName: {}
+                volumeAttributesClassName: {}
+                volumeMode: {}
+                volumeName: {}
+          fc:
+            fsType: {}
+            lun: {}
+            readOnly: {}
+            targetWWNs:
+              items: {}
+            wwids:
+              items: {}
+          flexVolume:
+            driver: {}
+            fsType: {}
+            options: {}
+            readOnly: {}
+            secretRef:
+              name: {}
+          flocker:
+            datasetName: {}
+            datasetUUID: {}
+          gcePersistentDisk:
+            fsType: {}
+            partition: {}
+            pdName: {}
+            readOnly: {}
+          gitRepo:
+            directory: {}
+            repository: {}
+            revision: {}
+          glusterfs:
+            endpoints: {}
+            path: {}
+            readOnly: {}
+          hostPath:
+            path: {}
+          iscsi:
+            chapAuthDiscovery: {}
+            chapAuthSession: {}
+            fsType: {}
+            initiatorName: {}
+            iqn: {}
+            iscsiInterface: {}
+            lun: {}
+            portals:
+              items: {}
+            readOnly: {}
+            secretRef:
+              name: {}
+            targetPortal: {}
+          name: {}
+          nfs:
+            path: {}
+            readOnly: {}
+            server: {}
+          persistentVolumeClaim:
+            claimName: {}
+            readOnly: {}
+          photonPersistentDisk:
+            fsType: {}
+            pdID: {}
+          portworxVolume:
+            fsType: {}
+            readOnly: {}
+            volumeID: {}
+          projected:
+            defaultMode: {}
+            sources:
+              items:
+                clusterTrustBundle:
+                  labelSelector:
+                    matchExpressions:
+                      items:
+                        key: {}
+                        operator: {}
+                        values:
+                          items: {}
+                    matchLabels: {}
+                  name: {}
+                  optional: {}
+                  path: {}
+                  signerName: {}
+                configMap:
+                  items:
+                    items:
+                      key: {}
+                      mode: {}
+                      path: {}
+                  name: {}
+                  optional: {}
+                downwardAPI:
+                  items:
+                    items:
+                      fieldRef:
+                        apiVersion: {}
+                        fieldPath: {}
+                      mode: {}
+                      path: {}
+                      resourceFieldRef:
+                        containerName: {}
+                        divisor: {}
+                        resource: {}
+                secret:
+                  items:
+                    items:
+                      key: {}
+                      mode: {}
+                      path: {}
+                  name: {}
+                  optional: {}
+                serviceAccountToken:
+                  audience: {}
+                  expirationSeconds: {}
+                  path: {}
+          quobyte:
+            group: {}
+            readOnly: {}
+            registry: {}
+            tenant: {}
+            user: {}
+            volume: {}
+          rbd:
+            fsType: {}
+            image: {}
+            keyring: {}
+            monitors:
+              items: {}
+            pool: {}
+            readOnly: {}
+            secretRef:
+              name: {}
+            user: {}
+          scaleIO:
+            fsType: {}
+            gateway: {}
+            protectionDomain: {}
+            readOnly: {}
+            secretRef:
+              name: {}
+            sslEnabled: {}
+            storageMode: {}
+            storagePool: {}
+            system: {}
+            volumeName: {}
+          secret:
+            defaultMode: {}
+            items:
+              items:
+                key: {}
+                mode: {}
+                path: {}
+            optional: {}
+            secretName: {}
+          storageos:
+            fsType: {}
+            readOnly: {}
+            secretRef:
+              name: {}
+            volumeName: {}
+            volumeNamespace: {}
+          vsphereVolume:
+            fsType: {}
+            storagePolicyID: {}
+            storagePolicyName: {}
+            volumePath: {}
+status:
+  availableReplicas: {}
+  collisionCount: {}
+  conditions:
+    items:
+      lastTransitionTime: {}
+      lastUpdateTime: {}
+      message: {}
+      reason: {}
+      status: {}
+  observedGeneration: {}
+  readyReplicas: {}
+  replicas: {}
+  unavailableReplicas: {}
+  updatedReplicas: {}

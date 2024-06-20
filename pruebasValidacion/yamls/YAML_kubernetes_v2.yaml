@@ -1,1273 +1,4032 @@
-apiVersion: {}
-kind: {}
+apiVersion:
+  type:
+  - string
+  - 'null'
+kind:
+  enum:
+  - Deployment
+  type:
+  - string
+  - 'null'
 metadata:
-  annotations: {}
-  creationTimestamp: {}
-  deletionGracePeriodSeconds: {}
-  deletionTimestamp: {}
+  annotations:
+    additionalProperties:
+      type:
+      - string
+      - 'null'
+    type:
+    - object
+    - 'null'
+  creationTimestamp:
+    format: date-time
+    type:
+    - string
+    - 'null'
+  deletionGracePeriodSeconds:
+    format: int64
+    type:
+    - integer
+    - 'null'
+  deletionTimestamp:
+    format: date-time
+    type:
+    - string
+    - 'null'
   finalizers:
-    items: {}
-  generateName: {}
-  generation: {}
-  labels: {}
+    type:
+    - string
+    - 'null'
+  generateName:
+    type:
+    - string
+    - 'null'
+  generation:
+    format: int64
+    type:
+    - integer
+    - 'null'
+  labels:
+    additionalProperties:
+      type:
+      - string
+      - 'null'
+    type:
+    - object
+    - 'null'
   managedFields:
-    items:
-      apiVersion: {}
-      fieldsType: {}
-      fieldsV1: {}
-      manager: {}
-      operation: {}
-      subresource: {}
-      time: {}
-  name: {}
-  namespace: {}
+    properties:
+      apiVersion:
+        type:
+        - string
+        - 'null'
+      fieldsType:
+        type:
+        - string
+        - 'null'
+      fieldsV1:
+        type:
+        - object
+        - 'null'
+      manager:
+        type:
+        - string
+        - 'null'
+      operation:
+        type:
+        - string
+        - 'null'
+      subresource:
+        type:
+        - string
+        - 'null'
+      time:
+        format: date-time
+        type:
+        - string
+        - 'null'
+    type:
+    - object
+    - 'null'
+  name:
+    type:
+    - string
+    - 'null'
+  namespace:
+    type:
+    - string
+    - 'null'
   ownerReferences:
-    items:
-      apiVersion: {}
-      blockOwnerDeletion: {}
-      controller: {}
-      kind: {}
-      name: {}
-      uid: {}
-  resourceVersion: {}
-  selfLink: {}
-  uid: {}
+    properties:
+      apiVersion:
+        type: string
+      blockOwnerDeletion:
+        type:
+        - boolean
+        - 'null'
+      controller:
+        type:
+        - boolean
+        - 'null'
+      kind:
+        type: string
+      name:
+        type: string
+      uid:
+        type: string
+    type:
+    - object
+    - 'null'
+  resourceVersion:
+    type:
+    - string
+    - 'null'
+  selfLink:
+    type:
+    - string
+    - 'null'
+  uid:
+    type:
+    - string
+    - 'null'
 spec:
-  minReadySeconds: {}
-  paused: {}
-  progressDeadlineSeconds: {}
-  replicas: {}
-  revisionHistoryLimit: {}
+  minReadySeconds:
+    format: int32
+    type:
+    - integer
+    - 'null'
+  paused:
+    type:
+    - boolean
+    - 'null'
+  progressDeadlineSeconds:
+    format: int32
+    type:
+    - integer
+    - 'null'
+  replicas:
+    format: int32
+    type:
+    - integer
+    - 'null'
+  revisionHistoryLimit:
+    format: int32
+    type:
+    - integer
+    - 'null'
   selector:
     matchExpressions:
-      items:
-        key: {}
-        operator: {}
+      properties:
+        key:
+          type: string
+        operator:
+          type: string
         values:
-          items: {}
-    matchLabels: {}
+          type:
+          - string
+          - 'null'
+      type:
+      - object
+      - 'null'
+    matchLabels:
+      additionalProperties:
+        type:
+        - string
+        - 'null'
+      type:
+      - object
+      - 'null'
   strategy:
     rollingUpdate:
-      maxSurge: {}
-      maxUnavailable: {}
+      maxSurge:
+        oneOf:
+        - type:
+          - string
+          - 'null'
+        - type:
+          - integer
+          - 'null'
+      maxUnavailable:
+        oneOf:
+        - type:
+          - string
+          - 'null'
+        - type:
+          - integer
+          - 'null'
+    type:
+      type:
+      - string
+      - 'null'
   template:
     metadata:
-      annotations: {}
-      creationTimestamp: {}
-      deletionGracePeriodSeconds: {}
-      deletionTimestamp: {}
+      annotations:
+        additionalProperties:
+          type:
+          - string
+          - 'null'
+        type:
+        - object
+        - 'null'
+      creationTimestamp:
+        format: date-time
+        type:
+        - string
+        - 'null'
+      deletionGracePeriodSeconds:
+        format: int64
+        type:
+        - integer
+        - 'null'
+      deletionTimestamp:
+        format: date-time
+        type:
+        - string
+        - 'null'
       finalizers:
-        items: {}
-      generateName: {}
-      generation: {}
-      labels: {}
+        type:
+        - string
+        - 'null'
+      generateName:
+        type:
+        - string
+        - 'null'
+      generation:
+        format: int64
+        type:
+        - integer
+        - 'null'
+      labels:
+        additionalProperties:
+          type:
+          - string
+          - 'null'
+        type:
+        - object
+        - 'null'
       managedFields:
-        items:
-          apiVersion: {}
-          fieldsType: {}
-          fieldsV1: {}
-          manager: {}
-          operation: {}
-          subresource: {}
-          time: {}
-      name: {}
-      namespace: {}
+        properties:
+          apiVersion:
+            type:
+            - string
+            - 'null'
+          fieldsType:
+            type:
+            - string
+            - 'null'
+          fieldsV1:
+            type:
+            - object
+            - 'null'
+          manager:
+            type:
+            - string
+            - 'null'
+          operation:
+            type:
+            - string
+            - 'null'
+          subresource:
+            type:
+            - string
+            - 'null'
+          time:
+            format: date-time
+            type:
+            - string
+            - 'null'
+        type:
+        - object
+        - 'null'
+      name:
+        type:
+        - string
+        - 'null'
+      namespace:
+        type:
+        - string
+        - 'null'
       ownerReferences:
-        items:
-          apiVersion: {}
-          blockOwnerDeletion: {}
-          controller: {}
-          kind: {}
-          name: {}
-          uid: {}
-      resourceVersion: {}
-      selfLink: {}
-      uid: {}
+        properties:
+          apiVersion:
+            type: string
+          blockOwnerDeletion:
+            type:
+            - boolean
+            - 'null'
+          controller:
+            type:
+            - boolean
+            - 'null'
+          kind:
+            type: string
+          name:
+            type: string
+          uid:
+            type: string
+        type:
+        - object
+        - 'null'
+      resourceVersion:
+        type:
+        - string
+        - 'null'
+      selfLink:
+        type:
+        - string
+        - 'null'
+      uid:
+        type:
+        - string
+        - 'null'
     spec:
-      activeDeadlineSeconds: {}
+      activeDeadlineSeconds:
+        format: int64
+        type:
+        - integer
+        - 'null'
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            items:
+            properties:
               preference:
                 matchExpressions:
-                  items:
-                    key: {}
-                    operator: {}
+                  properties:
+                    key:
+                      type: string
+                    operator:
+                      type: string
                     values:
-                      items: {}
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
                 matchFields:
-                  items:
-                    key: {}
-                    operator: {}
+                  properties:
+                    key:
+                      type: string
+                    operator:
+                      type: string
                     values:
-                      items: {}
-              weight: {}
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
+              weight:
+                format: int32
+                type: integer
+            type:
+            - object
+            - 'null'
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-              items:
+              properties:
                 matchExpressions:
-                  items:
-                    key: {}
-                    operator: {}
+                  properties:
+                    key:
+                      type: string
+                    operator:
+                      type: string
                     values:
-                      items: {}
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
                 matchFields:
-                  items:
-                    key: {}
-                    operator: {}
+                  properties:
+                    key:
+                      type: string
+                    operator:
+                      type: string
                     values:
-                      items: {}
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
+              type:
+              - object
+              - 'null'
         podAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            items:
+            properties:
               podAffinityTerm:
                 labelSelector:
                   matchExpressions:
-                    items:
-                      key: {}
-                      operator: {}
+                    properties:
+                      key:
+                        type: string
+                      operator:
+                        type: string
                       values:
-                        items: {}
-                  matchLabels: {}
+                        type:
+                        - string
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  matchLabels:
+                    additionalProperties:
+                      type:
+                      - string
+                      - 'null'
+                    type:
+                    - object
+                    - 'null'
                 matchLabelKeys:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
                 mismatchLabelKeys:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
                 namespaceSelector:
                   matchExpressions:
-                    items:
-                      key: {}
-                      operator: {}
+                    properties:
+                      key:
+                        type: string
+                      operator:
+                        type: string
                       values:
-                        items: {}
-                  matchLabels: {}
+                        type:
+                        - string
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  matchLabels:
+                    additionalProperties:
+                      type:
+                      - string
+                      - 'null'
+                    type:
+                    - object
+                    - 'null'
                 namespaces:
-                  items: {}
-                topologyKey: {}
-              weight: {}
+                  type:
+                  - string
+                  - 'null'
+                topologyKey:
+                  type: string
+              weight:
+                format: int32
+                type: integer
+            type:
+            - object
+            - 'null'
           requiredDuringSchedulingIgnoredDuringExecution:
-            items:
+            properties:
               labelSelector:
                 matchExpressions:
-                  items:
-                    key: {}
-                    operator: {}
+                  properties:
+                    key:
+                      type: string
+                    operator:
+                      type: string
                     values:
-                      items: {}
-                matchLabels: {}
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
+                matchLabels:
+                  additionalProperties:
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                  - object
+                  - 'null'
               matchLabelKeys:
-                items: {}
+                type:
+                - string
+                - 'null'
               mismatchLabelKeys:
-                items: {}
+                type:
+                - string
+                - 'null'
               namespaceSelector:
                 matchExpressions:
-                  items:
-                    key: {}
-                    operator: {}
+                  properties:
+                    key:
+                      type: string
+                    operator:
+                      type: string
                     values:
-                      items: {}
-                matchLabels: {}
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
+                matchLabels:
+                  additionalProperties:
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                  - object
+                  - 'null'
               namespaces:
-                items: {}
-              topologyKey: {}
+                type:
+                - string
+                - 'null'
+              topologyKey:
+                type: string
+            type:
+            - object
+            - 'null'
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            items:
+            properties:
               podAffinityTerm:
                 labelSelector:
                   matchExpressions:
-                    items:
-                      key: {}
-                      operator: {}
+                    properties:
+                      key:
+                        type: string
+                      operator:
+                        type: string
                       values:
-                        items: {}
-                  matchLabels: {}
+                        type:
+                        - string
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  matchLabels:
+                    additionalProperties:
+                      type:
+                      - string
+                      - 'null'
+                    type:
+                    - object
+                    - 'null'
                 matchLabelKeys:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
                 mismatchLabelKeys:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
                 namespaceSelector:
                   matchExpressions:
-                    items:
-                      key: {}
-                      operator: {}
+                    properties:
+                      key:
+                        type: string
+                      operator:
+                        type: string
                       values:
-                        items: {}
-                  matchLabels: {}
+                        type:
+                        - string
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  matchLabels:
+                    additionalProperties:
+                      type:
+                      - string
+                      - 'null'
+                    type:
+                    - object
+                    - 'null'
                 namespaces:
-                  items: {}
-                topologyKey: {}
-              weight: {}
+                  type:
+                  - string
+                  - 'null'
+                topologyKey:
+                  type: string
+              weight:
+                format: int32
+                type: integer
+            type:
+            - object
+            - 'null'
           requiredDuringSchedulingIgnoredDuringExecution:
-            items:
+            properties:
               labelSelector:
                 matchExpressions:
-                  items:
-                    key: {}
-                    operator: {}
+                  properties:
+                    key:
+                      type: string
+                    operator:
+                      type: string
                     values:
-                      items: {}
-                matchLabels: {}
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
+                matchLabels:
+                  additionalProperties:
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                  - object
+                  - 'null'
               matchLabelKeys:
-                items: {}
+                type:
+                - string
+                - 'null'
               mismatchLabelKeys:
-                items: {}
+                type:
+                - string
+                - 'null'
               namespaceSelector:
                 matchExpressions:
-                  items:
-                    key: {}
-                    operator: {}
+                  properties:
+                    key:
+                      type: string
+                    operator:
+                      type: string
                     values:
-                      items: {}
-                matchLabels: {}
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
+                matchLabels:
+                  additionalProperties:
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                  - object
+                  - 'null'
               namespaces:
-                items: {}
-              topologyKey: {}
-      automountServiceAccountToken: {}
+                type:
+                - string
+                - 'null'
+              topologyKey:
+                type: string
+            type:
+            - object
+            - 'null'
+      automountServiceAccountToken:
+        type:
+        - boolean
+        - 'null'
       containers:
-        items:
+        properties:
           args:
-            items: {}
+            type:
+            - string
+            - 'null'
           command:
-            items: {}
+            type:
+            - string
+            - 'null'
           env:
-            items:
-              name: {}
-              value: {}
+            properties:
+              name:
+                type: string
+              value:
+                type:
+                - string
+                - 'null'
               valueFrom:
                 configMapKeyRef:
-                  key: {}
-                  name: {}
-                  optional: {}
+                  key:
+                    type: string
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
                 fieldRef:
-                  apiVersion: {}
-                  fieldPath: {}
+                  apiVersion:
+                    type:
+                    - string
+                    - 'null'
+                  fieldPath:
+                    type: string
                 resourceFieldRef:
-                  containerName: {}
-                  divisor: {}
-                  resource: {}
+                  containerName:
+                    type:
+                    - string
+                    - 'null'
+                  divisor:
+                    oneOf:
+                    - type:
+                      - string
+                      - 'null'
+                    - type:
+                      - number
+                      - 'null'
+                  resource:
+                    type: string
                 secretKeyRef:
-                  key: {}
-                  name: {}
-                  optional: {}
+                  key:
+                    type: string
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
+            type:
+            - object
+            - 'null'
           envFrom:
-            items:
+            properties:
               configMapRef:
-                name: {}
-                optional: {}
-              prefix: {}
+                name:
+                  type:
+                  - string
+                  - 'null'
+                optional:
+                  type:
+                  - boolean
+                  - 'null'
+              prefix:
+                type:
+                - string
+                - 'null'
               secretRef:
-                name: {}
-                optional: {}
-          image: {}
-          imagePullPolicy: {}
+                name:
+                  type:
+                  - string
+                  - 'null'
+                optional:
+                  type:
+                  - boolean
+                  - 'null'
+            type:
+            - object
+            - 'null'
+          image:
+            type:
+            - string
+            - 'null'
+          imagePullPolicy:
+            type:
+            - string
+            - 'null'
           lifecycle:
             postStart:
               exec:
                 command:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
               httpGet:
-                host: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
                 httpHeaders:
-                  items:
-                    name: {}
-                    value: {}
-                path: {}
-                port: {}
-                scheme: {}
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  type:
+                  - object
+                  - 'null'
+                path:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
+                scheme:
+                  type:
+                  - string
+                  - 'null'
               sleep:
-                seconds: {}
+                seconds:
+                  format: int64
+                  type: integer
               tcpSocket:
-                host: {}
-                port: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
             preStop:
               exec:
                 command:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
               httpGet:
-                host: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
                 httpHeaders:
-                  items:
-                    name: {}
-                    value: {}
-                path: {}
-                port: {}
-                scheme: {}
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  type:
+                  - object
+                  - 'null'
+                path:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
+                scheme:
+                  type:
+                  - string
+                  - 'null'
               sleep:
-                seconds: {}
+                seconds:
+                  format: int64
+                  type: integer
               tcpSocket:
-                host: {}
-                port: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
           livenessProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
-          name: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+          name:
+            type: string
           ports:
-            items:
-              containerPort: {}
-              hostIP: {}
-              hostPort: {}
-              name: {}
-              protocol: {}
+            properties:
+              containerPort:
+                format: int32
+                type: integer
+              hostIP:
+                type:
+                - string
+                - 'null'
+              hostPort:
+                format: int32
+                type:
+                - integer
+                - 'null'
+              name:
+                type:
+                - string
+                - 'null'
+              protocol:
+                type:
+                - string
+                - 'null'
+            type:
+            - object
+            - 'null'
           readinessProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
           resizePolicy:
-            items:
-              resourceName: {}
-              restartPolicy: {}
+            properties:
+              resourceName:
+                type: string
+              restartPolicy:
+                type: string
+            type:
+            - object
+            - 'null'
           resources:
             claims:
-              items:
-                name: {}
-            limits: {}
-            requests: {}
-          restartPolicy: {}
+              properties:
+                name:
+                  type: string
+              type:
+              - object
+              - 'null'
+            limits:
+              additionalProperties:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - number
+                  - 'null'
+              type:
+              - object
+              - 'null'
+            requests:
+              additionalProperties:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - number
+                  - 'null'
+              type:
+              - object
+              - 'null'
+          restartPolicy:
+            type:
+            - string
+            - 'null'
           securityContext:
-            allowPrivilegeEscalation: {}
+            allowPrivilegeEscalation:
+              type:
+              - boolean
+              - 'null'
             appArmorProfile:
-              localhostProfile: {}
+              localhostProfile:
+                type:
+                - string
+                - 'null'
+              type:
+                type: string
             capabilities:
               add:
-                items: {}
+                type:
+                - string
+                - 'null'
               drop:
-                items: {}
-            privileged: {}
-            procMount: {}
-            readOnlyRootFilesystem: {}
-            runAsGroup: {}
-            runAsNonRoot: {}
-            runAsUser: {}
+                type:
+                - string
+                - 'null'
+            privileged:
+              type:
+              - boolean
+              - 'null'
+            procMount:
+              type:
+              - string
+              - 'null'
+            readOnlyRootFilesystem:
+              type:
+              - boolean
+              - 'null'
+            runAsGroup:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            runAsNonRoot:
+              type:
+              - boolean
+              - 'null'
+            runAsUser:
+              format: int64
+              type:
+              - integer
+              - 'null'
             seLinuxOptions:
-              level: {}
-              role: {}
-              user: {}
+              level:
+                type:
+                - string
+                - 'null'
+              role:
+                type:
+                - string
+                - 'null'
+              type:
+                type:
+                - string
+                - 'null'
+              user:
+                type:
+                - string
+                - 'null'
             seccompProfile:
-              localhostProfile: {}
+              localhostProfile:
+                type:
+                - string
+                - 'null'
+              type:
+                type: string
             windowsOptions:
-              gmsaCredentialSpec: {}
-              gmsaCredentialSpecName: {}
-              hostProcess: {}
-              runAsUserName: {}
+              gmsaCredentialSpec:
+                type:
+                - string
+                - 'null'
+              gmsaCredentialSpecName:
+                type:
+                - string
+                - 'null'
+              hostProcess:
+                type:
+                - boolean
+                - 'null'
+              runAsUserName:
+                type:
+                - string
+                - 'null'
           startupProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
-          stdin: {}
-          stdinOnce: {}
-          terminationMessagePath: {}
-          terminationMessagePolicy: {}
-          tty: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+          stdin:
+            type:
+            - boolean
+            - 'null'
+          stdinOnce:
+            type:
+            - boolean
+            - 'null'
+          terminationMessagePath:
+            type:
+            - string
+            - 'null'
+          terminationMessagePolicy:
+            type:
+            - string
+            - 'null'
+          tty:
+            type:
+            - boolean
+            - 'null'
           volumeDevices:
-            items:
-              devicePath: {}
-              name: {}
+            properties:
+              devicePath:
+                type: string
+              name:
+                type: string
+            type:
+            - object
+            - 'null'
           volumeMounts:
-            items:
-              mountPath: {}
-              mountPropagation: {}
-              name: {}
-              readOnly: {}
-              recursiveReadOnly: {}
-              subPath: {}
-              subPathExpr: {}
-          workingDir: {}
+            properties:
+              mountPath:
+                type: string
+              mountPropagation:
+                type:
+                - string
+                - 'null'
+              name:
+                type: string
+              readOnly:
+                type:
+                - boolean
+                - 'null'
+              recursiveReadOnly:
+                type:
+                - string
+                - 'null'
+              subPath:
+                type:
+                - string
+                - 'null'
+              subPathExpr:
+                type:
+                - string
+                - 'null'
+            type:
+            - object
+            - 'null'
+          workingDir:
+            type:
+            - string
+            - 'null'
+        type:
+        - object
+        - 'null'
       dnsConfig:
         nameservers:
-          items: {}
+          type:
+          - string
+          - 'null'
         options:
-          items:
-            name: {}
-            value: {}
+          properties:
+            name:
+              type:
+              - string
+              - 'null'
+            value:
+              type:
+              - string
+              - 'null'
+          type:
+          - object
+          - 'null'
         searches:
-          items: {}
-      dnsPolicy: {}
-      enableServiceLinks: {}
+          type:
+          - string
+          - 'null'
+      dnsPolicy:
+        type:
+        - string
+        - 'null'
+      enableServiceLinks:
+        type:
+        - boolean
+        - 'null'
       ephemeralContainers:
-        items:
+        properties:
           args:
-            items: {}
+            type:
+            - string
+            - 'null'
           command:
-            items: {}
+            type:
+            - string
+            - 'null'
           env:
-            items:
-              name: {}
-              value: {}
+            properties:
+              name:
+                type: string
+              value:
+                type:
+                - string
+                - 'null'
               valueFrom:
                 configMapKeyRef:
-                  key: {}
-                  name: {}
-                  optional: {}
+                  key:
+                    type: string
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
                 fieldRef:
-                  apiVersion: {}
-                  fieldPath: {}
+                  apiVersion:
+                    type:
+                    - string
+                    - 'null'
+                  fieldPath:
+                    type: string
                 resourceFieldRef:
-                  containerName: {}
-                  divisor: {}
-                  resource: {}
+                  containerName:
+                    type:
+                    - string
+                    - 'null'
+                  divisor:
+                    oneOf:
+                    - type:
+                      - string
+                      - 'null'
+                    - type:
+                      - number
+                      - 'null'
+                  resource:
+                    type: string
                 secretKeyRef:
-                  key: {}
-                  name: {}
-                  optional: {}
+                  key:
+                    type: string
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
+            type:
+            - object
+            - 'null'
           envFrom:
-            items:
+            properties:
               configMapRef:
-                name: {}
-                optional: {}
-              prefix: {}
+                name:
+                  type:
+                  - string
+                  - 'null'
+                optional:
+                  type:
+                  - boolean
+                  - 'null'
+              prefix:
+                type:
+                - string
+                - 'null'
               secretRef:
-                name: {}
-                optional: {}
-          image: {}
-          imagePullPolicy: {}
+                name:
+                  type:
+                  - string
+                  - 'null'
+                optional:
+                  type:
+                  - boolean
+                  - 'null'
+            type:
+            - object
+            - 'null'
+          image:
+            type:
+            - string
+            - 'null'
+          imagePullPolicy:
+            type:
+            - string
+            - 'null'
           lifecycle:
             postStart:
               exec:
                 command:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
               httpGet:
-                host: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
                 httpHeaders:
-                  items:
-                    name: {}
-                    value: {}
-                path: {}
-                port: {}
-                scheme: {}
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  type:
+                  - object
+                  - 'null'
+                path:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
+                scheme:
+                  type:
+                  - string
+                  - 'null'
               sleep:
-                seconds: {}
+                seconds:
+                  format: int64
+                  type: integer
               tcpSocket:
-                host: {}
-                port: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
             preStop:
               exec:
                 command:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
               httpGet:
-                host: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
                 httpHeaders:
-                  items:
-                    name: {}
-                    value: {}
-                path: {}
-                port: {}
-                scheme: {}
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  type:
+                  - object
+                  - 'null'
+                path:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
+                scheme:
+                  type:
+                  - string
+                  - 'null'
               sleep:
-                seconds: {}
+                seconds:
+                  format: int64
+                  type: integer
               tcpSocket:
-                host: {}
-                port: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
           livenessProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
-          name: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+          name:
+            type: string
           ports:
-            items:
-              containerPort: {}
-              hostIP: {}
-              hostPort: {}
-              name: {}
-              protocol: {}
+            properties:
+              containerPort:
+                format: int32
+                type: integer
+              hostIP:
+                type:
+                - string
+                - 'null'
+              hostPort:
+                format: int32
+                type:
+                - integer
+                - 'null'
+              name:
+                type:
+                - string
+                - 'null'
+              protocol:
+                type:
+                - string
+                - 'null'
+            type:
+            - object
+            - 'null'
           readinessProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
           resizePolicy:
-            items:
-              resourceName: {}
-              restartPolicy: {}
+            properties:
+              resourceName:
+                type: string
+              restartPolicy:
+                type: string
+            type:
+            - object
+            - 'null'
           resources:
             claims:
-              items:
-                name: {}
-            limits: {}
-            requests: {}
-          restartPolicy: {}
+              properties:
+                name:
+                  type: string
+              type:
+              - object
+              - 'null'
+            limits:
+              additionalProperties:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - number
+                  - 'null'
+              type:
+              - object
+              - 'null'
+            requests:
+              additionalProperties:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - number
+                  - 'null'
+              type:
+              - object
+              - 'null'
+          restartPolicy:
+            type:
+            - string
+            - 'null'
           securityContext:
-            allowPrivilegeEscalation: {}
+            allowPrivilegeEscalation:
+              type:
+              - boolean
+              - 'null'
             appArmorProfile:
-              localhostProfile: {}
+              localhostProfile:
+                type:
+                - string
+                - 'null'
+              type:
+                type: string
             capabilities:
               add:
-                items: {}
+                type:
+                - string
+                - 'null'
               drop:
-                items: {}
-            privileged: {}
-            procMount: {}
-            readOnlyRootFilesystem: {}
-            runAsGroup: {}
-            runAsNonRoot: {}
-            runAsUser: {}
+                type:
+                - string
+                - 'null'
+            privileged:
+              type:
+              - boolean
+              - 'null'
+            procMount:
+              type:
+              - string
+              - 'null'
+            readOnlyRootFilesystem:
+              type:
+              - boolean
+              - 'null'
+            runAsGroup:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            runAsNonRoot:
+              type:
+              - boolean
+              - 'null'
+            runAsUser:
+              format: int64
+              type:
+              - integer
+              - 'null'
             seLinuxOptions:
-              level: {}
-              role: {}
-              user: {}
+              level:
+                type:
+                - string
+                - 'null'
+              role:
+                type:
+                - string
+                - 'null'
+              type:
+                type:
+                - string
+                - 'null'
+              user:
+                type:
+                - string
+                - 'null'
             seccompProfile:
-              localhostProfile: {}
+              localhostProfile:
+                type:
+                - string
+                - 'null'
+              type:
+                type: string
             windowsOptions:
-              gmsaCredentialSpec: {}
-              gmsaCredentialSpecName: {}
-              hostProcess: {}
-              runAsUserName: {}
+              gmsaCredentialSpec:
+                type:
+                - string
+                - 'null'
+              gmsaCredentialSpecName:
+                type:
+                - string
+                - 'null'
+              hostProcess:
+                type:
+                - boolean
+                - 'null'
+              runAsUserName:
+                type:
+                - string
+                - 'null'
           startupProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
-          stdin: {}
-          stdinOnce: {}
-          targetContainerName: {}
-          terminationMessagePath: {}
-          terminationMessagePolicy: {}
-          tty: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+          stdin:
+            type:
+            - boolean
+            - 'null'
+          stdinOnce:
+            type:
+            - boolean
+            - 'null'
+          targetContainerName:
+            type:
+            - string
+            - 'null'
+          terminationMessagePath:
+            type:
+            - string
+            - 'null'
+          terminationMessagePolicy:
+            type:
+            - string
+            - 'null'
+          tty:
+            type:
+            - boolean
+            - 'null'
           volumeDevices:
-            items:
-              devicePath: {}
-              name: {}
+            properties:
+              devicePath:
+                type: string
+              name:
+                type: string
+            type:
+            - object
+            - 'null'
           volumeMounts:
-            items:
-              mountPath: {}
-              mountPropagation: {}
-              name: {}
-              readOnly: {}
-              recursiveReadOnly: {}
-              subPath: {}
-              subPathExpr: {}
-          workingDir: {}
+            properties:
+              mountPath:
+                type: string
+              mountPropagation:
+                type:
+                - string
+                - 'null'
+              name:
+                type: string
+              readOnly:
+                type:
+                - boolean
+                - 'null'
+              recursiveReadOnly:
+                type:
+                - string
+                - 'null'
+              subPath:
+                type:
+                - string
+                - 'null'
+              subPathExpr:
+                type:
+                - string
+                - 'null'
+            type:
+            - object
+            - 'null'
+          workingDir:
+            type:
+            - string
+            - 'null'
+        type:
+        - object
+        - 'null'
       hostAliases:
-        items:
+        properties:
           hostnames:
-            items: {}
-          ip: {}
-      hostIPC: {}
-      hostNetwork: {}
-      hostPID: {}
-      hostUsers: {}
-      hostname: {}
+            type:
+            - string
+            - 'null'
+          ip:
+            type: string
+        type:
+        - object
+        - 'null'
+      hostIPC:
+        type:
+        - boolean
+        - 'null'
+      hostNetwork:
+        type:
+        - boolean
+        - 'null'
+      hostPID:
+        type:
+        - boolean
+        - 'null'
+      hostUsers:
+        type:
+        - boolean
+        - 'null'
+      hostname:
+        type:
+        - string
+        - 'null'
       imagePullSecrets:
-        items:
-          name: {}
+        properties:
+          name:
+            type:
+            - string
+            - 'null'
+        type:
+        - object
+        - 'null'
       initContainers:
-        items:
+        properties:
           args:
-            items: {}
+            type:
+            - string
+            - 'null'
           command:
-            items: {}
+            type:
+            - string
+            - 'null'
           env:
-            items:
-              name: {}
-              value: {}
+            properties:
+              name:
+                type: string
+              value:
+                type:
+                - string
+                - 'null'
               valueFrom:
                 configMapKeyRef:
-                  key: {}
-                  name: {}
-                  optional: {}
+                  key:
+                    type: string
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
                 fieldRef:
-                  apiVersion: {}
-                  fieldPath: {}
+                  apiVersion:
+                    type:
+                    - string
+                    - 'null'
+                  fieldPath:
+                    type: string
                 resourceFieldRef:
-                  containerName: {}
-                  divisor: {}
-                  resource: {}
+                  containerName:
+                    type:
+                    - string
+                    - 'null'
+                  divisor:
+                    oneOf:
+                    - type:
+                      - string
+                      - 'null'
+                    - type:
+                      - number
+                      - 'null'
+                  resource:
+                    type: string
                 secretKeyRef:
-                  key: {}
-                  name: {}
-                  optional: {}
+                  key:
+                    type: string
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
+            type:
+            - object
+            - 'null'
           envFrom:
-            items:
+            properties:
               configMapRef:
-                name: {}
-                optional: {}
-              prefix: {}
+                name:
+                  type:
+                  - string
+                  - 'null'
+                optional:
+                  type:
+                  - boolean
+                  - 'null'
+              prefix:
+                type:
+                - string
+                - 'null'
               secretRef:
-                name: {}
-                optional: {}
-          image: {}
-          imagePullPolicy: {}
+                name:
+                  type:
+                  - string
+                  - 'null'
+                optional:
+                  type:
+                  - boolean
+                  - 'null'
+            type:
+            - object
+            - 'null'
+          image:
+            type:
+            - string
+            - 'null'
+          imagePullPolicy:
+            type:
+            - string
+            - 'null'
           lifecycle:
             postStart:
               exec:
                 command:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
               httpGet:
-                host: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
                 httpHeaders:
-                  items:
-                    name: {}
-                    value: {}
-                path: {}
-                port: {}
-                scheme: {}
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  type:
+                  - object
+                  - 'null'
+                path:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
+                scheme:
+                  type:
+                  - string
+                  - 'null'
               sleep:
-                seconds: {}
+                seconds:
+                  format: int64
+                  type: integer
               tcpSocket:
-                host: {}
-                port: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
             preStop:
               exec:
                 command:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
               httpGet:
-                host: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
                 httpHeaders:
-                  items:
-                    name: {}
-                    value: {}
-                path: {}
-                port: {}
-                scheme: {}
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  type:
+                  - object
+                  - 'null'
+                path:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
+                scheme:
+                  type:
+                  - string
+                  - 'null'
               sleep:
-                seconds: {}
+                seconds:
+                  format: int64
+                  type: integer
               tcpSocket:
-                host: {}
-                port: {}
+                host:
+                  type:
+                  - string
+                  - 'null'
+                port:
+                  oneOf:
+                  - type:
+                    - string
+                    - 'null'
+                  - type:
+                    - integer
+                    - 'null'
           livenessProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
-          name: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+          name:
+            type: string
           ports:
-            items:
-              containerPort: {}
-              hostIP: {}
-              hostPort: {}
-              name: {}
-              protocol: {}
+            properties:
+              containerPort:
+                format: int32
+                type: integer
+              hostIP:
+                type:
+                - string
+                - 'null'
+              hostPort:
+                format: int32
+                type:
+                - integer
+                - 'null'
+              name:
+                type:
+                - string
+                - 'null'
+              protocol:
+                type:
+                - string
+                - 'null'
+            type:
+            - object
+            - 'null'
           readinessProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
           resizePolicy:
-            items:
-              resourceName: {}
-              restartPolicy: {}
+            properties:
+              resourceName:
+                type: string
+              restartPolicy:
+                type: string
+            type:
+            - object
+            - 'null'
           resources:
             claims:
-              items:
-                name: {}
-            limits: {}
-            requests: {}
-          restartPolicy: {}
+              properties:
+                name:
+                  type: string
+              type:
+              - object
+              - 'null'
+            limits:
+              additionalProperties:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - number
+                  - 'null'
+              type:
+              - object
+              - 'null'
+            requests:
+              additionalProperties:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - number
+                  - 'null'
+              type:
+              - object
+              - 'null'
+          restartPolicy:
+            type:
+            - string
+            - 'null'
           securityContext:
-            allowPrivilegeEscalation: {}
+            allowPrivilegeEscalation:
+              type:
+              - boolean
+              - 'null'
             appArmorProfile:
-              localhostProfile: {}
+              localhostProfile:
+                type:
+                - string
+                - 'null'
+              type:
+                type: string
             capabilities:
               add:
-                items: {}
+                type:
+                - string
+                - 'null'
               drop:
-                items: {}
-            privileged: {}
-            procMount: {}
-            readOnlyRootFilesystem: {}
-            runAsGroup: {}
-            runAsNonRoot: {}
-            runAsUser: {}
+                type:
+                - string
+                - 'null'
+            privileged:
+              type:
+              - boolean
+              - 'null'
+            procMount:
+              type:
+              - string
+              - 'null'
+            readOnlyRootFilesystem:
+              type:
+              - boolean
+              - 'null'
+            runAsGroup:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            runAsNonRoot:
+              type:
+              - boolean
+              - 'null'
+            runAsUser:
+              format: int64
+              type:
+              - integer
+              - 'null'
             seLinuxOptions:
-              level: {}
-              role: {}
-              user: {}
+              level:
+                type:
+                - string
+                - 'null'
+              role:
+                type:
+                - string
+                - 'null'
+              type:
+                type:
+                - string
+                - 'null'
+              user:
+                type:
+                - string
+                - 'null'
             seccompProfile:
-              localhostProfile: {}
+              localhostProfile:
+                type:
+                - string
+                - 'null'
+              type:
+                type: string
             windowsOptions:
-              gmsaCredentialSpec: {}
-              gmsaCredentialSpecName: {}
-              hostProcess: {}
-              runAsUserName: {}
+              gmsaCredentialSpec:
+                type:
+                - string
+                - 'null'
+              gmsaCredentialSpecName:
+                type:
+                - string
+                - 'null'
+              hostProcess:
+                type:
+                - boolean
+                - 'null'
+              runAsUserName:
+                type:
+                - string
+                - 'null'
           startupProbe:
             exec:
               command:
-                items: {}
-            failureThreshold: {}
+                type:
+                - string
+                - 'null'
+            failureThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             grpc:
-              port: {}
-              service: {}
+              port:
+                format: int32
+                type: integer
+              service:
+                type:
+                - string
+                - 'null'
             httpGet:
-              host: {}
+              host:
+                type:
+                - string
+                - 'null'
               httpHeaders:
-                items:
-                  name: {}
-                  value: {}
-              path: {}
-              port: {}
-              scheme: {}
-            initialDelaySeconds: {}
-            periodSeconds: {}
-            successThreshold: {}
+                properties:
+                  name:
+                    type: string
+                  value:
+                    type: string
+                type:
+                - object
+                - 'null'
+              path:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+              scheme:
+                type:
+                - string
+                - 'null'
+            initialDelaySeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            periodSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            successThreshold:
+              format: int32
+              type:
+              - integer
+              - 'null'
             tcpSocket:
-              host: {}
-              port: {}
-            terminationGracePeriodSeconds: {}
-            timeoutSeconds: {}
-          stdin: {}
-          stdinOnce: {}
-          terminationMessagePath: {}
-          terminationMessagePolicy: {}
-          tty: {}
+              host:
+                type:
+                - string
+                - 'null'
+              port:
+                oneOf:
+                - type:
+                  - string
+                  - 'null'
+                - type:
+                  - integer
+                  - 'null'
+            terminationGracePeriodSeconds:
+              format: int64
+              type:
+              - integer
+              - 'null'
+            timeoutSeconds:
+              format: int32
+              type:
+              - integer
+              - 'null'
+          stdin:
+            type:
+            - boolean
+            - 'null'
+          stdinOnce:
+            type:
+            - boolean
+            - 'null'
+          terminationMessagePath:
+            type:
+            - string
+            - 'null'
+          terminationMessagePolicy:
+            type:
+            - string
+            - 'null'
+          tty:
+            type:
+            - boolean
+            - 'null'
           volumeDevices:
-            items:
-              devicePath: {}
-              name: {}
+            properties:
+              devicePath:
+                type: string
+              name:
+                type: string
+            type:
+            - object
+            - 'null'
           volumeMounts:
-            items:
-              mountPath: {}
-              mountPropagation: {}
-              name: {}
-              readOnly: {}
-              recursiveReadOnly: {}
-              subPath: {}
-              subPathExpr: {}
-          workingDir: {}
-      nodeName: {}
-      nodeSelector: {}
+            properties:
+              mountPath:
+                type: string
+              mountPropagation:
+                type:
+                - string
+                - 'null'
+              name:
+                type: string
+              readOnly:
+                type:
+                - boolean
+                - 'null'
+              recursiveReadOnly:
+                type:
+                - string
+                - 'null'
+              subPath:
+                type:
+                - string
+                - 'null'
+              subPathExpr:
+                type:
+                - string
+                - 'null'
+            type:
+            - object
+            - 'null'
+          workingDir:
+            type:
+            - string
+            - 'null'
+        type:
+        - object
+        - 'null'
+      nodeName:
+        type:
+        - string
+        - 'null'
+      nodeSelector:
+        additionalProperties:
+          type:
+          - string
+          - 'null'
+        type:
+        - object
+        - 'null'
       os:
-        name: {}
-      overhead: {}
-      preemptionPolicy: {}
-      priority: {}
-      priorityClassName: {}
+        name:
+          type: string
+      overhead:
+        additionalProperties:
+          oneOf:
+          - type:
+            - string
+            - 'null'
+          - type:
+            - number
+            - 'null'
+        type:
+        - object
+        - 'null'
+      preemptionPolicy:
+        type:
+        - string
+        - 'null'
+      priority:
+        format: int32
+        type:
+        - integer
+        - 'null'
+      priorityClassName:
+        type:
+        - string
+        - 'null'
       readinessGates:
-        items:
-          conditionType: {}
+        properties:
+          conditionType:
+            type: string
+        type:
+        - object
+        - 'null'
       resourceClaims:
-        items:
-          name: {}
+        properties:
+          name:
+            type: string
           source:
-            resourceClaimName: {}
-            resourceClaimTemplateName: {}
-      restartPolicy: {}
-      runtimeClassName: {}
-      schedulerName: {}
+            resourceClaimName:
+              type:
+              - string
+              - 'null'
+            resourceClaimTemplateName:
+              type:
+              - string
+              - 'null'
+        type:
+        - object
+        - 'null'
+      restartPolicy:
+        type:
+        - string
+        - 'null'
+      runtimeClassName:
+        type:
+        - string
+        - 'null'
+      schedulerName:
+        type:
+        - string
+        - 'null'
       schedulingGates:
-        items:
-          name: {}
+        properties:
+          name:
+            type: string
+        type:
+        - object
+        - 'null'
       securityContext:
         appArmorProfile:
-          localhostProfile: {}
-        fsGroup: {}
-        fsGroupChangePolicy: {}
-        runAsGroup: {}
-        runAsNonRoot: {}
-        runAsUser: {}
+          localhostProfile:
+            type:
+            - string
+            - 'null'
+          type:
+            type: string
+        fsGroup:
+          format: int64
+          type:
+          - integer
+          - 'null'
+        fsGroupChangePolicy:
+          type:
+          - string
+          - 'null'
+        runAsGroup:
+          format: int64
+          type:
+          - integer
+          - 'null'
+        runAsNonRoot:
+          type:
+          - boolean
+          - 'null'
+        runAsUser:
+          format: int64
+          type:
+          - integer
+          - 'null'
         seLinuxOptions:
-          level: {}
-          role: {}
-          user: {}
+          level:
+            type:
+            - string
+            - 'null'
+          role:
+            type:
+            - string
+            - 'null'
+          type:
+            type:
+            - string
+            - 'null'
+          user:
+            type:
+            - string
+            - 'null'
         seccompProfile:
-          localhostProfile: {}
+          localhostProfile:
+            type:
+            - string
+            - 'null'
+          type:
+            type: string
         supplementalGroups:
-          items: {}
+          format: int64
+          type:
+          - integer
+          - 'null'
         sysctls:
-          items:
-            name: {}
-            value: {}
+          properties:
+            name:
+              type: string
+            value:
+              type: string
+          type:
+          - object
+          - 'null'
         windowsOptions:
-          gmsaCredentialSpec: {}
-          gmsaCredentialSpecName: {}
-          hostProcess: {}
-          runAsUserName: {}
-      serviceAccount: {}
-      serviceAccountName: {}
-      setHostnameAsFQDN: {}
-      shareProcessNamespace: {}
-      subdomain: {}
-      terminationGracePeriodSeconds: {}
+          gmsaCredentialSpec:
+            type:
+            - string
+            - 'null'
+          gmsaCredentialSpecName:
+            type:
+            - string
+            - 'null'
+          hostProcess:
+            type:
+            - boolean
+            - 'null'
+          runAsUserName:
+            type:
+            - string
+            - 'null'
+      serviceAccount:
+        type:
+        - string
+        - 'null'
+      serviceAccountName:
+        type:
+        - string
+        - 'null'
+      setHostnameAsFQDN:
+        type:
+        - boolean
+        - 'null'
+      shareProcessNamespace:
+        type:
+        - boolean
+        - 'null'
+      subdomain:
+        type:
+        - string
+        - 'null'
+      terminationGracePeriodSeconds:
+        format: int64
+        type:
+        - integer
+        - 'null'
       tolerations:
-        items:
-          effect: {}
-          key: {}
-          operator: {}
-          tolerationSeconds: {}
-          value: {}
+        properties:
+          effect:
+            type:
+            - string
+            - 'null'
+          key:
+            type:
+            - string
+            - 'null'
+          operator:
+            type:
+            - string
+            - 'null'
+          tolerationSeconds:
+            format: int64
+            type:
+            - integer
+            - 'null'
+          value:
+            type:
+            - string
+            - 'null'
+        type:
+        - object
+        - 'null'
       topologySpreadConstraints:
-        items:
+        properties:
           labelSelector:
             matchExpressions:
-              items:
-                key: {}
-                operator: {}
+              properties:
+                key:
+                  type: string
+                operator:
+                  type: string
                 values:
-                  items: {}
-            matchLabels: {}
+                  type:
+                  - string
+                  - 'null'
+              type:
+              - object
+              - 'null'
+            matchLabels:
+              additionalProperties:
+                type:
+                - string
+                - 'null'
+              type:
+              - object
+              - 'null'
           matchLabelKeys:
-            items: {}
-          maxSkew: {}
-          minDomains: {}
-          nodeAffinityPolicy: {}
-          nodeTaintsPolicy: {}
-          topologyKey: {}
-          whenUnsatisfiable: {}
+            type:
+            - string
+            - 'null'
+          maxSkew:
+            format: int32
+            type: integer
+          minDomains:
+            format: int32
+            type:
+            - integer
+            - 'null'
+          nodeAffinityPolicy:
+            type:
+            - string
+            - 'null'
+          nodeTaintsPolicy:
+            type:
+            - string
+            - 'null'
+          topologyKey:
+            type: string
+          whenUnsatisfiable:
+            type: string
+        type:
+        - object
+        - 'null'
       volumes:
-        items:
+        properties:
           awsElasticBlockStore:
-            fsType: {}
-            partition: {}
-            readOnly: {}
-            volumeID: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            partition:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
+            volumeID:
+              type: string
           azureDisk:
-            cachingMode: {}
-            diskName: {}
-            diskURI: {}
-            fsType: {}
-            kind: {}
-            readOnly: {}
+            cachingMode:
+              type:
+              - string
+              - 'null'
+            diskName:
+              type: string
+            diskURI:
+              type: string
+            fsType:
+              type:
+              - string
+              - 'null'
+            kind:
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
           azureFile:
-            readOnly: {}
-            secretName: {}
-            shareName: {}
+            readOnly:
+              type:
+              - boolean
+              - 'null'
+            secretName:
+              type: string
+            shareName:
+              type: string
           cephfs:
             monitors:
-              items: {}
-            path: {}
-            readOnly: {}
-            secretFile: {}
+              type:
+              - string
+              - 'null'
+            path:
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
+            secretFile:
+              type:
+              - string
+              - 'null'
             secretRef:
-              name: {}
-            user: {}
+              name:
+                type:
+                - string
+                - 'null'
+            user:
+              type:
+              - string
+              - 'null'
           cinder:
-            fsType: {}
-            readOnly: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
             secretRef:
-              name: {}
-            volumeID: {}
+              name:
+                type:
+                - string
+                - 'null'
+            volumeID:
+              type: string
           configMap:
-            defaultMode: {}
+            defaultMode:
+              format: int32
+              type:
+              - integer
+              - 'null'
             items:
-              items:
-                key: {}
-                mode: {}
-                path: {}
-            name: {}
-            optional: {}
+              properties:
+                key:
+                  type: string
+                mode:
+                  format: int32
+                  type:
+                  - integer
+                  - 'null'
+                path:
+                  type: string
+              type:
+              - object
+              - 'null'
+            name:
+              type:
+              - string
+              - 'null'
+            optional:
+              type:
+              - boolean
+              - 'null'
           csi:
-            driver: {}
-            fsType: {}
+            driver:
+              type: string
+            fsType:
+              type:
+              - string
+              - 'null'
             nodePublishSecretRef:
-              name: {}
-            readOnly: {}
-            volumeAttributes: {}
+              name:
+                type:
+                - string
+                - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
+            volumeAttributes:
+              additionalProperties:
+                type:
+                - string
+                - 'null'
+              type:
+              - object
+              - 'null'
           downwardAPI:
-            defaultMode: {}
+            defaultMode:
+              format: int32
+              type:
+              - integer
+              - 'null'
             items:
-              items:
+              properties:
                 fieldRef:
-                  apiVersion: {}
-                  fieldPath: {}
-                mode: {}
-                path: {}
+                  apiVersion:
+                    type:
+                    - string
+                    - 'null'
+                  fieldPath:
+                    type: string
+                mode:
+                  format: int32
+                  type:
+                  - integer
+                  - 'null'
+                path:
+                  type: string
                 resourceFieldRef:
-                  containerName: {}
-                  divisor: {}
-                  resource: {}
+                  containerName:
+                    type:
+                    - string
+                    - 'null'
+                  divisor:
+                    oneOf:
+                    - type:
+                      - string
+                      - 'null'
+                    - type:
+                      - number
+                      - 'null'
+                  resource:
+                    type: string
+              type:
+              - object
+              - 'null'
           emptyDir:
-            medium: {}
-            sizeLimit: {}
+            medium:
+              type:
+              - string
+              - 'null'
+            sizeLimit:
+              oneOf:
+              - type:
+                - string
+                - 'null'
+              - type:
+                - number
+                - 'null'
           ephemeral:
             volumeClaimTemplate:
               metadata:
-                annotations: {}
-                creationTimestamp: {}
-                deletionGracePeriodSeconds: {}
-                deletionTimestamp: {}
+                annotations:
+                  additionalProperties:
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                  - object
+                  - 'null'
+                creationTimestamp:
+                  format: date-time
+                  type:
+                  - string
+                  - 'null'
+                deletionGracePeriodSeconds:
+                  format: int64
+                  type:
+                  - integer
+                  - 'null'
+                deletionTimestamp:
+                  format: date-time
+                  type:
+                  - string
+                  - 'null'
                 finalizers:
-                  items: {}
-                generateName: {}
-                generation: {}
-                labels: {}
+                  type:
+                  - string
+                  - 'null'
+                generateName:
+                  type:
+                  - string
+                  - 'null'
+                generation:
+                  format: int64
+                  type:
+                  - integer
+                  - 'null'
+                labels:
+                  additionalProperties:
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                  - object
+                  - 'null'
                 managedFields:
-                  items:
-                    apiVersion: {}
-                    fieldsType: {}
-                    fieldsV1: {}
-                    manager: {}
-                    operation: {}
-                    subresource: {}
-                    time: {}
-                name: {}
-                namespace: {}
+                  properties:
+                    apiVersion:
+                      type:
+                      - string
+                      - 'null'
+                    fieldsType:
+                      type:
+                      - string
+                      - 'null'
+                    fieldsV1:
+                      type:
+                      - object
+                      - 'null'
+                    manager:
+                      type:
+                      - string
+                      - 'null'
+                    operation:
+                      type:
+                      - string
+                      - 'null'
+                    subresource:
+                      type:
+                      - string
+                      - 'null'
+                    time:
+                      format: date-time
+                      type:
+                      - string
+                      - 'null'
+                  type:
+                  - object
+                  - 'null'
+                name:
+                  type:
+                  - string
+                  - 'null'
+                namespace:
+                  type:
+                  - string
+                  - 'null'
                 ownerReferences:
-                  items:
-                    apiVersion: {}
-                    blockOwnerDeletion: {}
-                    controller: {}
-                    kind: {}
-                    name: {}
-                    uid: {}
-                resourceVersion: {}
-                selfLink: {}
-                uid: {}
+                  properties:
+                    apiVersion:
+                      type: string
+                    blockOwnerDeletion:
+                      type:
+                      - boolean
+                      - 'null'
+                    controller:
+                      type:
+                      - boolean
+                      - 'null'
+                    kind:
+                      type: string
+                    name:
+                      type: string
+                    uid:
+                      type: string
+                  type:
+                  - object
+                  - 'null'
+                resourceVersion:
+                  type:
+                  - string
+                  - 'null'
+                selfLink:
+                  type:
+                  - string
+                  - 'null'
+                uid:
+                  type:
+                  - string
+                  - 'null'
               spec:
                 accessModes:
-                  items: {}
+                  type:
+                  - string
+                  - 'null'
                 dataSource:
-                  apiGroup: {}
-                  kind: {}
-                  name: {}
+                  apiGroup:
+                    type:
+                    - string
+                    - 'null'
+                  kind:
+                    type: string
+                  name:
+                    type: string
                 dataSourceRef:
-                  apiGroup: {}
-                  kind: {}
-                  name: {}
-                  namespace: {}
+                  apiGroup:
+                    type:
+                    - string
+                    - 'null'
+                  kind:
+                    type: string
+                  name:
+                    type: string
+                  namespace:
+                    type:
+                    - string
+                    - 'null'
                 resources:
-                  limits: {}
-                  requests: {}
+                  limits:
+                    additionalProperties:
+                      oneOf:
+                      - type:
+                        - string
+                        - 'null'
+                      - type:
+                        - number
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  requests:
+                    additionalProperties:
+                      oneOf:
+                      - type:
+                        - string
+                        - 'null'
+                      - type:
+                        - number
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
                 selector:
                   matchExpressions:
-                    items:
-                      key: {}
-                      operator: {}
+                    properties:
+                      key:
+                        type: string
+                      operator:
+                        type: string
                       values:
-                        items: {}
-                  matchLabels: {}
-                storageClassName: {}
-                volumeAttributesClassName: {}
-                volumeMode: {}
-                volumeName: {}
+                        type:
+                        - string
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  matchLabels:
+                    additionalProperties:
+                      type:
+                      - string
+                      - 'null'
+                    type:
+                    - object
+                    - 'null'
+                storageClassName:
+                  type:
+                  - string
+                  - 'null'
+                volumeAttributesClassName:
+                  type:
+                  - string
+                  - 'null'
+                volumeMode:
+                  type:
+                  - string
+                  - 'null'
+                volumeName:
+                  type:
+                  - string
+                  - 'null'
           fc:
-            fsType: {}
-            lun: {}
-            readOnly: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            lun:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
             targetWWNs:
-              items: {}
+              type:
+              - string
+              - 'null'
             wwids:
-              items: {}
+              type:
+              - string
+              - 'null'
           flexVolume:
-            driver: {}
-            fsType: {}
-            options: {}
-            readOnly: {}
+            driver:
+              type: string
+            fsType:
+              type:
+              - string
+              - 'null'
+            options:
+              additionalProperties:
+                type:
+                - string
+                - 'null'
+              type:
+              - object
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
             secretRef:
-              name: {}
+              name:
+                type:
+                - string
+                - 'null'
           flocker:
-            datasetName: {}
-            datasetUUID: {}
+            datasetName:
+              type:
+              - string
+              - 'null'
+            datasetUUID:
+              type:
+              - string
+              - 'null'
           gcePersistentDisk:
-            fsType: {}
-            partition: {}
-            pdName: {}
-            readOnly: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            partition:
+              format: int32
+              type:
+              - integer
+              - 'null'
+            pdName:
+              type: string
+            readOnly:
+              type:
+              - boolean
+              - 'null'
           gitRepo:
-            directory: {}
-            repository: {}
-            revision: {}
+            directory:
+              type:
+              - string
+              - 'null'
+            repository:
+              type: string
+            revision:
+              type:
+              - string
+              - 'null'
           glusterfs:
-            endpoints: {}
-            path: {}
-            readOnly: {}
+            endpoints:
+              type: string
+            path:
+              type: string
+            readOnly:
+              type:
+              - boolean
+              - 'null'
           hostPath:
-            path: {}
+            path:
+              type: string
+            type:
+              type:
+              - string
+              - 'null'
           iscsi:
-            chapAuthDiscovery: {}
-            chapAuthSession: {}
-            fsType: {}
-            initiatorName: {}
-            iqn: {}
-            iscsiInterface: {}
-            lun: {}
+            chapAuthDiscovery:
+              type:
+              - boolean
+              - 'null'
+            chapAuthSession:
+              type:
+              - boolean
+              - 'null'
+            fsType:
+              type:
+              - string
+              - 'null'
+            initiatorName:
+              type:
+              - string
+              - 'null'
+            iqn:
+              type: string
+            iscsiInterface:
+              type:
+              - string
+              - 'null'
+            lun:
+              format: int32
+              type: integer
             portals:
-              items: {}
-            readOnly: {}
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
             secretRef:
-              name: {}
-            targetPortal: {}
-          name: {}
+              name:
+                type:
+                - string
+                - 'null'
+            targetPortal:
+              type: string
+          name:
+            type: string
           nfs:
-            path: {}
-            readOnly: {}
-            server: {}
+            path:
+              type: string
+            readOnly:
+              type:
+              - boolean
+              - 'null'
+            server:
+              type: string
           persistentVolumeClaim:
-            claimName: {}
-            readOnly: {}
+            claimName:
+              type: string
+            readOnly:
+              type:
+              - boolean
+              - 'null'
           photonPersistentDisk:
-            fsType: {}
-            pdID: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            pdID:
+              type: string
           portworxVolume:
-            fsType: {}
-            readOnly: {}
-            volumeID: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
+            volumeID:
+              type: string
           projected:
-            defaultMode: {}
+            defaultMode:
+              format: int32
+              type:
+              - integer
+              - 'null'
             sources:
-              items:
+              properties:
                 clusterTrustBundle:
                   labelSelector:
                     matchExpressions:
-                      items:
-                        key: {}
-                        operator: {}
+                      properties:
+                        key:
+                          type: string
+                        operator:
+                          type: string
                         values:
-                          items: {}
-                    matchLabels: {}
-                  name: {}
-                  optional: {}
-                  path: {}
-                  signerName: {}
+                          type:
+                          - string
+                          - 'null'
+                      type:
+                      - object
+                      - 'null'
+                    matchLabels:
+                      additionalProperties:
+                        type:
+                        - string
+                        - 'null'
+                      type:
+                      - object
+                      - 'null'
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
+                  path:
+                    type: string
+                  signerName:
+                    type:
+                    - string
+                    - 'null'
                 configMap:
                   items:
-                    items:
-                      key: {}
-                      mode: {}
-                      path: {}
-                  name: {}
-                  optional: {}
+                    properties:
+                      key:
+                        type: string
+                      mode:
+                        format: int32
+                        type:
+                        - integer
+                        - 'null'
+                      path:
+                        type: string
+                    type:
+                    - object
+                    - 'null'
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
                 downwardAPI:
                   items:
-                    items:
+                    properties:
                       fieldRef:
-                        apiVersion: {}
-                        fieldPath: {}
-                      mode: {}
-                      path: {}
+                        apiVersion:
+                          type:
+                          - string
+                          - 'null'
+                        fieldPath:
+                          type: string
+                      mode:
+                        format: int32
+                        type:
+                        - integer
+                        - 'null'
+                      path:
+                        type: string
                       resourceFieldRef:
-                        containerName: {}
-                        divisor: {}
-                        resource: {}
+                        containerName:
+                          type:
+                          - string
+                          - 'null'
+                        divisor:
+                          oneOf:
+                          - type:
+                            - string
+                            - 'null'
+                          - type:
+                            - number
+                            - 'null'
+                        resource:
+                          type: string
+                    type:
+                    - object
+                    - 'null'
                 secret:
                   items:
-                    items:
-                      key: {}
-                      mode: {}
-                      path: {}
-                  name: {}
-                  optional: {}
+                    properties:
+                      key:
+                        type: string
+                      mode:
+                        format: int32
+                        type:
+                        - integer
+                        - 'null'
+                      path:
+                        type: string
+                    type:
+                    - object
+                    - 'null'
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  optional:
+                    type:
+                    - boolean
+                    - 'null'
                 serviceAccountToken:
-                  audience: {}
-                  expirationSeconds: {}
-                  path: {}
+                  audience:
+                    type:
+                    - string
+                    - 'null'
+                  expirationSeconds:
+                    format: int64
+                    type:
+                    - integer
+                    - 'null'
+                  path:
+                    type: string
+              type:
+              - object
+              - 'null'
           quobyte:
-            group: {}
-            readOnly: {}
-            registry: {}
-            tenant: {}
-            user: {}
-            volume: {}
+            group:
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
+            registry:
+              type: string
+            tenant:
+              type:
+              - string
+              - 'null'
+            user:
+              type:
+              - string
+              - 'null'
+            volume:
+              type: string
           rbd:
-            fsType: {}
-            image: {}
-            keyring: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            image:
+              type: string
+            keyring:
+              type:
+              - string
+              - 'null'
             monitors:
-              items: {}
-            pool: {}
-            readOnly: {}
+              type:
+              - string
+              - 'null'
+            pool:
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
             secretRef:
-              name: {}
-            user: {}
+              name:
+                type:
+                - string
+                - 'null'
+            user:
+              type:
+              - string
+              - 'null'
           scaleIO:
-            fsType: {}
-            gateway: {}
-            protectionDomain: {}
-            readOnly: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            gateway:
+              type: string
+            protectionDomain:
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
             secretRef:
-              name: {}
-            sslEnabled: {}
-            storageMode: {}
-            storagePool: {}
-            system: {}
-            volumeName: {}
+              name:
+                type:
+                - string
+                - 'null'
+            sslEnabled:
+              type:
+              - boolean
+              - 'null'
+            storageMode:
+              type:
+              - string
+              - 'null'
+            storagePool:
+              type:
+              - string
+              - 'null'
+            system:
+              type: string
+            volumeName:
+              type:
+              - string
+              - 'null'
           secret:
-            defaultMode: {}
+            defaultMode:
+              format: int32
+              type:
+              - integer
+              - 'null'
             items:
-              items:
-                key: {}
-                mode: {}
-                path: {}
-            optional: {}
-            secretName: {}
+              properties:
+                key:
+                  type: string
+                mode:
+                  format: int32
+                  type:
+                  - integer
+                  - 'null'
+                path:
+                  type: string
+              type:
+              - object
+              - 'null'
+            optional:
+              type:
+              - boolean
+              - 'null'
+            secretName:
+              type:
+              - string
+              - 'null'
           storageos:
-            fsType: {}
-            readOnly: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            readOnly:
+              type:
+              - boolean
+              - 'null'
             secretRef:
-              name: {}
-            volumeName: {}
-            volumeNamespace: {}
+              name:
+                type:
+                - string
+                - 'null'
+            volumeName:
+              type:
+              - string
+              - 'null'
+            volumeNamespace:
+              type:
+              - string
+              - 'null'
           vsphereVolume:
-            fsType: {}
-            storagePolicyID: {}
-            storagePolicyName: {}
-            volumePath: {}
+            fsType:
+              type:
+              - string
+              - 'null'
+            storagePolicyID:
+              type:
+              - string
+              - 'null'
+            storagePolicyName:
+              type:
+              - string
+              - 'null'
+            volumePath:
+              type: string
+        type:
+        - object
+        - 'null'
 status:
-  availableReplicas: {}
-  collisionCount: {}
+  availableReplicas:
+    format: int32
+    type:
+    - integer
+    - 'null'
+  collisionCount:
+    format: int32
+    type:
+    - integer
+    - 'null'
   conditions:
-    items:
-      lastTransitionTime: {}
-      lastUpdateTime: {}
-      message: {}
-      reason: {}
-      status: {}
-  observedGeneration: {}
-  readyReplicas: {}
-  replicas: {}
-  unavailableReplicas: {}
-  updatedReplicas: {}
+    properties:
+      lastTransitionTime:
+        format: date-time
+        type:
+        - string
+        - 'null'
+      lastUpdateTime:
+        format: date-time
+        type:
+        - string
+        - 'null'
+      message:
+        type:
+        - string
+        - 'null'
+      reason:
+        type:
+        - string
+        - 'null'
+      status:
+        type: string
+      type:
+        type: string
+    type:
+    - object
+    - 'null'
+  observedGeneration:
+    format: int64
+    type:
+    - integer
+    - 'null'
+  readyReplicas:
+    format: int32
+    type:
+    - integer
+    - 'null'
+  replicas:
+    format: int32
+    type:
+    - integer
+    - 'null'
+  unavailableReplicas:
+    format: int32
+    type:
+    - integer
+    - 'null'
+  updatedReplicas:
+    format: int32
+    type:
+    - integer
+    - 'null'

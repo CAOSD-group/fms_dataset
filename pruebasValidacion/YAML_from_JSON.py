@@ -6,8 +6,8 @@ jsonFile = 'schemas/schemaDeploymentStandalone.json'
 # Definir la lista de atributos a eliminar
 attributes_to_remove = [
     "description",  # Descripcion del atributo
-    "enum", # Enumera los valores posibles para ese atributo
-    "type", # Dice el tipo de dato que puede ser
+    #"enum", # Enumera los valores posibles para ese atributo
+    #"type", # Dice el tipo de dato que puede ser
     "additionalProperties",
     "format",
     "x-kubernetes-list-type",
@@ -17,7 +17,7 @@ attributes_to_remove = [
     "x-kubernetes-map-type",
     "x-kubernetes-list-map-keys",
     "x-kubernetes-patch-merge-key",
-    "oneOf",
+    #"oneOf",
     "x-kubernetes-unions",
     "fields-to-discriminateBy",
 ]
@@ -63,10 +63,12 @@ def extract_properties(schema):
         return properties
     return {}
 
-# Función para eliminar la palabra "properties"
+# Función para eliminar la linea "properties" y "items"
 def remove_properties_key(data):
     if isinstance(data, dict):
-        if "properties" in data:
+        if "items" in data:
+            return {key: remove_properties_key(value) for key, value in data["items"].items()}
+        elif "properties" in data:
             return {key: remove_properties_key(value) for key, value in data["properties"].items()}
         else:
             return {key: remove_properties_key(value) for key, value in data.items()}

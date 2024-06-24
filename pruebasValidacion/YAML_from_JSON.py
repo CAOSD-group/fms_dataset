@@ -7,6 +7,9 @@ def main():
 
     # Esquema del que obtener los datos
     schema = 'schemas/schemaDeploymentStandalone.json'
+    #schema = 'schemas/schemaStatefulsetStandalone.json'
+    #schema = 'schemas/schemaJobStandalone.json'
+    #schema = 'schemas/schemaServiceStandalone.json'
 
     # Lista de nombres de subdiccionarios a eliminar manteniendo su contenido
     nombres_a_eliminar = [

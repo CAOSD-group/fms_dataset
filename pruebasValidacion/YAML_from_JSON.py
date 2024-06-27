@@ -1,13 +1,15 @@
+# Este script transforma un schema de Kubernetes en un archivo YAML, pudiendo filtrar los datos que se deseen,
+# siendo util para obtener informacion sobre un FM o sobre los atributos que componen un manifiesto de 
+# Kubernetes. Cuidado! Devuelve hasta aquellos que el usuario no necesita definir.
+
 import json
 import yaml
-
-
 
 def main():
 
     # Esquema del que obtener los datos
-    schema = 'schemas/schemaDeploymentStandalone.json'
-    #schema = 'schemas/schemaStatefulsetStandalone.json'
+    #schema = 'schemas/schemaDeploymentStandalone.json'
+    schema = 'schemas/schemaStatefulsetStandalone.json'
     #schema = 'schemas/schemaJobStandalone.json'
     #schema = 'schemas/schemaServiceStandalone.json'
 
@@ -40,7 +42,7 @@ def main():
     remove_keys(data, keysToRemove) # funciona
     eliminar_subdiccionarios_especificos(data, nombres_a_eliminar)
 
-    #saveDataJSON(data)
+    saveDataJSON(data)
     saveDataYAML(data)
 
 # Elimina subdicionarios con un nombre especificado, pero manteniendo su contenido

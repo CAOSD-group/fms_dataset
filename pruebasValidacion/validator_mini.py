@@ -1,11 +1,16 @@
+# Este script es una prueba de validacion de ficheros de configuracion de Kubernetes haciendo uso de 
+# la libreria jsonschema.
+
 import json
 import yaml
 from jsonschema import validate, exceptions
 
+# Carga el esquema especificado en la ruta del archivo
 def load_json_file(filename):
     with open(filename, 'r') as f:
         return json.load(f)
 
+# Valida los datos contra el esquema especificado 
 def validate_data(schema_file, data_file):
     # Cargar el esquema y los datos
     schema = load_json_file(schema_file)

@@ -31,8 +31,12 @@ metadata:
   uid: {}
 spec:
   minReadySeconds: {}
-  paused: {}
-  progressDeadlineSeconds: {}
+  ordinals:
+    start: {}
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: {}
+    whenScaled: {}
+  podManagementPolicy: {}
   replicas: {}
   revisionHistoryLimit: {}
   selector:
@@ -41,10 +45,7 @@ spec:
       operator: {}
       values: {}
     matchLabels: {}
-  strategy:
-    rollingUpdate:
-      maxSurge: {}
-      maxUnavailable: {}
+  serviceName: {}
   template:
     metadata:
       annotations: {}
@@ -1103,17 +1104,94 @@ spec:
           storagePolicyID: {}
           storagePolicyName: {}
           volumePath: {}
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: {}
+      partition: {}
+  volumeClaimTemplates:
+    apiVersion: {}
+    kind: {}
+    metadata:
+      annotations: {}
+      creationTimestamp: {}
+      deletionGracePeriodSeconds: {}
+      deletionTimestamp: {}
+      finalizers: {}
+      generateName: {}
+      generation: {}
+      labels: {}
+      managedFields:
+        apiVersion: {}
+        fieldsType: {}
+        fieldsV1: {}
+        manager: {}
+        operation: {}
+        subresource: {}
+        time: {}
+      name: {}
+      namespace: {}
+      ownerReferences:
+        apiVersion: {}
+        blockOwnerDeletion: {}
+        controller: {}
+        kind: {}
+        name: {}
+        uid: {}
+      resourceVersion: {}
+      selfLink: {}
+      uid: {}
+    spec:
+      accessModes: {}
+      dataSource:
+        apiGroup: {}
+        kind: {}
+        name: {}
+      dataSourceRef:
+        apiGroup: {}
+        kind: {}
+        name: {}
+        namespace: {}
+      resources:
+        limits: {}
+        requests: {}
+      selector:
+        matchExpressions:
+          key: {}
+          operator: {}
+          values: {}
+        matchLabels: {}
+      storageClassName: {}
+      volumeAttributesClassName: {}
+      volumeMode: {}
+      volumeName: {}
+    status:
+      accessModes: {}
+      allocatedResourceStatuses: {}
+      allocatedResources: {}
+      capacity: {}
+      conditions:
+        lastProbeTime: {}
+        lastTransitionTime: {}
+        message: {}
+        reason: {}
+        status: {}
+      currentVolumeAttributesClassName: {}
+      modifyVolumeStatus:
+        status: {}
+        targetVolumeAttributesClassName: {}
+      phase: {}
 status:
   availableReplicas: {}
   collisionCount: {}
   conditions:
     lastTransitionTime: {}
-    lastUpdateTime: {}
     message: {}
     reason: {}
     status: {}
+  currentReplicas: {}
+  currentRevision: {}
   observedGeneration: {}
   readyReplicas: {}
   replicas: {}
-  unavailableReplicas: {}
+  updateRevision: {}
   updatedReplicas: {}

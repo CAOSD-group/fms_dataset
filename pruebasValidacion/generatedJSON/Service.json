@@ -1,0 +1,89 @@
+{
+  "apiVersion": {},
+  "kind": {},
+  "metadata": {
+    "annotations": {},
+    "creationTimestamp": {},
+    "deletionGracePeriodSeconds": {},
+    "deletionTimestamp": {},
+    "finalizers": {},
+    "generateName": {},
+    "generation": {},
+    "labels": {},
+    "managedFields": {
+      "apiVersion": {},
+      "fieldsType": {},
+      "fieldsV1": {},
+      "manager": {},
+      "operation": {},
+      "subresource": {},
+      "time": {}
+    },
+    "name": {},
+    "namespace": {},
+    "ownerReferences": {
+      "apiVersion": {},
+      "blockOwnerDeletion": {},
+      "controller": {},
+      "kind": {},
+      "name": {},
+      "uid": {}
+    },
+    "resourceVersion": {},
+    "selfLink": {},
+    "uid": {}
+  },
+  "spec": {
+    "allocateLoadBalancerNodePorts": {},
+    "clusterIP": {},
+    "clusterIPs": {},
+    "externalIPs": {},
+    "externalName": {},
+    "externalTrafficPolicy": {},
+    "healthCheckNodePort": {},
+    "internalTrafficPolicy": {},
+    "ipFamilies": {},
+    "ipFamilyPolicy": {},
+    "loadBalancerClass": {},
+    "loadBalancerIP": {},
+    "loadBalancerSourceRanges": {},
+    "ports": {
+      "appProtocol": {},
+      "name": {},
+      "nodePort": {},
+      "port": {},
+      "protocol": {},
+      "targetPort": {}
+    },
+    "publishNotReadyAddresses": {},
+    "selector": {},
+    "sessionAffinity": {},
+    "sessionAffinityConfig": {
+      "clientIP": {
+        "timeoutSeconds": {}
+      }
+    },
+    "trafficDistribution": {}
+  },
+  "status": {
+    "conditions": {
+      "lastTransitionTime": {},
+      "message": {},
+      "observedGeneration": {},
+      "reason": {},
+      "status": {}
+    },
+    "loadBalancer": {
+      "ingress": {
+        "hostname": {},
+        "ip": {},
+        "ipMode": {},
+        "ports": {
+          "error": {},
+          "port": {},
+          "protocol": {}
+        }
+      }
+    }
+  }
+}

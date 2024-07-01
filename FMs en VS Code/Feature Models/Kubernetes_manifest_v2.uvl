@@ -165,15 +165,15 @@ features
                                 mandatory
                                     Boolean STRATEGY_type
                                         or
-                                            Boolean Recreate
-                                            Boolean RollingUpdate
+                                            Boolean STRATEGY_TYPE_Recreate
+                                            Boolean STRATEGY_TYPE_RollingUpdate
                                                 mandatory
                                                     Integer maxUnavailable
                                                 optional
                                                     Integer maxSurge
                             Boolean DEPLOYMENTSPEC_template
                                 mandatory
-                                    Boolean DEPLOYMENTSPEC_TEMPLATE_Metadata {NO_TERMIADO}    
+                                    Boolean DEPLOYMENTSPEC_TEMPLATE_Metadata {NO_TERMINADO}    
                                         optional
                                             String TEMPLATE_METADATA_name
                                             String TEMPLATE_METADATA_namespace
@@ -185,16 +185,9 @@ features
                                                 mandatory
                                                     String TEMPLATE_ANNOTATIONS_key
                                                     String TEMPLATE_ANNOTATIONS_value
-                                    Boolean DEPLOYMENTSPEC_TEMPLATE_spec
-                    Boolean PodSpec {abstract}
-                        optional 
-                            Integer PODSPEC_activeDeadlineSeconds
-                            Boolean PODSPEC_affinity {NO_TERMINADO}
-                                optional
-                                    Boolean AFFINITY_nodeAffinity
-                                    Boolean AFFINITY_podAffinity
-                                    Boolean AFFINITY_podAntiAffinity
-                            Boolean PODSPEC_automountServiceAccountToken
+                                    Boolean DEPLOYMENTSPEC_TEMPLATE_Podspec
+                    Boolean PodSpec {abstract, NO_TERMINADO} 
+                        mandatory
                             Boolean PODSPEC_Containers cardinality [0..*]
                                 optional     
                                     Boolean CONTAINER_args cardinality [0..*]
@@ -255,7 +248,7 @@ features
                                                     Boolean POSTSTART_httpGet
                                                         mandatory   
                                                             String POSTSTART_HTTPGET_host
-                                                            Boolean POSTSTART_HTTPGET_httpHeaders
+                                                            Boolean POSTSTART_HTTPGET_httpHeaders cardinality [0..*]
                                                                 mandatory
                                                                     String POSTSTART_HTTPHEADERS_name       
                                                                     String POSTSTART_HTTPHEADERS_value
@@ -273,7 +266,7 @@ features
                                                     Boolean PRESTOP_httpGet
                                                         mandatory   
                                                             String PRESTOP_HTTPGET_host
-                                                            Boolean PRESTOP_HTTPGET_httpHeaders
+                                                            Boolean PRESTOP_HTTPGET_httpHeaders cardinality [0..*]
                                                                 mandatory
                                                                     String PRESTOP_HTTPHEADERS_name       
                                                                     String PRESTOP_HTTPHEADERS_value
@@ -296,7 +289,7 @@ features
                                             Boolean LIVENESSPROBE_httpGet
                                                 optional   
                                                     String LIVENESSPROBE_HTTPGET_host
-                                                    Boolean LIVENESSPROBE_HTTPGET_httpHeaders
+                                                    Boolean LIVENESSPROBE_HTTPGET_httpHeaders cardinality [0..*]
                                                         mandatory   
                                                             String LIVENESSPROBE_HTTPHEADERS_name
                                                             String LIVENESSPROBE_HTTPHEADERS_value
@@ -308,10 +301,12 @@ features
                                             Integer LIVENESSPROBE_successThreshold
                                             Boolean LIVENESSPROBE_tcpSocket
                                                 mandatory   
-                                                    Boolean LIVENESSPROBE_TCPSOCKET_host
                                                     Boolean LIVENESSPROBE_TCPSOCKET_port
-                                            Integer LIVENESSPROBE_terminationGracePeriodSeconds
+                                                optional   
+                                                    Boolean LIVENESSPROBE_TCPSOCKET_host
                                             Integer LIVENESSPROBE_timeoutSeconds
+                                        optional
+                                            Integer LIVENESSPROBE_terminationGracePeriodSeconds
                                     String CONTAINER_name  
                                     Boolean CONTAINER_ports cardinality [0..*]
                                         mandatory   
@@ -338,7 +333,7 @@ features
                                             Boolean READINESSPROBE_httpGet
                                                 optional   
                                                     String READINESSPROBE_HTTPGET_host
-                                                    Boolean READINESSPROBE_HTTPGET_httpHeaders
+                                                    Boolean READINESSPROBE_HTTPGET_httpHeaders cardinality [0..*]
                                                         mandatory   
                                                             String READINESSPROBE_HTTPHEADERS_name
                                                             String READINESSPROBE_HTTPHEADERS_value
@@ -350,17 +345,21 @@ features
                                             Integer READINESSPROBE_successThreshold
                                             Boolean READINESSPROBE_tcpSocket
                                                 mandatory   
-                                                    Boolean READINESSPROBE_TCPSOCKET_host
                                                     Boolean READINESSPROBE_TCPSOCKET_port
-                                            Integer READINESSPROBE_terminationGracePeriodSeconds
+                                                optional   
+                                                    Boolean READINESSPROBE_TCPSOCKET_host                                     
                                             Integer READINESSPROBE_timeoutSeconds
+                                        optional   
+                                            Integer READINESSPROBE_terminationGracePeriodSeconds
                                     Boolean CONTAINER_resizePolicy cardinality [0..*]
                                         mandatory   
                                             Boolean RESIZEPOLICY_resourceName
                                                 alternative   
-                                                    Boolean CONTAINER_RESIZEPOLICY_RESOURCENAME_cpu
-                                                    Boolean CONTAINER_RESIZEPOLICY_RESOURCENAME_memory
+                                                    Boolean CONTAINER_RESIZEPOLICY_RESTARTPOLICY_cpu
+                                                    Boolean CONTAINER_RESIZEPOLICY_RESTARTPOLICY_memory
+                                        optional
                                             String RESIZEPOLICY_restartPolicy
+                                    String CONTAINER_restartPolicy
                                     Boolean CONTAINER_resources
                                         or
                                             Boolean RESOURCES_request
@@ -374,7 +373,7 @@ features
                                             Boolean RESOURCES_claims
                                                 mandatory
                                                     String RESOURCES_CLAIMS_name
-                                    Boolean CONTAINER_securityContext {NO_TERMIADO}
+                                    Boolean CONTAINER_securityContext {NO_TERMINADO}
                                     Boolean CONTAINER_startupProbe
                                         mandatory
                                             Boolean STARTUPPROBE_exec
@@ -388,7 +387,7 @@ features
                                             Boolean STARTUPPROBE_httpGet
                                                 optional   
                                                     String STARTUPPROBE_HTTPGET_host
-                                                    Boolean STARTUPPROBE_HTTPGET_httpHeaders
+                                                    Boolean STARTUPPROBE_HTTPGET_httpHeaders cardinality [0..*]
                                                         mandatory   
                                                             String STARTUPPROBE_HTTPHEADERS_name
                                                             String STARTUPPROBE_HTTPHEADERS_value
@@ -420,7 +419,14 @@ features
                                     Boolean CONTAINER_workingDir
 
 
-                                    
+                        optional 
+                            Integer PODSPEC_activeDeadlineSeconds
+                            Boolean PODSPEC_affinity {NO_TERMINADO}
+                                optional
+                                    Boolean AFFINITY_nodeAffinity
+                                    Boolean AFFINITY_podAffinity
+                                    Boolean AFFINITY_podAntiAffinity
+                            Boolean PODSPEC_automountServiceAccountToken                                    
                             Boolean PODSPEC_dnsPolicy 
                                 alternative
                                     Boolean DNSPOLICY_ClusterFirstWithHostNet
@@ -613,6 +619,7 @@ constraints
     STARTUPPROBE_successThreshold > 0
     STARTUPPROBE_terminationGracePeriodSeconds > 0
     STARTUPPROBE_timeoutSeconds > 0
+
     
 
     

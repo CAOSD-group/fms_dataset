@@ -606,6 +606,7 @@ constraints
     LIVENESSPROBE_terminationGracePeriodSeconds > 0
     LIVENESSPROBE_timeoutSeconds > 0
     CONTAINER_PORTS_hostPort > 0 & CONTAINER_PORTS_hostPort < 65535
+    PODSPEC_hostNetwork => CONTAINER_PORTS_hostPort == CONTAINER_PORTS_containerPort
     READINESSPROBE_GRPC_port > 0 & READINESSPROBE_GRPC_port < 65535
     READINESSPROBE_HTTPGET_port > 0 & READINESSPROBE_HTTPGET_port < 65535
     READINESSPROBE_failureThreshold > 0

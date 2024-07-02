@@ -399,10 +399,12 @@ features
                                             Integer STARTUPPROBE_successThreshold
                                             Boolean STARTUPPROBE_tcpSocket
                                                 mandatory   
-                                                    Boolean STARTUPPROBE_TCPSOCKET_host
-                                                    Boolean RSTARTUPPROBE_TCPSOCKET_port
-                                            Integer STARTUPPROBE_terminationGracePeriodSeconds
+                                                    Boolean  STARTUPPROBE_TCPSOCKET_port
+                                                optional   
+                                                    Boolean  STARTUPPROBE_TCPSOCKET_host
                                             Integer STARTUPPROBE_timeoutSeconds
+                                        optional   
+                                            Integer STARTUPPROBE_terminationGracePeriodSeconds
                                     Boolean CONTAINER_stdin
                                     Boolean CONTAINER_stdinOnce
                                     String CONTAINER_terminationMessagePath
@@ -412,13 +414,11 @@ features
                                         mandatory
                                             String VOLUMEDEVICES_devicePath
                                             String VOLUMEDEVICES_name
-                                    Boolean CONTAINER_volumeMounts cardinality [0..*]
+                                    Boolean CONTAINER_volumeMounts cardinality [0..*] {NO_TERMINADO}
                                         mandatory   
                                             String VOLUMEMOUNTS_mountPath
                                             String VOLUMEMOUNTS_name
                                     Boolean CONTAINER_workingDir
-
-
                         optional 
                             Integer PODSPEC_activeDeadlineSeconds
                             Boolean PODSPEC_affinity {NO_TERMINADO}
@@ -523,6 +523,7 @@ features
                                             Boolean PORTS_PROTOCOL_sctp
                                     Integer SERVICESPEC_PORTS_nodePort
                                     String SERVICESPEC_PORTS_targetPort
+                                    String SERVICESPEC_PORTS_appProtocol
                             Boolean publishNotReadyAddresses
                             Boolean SPEC_Selector cardinality [0..*] 
                                 mandatory

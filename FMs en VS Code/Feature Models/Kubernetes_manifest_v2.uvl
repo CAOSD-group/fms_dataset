@@ -123,6 +123,7 @@ features
                 mandatory
                     String METADATA_name
                 optional
+                    Integer METADATA_deletionGracePeriodSeconds
                     String METADATA_namespace
                     Boolean METADATA_labels cardinality [0..*]
                         mandatory

@@ -1,0 +1,17 @@
+{
+  "file": "Kubernetes_manifest_v2.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "ApiVersion": true,
+    "Group": true,
+    "GROUP_apps": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "Kind": true,
+    "KIND_Deployment": true,
+    "Metadata": true,
+    "METADATA_deletionGracePeriodSeconds": 3,
+    "Spec": true,
+    "DeploymentSpec": true
+  }
+}

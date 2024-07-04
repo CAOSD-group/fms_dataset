@@ -11,7 +11,10 @@ def main():
   dict2 = loadSchema('generatedJSON/service.json')
 
   diff = DeepDiff(dict1, dict2)
-  pprint(diff)
+  print(f'--- Elementos añadidos --- \n')
+  pprint(diff['dictionary_item_added'])
+  print(f'\n--- Elementos eliminados --- \n')
+  pprint(diff['dictionary_item_removed'])
 
 # Carga el schema (JSON)
 def loadSchema(schema):

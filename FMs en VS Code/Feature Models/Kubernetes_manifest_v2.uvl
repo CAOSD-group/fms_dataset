@@ -621,9 +621,3 @@ constraints
     STARTUPPROBE_successThreshold > 0
     STARTUPPROBE_terminationGracePeriodSeconds > 0
     STARTUPPROBE_timeoutSeconds > 0
-
-    
-
-    
-    
-    

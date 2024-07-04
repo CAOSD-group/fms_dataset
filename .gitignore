@@ -155,6 +155,8 @@ cython_debug/
 
 
 salida.yaml
+pruebasValidacion/rdo.json
+pruebasValidacion/rdo.yaml
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

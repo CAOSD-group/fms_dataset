@@ -2,12 +2,21 @@ apiVersion: {{GROUP_admissionregistration}}{{GROUP_apiextensions}}{{GROUP_apireg
 kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{KIND_Job}}{{KIND_Pod}}{{KIND_ReplicaSet}}{{KIND_ReplicationController}}{{KIND_StatefullSet}}{{KIND_Endpoints}}{{KIND_EndpintSlice}}{{KIND_Ingress}}{{KIND_IngressClass}}{{KIND_Service}}{{KIND_ConfigMap}}{{KIND_CSIDriver}}{{KIND_CSINode}}{{KIND_Secret}}{{KIND_PersistentVolumeClaim}}{{KIND_StorageClass}}{{KIND_CSIStorageCapacity}}{{KIND_Volume}}{{KIND_VolumeAttachment}}{{KIND_VolumeAttributesClass}}{{KIND_ClusterTrustBundle}}{{KIND_ControllerRevision}}{{KIND_CustomerResourceDefinition}}{{KIND_Event}}{{KIND_LimitRange}}{{KIND_HorizontalPodAutoscaler}}{{KIND_MutatingWebhookConfiguration}}{{KIND_ValidatingWebhookConfiguration}}{{KIND_PodSchedulingContext}}{{KIND_PodTemplate}}{{KIND_PodDisruptionBudget}}{{KIND_PriorityClass}}{{KIND_ResourceClaim}}{{KIND_ResourceClaimTemplate}}{{KIND_ResourceClass}}{{KIND_ValidatingAdmissionPolicy}}{{KIND_ValidatingAdmissionPolicyBinding}}{{KIND_APIService}}{{KIND_Binding}}{{KIND_CertificateSigningRequest}}{{KIND_ClusterRole}}{{KIND_ClusterRoleBinding}}{{KIND_ComponentStatus}}{{KIND_FlowSchema}}{{KIND_IPAddress}}{{KIND_Lease}}{{KIND_LocalSubjectAccessReview}}{{KIND_Namespace}}{{KIND_Node}}{{KIND_PersistentVolume}}{{KIND_PriorityLevelConfiguration}}{{KIND_ResourceQuota}}{{KIND_Role}}{{KIND_RoleBinding}}{{KIND_RuntimeClass}}{{KIND_SelfSubjectAccessReview}}{{KIND_SelfSubjectReview}}{{KIND_SelfSubjectRulesReview}}{{KIND_ServiceAccount}}{{KIND_ServiceCIDR}}{{KIND_StorageVersion}}{{KIND_SubjectAccessReview}}{{KIND_TokenRequest}}{{KIND_TokenReview}}{{KIND_NetworkPolicy}}{{KIND_ResourceClaimParameters}}{{KIND_ResourceSlice}}
 
 
-{%if Metadata%}metadata:
-  {% include 'Kubernetes_manifest_metadata.txt.jinja' %}
+{%if Metadata%}metadata:  
+  {% macro indent_metadata() %}{% include 'Kubernetes_manifest_metadata.txt.jinja' %}{% endmacro %}
+  {{ indent_metadata()|indent(first=false) }}
 {%endif%}
 
 {%if Spec%}spec:
-  {%if DeploymentSpec%}{% include 'Kubernetes_manifest_spec_deployment.txt.jinja' %} {%endif%}
+  {%if DeploymentSpec and PodSpec%}
+  {% macro indent_deployment() %}{% include 'Kubernetes_manifest_spec_deployment.txt.jinja' %}{% endmacro %}
+  {{ indent_deployment()|indent(first=false) }}
+  
+
+  {%elif PodSpec%}
+  {% macro indent_pod() %}{% include 'Kubernetes_manifest_spec_pod.txt.jinja'%}{% endmacro %}
+  {{ indent_pod()|indent }}
+  {%endif%}
 {%endif%}
 
   

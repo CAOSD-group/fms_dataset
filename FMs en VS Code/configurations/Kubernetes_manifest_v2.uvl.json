@@ -10,8 +10,114 @@
     "Kind": true,
     "KIND_Deployment": true,
     "Metadata": true,
+    "METADATA_name": "nombre_de_prueba",
+    "METADATA_namespace": "namepace_de_prueba",
+    "METADATA_labels": [
+      {
+        "LABELS_key": "key_1",
+        "LABELS_value": "Value_1"
+      },
+      {
+        "LABELS_key": "Key_2",
+        "LABELS_value": "Value_2"
+      }
+    ],
+    "METADATA_annotations": [
+      {
+        "ANNOTATIONS_key": "key_1",
+        "ANNOTATIONS_value": "Value_1"
+      },
+      {
+        "ANNOTATIONS_key": "Key_2",
+        "ANNOTATIONS_value": "Value_2"
+      }
+    ],
     "METADATA_deletionGracePeriodSeconds": 3,
     "Spec": true,
-    "DeploymentSpec": true
+    "DeploymentSpec": true,
+    "DEPLOYMENTSPEC_minReadySeconds": 3,
+    "DEPLOYMENTSPEC_paused": true,
+    "DEPLOYMENTSPEC_progressDeadlineSeconds": 10,
+    "DEPLOYMENTSPEC_Replicas": 1,
+    "DEPLOYMENTSPEC_revisionHistoryLimit": 1,
+    "DEPLOYMENTSPEC_selector": true,
+    "LABELSELECTOR_matchLabels": [
+      {
+        "MATCHLABELS_key": "key_1",
+        "MATCHLABELS_value": "Value_1"
+      },
+      {
+        "MATCHLABELS_key": "Key_2",
+        "MATCHLABELS_value": "Value_2"
+      }
+    ],
+    "LABELSELECTOR_matchExpressions": [
+      {
+        "MATCHEXPRESSIONS_key": "key_1",
+        "MATCHEXPRESSIONS_operator": true,
+        "OPERATOR_notIn": true,
+        "MATCHEXPRESSIONS_values": [
+          {
+            "MATCHEXPRESSIONS_value": "Valor_1"
+          },
+          {
+            "MATCHEXPRESSIONS_value": "Valor_2"
+          }
+        ]
+      },
+      {
+        "MATCHEXPRESSIONS_key": "Key_2",
+        "MATCHEXPRESSIONS_operator": true,
+        "OPERATOR_doesNotExist": true
+      }
+    ],
+    "DEPLOYMENTSPEC_strategy": true,
+    "STRATEGY_type": true,
+    "STRATEGY_TYPE_Recreate": false,
+    "STRATEGY_TYPE_RollingUpdate": true,
+    "maxUnavailable": 1,
+    "maxSurge": 1,
+    "DEPLOYMENTSPEC_template": true,
+    "DEPLOYMENTSPEC_TEMPLATE_Metadata": true,
+    "TEMPLATE_METADATA_name": "nombre_de_prueba",
+    "TEMPLATE_METADATA_namespace": "namepace_de_prueba",
+    "TEMPLATE_METADATA_labels": [
+      {
+        "TEMPLATE_METADATA_LABELS_key": "key_1",
+        "TEMPLATE_METADATA_LABELS_value": "Value_1"
+      },
+      {
+        "TEMPLATE_METADATA_LABELS_key": "Key_2",
+        "TEMPLATE_METADATA_LABELS_value": "Value_2"
+      }
+    ],
+    "TEMPLATE_METADATA_annotations": [
+      {
+        "TEMPLATE_METADATA_ANNOTATIONS_key": "key_1",
+        "TEMPLATE_METADATA_ANNOTATIONS_value": "Value_1"
+      },
+      {
+        "TEMPLATE_METADATA_ANNOTATIONS_key": "Key_2",
+        "TEMPLATE_METADATA_ANNOTATIONS_value": "Value_2"
+      }
+    ],
+    "TEMPLATE_METADATA_deletionGracePeriodSeconds": 3,
+    "DEPLOYMENTSPEC_TEMPLATE_Podspec": true,
+    "PodSpec": true,
+    "PODSPEC_Containers":[
+      {
+      "CONTAINER_name": "contenedor",
+      "CONTAINER_image": "imagen:1.13",
+      "CONTAINER_args": [
+        {
+          "CONTAINER_ARGS_value": "while true"
+        },
+        {
+          "CONTAINER_ARGS_value": "do echo prueba"
+        }
+      ]
+      }
+    ]
+    
   }
 }

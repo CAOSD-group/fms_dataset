@@ -142,7 +142,7 @@ features
                             Integer DEPLOYMENTSPEC_progressDeadlineSeconds
                             Integer DEPLOYMENTSPEC_Replicas
                             Integer DEPLOYMENTSPEC_revisionHistoryLimit
-                            Boolean DEPLOYMENTSPEC_LabelSelector
+                            Boolean DEPLOYMENTSPEC_selector
                                 or 
                                     Boolean LABELSELECTOR_matchLabels cardinality [0..*]
                                         mandatory 
@@ -178,18 +178,21 @@ features
                                         optional
                                             String TEMPLATE_METADATA_name
                                             String TEMPLATE_METADATA_namespace
+                                            Integer TEMPLATE_METADATA_deletionGracePeriodSeconds
                                             Boolean TEMPLATE_METADATA_labels cardinality [0..*]
                                                 mandatory
                                                     String TEMPLATE_METADATA_LABELS_key
                                                     String TEMPLATE_METADATA_LABELS_value
                                             Boolean TEMPLATE_METADATA_annotations cardinality [0..*]
                                                 mandatory
-                                                    String TEMPLATE_ANNOTATIONS_key
-                                                    String TEMPLATE_ANNOTATIONS_value
+                                                    String TEMPLATE__METADATA_ANNOTATIONS_key
+                                                    String TEMPLATE__METADATA_ANNOTATIONS_value
                                     Boolean DEPLOYMENTSPEC_TEMPLATE_Podspec
                     Boolean PodSpec {abstract, NO_TERMINADO} 
                         mandatory
                             Boolean PODSPEC_Containers cardinality [0..*]
+                                mandatory   
+                                    String CONTAINER_name 
                                 optional     
                                     Boolean CONTAINER_args cardinality [0..*]
                                         mandatory   
@@ -307,8 +310,7 @@ features
                                                     Boolean LIVENESSPROBE_TCPSOCKET_host
                                             Integer LIVENESSPROBE_timeoutSeconds
                                         optional
-                                            Integer LIVENESSPROBE_terminationGracePeriodSeconds
-                                    String CONTAINER_name  
+                                            Integer LIVENESSPROBE_terminationGracePeriodSeconds 
                                     Boolean CONTAINER_ports cardinality [0..*]
                                         mandatory   
                                             Integer CONTAINER_PORTS_containerPort
@@ -622,3 +624,4 @@ constraints
     STARTUPPROBE_successThreshold > 0
     STARTUPPROBE_terminationGracePeriodSeconds > 0
     STARTUPPROBE_timeoutSeconds > 0
+    DEPLOYMENTSPEC_TEMPLATE_Podspec => PodSpec

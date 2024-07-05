@@ -99,6 +99,59 @@ KIND_NetworkPolicy, KIND_NetworkPolicy, NetworkPolicy
 KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
 KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice
 Metadata, Metadata, -
+METADATA_name, METADATA_name,
+METADATA_namespace, METADATA_namespace, 
+METADATA_labels, METADATA_labels, -
+LABELS_key, LABELS_key, 
+LABELS_value, LABELS_value,  
+METADATA_annotations, METADATA_annotations, -
+ANNOTATIONS_key, ANNOTATIONS_key, 
+ANNOTATIONS_value, ANNOTATIONS_value, 
 METADATA_deletionGracePeriodSeconds, METADATA_deletionGracePeriodSeconds, 
 Spec, Spec, -
 DeploymentSpec, DeploymentSpec, -
+DEPLOYMENTSPEC_minReadySeconds, DEPLOYMENTSPEC_minReadySeconds, 
+DEPLOYMENTSPEC_paused, DEPLOYMENTSPEC_paused, 
+DEPLOYMENTSPEC_progressDeadlineSeconds, DEPLOYMENTSPEC_progressDeadlineSeconds, 
+DEPLOYMENTSPEC_Replicas, DEPLOYMENTSPEC_Replicas, 
+DEPLOYMENTSPEC_revisionHistoryLimit, DEPLOYMENTSPEC_revisionHistoryLimit, 
+DEPLOYMENTSPEC_selector, DEPLOYMENTSPEC_selector, -
+LABELSELECTOR_matchLabels, LABELSELECTOR_matchLabels, -
+MATCHLABELS_key, MATCHLABELS_key,  
+MATCHLABELS_value,MATCHLABELS_value, 
+LABELSELECTOR_matchExpressions, LABELSELECTOR_matchExpressions, -
+MATCHEXPRESSIONS_key, MATCHEXPRESSIONS_key, 
+MATCHEXPRESSIONS_operator, MATCHEXPRESSIONS_operator, -
+OPERATOR_in, OPERATOR_in, in
+OPERATOR_notIn, OPERATOR_notIn, notIn
+OPERATOR_exist, OPERATOR_exist, exist
+OPERATOR_doesNotExist, OPERATOR_doesNotExist, doesNotExist
+OPERATOR_gt, OPERATOR_gt, gt
+OPERATOR_lt, OPERATOR_lt, lt
+MATCHEXPRESSIONS_values, MATCHEXPRESSIONS_values, -
+MATCHEXPRESSIONS_value, MATCHEXPRESSIONS_value, 
+DEPLOYMENTSPEC_strategy, DEPLOYMENTSPEC_strategy, 
+STRATEGY_type, STRATEGY_type, 
+STRATEGY_TYPE_Recreate, STRATEGY_TYPE_Recreate, -
+STRATEGY_TYPE_RollingUpdate, STRATEGY_TYPE_RollingUpdate, 
+maxUnavailable, maxUnavailable, 
+maxSurge, maxSurge, 
+DEPLOYMENTSPEC_template, DEPLOYMENTSPEC_template, -
+DEPLOYMENTSPEC_TEMPLATE_Metadata, DEPLOYMENTSPEC_TEMPLATE_Metadata, -
+DEPLOYMENTSPEC_TEMPLATE_Metadata, DEPLOYMENTSPEC_TEMPLATE_Metadata, -
+TEMPLATE_METADATA_name, TEMPLATE_METADATA_name,
+TEMPLATE_METADATA_namespace, TEMPLATE_METADATA_namespace, 
+TEMPLATE_METADATA_labels, TEMPLATE_METADATA_labels, -
+TEMPLATE_METADATA_LABELS_key, TEMPLATE_METADATA_LABELS_key, 
+TEMPLATE_METADATA_LABELS_value, TEMPLATE_METADATA_LABELS_value,  
+TEMPLATE_METADATA_annotations, TEMPLATE_METADATA_annotations, -
+TEMPLATE_METADATA_ANNOTATIONS_key, TEMPLATE_METADATA_ANNOTATIONS_key, 
+TEMPLATE_METADATA_ANNOTATIONS_value, TEMPLATE_METADATA_ANNOTATIONS_value, 
+TEMPLATE_METADATA_deletionGracePeriodSeconds, METADATA_deletionGracePeriodSeconds,
+DEPLOYMENTSPEC_TEMPLATE_Podspec, DEPLOYMENTSPEC_TEMPLATE_Podspec, -
+PodSpec, PodSpec, -
+PODSPEC_Containers, PODSPEC_Containers, 
+CONTAINER_name, CONTAINER_name, 
+CONTAINER_image, CONTAINER_image, 
+CONTAINER_args, CONTAINER_args, 
+CONTAINER_ARGS_value, CONTAINER_ARGS_value, 

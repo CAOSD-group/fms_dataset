@@ -1,0 +1,10 @@
+  
+containers:
+{%for c in PODSPEC_Containers%}
+  - name: {{c.CONTAINER_name}}
+    image: {{c.CONTAINER_image}}
+    {%if c.CONTAINER_args%}args: ["{%for arg in c.CONTAINER_args%}{{arg.CONTAINER_ARGS_value}};{%endfor%}"]
+      
+  {%endif%}
+    
+{%endfor%}

@@ -10,7 +10,7 @@
     "Kind": true,
     "KIND_Deployment": true,
     "Metadata": true,
-    "METADATA_name": "nombre_de_prueba",
+    "METADATA_name": "testname",
     "METADATA_namespace": "namepace_de_prueba",
     "METADATA_labels": [
       {
@@ -79,7 +79,7 @@
     "maxSurge": 1,
     "DEPLOYMENTSPEC_template": true,
     "DEPLOYMENTSPEC_TEMPLATE_Metadata": true,
-    "TEMPLATE_METADATA_name": "nombre_de_prueba",
+    "TEMPLATE_METADATA_name": "testname",
     "TEMPLATE_METADATA_namespace": "namepace_de_prueba",
     "TEMPLATE_METADATA_labels": [
       {
@@ -115,7 +115,86 @@
         {
           "CONTAINER_ARGS_value": "do echo prueba"
         }
-      ]
+      ],
+      "CONTAINER_command": [
+        {
+          "CONTAINER_COMMAND_value": "sh"
+        },
+        {
+          "CONTAINER_COMMAND_value": "-c"
+        }
+      ],
+      "CONTAINER_env": [
+        {
+          "CONTAINER_ENV_name": "MY_ENV_VAR",
+          "CONTAINER_ENV_value": "Hello from container"
+        },
+        {
+          "CONTAINER_ENV_valueFrom": true,
+          "configMapKeyRef": true,
+          "CONTAINER_ENV_name": "CONFIG_VAR",
+          "CONFIGMAPKEYREF_name": "example-configmap",
+          "CONFIGMAPKEYREF_key": "example-key",
+          "CONFIGMAPKEYREF_optional": true
+        },
+        {
+          "CONTAINER_ENV_valueFrom": true,
+          "fieldRef": true,
+          "CONTAINER_ENV_name": "POD_NAME",
+          "FIELDREF_fieldPath": "metadata.name",
+          "FIELDREF_apiversion": "v1"
+        },
+        {
+          "CONTAINER_ENV_valueFrom": true,
+          "CONTAINER_ENV_name": "CPU_REQUEST",
+          "resourceFieldRef": true,
+          "RESOURCEFIELDREF_containerName": "contenedor",
+          "RESOURCEFIELDREF_resource": "requests.cpu",
+          "RESOURCEFIELDREF_divisor": "test-divisor"
+        },
+        {
+          "CONTAINER_ENV_valueFrom": true,
+          "CONTAINER_ENV_name": "SECRET_PASSWORD",
+          "secretKeyRef": true,
+          "SECRETKEYREF_key": "example-secret",
+          "SECRETKEYREF_name": "example-password",
+          "SECRETKEYREF_optional": false
+        }
+      ],
+      "CONTAINER_envFrom": [
+        {
+          "ENVFROM_configMapRef": true,
+          "CONFIGMAPREF_name": "example-configmap",
+          "CONFIGMAPREF_optional": true
+        },
+        {
+          "ENVFROM_secretRef": true,
+          "SECRETREF_name": "example-secret",
+          "SECRETREF_optional": true
+        }
+      ],
+      "CONTAINER_imagePullPolicy": true,
+      "IMAGEPULLPOLICY_always": true,
+      "IMAGEPULLPOLICY_never": false,
+      "IMAGEPULLPOLICY_ifNotPresent": false,
+
+      "CONTAINER_lifecycle": true,
+      "LIFECYCLE_postStart": true,
+      "POSTSTART_exec": [
+        {
+          "POSTSTART_EXEC_command": "nginx"
+        },
+        {
+          "POSTSTART_EXEC_command": "-s"
+        },
+        {
+          "POSTSTART_EXEC_command": "quit"
+        }
+      ],
+      "POSTSTART_sleep": true,
+      "POSTSTART_SLEEP_seconds": null, 
+      "":""
+      
       }
     ]
     

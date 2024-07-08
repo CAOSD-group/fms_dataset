@@ -210,23 +210,27 @@ features
                                                         mandatory
                                                             String CONFIGMAPKEYREF_key
                                                             String CONFIGMAPKEYREF_name
+                                                        optional
                                                             Boolean CONFIGMAPKEYREF_optional
                                                     Boolean fieldRef
                                                         mandatory
-                                                            String FIELDREF_apiversion
                                                             String FIELDREF_fieldPath
+                                                        optional   
+                                                            String FIELDREF_apiversion
                                                     Boolean resourceFieldRef
                                                         mandatory
-                                                            String RESOURCFIELDREF_containerName
-                                                            String RESOURCFIELDREF_divisor
-                                                            String RESOURCFIELDREF_resource
+                                                            String RESOURCEFIELDREF_containerName
+                                                            String RESOURCEFIELDREF_resource
+                                                        optional   
+                                                            String RESOURCEFIELDREF_divisor
                                                     Boolean secretKeyRef
                                                         mandatory
                                                             String SECRETKEYREF_key
                                                             String SECRETKEYREF_name
+                                                        optional
                                                             Boolean SECRETKEYREF_optional
-                                    Boolean CONTAINER_envFrom
-                                        mandatory   
+                                    Boolean CONTAINER_envFrom cardinality [0..*]
+                                        alternative  
                                             Boolean ENVFROM_configMapRef
                                                 mandatory   
                                                     String CONFIGMAPREF_name
@@ -245,10 +249,10 @@ features
                                     Boolean CONTAINER_lifecycle
                                         optional
                                             Boolean LIFECYCLE_postStart
-                                                alternative   
-                                                    Boolean POSTSTART_exec
+                                                optional   
+                                                    Boolean POSTSTART_exec cardinality [0..*]
                                                         mandatory   
-                                                            String POSTSTART_EXEC_command
+                                                            String POSTSTART_EXEC_command 
                                                     Boolean POSTSTART_httpGet
                                                         mandatory   
                                                             String POSTSTART_HTTPGET_host
@@ -263,8 +267,8 @@ features
                                                         mandatory
                                                             Integer POSTSTART_SLEEP_seconds
                                             Boolean LIFECYCLE_preStop
-                                                alternative   
-                                                    Boolean PRESTOP_exec
+                                                optional   
+                                                    Boolean PRESTOP_exec cardinality [0..*]
                                                         mandatory   
                                                             String PRESTOP_EXEC_command
                                                     Boolean PRESTOP_httpGet

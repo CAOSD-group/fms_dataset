@@ -33,10 +33,10 @@
 
 {%if DEPLOYMENTSPEC_strategy%}strategy:
   {%if STRATEGY_TYPE_Recreate%}type: Recreate{%endif%}
-  {%if STRATEGY_TYPE_RollingUpdate%}type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: {{maxUnavailable}}
-      {%if maxSurge%}maxSurge: {{maxSurge}}{%endif%}
+  {%if STRATEGY_TYPE_RollingUpdate%}type: 
+  rollingUpdate:
+    maxUnavailable: {{maxUnavailable}}
+    {%if maxSurge%}maxSurge: {{maxSurge}}{%endif%}
   {%endif%}
 
 {%if DEPLOYMENTSPEC_template%}template:
@@ -61,7 +61,7 @@
 
   {%endif%}
 
-  {%if DEPLOYMENTSPEC_TEMPLATE_Podspec%}spec
+  {%if DEPLOYMENTSPEC_TEMPLATE_Podspec%}spec: 
   {% macro indent_pod() %}{% include 'Kubernetes_manifest_spec_pod.txt.jinja'%}{% endmacro %}
   {{ indent_pod()|indent }}
   {%endif%}

@@ -155,3 +155,41 @@ CONTAINER_name, CONTAINER_name,
 CONTAINER_image, CONTAINER_image, 
 CONTAINER_args, CONTAINER_args, 
 CONTAINER_ARGS_value, CONTAINER_ARGS_value, 
+CONTAINER_command, CONTAINER_command, 
+CONTAINER_COMMAND_value, CONTAINER_COMMAND_value, 
+CONTAINER_env, CONTAINER_env, 
+CONTAINER_ENV_name, CONTAINER_ENV_name, 
+CONTAINER_ENV_value, CONTAINER_ENV_value, 
+CONTAINER_ENV_valueFrom, CONTAINER_ENV_valueFrom, -
+configMapKeyRef, configMapKeyRef, -
+CONFIGMAPKEYREF_name, CONFIGMAPKEYREF_name, 
+CONFIGMAPKEYREF_key, CONFIGMAPKEYREF_key, 
+CONFIGMAPKEYREF_optional, CONFIGMAPKEYREF_optional, 
+fieldRef, fieldRef, -
+FIELDREF_apiversion, FIELDREF_apiversion, 
+FIELDREF_fieldPath, FIELDREF_fieldPath, 
+resourceFieldRef, resourceFieldRef, -
+RESOURCEFIELDREF_containerName, RESOURCEFIELDREF_containerName, 
+RESOURCEFIELDREF_resource, RESOURCEFIELDREF_resource, 
+RESOURCEFIELDREF_divisor, RESOURCEFIELDREF_divisor, 
+secretKeyRef, secretKeyRef, -
+SECRETKEYREF_key, SECRETKEYREF_key, 
+SECRETKEYREF_name, SECRETKEYREF_name,
+SECRETKEYREF_optional, SECRETKEYREF_optional,  
+CONTAINER_envFrom, CONTAINER_envFrom, -
+ENVFROM_configMapRef, ENVFROM_configMapRef, -
+CONFIGMAPREF_name, CONFIGMAPREF_name, 
+CONFIGMAPREF_optional, CONFIGMAPREF_optional, 
+ENVFROM_secretRef, ENVFROM_secretRef, 
+SECRETREF_name, SECRETREF_name, 
+SECRETREF_optional, SECRETREF_optional, 
+CONTAINER_imagePullPolicy, CONTAINER_imagePullPolicy, -
+IMAGEPULLPOLICY_always, IMAGEPULLPOLICY_always, Always
+IMAGEPULLPOLICY_never, IMAGEPULLPOLICY_never, Never
+IMAGEPULLPOLICY_ifNotPresent, IMAGEPULLPOLICY_ifNotPresent, ifNotPresent
+CONTAINER_lifecycle, CONTAINER_lifecycle, -
+LIFECYCLE_postStart, LIFECYCLE_postStart, -
+POSTSTART_exec, POSTSTART_exec, -
+POSTSTART_EXEC_command, POSTSTART_EXEC_command, 
+POSTSTART_sleep, POSTSTART_sleep, -
+POSTSTART_SLEEP_seconds, POSTSTART_SLEEP_seconds, 

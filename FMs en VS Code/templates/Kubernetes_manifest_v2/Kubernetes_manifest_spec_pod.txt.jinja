@@ -2,9 +2,68 @@
 containers:
 {%for c in PODSPEC_Containers%}
   - name: {{c.CONTAINER_name}}
+
     image: {{c.CONTAINER_image}}
-    {%if c.CONTAINER_args%}args: ["{%for arg in c.CONTAINER_args%}{{arg.CONTAINER_ARGS_value}};{%endfor%}"]
-      
+
+    {%if c.CONTAINER_args%}args: ["{%for arg in c.CONTAINER_args%}{{arg.CONTAINER_ARGS_value}};{%endfor%}"] {%endif%}
+
+    {%if c.CONTAINER_command%}command: [{%for comm in c.CONTAINER_command%}"{{comm.CONTAINER_COMMAND_value}}",{%endfor%}] {%endif%}
+
+    {%if c.CONTAINER_env%}env: 
+      {%for env in c.CONTAINER_env%}
+      - name: {{env.CONTAINER_ENV_name}}
+        {%if env.CONTAINER_ENV_value%}value: "{{env.CONTAINER_ENV_value}}"{%endif%}
+
+        {%if env.CONTAINER_ENV_valueFrom%}valueFrom: {%endif%}
+          {%if env.configMapKeyRef%}configMapKeyRef: 
+            name: {{env.CONFIGMAPKEYREF_name}}
+            key: {{env.CONFIGMAPKEYREF_key}}
+            {%if env.CONFIGMAPKEYREF_optional%}optional: {{env.CONFIGMAPKEYREF_optional}}{%endif%}
+          {%endif%}
+          {%if env.fieldRef%}fieldRef: 
+            fieldPath: {{env.FIELDREF_fieldPath}}
+            {# {%if env.FIELDREF_apiversion%}apiversion: {{env.FIELDREF_apiversion}}{%endif%} #}
+          {%endif%}
+          {%if env.resourceFieldRef%}resourceFieldRef: 
+            containerName: {{env.RESOURCEFIELDREF_containerName}}
+            resource: {{env.RESOURCEFIELDREF_resource}}
+            {%if env.RESOURCEFIELDREF_divisor%}divisor: {{env.RESOURCEFIELDREF_divisor}}{%endif%}
+          {%endif%}
+          {%if env.secretKeyRef%}secretKeyRef: 
+            name: {{env.SECRETKEYREF_key}}
+            key: {{env.SECRETKEYREF_name}}
+            {%if env.SECRETKEYREF_optional%}optional: {{env.SECRETKEYREF_optional}}{%endif%}
+          {%endif%}
+      {%endfor%}
+    {%endif%}
+
+    {%if c.CONTAINER_envFrom%}envFrom:
+      {%for envF in c.CONTAINER_envFrom%}
+      {%if envF.ENVFROM_configMapRef%}- configMapRef:
+          name: {{envF.CONFIGMAPREF_name}}
+      {%endif%}
+      {%if envF.ENVFROM_secretRef%}- secretRef:
+          name: {{envF.SECRETREF_name}}  
+      {%endif%} 
+      {%endfor%}
+    {%endif%}
+
+    {%if c.CONTAINER_imagePullPolicy%}imagePullPolicy: {{c.IMAGEPULLPOLICY_always}}{{c.IMAGEPULLPOLICY_never}}{{c.IMAGEPULLPOLICY_ifNotPresent}} {%endif%}
+  
+    {%if c.CONTAINER_lifecycle%}lifecycle: 
+      {%if c.LIFECYCLE_postStart%}postStart:
+        {%if c.POSTSTART_exec%}exec:
+          command: [{%for e in c.POSTSTART_exec%}"{{e.POSTSTART_EXEC_command}}",{%endfor%}]
+        {%endif%}
+
+        {%if c.POSTSTART_sleep%}sleep: {{c.POSTSTART_SLEEP_seconds}} {%endif%}
+      {%endif%}
+  
   {%endif%}
+
+  
+    
+    
+  
     
 {%endfor%}

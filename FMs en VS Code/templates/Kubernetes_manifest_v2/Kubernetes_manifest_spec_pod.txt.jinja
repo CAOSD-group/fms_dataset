@@ -57,13 +57,23 @@ containers:
         {%endif%}
 
         {%if c.POSTSTART_sleep%}sleep: {{c.POSTSTART_SLEEP_seconds}} {%endif%}
+      
+        {%if c.POSTSTART_httpGet%}httpGet:
+          host: {{c.POSTSTART_HTTPGET_host}}
+          {%if c.POSTSTART_HTTPGET_httpHeaders%}httpHeaders:
+            {%for header in c.POSTSTART_HTTPGET_httpHeaders%}
+            - name: {{header.POSTSTART_HTTPHEADERS_name}}
+              value: {{header.POSTSTART_HTTPHEADERS_value}}
+            {%endfor%}
+          {%endif%}
+          port: {{c.POSTSTART_HTTPGET_port}}
+          {%if c.POSTSTART_HTTPGET_path%}path: {{c.POSTSTART_HTTPGET_path}}{%endif%}
+          {%if c.POSTSTART_HTTPGET_scheme%}scheme: {{c.POSTSTART_HTTPGET_scheme}}{%endif%}
       {%endif%}
-  
-  {%endif%}
+    {%endif%}
 
-  
-    
-    
-  
-    
+
+
+
+    {%endif%}
 {%endfor%}

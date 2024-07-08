@@ -260,8 +260,9 @@ features
                                                                 mandatory
                                                                     String POSTSTART_HTTPHEADERS_name       
                                                                     String POSTSTART_HTTPHEADERS_value
+                                                            Integer POSTSTART_HTTPGET_port
+                                                        optional
                                                             String POSTSTART_HTTPGET_path
-                                                            String POSTSTART_HTTPGET_port
                                                             String POSTSTART_HTTPGET_scheme
                                                     Boolean POSTSTART_sleep
                                                         mandatory

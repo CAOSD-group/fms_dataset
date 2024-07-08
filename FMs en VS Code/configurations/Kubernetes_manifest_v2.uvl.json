@@ -193,10 +193,20 @@
       ],
       "POSTSTART_sleep": true,
       "POSTSTART_SLEEP_seconds": null, 
-      "":""
+      "POSTSTART_httpGet": true,
+      "POSTSTART_HTTPGET_host": "0.0.0.0",
+      "POSTSTART_HTTPGET_httpHeaders": [
+        {
+          "POSTSTART_HTTPHEADERS_name": "nameHeader",
+          "POSTSTART_HTTPHEADERS_value": "valueHeader"
+        }
+      ],
+      "POSTSTART_HTTPGET_port": 4664,
+      "POSTSTART_HTTPGET_path": "/path/to/HTTP",
+      "POSTSTART_HTTPGET_scheme": "HTTP"
+      
       
       }
     ]
-    
   }
 }

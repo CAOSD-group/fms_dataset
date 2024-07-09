@@ -51,6 +51,7 @@ containers:
     {%if c.CONTAINER_imagePullPolicy%}imagePullPolicy: {{c.IMAGEPULLPOLICY_always}}{{c.IMAGEPULLPOLICY_never}}{{c.IMAGEPULLPOLICY_ifNotPresent}} {%endif%}
   
     {%if c.CONTAINER_lifecycle%}lifecycle: 
+
       {%if c.LIFECYCLE_postStart%}postStart:
         {%if c.POSTSTART_exec%}exec:
           command: [{%for e in c.POSTSTART_exec%}"{{e.POSTSTART_EXEC_command}}",{%endfor%}]
@@ -69,10 +70,74 @@ containers:
           port: {{c.POSTSTART_HTTPGET_port}}
           {%if c.POSTSTART_HTTPGET_path%}path: {{c.POSTSTART_HTTPGET_path}}{%endif%}
           {%if c.POSTSTART_HTTPGET_scheme%}scheme: {{c.POSTSTART_HTTPGET_scheme}}{%endif%}
+        {%endif%}
       {%endif%}
+
+      {%if c.LIFECYCLE_preStop%}preStop:
+        {%if c.PRESTOP_exec%}exec:
+          command: [{%for e in c.PRESTOP_exec%}"{{e.PRESTOP_EXEC_command}}",{%endfor%}]
+        {%endif%}
+
+        {%if c.PRESTOP_sleep%}sleep: {{c.PRESTOP_SLEEP_seconds}} {%endif%}
+      
+        {%if c.PRESTOP_httpGet%}httpGet:
+          host: {{c.PRESTOP_HTTPGET_host}}
+          {%if c.PRESTOP_HTTPGET_httpHeaders%}httpHeaders:
+            {%for header in c.PRESTOP_HTTPGET_httpHeaders%}
+            - name: {{header.PRESTOP_HTTPHEADERS_name}}
+              value: {{header.PRESTOP_HTTPHEADERS_value}}
+            {%endfor%}
+          {%endif%}
+          port: {{c.PRESTOP_HTTPGET_port}}
+          {%if c.PRESTOP_HTTPGET_path%}path: {{c.PRESTOP_HTTPGET_path}}{%endif%}
+          {%if c.PRESTOP_HTTPGET_scheme%}scheme: {{c.PRESTOP_HTTPGET_scheme}}{%endif%}
+        {%endif%}
+      {%endif%}
+
+    {%if c.CONTAINER_livenessProbe%}livenessProbe:
+      {%if c.LIVENESSPROBE_exec%}exec:
+        command: [{%for exec in c.LIVENESSPROBE_exec%}"{{exec.LIVENESSPROBE_EXEC_command}}",{%endfor%}]
+      {%endif%}
+      {%if c.LIVENESSPROBE_failureThreshold%}failureThreshold: {{c.LIVENESSPROBE_failureThreshold}} {%endif%}
+      {%if c.LIVENESSPROBE_grpc%}grpc: 
+        port: {{c.LIVENESSPROBE_GRPC_port}} 
+        {%if c.LIVENESSPROBE_GRPC_service%}service: {{c.LIVENESSPROBE_GRPC_service}}{%endif%}
+      {%endif%}
+
+      {%if c.LIVENESSPROBE_httpGet%}httpGet:
+        host: {{c.LIVENESSPROBE_HTTPGET_host}}
+        {%if c.LIVENESSPROBE_HTTPGET_httpHeaders%}httpHeaders:
+          {%for header in c.LIVENESSPROBE_HTTPGET_httpHeaders%}
+          - name: {{header.LIVENESSPROBE_HTTPHEADERS_name}}
+            value: {{header.LIVENESSPROBE_HTTPHEADERS_value}}
+          {%endfor%}
+        {%endif%}
+        port: {{c.LIVENESSPROBE_HTTPGET_port}}
+        {%if c.LIVENESSPROBE_HTTPGET_path%}path: {{c.LIVENESSPROBE_HTTPGET_path}}{%endif%}
+        {%if c.LIVENESSPROBE_HTTPGET_scheme%}scheme: {{c.LIVENESSPROBE_HTTPGET_scheme}}{%endif%}
+      {%endif%}
+
+      {%if c.LIVENESSPROBE_initialDelaySeconds%}initialDelaySeconds: {{c.LIVENESSPROBE_initialDelaySeconds}}{%endif%}
+      {%if c.LIVENESSPROBE_periodSeconds%}periodSeconds: {{c.LIVENESSPROBE_periodSeconds}}{%endif%}
+      {%if c.LIVENESSPROBE_successThreshold%}successThreshold: {{c.LIVENESSPROBE_successThreshold}}{%endif%}
+      {%if c.LIVENESSPROBE_timeoutSeconds%}timeoutSeconds: {{c.LIVENESSPROBE_timeoutSeconds}}{%endif%}
+
+      {%if c.LIVENESSPROBE_tcpSocket%}tcpSocket:
+        port: {{c.LIVENESSPROBE_TCPSOCKET_port}}
+        {%if c.LIVENESSPROBE_TCPSOCKET_host%}host: {{c.LIVENESSPROBE_TCPSOCKET_host}}{%endif%}
+      {%endif%}
+      {%if c.LIVENESSPROBE_terminationGracePeriodSeconds%}terminationGracePeriodSeconds: {{c.LIVENESSPROBE_terminationGracePeriodSeconds}}{%endif%}
     {%endif%}
 
-
+    {%if c.CONTAINER_ports%}ports: 
+    {%for p in c.CONTAINER_ports%} 
+      - containerPort: {{p.CONTAINER_PORTS_containerPort}}
+        {%if p.CONTAINER_PORTS_name%}name: {{p.CONTAINER_PORTS_name}}{%endif%}
+        {%if p.CONTAINER_PORTS_hostIP%}hostIP: {{p.CONTAINER_PORTS_hostIP}}{%endif%}
+        {%if p.CONTAINER_PORTS_hostPort%}hostPort: {{p.CONTAINER_PORTS_hostPort}}{%endif%}
+        {%if p.CONTAINER_PORTS_protocol%}protocol: {{p.PROTOCOL_UDP}}{{PROTOCOL_TCP}}{{PROTOCOL_SCTP}}{%endif%}
+    {%endfor%}
+    {%endif%}
 
 
     {%endif%}

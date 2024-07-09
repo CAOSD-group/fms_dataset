@@ -10,8 +10,8 @@
     "Kind": true,
     "KIND_Deployment": true,
     "Metadata": true,
-    "METADATA_name": "testname",
-    "METADATA_namespace": "namepace_de_prueba",
+    "METADATA_name": "testDeployment",
+    "METADATA_namespace": "testNamespace",
     "METADATA_labels": [
       {
         "LABELS_key": "key_1",
@@ -203,8 +203,70 @@
       ],
       "POSTSTART_HTTPGET_port": 4664,
       "POSTSTART_HTTPGET_path": "/path/to/HTTP",
-      "POSTSTART_HTTPGET_scheme": "HTTP"
-      
+      "POSTSTART_HTTPGET_scheme": "HTTP",
+      "LIFECYCLE_preStop": true,
+      "PRESTOP_exec": [
+        {
+          "PRESTOP_EXEC_command": "python"
+        },
+        {
+          "PRESTOP_EXEC_command": "--version"
+        }
+      ],
+      "PRESTOP_sleep": true,
+      "PRESTOP_SLEEP_seconds": null, 
+      "PRESTOP_httpGet": true,
+      "PRESTOP_HTTPGET_host": "127.0.0.1",
+      "PRESTOP_HTTPGET_httpHeaders": [
+        {
+          "PRESTOP_HTTPHEADERS_name": "nameHeader",
+          "PRESTOP_HTTPHEADERS_value": "valueHeader"
+        }
+      ],
+      "PRESTOP_HTTPGET_port": 4664,
+      "PPRESTOP_HTTPGET_path": "/path/to/HTTP",
+      "PRESTOP_HTTPGET_scheme": "HTTP",
+      "CONTAINER_livenessProbe": true,
+      "LIVENESSPROBE_exec": [
+        {
+          "LIVENESSPROBE_EXEC_command": "ls"
+        }
+      ],
+      "LIVENESSPROBE_failureThreshold": 3,
+      "LIVENESSPROBE_grpc": true,
+      "LIVENESSPROBE_GRPC_port": 5666,
+      "LIVENESSPROBE_GRPC_service": "service.name",
+      "LIVENESSPROBE_httpGet": true,
+      "LIVENESSPROBE_HTTPGET_host": "127.0.0.1",
+      "LIVENESSPROBE_HTTPGET_httpHeaders": [
+        {
+          "LIVENESSPROBE_HTTPHEADERS_name": "nameHeader",
+          "LIVENESSPROBE_HTTPHEADERS_value": "valueHeader"
+        }
+      ],
+      "LIVENESSPROBE_HTTPGET_port": 4664,
+      "LIVENESSPROBE_HTTPGET_path": "/path/to/HTTP",
+      "LIVENESSPROBE_HTTPGET_scheme": "HTTP",
+      "LIVENESSPROBE_initialDelaySeconds": 5,
+      "LIVENESSPROBE_periodSeconds": 10,
+      "LIVENESSPROBE_successThreshold": 2,
+      "LIVENESSPROBE_timeoutSeconds": 1,
+      "LIVENESSPROBE_tcpSocket": true,
+      "LIVENESSPROBE_TCPSOCKET_port": 9281,
+      "LIVENESSPROBE_TCPSOCKET_host": "hostTCP",
+      "LIVENESSPROBE_terminationGracePeriodSeconds": 1,
+      "CONTAINER_ports":[
+        {
+          "CONTAINER_PORTS_containerPort": 6562,
+          "CONTAINER_PORTS_hostIP": "192.12.45.21",
+          "CONTAINER_PORTS_hostPort": 80,
+          "CONTAINER_PORTS_name": "testPort",
+          "CONTAINER_PORTS_protocol": true,
+          "PROTOCOL_UDP": true,
+          "PROTOCOL_TCP": false,
+          "PROTOCOL_SCTP": false
+        }
+      ]
       
       }
     ]

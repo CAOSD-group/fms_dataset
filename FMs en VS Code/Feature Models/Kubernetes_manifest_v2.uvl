@@ -287,13 +287,14 @@ features
                                                             Integer PRESTOP_SLEEP_seconds
                                     Boolean CONTAINER_livenessProbe
                                         mandatory
-                                            Boolean LIVENESSPROBE_exec
+                                            Boolean LIVENESSPROBE_exec cardinality [0..*]
                                                 mandatory
                                                     String LIVENESSPROBE_EXEC_command
                                             Integer LIVENESSPROBE_failureThreshold
                                             Boolean LIVENESSPROBE_grpc
                                                 mandatory   
                                                     Integer LIVENESSPROBE_GRPC_port
+                                                optional
                                                     String LIVENESSPROBE_GRPC_service
                                             Boolean LIVENESSPROBE_httpGet
                                                 optional   
@@ -330,13 +331,14 @@ features
                                                     Boolean PROTOCOL_SCTP
                                     Boolean CONTAINER_readinessProbe
                                         mandatory
-                                            Boolean READINESSPROBE_exec
+                                            Boolean READINESSPROBE_exec cardinality [0..*]
                                                 mandatory
                                                     String READINESSPROBE_EXEC_command
                                             Integer READINESSPROBE_failureThreshold
                                             Boolean READINESSPROBE_grpc
                                                 mandatory   
                                                     Integer READINESSPROBE_GRPC_port
+                                                optional
                                                     String READINESSPROBE_GRPC_service
                                             Boolean READINESSPROBE_httpGet
                                                 optional   
@@ -384,13 +386,14 @@ features
                                     Boolean CONTAINER_securityContext {NO_TERMINADO}
                                     Boolean CONTAINER_startupProbe
                                         mandatory
-                                            Boolean STARTUPPROBE_exec
+                                            Boolean STARTUPPROBE_exec cardinality [0..*]
                                                 mandatory
                                                     String STARTUPPROBE_EXEC_command
                                             Integer STARTUPPROBE_failureThreshold
                                             Boolean STARTUPPROBE_grpc
                                                 mandatory   
                                                     Integer STARTUPPROBE_GRPC_port
+                                                optional
                                                     String STARTUPPROBE_GRPC_service
                                             Boolean STARTUPPROBE_httpGet
                                                 optional   

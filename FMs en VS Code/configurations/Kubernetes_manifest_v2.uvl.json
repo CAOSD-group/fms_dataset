@@ -106,169 +106,264 @@
     "PodSpec": true,
     "PODSPEC_Containers":[
       {
-      "CONTAINER_name": "contenedor",
-      "CONTAINER_image": "imagen:1.13",
-      "CONTAINER_args": [
-        {
-          "CONTAINER_ARGS_value": "while true"
-        },
-        {
-          "CONTAINER_ARGS_value": "do echo prueba"
-        }
-      ],
-      "CONTAINER_command": [
-        {
-          "CONTAINER_COMMAND_value": "sh"
-        },
-        {
-          "CONTAINER_COMMAND_value": "-c"
-        }
-      ],
-      "CONTAINER_env": [
-        {
-          "CONTAINER_ENV_name": "MY_ENV_VAR",
-          "CONTAINER_ENV_value": "Hello from container"
-        },
-        {
-          "CONTAINER_ENV_valueFrom": true,
-          "configMapKeyRef": true,
-          "CONTAINER_ENV_name": "CONFIG_VAR",
-          "CONFIGMAPKEYREF_name": "example-configmap",
-          "CONFIGMAPKEYREF_key": "example-key",
-          "CONFIGMAPKEYREF_optional": true
-        },
-        {
-          "CONTAINER_ENV_valueFrom": true,
-          "fieldRef": true,
-          "CONTAINER_ENV_name": "POD_NAME",
-          "FIELDREF_fieldPath": "metadata.name",
-          "FIELDREF_apiversion": "v1"
-        },
-        {
-          "CONTAINER_ENV_valueFrom": true,
-          "CONTAINER_ENV_name": "CPU_REQUEST",
-          "resourceFieldRef": true,
-          "RESOURCEFIELDREF_containerName": "contenedor",
-          "RESOURCEFIELDREF_resource": "requests.cpu",
-          "RESOURCEFIELDREF_divisor": "test-divisor"
-        },
-        {
-          "CONTAINER_ENV_valueFrom": true,
-          "CONTAINER_ENV_name": "SECRET_PASSWORD",
-          "secretKeyRef": true,
-          "SECRETKEYREF_key": "example-secret",
-          "SECRETKEYREF_name": "example-password",
-          "SECRETKEYREF_optional": false
-        }
-      ],
-      "CONTAINER_envFrom": [
-        {
-          "ENVFROM_configMapRef": true,
-          "CONFIGMAPREF_name": "example-configmap",
-          "CONFIGMAPREF_optional": true
-        },
-        {
-          "ENVFROM_secretRef": true,
-          "SECRETREF_name": "example-secret",
-          "SECRETREF_optional": true
-        }
-      ],
-      "CONTAINER_imagePullPolicy": true,
-      "IMAGEPULLPOLICY_always": true,
-      "IMAGEPULLPOLICY_never": false,
-      "IMAGEPULLPOLICY_ifNotPresent": false,
+        "CONTAINER_name": "contenedor",
+        "CONTAINER_image": "imagen:1.13",
+        "CONTAINER_args": [
+          {
+            "CONTAINER_ARGS_value": "while true"
+          },
+          {
+            "CONTAINER_ARGS_value": "do echo prueba"
+          }
+        ],
+        "CONTAINER_command": [
+          {
+            "CONTAINER_COMMAND_value": "sh"
+          },
+          {
+            "CONTAINER_COMMAND_value": "-c"
+          }
+        ],
+        "CONTAINER_env": [
+          {
+            "CONTAINER_ENV_name": "MY_ENV_VAR",
+            "CONTAINER_ENV_value": "Hello from container"
+          },
+          {
+            "CONTAINER_ENV_valueFrom": true,
+            "configMapKeyRef": true,
+            "CONTAINER_ENV_name": "CONFIG_VAR",
+            "CONFIGMAPKEYREF_name": "example-configmap",
+            "CONFIGMAPKEYREF_key": "example-key",
+            "CONFIGMAPKEYREF_optional": true
+          },
+          {
+            "CONTAINER_ENV_valueFrom": true,
+            "fieldRef": true,
+            "CONTAINER_ENV_name": "POD_NAME",
+            "FIELDREF_fieldPath": "metadata.name",
+            "FIELDREF_apiversion": "v1"
+          },
+          {
+            "CONTAINER_ENV_valueFrom": true,
+            "CONTAINER_ENV_name": "CPU_REQUEST",
+            "resourceFieldRef": true,
+            "RESOURCEFIELDREF_containerName": "contenedor",
+            "RESOURCEFIELDREF_resource": "requests.cpu",
+            "RESOURCEFIELDREF_divisor": "test-divisor"
+          },
+          {
+            "CONTAINER_ENV_valueFrom": true,
+            "CONTAINER_ENV_name": "SECRET_PASSWORD",
+            "secretKeyRef": true,
+            "SECRETKEYREF_key": "example-secret",
+            "SECRETKEYREF_name": "example-password",
+            "SECRETKEYREF_optional": false
+          }
+        ],
+        "CONTAINER_envFrom": [
+          {
+            "ENVFROM_configMapRef": true,
+            "CONFIGMAPREF_name": "example-configmap",
+            "CONFIGMAPREF_optional": true
+          },
+          {
+            "ENVFROM_secretRef": true,
+            "SECRETREF_name": "example-secret",
+            "SECRETREF_optional": true
+          }
+        ],
+        "CONTAINER_imagePullPolicy": true,
+        "IMAGEPULLPOLICY_always": true,
+        "IMAGEPULLPOLICY_never": false,
+        "IMAGEPULLPOLICY_ifNotPresent": false,
 
-      "CONTAINER_lifecycle": true,
-      "LIFECYCLE_postStart": true,
-      "POSTSTART_exec": [
-        {
-          "POSTSTART_EXEC_command": "nginx"
-        },
-        {
-          "POSTSTART_EXEC_command": "-s"
-        },
-        {
-          "POSTSTART_EXEC_command": "quit"
-        }
-      ],
-      "POSTSTART_sleep": true,
-      "POSTSTART_SLEEP_seconds": null, 
-      "POSTSTART_httpGet": true,
-      "POSTSTART_HTTPGET_host": "0.0.0.0",
-      "POSTSTART_HTTPGET_httpHeaders": [
-        {
-          "POSTSTART_HTTPHEADERS_name": "nameHeader",
-          "POSTSTART_HTTPHEADERS_value": "valueHeader"
-        }
-      ],
-      "POSTSTART_HTTPGET_port": 4664,
-      "POSTSTART_HTTPGET_path": "/path/to/HTTP",
-      "POSTSTART_HTTPGET_scheme": "HTTP",
-      "LIFECYCLE_preStop": true,
-      "PRESTOP_exec": [
-        {
-          "PRESTOP_EXEC_command": "python"
-        },
-        {
-          "PRESTOP_EXEC_command": "--version"
-        }
-      ],
-      "PRESTOP_sleep": true,
-      "PRESTOP_SLEEP_seconds": null, 
-      "PRESTOP_httpGet": true,
-      "PRESTOP_HTTPGET_host": "127.0.0.1",
-      "PRESTOP_HTTPGET_httpHeaders": [
-        {
-          "PRESTOP_HTTPHEADERS_name": "nameHeader",
-          "PRESTOP_HTTPHEADERS_value": "valueHeader"
-        }
-      ],
-      "PRESTOP_HTTPGET_port": 4664,
-      "PPRESTOP_HTTPGET_path": "/path/to/HTTP",
-      "PRESTOP_HTTPGET_scheme": "HTTP",
-      "CONTAINER_livenessProbe": true,
-      "LIVENESSPROBE_exec": [
-        {
-          "LIVENESSPROBE_EXEC_command": "ls"
-        }
-      ],
-      "LIVENESSPROBE_failureThreshold": 3,
-      "LIVENESSPROBE_grpc": true,
-      "LIVENESSPROBE_GRPC_port": 5666,
-      "LIVENESSPROBE_GRPC_service": "service.name",
-      "LIVENESSPROBE_httpGet": true,
-      "LIVENESSPROBE_HTTPGET_host": "127.0.0.1",
-      "LIVENESSPROBE_HTTPGET_httpHeaders": [
-        {
-          "LIVENESSPROBE_HTTPHEADERS_name": "nameHeader",
-          "LIVENESSPROBE_HTTPHEADERS_value": "valueHeader"
-        }
-      ],
-      "LIVENESSPROBE_HTTPGET_port": 4664,
-      "LIVENESSPROBE_HTTPGET_path": "/path/to/HTTP",
-      "LIVENESSPROBE_HTTPGET_scheme": "HTTP",
-      "LIVENESSPROBE_initialDelaySeconds": 5,
-      "LIVENESSPROBE_periodSeconds": 10,
-      "LIVENESSPROBE_successThreshold": 2,
-      "LIVENESSPROBE_timeoutSeconds": 1,
-      "LIVENESSPROBE_tcpSocket": true,
-      "LIVENESSPROBE_TCPSOCKET_port": 9281,
-      "LIVENESSPROBE_TCPSOCKET_host": "hostTCP",
-      "LIVENESSPROBE_terminationGracePeriodSeconds": 1,
-      "CONTAINER_ports":[
-        {
-          "CONTAINER_PORTS_containerPort": 6562,
-          "CONTAINER_PORTS_hostIP": "192.12.45.21",
-          "CONTAINER_PORTS_hostPort": 80,
-          "CONTAINER_PORTS_name": "testPort",
-          "CONTAINER_PORTS_protocol": true,
-          "PROTOCOL_UDP": true,
-          "PROTOCOL_TCP": false,
-          "PROTOCOL_SCTP": false
-        }
-      ]
-      
+        "CONTAINER_lifecycle": true,
+        "LIFECYCLE_postStart": true,
+        "POSTSTART_exec": [
+          {
+            "POSTSTART_EXEC_command": "nginx"
+          },
+          {
+            "POSTSTART_EXEC_command": "-s"
+          },
+          {
+            "POSTSTART_EXEC_command": "quit"
+          }
+        ],
+        "POSTSTART_sleep": true,
+        "POSTSTART_SLEEP_seconds": null, 
+        "POSTSTART_httpGet": true,
+        "POSTSTART_HTTPGET_host": "0.0.0.0",
+        "POSTSTART_HTTPGET_httpHeaders": [
+          {
+            "POSTSTART_HTTPHEADERS_name": "nameHeader",
+            "POSTSTART_HTTPHEADERS_value": "valueHeader"
+          }
+        ],
+        "POSTSTART_HTTPGET_port": 4664,
+        "POSTSTART_HTTPGET_path": "/path/to/HTTP",
+        "POSTSTART_HTTPGET_scheme": "HTTP",
+        "LIFECYCLE_preStop": true,
+        "PRESTOP_exec": [
+          {
+            "PRESTOP_EXEC_command": "python"
+          },
+          {
+            "PRESTOP_EXEC_command": "--version"
+          }
+        ],
+        "PRESTOP_sleep": true,
+        "PRESTOP_SLEEP_seconds": null, 
+        "PRESTOP_httpGet": true,
+        "PRESTOP_HTTPGET_host": "127.0.0.1",
+        "PRESTOP_HTTPGET_httpHeaders": [
+          {
+            "PRESTOP_HTTPHEADERS_name": "nameHeader",
+            "PRESTOP_HTTPHEADERS_value": "valueHeader"
+          }
+        ],
+        "PRESTOP_HTTPGET_port": 4664,
+        "PPRESTOP_HTTPGET_path": "/path/to/HTTP",
+        "PRESTOP_HTTPGET_scheme": "HTTP",
+        "CONTAINER_livenessProbe": true,
+        "LIVENESSPROBE_exec": [
+          {
+            "LIVENESSPROBE_EXEC_command": "ls"
+          }
+        ],
+        "LIVENESSPROBE_failureThreshold": 3,
+        "LIVENESSPROBE_grpc": true,
+        "LIVENESSPROBE_GRPC_port": 5666,
+        "LIVENESSPROBE_GRPC_service": "service.name",
+        "LIVENESSPROBE_httpGet": true,
+        "LIVENESSPROBE_HTTPGET_host": "127.0.0.1",
+        "LIVENESSPROBE_HTTPGET_httpHeaders": [
+          {
+            "LIVENESSPROBE_HTTPHEADERS_name": "nameHeader",
+            "LIVENESSPROBE_HTTPHEADERS_value": "valueHeader"
+          }
+        ],
+        "LIVENESSPROBE_HTTPGET_port": 4664,
+        "LIVENESSPROBE_HTTPGET_path": "/path/to/HTTP",
+        "LIVENESSPROBE_HTTPGET_scheme": "HTTP",
+        "LIVENESSPROBE_initialDelaySeconds": 5,
+        "LIVENESSPROBE_periodSeconds": 10,
+        "LIVENESSPROBE_successThreshold": 2,
+        "LIVENESSPROBE_timeoutSeconds": 1,
+        "LIVENESSPROBE_tcpSocket": true,
+        "LIVENESSPROBE_TCPSOCKET_port": 9281,
+        "LIVENESSPROBE_TCPSOCKET_host": "hostTCP",
+        "LIVENESSPROBE_terminationGracePeriodSeconds": 1,
+        "CONTAINER_ports":[
+          {
+            "CONTAINER_PORTS_containerPort": 6562,
+            "CONTAINER_PORTS_hostIP": "192.12.45.21",
+            "CONTAINER_PORTS_hostPort": 80,
+            "CONTAINER_PORTS_name": "testPort",
+            "CONTAINER_PORTS_protocol": true,
+            "PROTOCOL_UDP": true,
+            "PROTOCOL_TCP": false,
+            "PROTOCOL_SCTP": false
+          }
+        ],
+        "CONTAINER_readinessProbe": true,
+        "READINESSPROBE_exec": [
+          {
+            "READINESSPROBE_EXEC_command": "ls"
+          }
+        ],
+        "READINESSPROBE_failureThreshold": 3,
+        "READINESSPROBE_grpc": true,
+        "READINESSPROBE_GRPC_port": 5666,
+        "READINESSPROBE_GRPC_service": "service.name",
+        "READINESSPROBE_httpGet": true,
+        "READINESSPROBE_HTTPGET_host": "127.0.0.1",
+        "READINESSPROBE_HTTPGET_httpHeaders": [
+          {
+            "READINESSPROBE_HTTPHEADERS_name": "nameHeader",
+            "READINESSPROBE_HTTPHEADERS_value": "valueHeader"
+          }
+        ],
+        "READINESSPROBE_HTTPGET_port": 4664,
+        "READINESSPROBE_HTTPGET_path": "/path/to/HTTP",
+        "READINESSPROBE_HTTPGET_scheme": "HTTP",
+        "READINESSPROBE_initialDelaySeconds": 5,
+        "READINESSPROBE_periodSeconds": 10,
+        "READINESSPROBE_successThreshold": 2,
+        "READINESSPROBE_timeoutSeconds": 1,
+        "READINESSPROBE_tcpSocket": true,
+        "READINESSPROBE_TCPSOCKET_port": 9281,
+        "READINESSPROBE_TCPSOCKET_host": "hostTCP",
+        "READINESSPROBE_terminationGracePeriodSeconds": 1,
+        "CONTAINER_resizePolicy":[
+          {
+            "RESIZEPOLICY_resourceName": true,
+            "CONTAINER_RESIZEPOLICY_RESTARTPOLICY_cpu": true,
+            "CONTAINER_RESIZEPOLICY_RESTARTPOLICY_memory": false,
+            "RESIZEPOLICY_restartPolicy": "NotRequired"
+          }
+        ],
+        "CONTAINER_restartPolicy": "Always",
+        "CONTAINER_resources": true,
+        "RESOURCES_request": true,
+        "REQUEST_cpu": "500m",
+        "REQUEST_memory":"512Mi",
+        "RESOURCES_limits": true,
+        "LIMITS_cpu": "1",
+        "LIMITS_memory": "1Gi",
+        "RESOURCES_claims": true,
+        "RESOURCES_CLAIMS_name": "claim-test",
+        "CONTAINER_startupProbe": true,
+        "STARTUPPROBE_exec": [
+          {
+            "STARTUPPROBE_EXEC_command": "ls"
+          }
+        ],
+        "STARTUPPROBE_failureThreshold": 3,
+        "STARTUPPROBE_grpc": true,
+        "STARTUPPROBE_GRPC_port": 5666,
+        "STARTUPPROBE_GRPC_service": "service.name",
+        "STARTUPPROBE_httpGet": true,
+        "STARTUPPROBE_HTTPGET_host": "127.0.0.1",
+        "STARTUPPROBE_HTTPGET_httpHeaders": [
+          {
+            "STARTUPPROBE_HTTPHEADERS_name": "nameHeader",
+            "STARTUPPROBE_HTTPHEADERS_value": "valueHeader"
+          }
+        ],
+        "STARTUPPROBE_HTTPGET_port": 4664,
+        "STARTUPPROBE_HTTPGET_path": "/path/to/HTTP",
+        "STARTUPPROBE_HTTPGET_scheme": "HTTP",
+        "STARTUPPROBE_initialDelaySeconds": 5,
+        "STARTUPPROBE_periodSeconds": 10,
+        "STARTUPPROBE_successThreshold": 2,
+        "STARTUPPROBE_timeoutSeconds": 1,
+        "STARTUPPROBE_tcpSocket": true,
+        "STARTUPPROBE_TCPSOCKET_port": 9281,
+        "STARTUPPROBE_TCPSOCKET_host": "hostTCP",
+        "STARTUPPROBE_terminationGracePeriodSeconds": 1,
+        "CONTAINER_stdin": true,
+        "CONTAINER_stdinOnce": true,
+        "CONTAINER_terminationMessagePath":"/dev/termination-log",
+        "CONTAINER_terminationMessagePolicy": "FallbackToLogsOnError",
+        "CONTAINER_tty": true,
+        "CONTAINER_volumeDevices": [
+          {
+            "VOLUMEDEVICES_devicePath": "path/to/device1",
+            "VOLUMEDEVICES_name": "device1"
+          }
+        ],
+        "CONTAINER_volumeMounts": [
+          {
+            "VOLUMEMOUNTS_mountPath": "path/to/device2",
+            "VOLUMEMOUNTS_name": "device2",
+            "VOLUMEMOUNTS_readonly": true
+          }
+        ],
+        "CONTAINER_workingDir": "/working/dir"
       }
-    ]
+    ],
+    "PODSPEC_activeDeadlineSeconds": "10"
   }
 }

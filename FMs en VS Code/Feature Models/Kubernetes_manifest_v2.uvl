@@ -367,7 +367,6 @@ features
                                                 alternative   
                                                     Boolean CONTAINER_RESIZEPOLICY_RESTARTPOLICY_cpu
                                                     Boolean CONTAINER_RESIZEPOLICY_RESTARTPOLICY_memory
-                                        optional
                                             String RESIZEPOLICY_restartPolicy
                                     String CONTAINER_restartPolicy
                                     Boolean CONTAINER_resources
@@ -429,6 +428,8 @@ features
                                         mandatory   
                                             String VOLUMEMOUNTS_mountPath
                                             String VOLUMEMOUNTS_name
+                                        optional
+                                            Boolean VOLUMEMOUNTS_readonly
                                     Boolean CONTAINER_workingDir
                         optional 
                             Integer PODSPEC_activeDeadlineSeconds
@@ -633,3 +634,4 @@ constraints
     STARTUPPROBE_terminationGracePeriodSeconds > 0
     STARTUPPROBE_timeoutSeconds > 0
     DEPLOYMENTSPEC_TEMPLATE_Podspec => PodSpec
+    CONTAINER_tty => CONTAINER_stdin

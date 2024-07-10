@@ -124,7 +124,7 @@ containers:
 
       {%if c.LIVENESSPROBE_tcpSocket%}tcpSocket:
         port: {{c.LIVENESSPROBE_TCPSOCKET_port}}
-        {%if c.LIVENESSPROBE_TCPSOCKET_host%}host: {{c.LIVENESSPROBE_TCPSOCKET_host}}{%endif%}
+        {%if c.LIVENESSPROBE_TCPSOCKET_host%}host: "{{c.LIVENESSPROBE_TCPSOCKET_host}}"{%endif%}
       {%endif%}
       {%if c.LIVENESSPROBE_terminationGracePeriodSeconds%}terminationGracePeriodSeconds: {{c.LIVENESSPROBE_terminationGracePeriodSeconds}}{%endif%}
     {%endif%}
@@ -139,6 +139,129 @@ containers:
     {%endfor%}
     {%endif%}
 
+    {%if c.CONTAINER_readinessProbe%}readinessProbe:
+      {%if c.READINESSPROBE_exec%}exec:
+        command: [{%for exec in c.READINESSPROBE_exec%}"{{exec.READINESSPROBE_EXEC_command}}",{%endfor%}]
+      {%endif%}
+      {%if c.READINESSPROBE_failureThreshold%}failureThreshold: {{c.READINESSPROBE_failureThreshold}} {%endif%}
+      {%if c.READINESSPROBE_grpc%}grpc: 
+        port: {{c.READINESSPROBE_GRPC_port}} 
+        {%if c.READINESSPROBE_GRPC_service%}service: {{c.READINESSPROBE_GRPC_service}}{%endif%}
+      {%endif%}
+
+      {%if c.READINESSPROBE_httpGet%}httpGet:
+        host: {{c.READINESSPROBE_HTTPGET_host}}
+        {%if c.READINESSPROBE_HTTPGET_httpHeaders%}httpHeaders:
+          {%for header in c.READINESSPROBE_HTTPGET_httpHeaders%}
+          - name: {{header.READINESSPROBE_HTTPHEADERS_name}}
+            value: {{header.READINESSPROBE_HTTPHEADERS_value}}
+          {%endfor%}
+        {%endif%}
+        port: {{c.READINESSPROBE_HTTPGET_port}}
+        {%if c.READINESSPROBE_HTTPGET_path%}path: {{c.READINESSPROBE_HTTPGET_path}}{%endif%}
+        {%if c.READINESSPROBE_HTTPGET_scheme%}scheme: {{c.READINESSPROBE_HTTPGET_scheme}}{%endif%}
+      {%endif%}
+
+      {%if c.READINESSPROBE_initialDelaySeconds%}initialDelaySeconds: {{c.READINESSPROBE_initialDelaySeconds}}{%endif%}
+      {%if c.READINESSPROBE_periodSeconds%}periodSeconds: {{c.READINESSPROBE_periodSeconds}}{%endif%}
+      {%if c.READINESSPROBE_successThreshold%}successThreshold: {{c.READINESSPROBE_successThreshold}}{%endif%}
+      {%if c.READINESSPROBE_timeoutSeconds%}timeoutSeconds: {{c.READINESSPROBE_timeoutSeconds}}{%endif%}
+
+      {%if c.READINESSPROBE_tcpSocket%}tcpSocket:
+        port: {{c.READINESSPROBE_TCPSOCKET_port}}
+        {%if c.READINESSPROBE_TCPSOCKET_host%}host: "{{c.READINESSPROBE_TCPSOCKET_host}}"{%endif%}
+      {%endif%}
+      {%if c.READINESSPROBE_terminationGracePeriodSeconds%}terminationGracePeriodSeconds: {{c.READINESSPROBE_terminationGracePeriodSeconds}}{%endif%}
+    {%endif%}
+
+    {%if c.CONTAINER_resizePolicy%}resizePolicy:
+    {%for res in c.CONTAINER_resizePolicy%}
+      - resourceName: {{res.CONTAINER_RESIZEPOLICY_RESTARTPOLICY_cpu}}{{res.CONTAINER_RESIZEPOLICY_RESTARTPOLICY_memory}}
+        restartPolicy: {{res.RESIZEPOLICY_restartPolicy}}
+    {%endfor%}
+    {%endif%}
+
+    {%if c.CONTAINER_restartPolicy%}restartPolicy: {{c.CONTAINER_restartPolicy}}{%endif%}
+
+    {%if c.CONTAINER_resources%}resources:
+      {%if c. RESOURCES_request%}request:
+        cpu: {{c.REQUEST_cpu}}
+        memory: {{c.REQUEST_memory}}
+      {%endif%}
+      {%if c. RESOURCES_limits%}limits:
+        cpu: {{c.LIMITS_cpu}}
+        memory: {{c.LIMITS_memory}}
+      {%endif%}
+      {%if c.RESOURCES_claims%}claims:
+        {#Este campo está en beta en la version de kubernetes 1.30#}
+        - name: {{c.RESOURCES_CLAIMS_name}}
+      {%endif%}
+    {%endif%}
+
+    {%if c.CONTAINER_startupProbe%}startUpProbe:
+      {%if c.STARTUPPROBE_exec%}exec:
+        command: [{%for exec in c.STARTUPPROBE_exec%}"{{exec.STARTUPPROBE_EXEC_command}}",{%endfor%}]
+      {%endif%}
+      {%if c.STARTUPPROBE_failureThreshold%}failureThreshold: {{c.STARTUPPROBE_failureThreshold}} {%endif%}
+      {%if c.STARTUPPROBE_grpc%}grpc: 
+        port: {{c.STARTUPPROBE_GRPC_port}} 
+        {%if c.STARTUPPROBE_GRPC_service%}service: {{c.STARTUPPROBE_GRPC_service}}{%endif%}
+      {%endif%}
+
+      {%if c.STARTUPPROBE_httpGet%}httpGet:
+        host: {{c.STARTUPPROBE_HTTPGET_host}}
+        {%if c.STARTUPPROBE_HTTPGET_httpHeaders%}httpHeaders:
+          {%for header in c.STARTUPPROBE_HTTPGET_httpHeaders%}
+          - name: {{header.STARTUPPROBE_HTTPHEADERS_name}}
+            value: {{header.STARTUPPROBE_HTTPHEADERS_value}}
+          {%endfor%}
+        {%endif%}
+        port: {{c.STARTUPPROBE_HTTPGET_port}}
+        {%if c.STARTUPPROBE_HTTPGET_path%}path: {{c.STARTUPPROBE_HTTPGET_path}}{%endif%}
+        {%if c.STARTUPPROBE_HTTPGET_scheme%}scheme: {{c.STARTUPPROBE_HTTPGET_scheme}}{%endif%}
+      {%endif%}
+
+      {%if c.STARTUPPROBE_initialDelaySeconds%}initialDelaySeconds: {{c.STARTUPPROBE_initialDelaySeconds}}{%endif%}
+      {%if c.STARTUPPROBE_periodSeconds%}periodSeconds: {{c.STARTUPPROBE_periodSeconds}}{%endif%}
+      {%if c.STARTUPPROBE_successThreshold%}successThreshold: {{c.STARTUPPROBE_successThreshold}}{%endif%}
+      {%if c.STARTUPPROBE_timeoutSeconds%}timeoutSeconds: {{c.STARTUPPROBE_timeoutSeconds}}{%endif%}
+
+      {%if c.STARTUPPROBE_tcpSocket%}tcpSocket:
+        port: {{c.STARTUPPROBE_TCPSOCKET_port}}
+        {%if c.STARTUPPROBE_TCPSOCKET_host%}host: "{{c.STARTUPPROBE_TCPSOCKET_host}}"{%endif%}
+      {%endif%}
+      {%if c.STARTUPPROBE_terminationGracePeriodSeconds%}terminationGracePeriodSeconds: {{c.STARTUPPROBE_terminationGracePeriodSeconds}}{%endif%}
+    {%endif%}
+    
+    {%if c.CONTAINER_stdin%}stdin: {{c.CONTAINER_stdin}}{%endif%}
+
+    {%if c.CONTAINER_stdinOnce%}stdinOnce: {{c.CONTAINER_stdinOnce}}{%endif%}
+
+    {%if c.CONTAINER_terminationMessagePath%}terminationMessagePath: "{{c.CONTAINER_terminationMessagePath}}"{%endif%}
+
+    {%if c.CONTAINER_terminationMessagePolicy%}terminationMessagePolicy: "{{c.CONTAINER_terminationMessagePolicy}}"{%endif%}
+
+    {%if c.CONTAINER_tty%}tty: {{c.CONTAINER_tty}} {%endif%}
+
+    {%if c.CONTAINER_volumeDevices%}VolumeDevices:
+      {%for dev in c.CONTAINER_volumeDevices%}
+      - name: {{dev.VOLUMEDEVICES_name}}
+        devicePath: {{dev.VOLUMEDEVICES_devicePath}}
+      {%endfor%}
+    {%endif%}
+
+    {%if c.CONTAINER_volumeMounts%}volumeMounts:
+      {%for dev in c.CONTAINER_volumeMounts%}
+      - name: {{dev.VOLUMEMOUNTS_name}}
+        mountPath: {{dev.VOLUMEMOUNTS_mountPath}}
+        {%if dev.VOLUMEMOUNTS_readonly%}readonly: {{dev.VOLUMEMOUNTS_readonly}}{%endif%}
+      {%endfor%}
+    {%endif%}
+
+    {%if c.CONTAINER_workingDir%}workingDir: {{c.CONTAINER_workingDir}}{%endif%}
 
     {%endif%}
+
 {%endfor%}
+
+{%if PODSPEC_activeDeadlineSeconds%}activeDeadlineSeconds: {{PODSPEC_activeDeadlineSeconds}}{%endif%}

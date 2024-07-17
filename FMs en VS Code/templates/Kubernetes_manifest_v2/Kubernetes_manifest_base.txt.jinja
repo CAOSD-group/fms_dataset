@@ -4,7 +4,7 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 
 {%if Metadata%}metadata:  
   {% macro indent_metadata() %}{% include 'Kubernetes_manifest_metadata.txt.jinja' %}{% endmacro %}
-  {{ indent_metadata()|indent(first=false) }}
+  {{ indent_metadata()|indent }}
 {%endif%}
 
 {%if Spec%}spec:
@@ -15,7 +15,12 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 
   {%elif PodSpec%}
   {% macro indent_pod() %}{% include 'Kubernetes_manifest_spec_pod.txt.jinja'%}{% endmacro %}
-  {{ indent_pod()|indent }}
+  {{ indent_pod()|indent(first=false) }}
+
+  {%elif ServiceSpec%}
+  {% macro indent_service() %}{% include 'Kubernetes_manifest_spec_service.txt.jinja'%}{% endmacro %}
+  {{ indent_service()|indent(first=false) }}
+
   {%endif%}
 {%endif%}
 

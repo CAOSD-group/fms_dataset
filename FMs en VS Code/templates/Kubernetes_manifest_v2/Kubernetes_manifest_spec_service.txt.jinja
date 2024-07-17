@@ -1,0 +1,22 @@
+
+
+{%if not SERVICESPEC_allocateLoadBalancerNodePorts%}allocateLoadBalancerNodePorts: false{%endif%}
+
+{%if SERVICESPEC_clusterIP%}clusterIP: {{CLUSTERIP_emptyString}}{{CLUSTERIP_none}}{{CLUSTERIP_IP}}{%endif%}
+
+{%if SERVICESPEC_clusterIPs%}clusterIPs:
+{%for ip in SERVICESPEC_clusterIPs%}
+  - {{ip.CLUSTERIPS_none}}{{ip.CLUSTERIPS_emptyString}}{{ip.CLUSTERIPS_IPs}}
+{%endfor%}
+{%endif%}
+
+{%if SERVICESPEC_externalIPs%}externalIPs:
+{%for ex in SERVICESPEC_externalIPs%}
+  - {{ex.SERVIDESPEC_EXTERNALIPS_ip}}
+{%endfor%}
+{%endif%}
+
+
+{%if SERVICESPEC_externalTrafficPolicy%}externalTrafficPolicy: {{EXTERNALTRAFFICPOLICY_Local}}{{EXTERNALTRAFFICPOLICY_Cluster}}{%endif%}
+
+{%if SERVICESPEC_healthCheckNodePort%}healthCheckNodePort: {{SERVICESPEC_healthCheckNodePort}}{%endif%}

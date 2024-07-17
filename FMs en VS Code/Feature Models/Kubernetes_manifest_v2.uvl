@@ -452,39 +452,38 @@ features
                             Boolean PODSPEC_hostUsers
                             String PODSPEC_hostname
                             String PODSPEC_nodeName
-                            Boolean PODSPEC_Volumes cardinality [0..*]
+                            Boolean PODSPEC_Volumes cardinality [0..*] {NO_TERMINADO}
                                 mandatory   
                                     String VOLUMES_name
                                     Boolean VOLUMES_type {abstract}
                                         or   
                                             Boolean emptyDir
+                                                optional
+                                                    Boolean EMPTYDIR_medium
+                                                        alternative   
+                                                            Boolean EMPTYDIR_MEDIUM_default
+                                                            Boolean EMPTYDIR_MEDIUM_memory
+                                                    String EMPTYDIR_sizeLimit
                                             Boolean hostPath
+                                                optional
+                                                    String HOSTPATH_path
+                                                    String HOSTPATH_type
                                             Boolean persistentVolumeClaim
                                             Boolean configMap
                                             Boolean secret
                                             Boolean nfs
-                                            Boolean awsElasticBlockStore
-                                            Boolean gcePersistentDisk
-                                            Boolean azureDisk
                                             Boolean csi
-                                            Boolean azureFile
-                                            Boolean cephfs
-                                            Boolean cinder
                                             Boolean downwardAPI
                                             Boolean ephemeral
                                             Boolean fc
-                                            Boolean flexVolume
                                             Boolean flocker
-                                            Boolean glusterfs
                                             Boolean iscsi
                                             Boolean photonPersistentDisk
-                                            Boolean portworxVolume
                                             Boolean projected
                                             Boolean quobyte
                                             Boolean rbd
                                             Boolean scaleIO
                                             Boolean storageos
-                                            Boolean vsphereVolume
 
 
 
@@ -497,12 +496,14 @@ features
                                     Boolean CLUSTERIP_none
                                     Boolean CLUSTERIP_emptyString
                                     String CLUSTERIP_IP
-                            Boolean SERVICESPEC_clusterIPs {abstract}
+                            Boolean SERVICESPEC_clusterIPs cardinality [0..*] {abstract} 
                                 alternative
                                     Boolean CLUSTERIPS_none
                                     Boolean CLUSTERIPS_emptyString
                                     String CLUSTERIPS_IPs
-                            String SERVICESPEC_externalIPs
+                            Boolean SERVICESPEC_externalIPs cardinality [0..*] 
+                                mandatory
+                                    SERVIDESPEC_EXTERNALIPS_ip
                             String SERVICESPEC_externalName
                             Boolean SERVICESPEC_externalTrafficPolicy
                                 alternative   
@@ -633,5 +634,6 @@ constraints
     STARTUPPROBE_successThreshold > 0
     STARTUPPROBE_terminationGracePeriodSeconds > 0
     STARTUPPROBE_timeoutSeconds > 0
-    DEPLOYMENTSPEC_TEMPLATE_Podspec => PodSpec
-    CONTAINER_tty => CONTAINER_stdin
+    SERVICESPEC_allocateLoadBalancerNodePorts => TYPE_LoadBalancer
+    ServiceSpec => KIND_Service
+    (SERVICESPEC_healthCheckNodePort > 0) => TYPE_LoadBalancer & EXTERNALTRAFFICPOLICY_Local

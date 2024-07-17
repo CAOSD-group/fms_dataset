@@ -320,3 +320,47 @@ VOLUMEMOUNTS_name, VOLUMEMOUNTS_name,
 VOLUMEMOUNTS_readonly, VOLUMEMOUNTS_readonly, 
 CONTAINER_workingDir, CONTAINER_workingDir, 
 PODSPEC_activeDeadlineSeconds, PODSPEC_activeDeadlineSeconds, 
+PODSPEC_affinity, PODSPEC_affinity, 
+AFFINITY_nodeAffinity, AFFINITY_nodeAffinity, 
+AFFINITY_podAffinity, AFFINITY_podAffinity, 
+AFFINITY_podAntiAffinity, AFFINITY_podAntiAffinity, 
+PODSPEC_automountServiceAccountToken, PODSPEC_automountServiceAccountToken, 
+PODSPEC_dnsPolicy, PODSPEC_dnsPolicy, 
+DNSPOLICY_ClusterFirstWithHostNet, DNSPOLICY_ClusterFirstWithHostNet, ClusterFirstWithHostNet
+DNSPOLICY_ClusterFirst, DNSPOLICY_ClusterFirst, ClusterFirst
+DNSPOLICY_Default, DNSPOLICY_Default, Default
+DNSPOLICY_None, DNSPOLICY_None, None
+PODSPEC_enableServiceLinks, PODSPEC_enableServiceLinks, -
+PODSPEC_hostIPC, PODSPEC_hostIPC, -
+PODSPEC_hostNetwork, PODSPEC_hostNetwork, -
+PODSPEC_hostPID, PODSPEC_hostPID, -
+PODSPEC_hostUsers, PODSPEC_hostUsers, -
+PODSPEC_hostname, PODSPEC_hostname, 
+PODSPEC_nodeName, PODSPEC_nodeName, 
+PODSPEC_Volumes, PODSPEC_Volumes, -
+VOLUMES_name, VOLUMES_name, 
+emptyDir, emptyDir, -
+EMPTYDIR_medium, EMPTYDIR_medium, 
+EMPTYDIR_MEDIUM_memory, EMPTYDIR_MEDIUM_memory, Memory
+EMPTYDIR_MEDIUM_default,EMPTYDIR_MEDIUM_default, ""
+EMPTYDIR_sizeLimit, EMPTYDIR_sizeLimit, 
+hostPath, hostPath, -
+HOSTPATH_path, HOSTPATH_path, 
+HOSTPATH_type, HOSTPATH_type
+ServiceSpec, ServiceSpec, 
+SERVICESPEC_allocateLoadBalancerNodePorts, SERVICESPEC_allocateLoadBalancerNodePorts, -
+SERVICESPEC_clusterIP, SERVICESPEC_clusterIP, -
+CLUSTERIP_emptyString, CLUSTERIP_emptyString, emptyString
+CLUSTERIP_none, CLUSTERIP_none, none
+CLUSTERIP_IP, CLUSTERIP_IP, 
+SERVICESPEC_clusterIPs, SERVICESPEC_clusterIPs, -
+CLUSTERIPS_emptyString, CLUSTERIPS_emptyString, emptyString
+CLUSTERIPS_none, CLUSTERIPS_none, none
+CLUSTERIPS_IPs, CLUSTERIPS_IPs,
+SERVICESPEC_externalIPs, SERVICESPEC_externalIPs, 
+SERVIDESPEC_EXTERNALIPS_ip, SERVIDESPEC_EXTERNALIPS_ip,  
+SERVICESPEC_externalName, SERVICESPEC_externalName, 
+SERVICESPEC_externalTrafficPolicy, SERVICESPEC_externalTrafficPolicy, 
+EXTERNALTRAFFICPOLICY_Local, EXTERNALTRAFFICPOLICY_Local, Local
+EXTERNALTRAFFICPOLICY_Cluster, EXTERNALTRAFFICPOLICY_Cluster, Cluster
+SERVICESPEC_healthCheckNodePort, SERVICESPEC_healthCheckNodePort, 

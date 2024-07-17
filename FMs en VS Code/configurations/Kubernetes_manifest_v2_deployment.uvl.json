@@ -364,6 +364,40 @@
         "CONTAINER_workingDir": "/working/dir"
       }
     ],
-    "PODSPEC_activeDeadlineSeconds": "10"
-  }
+    "PODSPEC_activeDeadlineSeconds": "10",
+    "PODSPEC_affinity": true,
+    "AFFINITY_nodeAffinity": true,
+    "AFFINITY_podAffinity": true,
+    "AFFINITY_podAntiAffinity": true,
+    "PODSPEC_automountServiceAccountToken": true,
+    "PODSPEC_dnsPolicy": true,
+    "DNSPOLICY_ClusterFirstWithHostNet": true,
+    "DNSPOLICY_ClusterFirst": false,
+    "DNSPOLICY_Default": false,
+    "DNSPOLICY_None": false, 
+    "PODSPEC_enableServiceLinks": false,
+    "PODSPEC_hostIPC": true,
+    "PODSPEC_hostNetwork": true,
+    "PODSPEC_hostPID": true,
+    "PODSPEC_hostUsers": false,
+    "PODSPEC_hostname": "hostname",
+    "PODSPEC_nodeName": "nodeName",
+    "PODSPEC_Volumes": [
+      {
+        "VOLUMES_name": "emptyDir-volume",
+        "VOLUMES_type": true,
+        "emptyDir": true,
+        "EMPTYDIR_medium": true,
+        "EMPTYDIR_MEDIUM_memory": true,
+        "EMPTYDIR_sizeLimit": "256Mi"
+      },
+      {
+        "VOLUMES_name": "hostPath-volume",
+        "VOLUMES_type": true,
+        "hostPath": true,
+        "HOSTPATH_path": "path/to/volume",
+        "HOSTPATH_type": "Directory"
+      }
+    ]
+  } 
 }

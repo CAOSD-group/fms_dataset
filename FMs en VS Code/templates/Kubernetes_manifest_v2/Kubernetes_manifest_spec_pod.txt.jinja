@@ -265,3 +265,43 @@ containers:
 {%endfor%}
 
 {%if PODSPEC_activeDeadlineSeconds%}activeDeadlineSeconds: {{PODSPEC_activeDeadlineSeconds}}{%endif%}
+
+{%if PODSPEC_affinity%}affinity:
+  {%if AFFINITY_nodeAffinity%}nodeAffinity: {%endif%}
+  {%if AFFINITY_podAffinity%}podAffinity: {%endif%}
+  {%if AFFINITY_podAntiAffinity%}podAntiAffinity: {%endif%}
+{%endif%}
+
+{%if PODSPEC_automountServiceAccountToken%}automountServiceAccountToken: true{%endif%}
+
+{%if PODSPEC_dnsPolicy%}dnsPolicy: {{DNSPOLICY_ClusterFirstWithHostNet}}{{DNSPOLICY_ClusterFirst}}{{DNSPOLICY_Default}}{{DNSPOLICY_None}}{%endif%}
+
+{%if not PODSPEC_enableServiceLinks%}enableServiceLinks: false{%endif%} 
+
+{%if PODSPEC_hostIPC%}hostIPC: true{%endif%}
+
+{%if PODSPEC_hostNetwork%}hostNetwork: true{%endif%}
+
+{%if PODSPEC_hostPID%}hostPID: true{%endif%}
+
+{%if not PODSPEC_hostUsers%}hostUsers: false{%endif%}
+
+{%if PODSPEC_hostname%}hostname: {{PODSPEC_hostname}}{%endif%}
+
+{%if PODSPEC_nodeName%}nodeName: {{PODSPEC_nodeName}}{%endif%}
+
+{%if PODSPEC_Volumes%}volumes: 
+{%for v in PODSPEC_Volumes%}
+  - name: {{v.VOLUMES_name}}
+    {%if v.emptyDir%}emptyDir:
+      {%if v.EMPTYDIR_medium%}medium: {{v.EMPTYDIR_MEDIUM_memory}}{%if v.EMPTYDIR_MEDIUM_default%}""{%endif%}{%endif%}
+      {%if v.EMPTYDIR_sizeLimit%}sizeLimit: {{v.EMPTYDIR_sizeLimit}}{%endif%}
+    {%endif%}
+
+    {%if v.hostPath%}hostPath:
+      {%if v.HOSTPATH_path%}path: "{{v.HOSTPATH_path}}"{%endif%}
+      {%if v.HOSTPATH_type%}type: {{v.HOSTPATH_type}}{%endif%}
+    {%endif%}
+{%endfor%}
+{%endif%}
+

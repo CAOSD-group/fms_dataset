@@ -538,7 +538,7 @@ features
                                     String SERVICESPEC_PORTS_targetPort
                                     String SERVICESPEC_PORTS_appProtocol
                             Boolean publishNotReadyAddresses
-                            Boolean SPEC_Selector cardinality [0..*] 
+                            Boolean SERVICESPEC_Selector cardinality [0..*] 
                                 mandatory
                                     String SELECTOR_key
                                     String SELECTOR_value
@@ -634,6 +634,10 @@ constraints
     STARTUPPROBE_successThreshold > 0
     STARTUPPROBE_terminationGracePeriodSeconds > 0
     STARTUPPROBE_timeoutSeconds > 0
+    DEPLOYMENTSPEC_TEMPLATE_Podspec => PodSpec
+    CONTAINER_tty => CONTAINER_stdin
     SERVICESPEC_allocateLoadBalancerNodePorts => TYPE_LoadBalancer
     ServiceSpec => KIND_Service
     (SERVICESPEC_healthCheckNodePort > 0) => TYPE_LoadBalancer & EXTERNALTRAFFICPOLICY_Local
+    SERVICESPEC_ipFamilyPolicy => TYPE_LoadBalancer | TYPE_ClusterIP | TYPE_NodePort
+    (SERVICESPEC_loadBalancerClass == '') => TYPE_LoadBalancer

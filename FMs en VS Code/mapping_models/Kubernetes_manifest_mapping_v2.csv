@@ -364,3 +364,39 @@ SERVICESPEC_externalTrafficPolicy, SERVICESPEC_externalTrafficPolicy,
 EXTERNALTRAFFICPOLICY_Local, EXTERNALTRAFFICPOLICY_Local, Local
 EXTERNALTRAFFICPOLICY_Cluster, EXTERNALTRAFFICPOLICY_Cluster, Cluster
 SERVICESPEC_healthCheckNodePort, SERVICESPEC_healthCheckNodePort, 
+SERVICESPEC_internalTrafficPolicy, SERVICESPEC_internalTrafficPolicy, -
+INTERNALTRAFFICPOLICY_Local, INTERNALTRAFFICPOLICY_Local, Local
+INTERNALTRAFFICPOLICY_Cluster, INTERNALTRAFFICPOLICY_Cluster, Cluster
+SERVICESPEC_ipFamilies, SERVICESPEC_ipFamilies, -
+IPFAMILIES_IPv4, IPFAMILIES_IPv4, IPv4
+IPFAMILIES_IPv6, IPFAMILIES_IPv6, IPv6
+SERVICESPEC_ipFamilyPolicy, SERVICESPEC_ipFamilyPolicy, -
+SingleStack, SingleStack, SingleStack
+PreferDualStack, PreferDualStack, PreferDualStack
+RequireDualStack, RequireDualStack, RequireDualStack
+SERVICESPEC_loadBalancerClass, SERVICESPEC_loadBalancerClass, 
+SERVICESPEC_Ports, SERVICESPEC_Ports, -
+SERVICESPEC_PORTS_port, SERVICESPEC_PORTS_port, 
+SERVICESPEC_PORTS_name, SERVICESPEC_PORTS_name, 
+SERVICESPEC_PORTS_protocol, SERVICESPEC_PORTS_protocol, 
+PORTS_PROTOCOL_tcp, PORTS_PROTOCOL_tcp, TCP
+PORTS_PROTOCOL_udp,PORTS_PROTOCOL_udp, UDP
+PORTS_PROTOCOL_sctp, PORTS_PROTOCOL_sctp, SCTP
+SERVICESPEC_PORTS_nodePort, SERVICESPEC_PORTS_nodePort, 
+SERVICESPEC_PORTS_targetPort, SERVICESPEC_PORTS_targetPort, 
+SERVICESPEC_PORTS_appProtocol, SERVICESPEC_PORTS_appProtocol, 
+publishNotReadyAddresses, publishNotReadyAddresses, -
+SERVICESPEC_Selector, SERVICESPEC_Selector, -
+SELECTOR_key, SELECTOR_key, 
+SELECTOR_value, SELECTOR_value
+SERVICESPEC_sessionAffinity, SERVICESPEC_sessionAffinity, -
+SESSIONAFFINITY_ClientIP, SESSIONAFFINITY_ClientIP, ClientIP
+SESSIONAFFINITY_None, SESSIONAFFINITY_None, None
+SERVICESPEC_sessionAffinityConfig, SERVICESPEC_sessionAffinityConfig, -
+CLIENTIP_timeoutSeconds, CLIENTIP_timeoutSeconds, 
+trafficDistribution, trafficDistribution, 
+SERVICESPEC_Type, SERVICESPEC_Type, -
+TYPE_ExternalName, TYPE_ExternalName, ExternalName
+TYPE_ClusterIP, TYPE_ClusterIP, ClusterIP
+TYPE_NodePort, TYPE_NodePort, NodePort
+TYPE_LoadBalancer, TYPE_LoadBalancer, LoadBalancer

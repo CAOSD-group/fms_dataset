@@ -32,6 +32,43 @@
     "SERVICESPEC_externalName": "external-name",
     "SERVICESPEC_externalTrafficPolicy": true,
     "EXTERNALTRAFFICPOLICY_Local": true,
-    "SERVICESPEC_healthCheckNodePort": 5
+    "SERVICESPEC_healthCheckNodePort": 5,
+    "SERVICESPEC_internalTrafficPolicy": true,
+    "INTERNALTRAFFICPOLICY_Cluster": true,
+    "SERVICESPEC_ipFamilies": true,
+    "IPFAMILIES_IPv4": true,
+    "SERVICESPEC_ipFamilyPolicy": true,
+    "RequireDualStack": true,
+    "SERVICESPEC_loadBalancerClass": "example.com/internal-vip",
+    "SERVICESPEC_Ports": [
+      {
+        "SERVICESPEC_PORTS_port": 3662,
+        "SERVICESPEC_PORTS_name": "portname",
+        "SERVICESPEC_PORTS_protocol": true,
+        "PORTS_PROTOCOL_sctp":true,
+        "SERVICESPEC_PORTS_nodePort": 2923,
+        "SERVICESPEC_PORTS_targetPort": "2342",
+        "SERVICESPEC_PORTS_appProtocol": "kubernetes.io/h2c"
+      }
+    ],
+    "publishNotReadyAddresses": true,
+    "SERVICESPEC_Selector":[
+      {
+        "SELECTOR_key": "app",
+        "SELECTOR_value": "my-app"
+      },
+      {
+        "SELECTOR_key": "tier",
+        "SELECTOR_value": "frontend"
+      }
+    ],
+    "SERVICESPEC_sessionAffinity": true,
+    "SESSIONAFFINITY_ClientIP": true,
+    "SERVICESPEC_sessionAffinityConfig": true,
+    "SESSIONAFFINITYCONFIG_clientIP": true,
+    "CLIENTIP_timeoutSeconds": 10800,
+    "trafficDistribution": "PreferClose",
+    "SERVICESPEC_Type": true,
+    "TYPE_LoadBalancer": true
   }
 }

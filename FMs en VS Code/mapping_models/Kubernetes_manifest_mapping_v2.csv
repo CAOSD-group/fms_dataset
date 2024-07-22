@@ -347,6 +347,10 @@ CONTAINER_volumeMounts,CONTAINER_volumeMounts,
 VOLUMEMOUNTS_mountPath, VOLUMEMOUNTS_mountPath, 
 VOLUMEMOUNTS_name, VOLUMEMOUNTS_name, 
 VOLUMEMOUNTS_readonly, VOLUMEMOUNTS_readonly, 
+VOLUMEMOUNTS_mountPropagation, VOLUMEMOUNTS_mountPropagation, 
+VOLUMEMOUNTS_recursiveReadOnly, VOLUMEMOUNTS_recursiveReadOnly, 
+VOLUMEMOUNTS_subPath, VOLUMEMOUNTS_subPath, 
+VOLUMEMOUNTS_subPathExpr, VOLUMEMOUNTS_subPathExpr, 
 CONTAINER_workingDir, CONTAINER_workingDir, 
 PODSPEC_activeDeadlineSeconds, PODSPEC_activeDeadlineSeconds, 
 PODSPEC_affinity, PODSPEC_affinity, 
@@ -429,3 +433,14 @@ TYPE_ExternalName, TYPE_ExternalName, ExternalName
 TYPE_ClusterIP, TYPE_ClusterIP, ClusterIP
 TYPE_NodePort, TYPE_NodePort, NodePort
 TYPE_LoadBalancer, TYPE_LoadBalancer, LoadBalancer
+persistentVolumeClaim, persistentVolumeClaim, -
+PERSISTENTVOLUMECLAIM_claimName, PERSISTENTVOLUMECLAIM_claimName, 
+PERSISTENTVOLUMECLAIM_readOnly, PERSISTENTVOLUMECLAIM_readOnly, 
+secret, secret, -
+SECRET_secretName, SECRET_secretName, 
+SECRET_optional, SECRET_optional, -
+SECRET_defaultMode, SECRET_defaultMode, 
+SECRET_items, SECRET_items, -
+SECRET_ITEMS_key, SECRET_ITEMS_key, 
+SECRET_ITEMS_mode, SECRET_ITEMS_mode, 
+SECRET_ITEMS_path, SECRET_ITEMS_path, 

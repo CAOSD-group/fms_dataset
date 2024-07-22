@@ -468,12 +468,16 @@ features
                                         mandatory
                                             String VOLUMEDEVICES_devicePath
                                             String VOLUMEDEVICES_name
-                                    Boolean CONTAINER_volumeMounts cardinality [0..*] {NO_TERMINADO}
+                                    Boolean CONTAINER_volumeMounts cardinality [0..*]
                                         mandatory   
                                             String VOLUMEMOUNTS_mountPath
                                             String VOLUMEMOUNTS_name
                                         optional
                                             Boolean VOLUMEMOUNTS_readonly
+                                            String VOLUMEMOUNTS_mountPropagation
+                                            String VOLUMEMOUNTS_recursiveReadOnly
+                                            String VOLUMEMOUNTS_subPath
+                                            String VOLUMEMOUNTS_subPathExpr
                                     Boolean CONTAINER_workingDir
                         optional 
                             Integer PODSPEC_activeDeadlineSeconds
@@ -513,8 +517,20 @@ features
                                                     String HOSTPATH_path
                                                     String HOSTPATH_type
                                             Boolean persistentVolumeClaim
+                                                optional   
+                                                    String PERSISTENTVOLUMECLAIM_claimName
+                                                    Boolean PERSISTENTVOLUMECLAIM_readOnly
                                             Boolean configMap
                                             Boolean secret
+                                                optional   
+                                                    String SECRET_secretName
+                                                    Integer SECRET_defaultMode
+                                                    Boolean SECRET_optional
+                                                    Boolean SECRET_items cardinality [0..*] 
+                                                        mandatory   
+                                                            String SECRET_ITEMS_key
+                                                            Integer SECRET_ITEMS_mode
+                                                            String SECRET_ITEMS_path
                                             Boolean nfs
                                             Boolean csi
                                             Boolean downwardAPI
@@ -688,3 +704,7 @@ constraints
     (APPARMORPROFILE_localhostProfile == '') => APPARMORPROFILE_Type_LocalHost
     SECURITYCONTEXT_allowPrivilegeEscalation => SECURITYCONTEXT_privileged
     WINDOWSOPTIONS_hostProcess => PODSPEC_hostNetwork
+    VOLUMEMOUNTS_recursiveReadOnly == 'ifPossible'| VOLUMEMOUNTS_recursiveReadOnly == 'Enabled'=> VOLUMEMOUNTS_mountPropagation == 'None'
+    (VOLUMEMOUNTS_subPath == '') => !(VOLUMEMOUNTS_subPathExpr == '')
+    (VOLUMEMOUNTS_subPathExpr == '') => !(VOLUMEMOUNTS_subPath == '')
+    SECRET_defaultMode > 0 & SECRET_defaultMode < 511

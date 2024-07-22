@@ -391,7 +391,10 @@
           {
             "VOLUMEMOUNTS_mountPath": "path/to/device2",
             "VOLUMEMOUNTS_name": "device2",
-            "VOLUMEMOUNTS_readonly": true
+            "VOLUMEMOUNTS_readonly": true,
+            "VOLUMEMOUNTS_mountPropagation": "",
+            "VOLUMEMOUNTS_recursiveReadOnly": "",
+            "VOLUMEMOUNTS_subPath": ""
           }
         ],
         "CONTAINER_workingDir": "/working/dir"
@@ -430,6 +433,30 @@
         "hostPath": true,
         "HOSTPATH_path": "path/to/volume",
         "HOSTPATH_type": "Directory"
+      },
+      {
+        "VOLUMES_name": "persistentVolumeClaim-volume",
+        "VOLUMES_type": true,
+        "persistentVolumeClaim": true,
+        "PERSISTENTVOLUMECLAIM_claimName": "name-claim",
+        "PERSISTENTVOLUMECLAIM_readOnly": true
+      },
+      {
+        "VOLUMES_name": "secret-volume",
+        "VOLUMES_type": true,
+        "secret": true,
+        "SECRET_secretName": "name-secret",
+        "SECRET_optional": true,
+        "SECRET_defaultMode": 231,
+        "SECRET_items":[
+          {
+            "SECRET_ITEMS_key": "key-item",
+            "SECRET_ITEMS_mode": 3,
+            "SECRET_ITEMS_path": "path/to/item"
+          }
+        ]
+        
+        
       }
     ]
   } 

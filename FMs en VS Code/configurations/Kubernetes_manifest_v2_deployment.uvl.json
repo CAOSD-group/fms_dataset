@@ -314,6 +314,44 @@
         "LIMITS_memory": "1Gi",
         "RESOURCES_claims": true,
         "RESOURCES_CLAIMS_name": "claim-test",
+        "CONTAINER_securityContext":true,
+        "SECURITYCONTEXT_allowPrivilegeEscalation": true,
+        "SECURITYCONTEXT_privileged": true,
+        "SECURITYCONTEXT_procMount": "Default",
+        "SECURITYCONTEXT_readOnlyRootFilesystem": true,
+        "SECURITYCONTEXT_runAsGroup": 1,
+        "SECURITYCONTEXT_runAsNonRoot": true,
+        "SECURITYCONTEXT_runAsUser": 1,
+        "SECURITYCONTEXT_capabilities": true,
+        "CAPABILITIES_add": [
+          {
+            "addedCapabilities":"NET_ADMIN"
+          }
+        ],
+        "CAPABILITIES_drop":[
+          {
+            "removedCapabilities": "ALL"
+          }
+        ],
+        "SECURITYCONTEXT_seLinuxOptions": true,
+        "SELINUXOPTIONS_user": "system_u",
+        "SELINUXOPTIONS_role": "system_r",
+        "SELINUXOPTIONS_type": "spc_t",
+        "SELINUXOPTIONS_level": "s0:c123,c456", 
+        "SECURITYCONTEXT_seccompProfile": true,
+        "SECCOMPROFILE_localhostProfile": "dwd",
+        "SECCOMPROFILE_type": true,
+        "SECCOMPROFILE_Type_Unconfined": true,
+        "SECURITYCONTEXT_windowsOptions": true,
+        "WINDOWSOPTIONS_gmsaCredentialSpec": "credentialSpec",
+        "WINDOWSOPTIONS_gmsaCredentialSpecName":"my-gmsa-credential-spec",
+        "WINDOWSOPTIONS_hostProcess":true,
+        "WINDOWSOPTIONS_runAsUserName":"ContainerUser",
+
+
+
+
+
         "CONTAINER_startupProbe": true,
         "STARTUPPROBE_exec": [
           {

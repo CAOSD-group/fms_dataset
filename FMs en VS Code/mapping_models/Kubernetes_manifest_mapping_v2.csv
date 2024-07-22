@@ -283,6 +283,37 @@ REQUEST_memory, REQUEST_memory,
 LIMITS_cpu, LIMITS_cpu, 
 LIMITS_memory, LIMITS_memory, 
 RESOURCES_CLAIMS_name, RESOURCES_CLAIMS_name, 
+CONTAINER_securityContext, CONTAINER_securityContext, -
+SECURITYCONTEXT_allowPrivilegeEscalation, SECURITYCONTEXT_allowPrivilegeEscalation, 
+SECURITYCONTEXT_privileged, SECURITYCONTEXT_privileged, 
+SECURITYCONTEXT_procMount, SECURITYCONTEXT_procMount,
+SECURITYCONTEXT_readOnlyRootFilesystem, SECURITYCONTEXT_readOnlyRootFilesystem, 
+SECURITYCONTEXT_runAsGroup, SECURITYCONTEXT_runAsGroup,  
+SECURITYCONTEXT_runAsNonRoot, SECURITYCONTEXT_runAsNonRoot, 
+SECURITYCONTEXT_runAsUser, SECURITYCONTEXT_runAsUser, 
+SECURITYCONTEXT_capabilities, SECURITYCONTEXT_capabilities, -
+CAPABILITIES_add, CAPABILITIES_add, -
+addedCapabilities, addedCapabilities, 
+CAPABILITIES_drop, CAPABILITIES_drop, -
+removedCapabilities, removedCapabilities
+SECURITYCONTEXT_seLinuxOptions, SECURITYCONTEXT_seLinuxOptions, -
+SELINUXOPTIONS_level, SELINUXOPTIONS_level,
+SELINUXOPTIONS_role, SELINUXOPTIONS_role,
+SELINUXOPTIONS_type, SELINUXOPTIONS_type,  
+SELINUXOPTIONS_user, SELINUXOPTIONS_user, 
+SECURITYCONTEXT_seccompProfile, SECURITYCONTEXT_seccompProfile, -
+SECCOMPROFILE_localhostProfile, SECCOMPROFILE_localhostProfile, 
+SECCOMPROFILE_type, SECCOMPROFILE_type, -
+SECCOMPROFILE_Type_LocalHost, SECCOMPROFILE_Type_LocalHost, LocalHost
+SECCOMPROFILE_Type_RuntimeDefault, SECCOMPROFILE_Type_RuntimeDefault, RuntimeDefault
+SECCOMPROFILE_Type_Unconfined, SECCOMPROFILE_Type_Unconfined, Unconfied
+SECURITYCONTEXT_windowsOptions, SECURITYCONTEXT_windowsOptions, -
+WINDOWSOPTIONS_gmsaCredentialSpec, WINDOWSOPTIONS_gmsaCredentialSpec, 
+WINDOWSOPTIONS_gmsaCredentialSpecName, WINDOWSOPTIONS_gmsaCredentialSpecName, 
+WINDOWSOPTIONS_hostProcess, WINDOWSOPTIONS_hostProcess, -
+WINDOWSOPTIONS_runAsUserName, WINDOWSOPTIONS_runAsUserName, 
+
+
 CONTAINER_startupProbe, CONTAINER_startupProbe, -
 STARTUPPROBE_exec, STARTUPPROBE_exec, -
 STARTUPPROBE_EXEC_command, STARTUPPROBE_EXEC_command, 

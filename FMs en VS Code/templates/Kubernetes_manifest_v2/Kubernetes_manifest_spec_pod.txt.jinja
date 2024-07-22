@@ -198,6 +198,49 @@ containers:
       {%endif%}
     {%endif%}
 
+
+    {%if c.CONTAINER_securityContext %}securityContext:
+      {%if c.SECURITYCONTEXT_allowPrivilegeEscalation%}allowPrivilegeEscalation: {{c.SECURITYCONTEXT_allowPrivilegeEscalation}}{%endif%}
+      {%if c.SECURITYCONTEXT_privileged%}privileged: {{c.SECURITYCONTEXT_privileged}}{%endif%}
+      {%if c.SECURITYCONTEXT_procMount%}procMount: {{c.SECURITYCONTEXT_procMount}}{%endif%}
+      {%if c.SECURITYCONTEXT_readOnlyRootFilesystem%}readOnlyRootFilesystem: {{c.SECURITYCONTEXT_readOnlyRootFilesystem}}{%endif%}
+      {%if c.SECURITYCONTEXT_runAsGroup%}runAsGroup: {{c.SECURITYCONTEXT_runAsGroup}}{%endif%}
+      {%if c.SECURITYCONTEXT_runAsNonRoot%}runAsNonRoot: {{c.SECURITYCONTEXT_runAsNonRoot}}{%endif%}
+      {%if c.SECURITYCONTEXT_runAsUser%}runAsUser: {{c.SECURITYCONTEXT_runAsUser}}{%endif%}
+
+      {%if c.SECURITYCONTEXT_capabilities%}capabilities:
+        {%if c.CAPABILITIES_add%}add:
+          {%for add in c.CAPABILITIES_add%}- {{add.addedCapabilities}}{%endfor%}
+        {%endif%}
+        {%if c.CAPABILITIES_drop%}drop:
+          {%for drop in c.CAPABILITIES_drop%}- {{drop.removedCapabilities}}{%endfor%}
+        {%endif%}
+      {%endif%}
+
+      {%if c.SECURITYCONTEXT_seLinuxOptions%}seLinuxOptions: 
+        {%if c.SELINUXOPTIONS_user%}user: "{{c.SELINUXOPTIONS_user}}"{%endif%}
+        {%if c.SELINUXOPTIONS_role%}role: "{{c.SELINUXOPTIONS_role}}" {%endif%}
+        {%if c.SELINUXOPTIONS_type%}type: "{{c.SELINUXOPTIONS_type}}"{%endif%}
+        {%if c.SELINUXOPTIONS_level%}level: "{{c.SELINUXOPTIONS_level}}" {%endif%}
+      {%endif%}
+
+      {%if c.SECURITYCONTEXT_seccompProfile%}seccompProfile:
+        {%if c.SECCOMPROFILE_localhostProfile%}localhostProfile: {{c.SECCOMPROFILE_localhostProfile}} {%endif%}
+        {%if c.SECCOMPROFILE_type%}type: {{c.SECCOMPROFILE_Type_LocalHost}}{{c.SECCOMPROFILE_Type_RuntimeDefault}}{{c.SECCOMPROFILE_Type_Unconfined}} {%endif%}
+      {%endif%}
+
+      {%if c.SECURITYCONTEXT_windowsOptions%}windowsOptions:
+        {%if c.WINDOWSOPTIONS_gmsaCredentialSpec%}gmsaCredentialSpec: {{c.WINDOWSOPTIONS_gmsaCredentialSpec}} {%endif%}
+        {%if c.WINDOWSOPTIONS_gmsaCredentialSpecName%}gmsaCredentialSpecName: "{{c.WINDOWSOPTIONS_gmsaCredentialSpecName}}" {%endif%}
+        {%if c.WINDOWSOPTIONS_hostProcess%}hostProcess: true {%endif%}
+        {%if c.WINDOWSOPTIONS_runAsUserName%}runAsUserName: "{{c.WINDOWSOPTIONS_runAsUserName}}" {%endif%}
+      {%endif%}
+
+    {%endif%}
+
+
+
+
     {%if c.CONTAINER_startupProbe%}startUpProbe:
       {%if c.STARTUPPROBE_exec%}exec:
         command: [{%for exec in c.STARTUPPROBE_exec%}"{{exec.STARTUPPROBE_EXEC_command}}",{%endfor%}]

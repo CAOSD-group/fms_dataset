@@ -382,7 +382,51 @@ features
                                             Boolean RESOURCES_claims
                                                 mandatory
                                                     String RESOURCES_CLAIMS_name
-                                    Boolean CONTAINER_securityContext {NO_TERMINADO}
+                                    Boolean CONTAINER_securityContext
+                                        optional   
+                                            Boolean SECURITYCONTEXT_allowPrivilegeEscalation
+                                            Boolean SECURITYCONTEXT_privileged
+                                            String SECURITYCONTEXT_procMount
+                                            Boolean SECURITYCONTEXT_readOnlyRootFilesystem
+                                            Integer SECURITYCONTEXT_runAsGroup
+                                            Boolean SECURITYCONTEXT_runAsNonRoot
+                                            Integer SECURITYCONTEXT_runAsUser
+                                            Boolean SECURITYCONTEXT_appArmorProfile
+                                                optional   
+                                                    String APPARMORPROFILE_localhostProfile
+                                                    Boolean APPARMORPROFILE_type
+                                                        alternative   
+                                                            Boolean APPARMORPROFILE_Type_LocalHost
+                                                            Boolean APPARMORPROFILE_Type_RuntimeDefault 
+                                                            Boolean APPARMORPROFILE_Type_Unconfined 
+                                            Boolean SECURITYCONTEXT_capabilities
+                                                optional   
+                                                    Boolean CAPABILITIES_add cardinality [0..*] 
+                                                        mandatory   
+                                                            String addedCapabilities
+                                                    Boolean CAPABILITIES_drop cardinality [0..*] 
+                                                        mandatory   
+                                                                String removedCapabilities
+                                            Boolean SECURITYCONTEXT_seLinuxOptions
+                                                optional   
+                                                    String SELINUXOPTIONS_level
+                                                    String SELINUXOPTIONS_role
+                                                    String SELINUXOPTIONS_type
+                                                    String SELINUXOPTIONS_user
+                                            Boolean SECURITYCONTEXT_seccompProfile
+                                                optional   
+                                                    String SECCOMPROFILE_localhostProfile
+                                                    Boolean SECCOMPROFILE_type
+                                                        alternative   
+                                                            Boolean SECCOMPROFILE_Type_LocalHost
+                                                            Boolean SECCOMPROFILE_Type_RuntimeDefault 
+                                                            Boolean SECCOMPROFILE_Type_Unconfined
+                                            Boolean SECURITYCONTEXT_windowsOptions
+                                                optional   
+                                                    String WINDOWSOPTIONS_gmsaCredentialSpec
+                                                    String WINDOWSOPTIONS_gmsaCredentialSpecName
+                                                    Boolean WINDOWSOPTIONS_hostProcess
+                                                    String WINDOWSOPTIONS_runAsUserName
                                     Boolean CONTAINER_startupProbe
                                         mandatory
                                             Boolean STARTUPPROBE_exec cardinality [0..*]
@@ -641,3 +685,6 @@ constraints
     (SERVICESPEC_healthCheckNodePort > 0) => TYPE_LoadBalancer & EXTERNALTRAFFICPOLICY_Local
     SERVICESPEC_ipFamilyPolicy => TYPE_LoadBalancer | TYPE_ClusterIP | TYPE_NodePort
     (SERVICESPEC_loadBalancerClass == '') => TYPE_LoadBalancer
+    (APPARMORPROFILE_localhostProfile == '') => APPARMORPROFILE_Type_LocalHost
+    SECURITYCONTEXT_allowPrivilegeEscalation => SECURITYCONTEXT_privileged
+    WINDOWSOPTIONS_hostProcess => PODSPEC_hostNetwork

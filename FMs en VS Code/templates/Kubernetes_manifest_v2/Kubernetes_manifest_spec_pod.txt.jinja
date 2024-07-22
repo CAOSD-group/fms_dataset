@@ -238,9 +238,6 @@ containers:
 
     {%endif%}
 
-
-
-
     {%if c.CONTAINER_startupProbe%}startUpProbe:
       {%if c.STARTUPPROBE_exec%}exec:
         command: [{%for exec in c.STARTUPPROBE_exec%}"{{exec.STARTUPPROBE_EXEC_command}}",{%endfor%}]

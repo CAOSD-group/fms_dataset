@@ -312,8 +312,6 @@ WINDOWSOPTIONS_gmsaCredentialSpec, WINDOWSOPTIONS_gmsaCredentialSpec,
 WINDOWSOPTIONS_gmsaCredentialSpecName, WINDOWSOPTIONS_gmsaCredentialSpecName, 
 WINDOWSOPTIONS_hostProcess, WINDOWSOPTIONS_hostProcess, -
 WINDOWSOPTIONS_runAsUserName, WINDOWSOPTIONS_runAsUserName, 
-
-
 CONTAINER_startupProbe, CONTAINER_startupProbe, -
 STARTUPPROBE_exec, STARTUPPROBE_exec, -
 STARTUPPROBE_EXEC_command, STARTUPPROBE_EXEC_command, 

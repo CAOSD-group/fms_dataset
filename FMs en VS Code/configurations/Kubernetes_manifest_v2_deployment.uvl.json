@@ -347,11 +347,6 @@
         "WINDOWSOPTIONS_gmsaCredentialSpecName":"my-gmsa-credential-spec",
         "WINDOWSOPTIONS_hostProcess":true,
         "WINDOWSOPTIONS_runAsUserName":"ContainerUser",
-
-
-
-
-
         "CONTAINER_startupProbe": true,
         "STARTUPPROBE_exec": [
           {

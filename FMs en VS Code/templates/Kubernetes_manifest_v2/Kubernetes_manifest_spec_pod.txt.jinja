@@ -359,11 +359,24 @@ containers:
       {%if v.SECRET_items%}items: 
       {%for i in v.SECRET_items%}
         - key: {{i.SECRET_ITEMS_key}}
-          mode: {{i.SECRET_ITEMS_mode}}
+          {%if i.SECRET_ITEMS_mode%}mode: {{i.SECRET_ITEMS_mode}}{%endif%}
           path: {{i.SECRET_ITEMS_path}}
       {%endfor%}
       {%endif%}
-      
+    {%endif%}
+
+
+    {%if v.configMap%}configMap:
+      {%if v.CONFIGMAP_name%}name: "{{v.CONFIGMAP_name}}"{%endif%}
+      {%if v.CONFIGMAP_optional%}optional: true{%endif%}
+      {%if v.CONFIGMAP_defaultMode%}defaultMode: {{v.CONFIGMAP_defaultMode}}{%endif%}
+      {%if v.CONFIGMAP_items%}items: 
+      {%for i in v.CONFIGMAP_items%}
+        - key: {{i.CONFIGMAP_ITEMS_key}}
+          {%if i.CONFIGMAP_ITEMS_mode%}mode: {{i.CONFIGMAP_ITEMS_mode}}{%endif%}
+          path: {{i.CONFIGMAP_ITEMS_path}}
+      {%endfor%}
+      {%endif%}
     {%endif%}
 
 {%endfor%}

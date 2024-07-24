@@ -455,6 +455,24 @@
             "SECRET_ITEMS_path": "path/to/item"
           }
         ]
+      },
+      {
+        "VOLUMES_name": "configMap-volume",
+        "VOLUMES_type": true,
+        "configMap": true,
+        "CONFIGMAP_name": "name-configMap",
+        "CONFIGMAP_optional": true,
+        "CONFIGMAP_defaultMode": 231,
+        "CONFIGMAP_items":[
+          {
+            "CONFIGMAP_ITEMS_key": "config.properties",
+            "CONFIGMAP_ITEMS_path": "config.properties"
+          },
+          {
+            "CONFIGMAP_ITEMS_key": "myKey",
+            "CONFIGMAP_ITEMS_path": "another-config.ini"
+          }
+        ]
         
         
       }

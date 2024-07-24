@@ -521,16 +521,28 @@ features
                                                     String PERSISTENTVOLUMECLAIM_claimName
                                                     Boolean PERSISTENTVOLUMECLAIM_readOnly
                                             Boolean configMap
+                                                optional
+                                                    String CONFIGMAP_secretName
+                                                    Integer CONFIGMAP_defaultMode
+                                                    Boolean CONFIGMAP_optional
+                                                    Boolean CONFIGMAP_items cardinality [0..*] 
+                                                        mandatory   
+                                                            String CONFIGMAP_ITEMS_key
+                                                            String CONFIGMAP_ITEMS_path
+                                                        optional 
+                                                            Integer CONFIGMAP_ITEMS_mode  
+
                                             Boolean secret
                                                 optional   
-                                                    String SECRET_secretName
+                                                    String SECRET_name
                                                     Integer SECRET_defaultMode
                                                     Boolean SECRET_optional
                                                     Boolean SECRET_items cardinality [0..*] 
                                                         mandatory   
                                                             String SECRET_ITEMS_key
-                                                            Integer SECRET_ITEMS_mode
                                                             String SECRET_ITEMS_path
+                                                        optional   
+                                                            Integer SECRET_ITEMS_mode
                                             Boolean nfs
                                             Boolean csi
                                             Boolean downwardAPI
@@ -719,4 +731,5 @@ constraints
     VOLUMEMOUNTS_recursiveReadOnly == 'ifPossible'| VOLUMEMOUNTS_recursiveReadOnly == 'Enabled'=> VOLUMEMOUNTS_mountPropagation == 'None'
     (VOLUMEMOUNTS_subPath == '') => !(VOLUMEMOUNTS_subPathExpr == '')
     (VOLUMEMOUNTS_subPathExpr == '') => !(VOLUMEMOUNTS_subPath == '')
-    SECRET_defaultMode > 0 & SECRET_defaultMode < 511
+    CONFIGMAP_defaultMode > 0 & CONFIGMAP_defaultMode < 511
+    CONFIGMAP_defaultMode > 0 & CONFIGMAP_defaultMode < 511

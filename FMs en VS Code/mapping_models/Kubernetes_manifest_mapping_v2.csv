@@ -436,6 +436,16 @@ TYPE_LoadBalancer, TYPE_LoadBalancer, LoadBalancer
 persistentVolumeClaim, persistentVolumeClaim, -
 PERSISTENTVOLUMECLAIM_claimName, PERSISTENTVOLUMECLAIM_claimName, 
 PERSISTENTVOLUMECLAIM_readOnly, PERSISTENTVOLUMECLAIM_readOnly, 
+configMap, configMap, -
+CONFIGMAP_name, CONFIGMAP_name, 
+CONFIGMAP_optional, CONFIGMAP_optional, -
+CONFIGMAP_defaultMode, CONFIGMAP_defaultMode, 
+CONFIGMAP_items, CONFIGMAP_items, -
+CONFIGMAP_ITEMS_key, CONFIGMAP_ITEMS_key, 
+CONFIGMAP_ITEMS_mode, CONFIGMAP_ITEMS_mode, 
+CONFIGMAP_ITEMS_path, CONFIGMAP_ITEMS_path, 
+
+
 secret, secret, -
 SECRET_secretName, SECRET_secretName, 
 SECRET_optional, SECRET_optional, -

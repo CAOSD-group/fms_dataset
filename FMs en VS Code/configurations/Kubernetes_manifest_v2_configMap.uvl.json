@@ -1,0 +1,38 @@
+{
+  "file": "Kubernetes_manifest_v2.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "ApiVersion": true,
+    "Group": true,
+    "GROUP_core": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "Kind": true,
+    "KIND_ConfigMap": true,
+    "Metadata": true,
+    "METADATA_name": "extended-configmap",
+    "METADATA_namespace": "default",
+    "ConfigMapSpec": true,
+    "CONFIGMAPSPEC_BinaryData": "",
+    "CONFIGMAPSPEC_Data": "myKey: myValue",
+    "CONFIGMAPSPEC_immutable": false,
+    "CONFIGMAPSPEC_BinaryData": [
+      {
+        "BINARYDATA_binaryFile_name": "binaryFile",
+        "BINARYDATA_binaryFile_value": "QmluYXJ5IGRhdGEgZXhjYW1wbGUuLi4K"
+      }
+    ],
+    "CONFIGMAPSPEC_Data": [
+      {
+        "DATA_confSimple": true,
+        "CONFSIMPLE_key": "myKey",
+        "CONFSIMPLE_value": "myValue"
+      },
+      {
+        "DATA_confFile": true,
+        "CONFFILE_name": "config.properties",
+        "CONFFILE_value": "setting1=value1; setting2=value2"
+      }
+    ]
+  }
+}

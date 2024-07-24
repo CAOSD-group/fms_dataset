@@ -544,10 +544,6 @@ features
                                             Boolean rbd
                                             Boolean scaleIO
                                             Boolean storageos
-
-
-
-
                     Boolean ServiceSpec {abstract}
                         optional
                             Boolean SERVICESPEC_allocateLoadBalancerNodePorts
@@ -618,8 +614,24 @@ features
                                     Boolean TYPE_ClusterIP
                                     Boolean TYPE_NodePort
                                     Boolean TYPE_LoadBalancer
-                    Boolean ConfigMapSpec {abstract}
-                    Boolean SecretSpec {abstract}
+                    Boolean ConfigMapSpec {abstract, NO_TERMINADO}
+                        optional
+                            Boolean CONFIGMAPSPEC_BinaryData cardinality [0..*] 
+                                mandatory
+                                    String BINARYDATA_binaryFile_name
+                                    String BINARYDATA_binaryFile_value
+                            Boolean CONFIGMAPSPEC_Data cardinality [0..*]
+                                optional   
+                                    Boolean DATA_confSimple
+                                        mandatory
+                                            String CONFSIMPLE_key
+                                            String CONFSIMPLE_value
+                                    Boolean DATA_confFile
+                                        mandatory   
+                                            String CONFFILE_name
+                                            String CONFFILE_value
+                            Boolean CONFIGMAPSPEC_immutable
+                    Boolean SecretSpec {abstract, NO_TERMINADO}
 constraints
     // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1
@@ -652,6 +664,7 @@ constraints
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
     // Resto de restricciones
+    DeploymentSpec & PodSpec & ServiceSpec & SecretSpec & ConfigMapSpec => Spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_Pod => PodSpec
     KIND_Deployment => DeploymentSpec & PodSpec
@@ -660,7 +673,6 @@ constraints
     KIND_Secret => SecretSpec
     (maxUnavailable == 0) => (maxSurge > 0) 
     DeploymentSpec => PodSpec
-    KIND_Service => ServiceSpec
     SERVICESPEC_clusterIP => !SERVICESPEC_clusterIPs
     SERVICESPEC_clusterIPs => !SERVICESPEC_clusterIP
     SERVICESPEC_clusterIP => !TYPE_ExternalName

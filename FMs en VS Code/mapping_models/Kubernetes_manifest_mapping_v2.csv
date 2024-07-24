@@ -444,3 +444,15 @@ SECRET_items, SECRET_items, -
 SECRET_ITEMS_key, SECRET_ITEMS_key, 
 SECRET_ITEMS_mode, SECRET_ITEMS_mode, 
 SECRET_ITEMS_path, SECRET_ITEMS_path, 
+ConfigMapSpec, ConfigMapSpec, 
+CONFIGMAPSPEC_immutable, CONFIGMAPSPEC_immutable, -
+CONFIGMAPSPEC_BinaryData, CONFIGMAPSPEC_BinaryData, -
+BINARYDATA_binaryFile_name, BINARYDATA_binaryFile_name, 
+BINARYDATA_binaryFile_value, BINARYDATA_binaryFile_value, 
+CONFIGMAPSPEC_Data, CONFIGMAPSPEC_Data, -
+DATA_confSimple, DATA_confSimple, -
+CONFSIMPLE_key, CONFSIMPLE_key, 
+CONFSIMPLE_value, CONFSIMPLE_value, 
+DATA_confFile, DATA_confFile, -
+CONFFILE_name, CONFFILE_name, 
+CONFFILE_value, CONFFILE_value, 

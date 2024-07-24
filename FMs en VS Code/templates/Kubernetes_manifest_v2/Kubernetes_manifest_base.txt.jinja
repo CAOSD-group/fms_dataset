@@ -7,6 +7,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {{ indent_metadata()|indent }}
 {%endif%}
 
+{%if ConfigMapSpec%}
+{% include 'Kubernetes_manifest_spec_configMap.txt.jinja'%}
+{%endif%}
+
 {%if Spec%}spec:
   {%if DeploymentSpec and PodSpec%}
   {% macro indent_deployment() %}{% include 'Kubernetes_manifest_spec_deployment.txt.jinja' %}{% endmacro %}
@@ -20,8 +24,8 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {%elif ServiceSpec%}
   {% macro indent_service() %}{% include 'Kubernetes_manifest_spec_service.txt.jinja'%}{% endmacro %}
   {{ indent_service()|indent(first=false) }}
-
-  {%endif%}
+{%endif%}
+  
 {%endif%}
 
   

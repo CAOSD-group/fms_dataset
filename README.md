@@ -10,4 +10,4 @@ A modo de resumen, esto es lo que contiene cada carpeta:
 - Informes: Los informes mas relevantes sobre el avance del Feature Model de Kubernetes, el informe técnico publicado en RIUMA, una presentacion powerpoint para entender la generacion de ficheros y un informe (e informal) sobre los validadores.
 - Proyectos de Eclipse: los FM que empecé haciendo al principio del proyecto. La mayoria están desactualizados, pero los FM de la tesis de Angel se encuentran aquí.
 - pruebasValidacion: Un proyecto con el que a partir de los JSON que definen los distintos objetos de Kubernetes y sus posibles configuraciones, filtro datos que me son de interés.
--Documentacion(copia): Una copia de toda la documentacion del enlace de arriba por si hubiera algun problema. Ha sido exportada en "HTML" y "markdown y csv". Hecha en Notion.
+- Documentacion(copia): Una copia de toda la documentacion del enlace de arriba por si hubiera algun problema. Ha sido exportada en "HTML" y "markdown y csv". Hecha en Notion.

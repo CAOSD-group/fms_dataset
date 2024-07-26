@@ -1,0 +1,22 @@
+Comprobar ficheros YAML
+
+- kubeconform: Mas simple, pued que se salte alguna comprobacion (poco probable). Si el fichero está mal, devuelve el error tal cual apareceria si lo desplegases.
+
+Enlace: https://github.com/yannh/kubeconform
+
+Uso: kubeconform.exe <fichero>.yaml
+
+- kube-score: Comprobacion mas exhaustiva. Da incluso recomendaciones de mejoras o fallas de seguridad.
+
+Enlace: https://github.com/zegl/kube-score/releases
+herramienta online: https://kube-score.com/
+
+Uso: kube-score.exe score <fichero>.yaml
+
+Comprobar ficheros Dockerfile
+
+- hadolint: Comprueba errores y da consejos de optimizacion o seguridad
+
+Enlace: https://github.com/hadolint/hadolint
+
+Uso: hadolint.exe <fichero>

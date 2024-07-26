@@ -13,13 +13,13 @@ def main():
     #schema = 'schemas/schemaJobStandalone.json'
     #schema = 'schemas/schemaServiceStandalone.json'
 
-    # Lista de nombres de subdiccionarios a eliminar manteniendo su contenido
+    # Lista de nombres de subdiccionarios a eliminar manteniendo su contenido. Comenta un valor si quieres que se muestre
     nombres_a_eliminar = [
         "properties",
         "items",
     ]
 
-    # Lista de claves de subdiccionarios que eliminar con todo su contenido
+    # Lista de claves de subdiccionarios que eliminar con todo su contenido. Comenta un valor si quieres que se muestre
     keysToRemove = [
         "description", # Descripcion del atributo
         'oneOf', # Indica si el atributo puede tener diferentes tipos

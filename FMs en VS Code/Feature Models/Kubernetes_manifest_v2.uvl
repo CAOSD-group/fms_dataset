@@ -51,7 +51,7 @@ features
                     Boolean Service_APIs {abstract}
                         alternative
                             Boolean KIND_Endpoints
-                            Boolean KIND_EndpintSlice
+                            Boolean KIND_EndpointSlice
                             Boolean KIND_Ingress
                             Boolean KIND_IngressClass
                             Boolean KIND_Service
@@ -643,6 +643,52 @@ features
                                             String CONFFILE_name
                                             String CONFFILE_value
                             Boolean CONFIGMAPSPEC_immutable
+                    Boolean EndpointsSpec {abstract, NO_TERMINADO}
+                        mandatory
+                            Boolean ENDPOINT_subsets 
+                                optional
+                                    Boolean SUBSETS_addresses
+                                        mandatory
+                                            String ADDRESSES_ip
+                                        optional
+                                            String ADDRESSES_hostname
+                                            String ADDRESSES_nodename
+                                            Boolean ADDRESSES_targetRef
+                                                optional
+                                                    String ADDRESSES_TARGETREF_apiVersion
+                                                    String ADDRESSES_TARGETREF_fieldPath
+                                                    String ADDRESSES_TARGETREF_kind
+                                                    String ADDRESSES_TARGETREF_name
+                                                    String ADDRESSES_TARGETREF_namespace
+                                                    String ADDRESSES_TARGETREF_resourceVersion
+                                                    String ADDRESSES_TARGETREF_uid
+                                    Boolean SUBSETS_notReadyAddresses
+                                        mandatory
+                                                String NOTREADYADDRESSES_ip
+                                            optional
+                                                String NOTREADYADDRESSES_hostname
+                                                String NOTREADYADDRESSES_nodename
+                                                Boolean NOTREADYADDRESSES_targetRef
+                                                    optional
+                                                        String NOTREADYADDRESSES_TARGETREF_apiVersion
+                                                        String NOTREADYADDRESSES_TARGETREF_fieldPath
+                                                        String NOTREADYADDRESSES_TARGETREF_kind
+                                                        String NOTREADYADDRESSES_TARGETREF_name
+                                                        String NOTREADYADDRESSES_TARGETREF_namespace
+                                                        String NOTREADYADDRESSES_TARGETREF_resourceVersion
+                                                        String NOTREADYADDRESSES_TARGETREF_uid
+                                    Boolean SUBSETS_ports
+                                        mandatory   
+                                            Integer SUBSETS_PORTS_port
+                                        optional   
+                                            String SUBSETS_PORTS_appProtocol
+                                            String SUBSETS_PORTS_name
+                                            Boolean SUBSETS_PORTS_protocol
+                                                alternative  
+                                                    Boolean SUBSETS_PORTS_UDP 
+                                                    Boolean SUBSETS_PORTS_TCP
+                                                    Boolean SUBSETS_PORTS_SCTP
+
                     Boolean SecretSpec {abstract, NO_TERMINADO}
 constraints
     // Restrincciones de Group
@@ -656,7 +702,7 @@ constraints
     (KIND_DaemonSet | KIND_Deployment | KIND_ReplicaSet | KIND_StatefullSet | KIND_ControllerRevision) => GROUP_apps
     (KIND_Container | KIND_Pod | KIND_ReplicationController | KIND_Service | KIND_Endpoints | KIND_ConfigMap | KIND_Secret | KIND_PersistentVolumeClaim | KIND_Volume | KIND_LimitRange | KIND_PodTemplate | KIND_Binding | KIND_ComponentStatus | KIND_Namespace | KIND_Node | KIND_PersistentVolume | KIND_ResourceQuota | KIND_ServiceAccount) => GROUP_core
     (KIND_CronJob | KIND_Job) => GROUP_batch
-    KIND_EndpintSlice => GROUP_discovery
+    KIND_EndpointSlice => GROUP_discovery
     (KIND_Ingress | KIND_IngressClass | KIND_IPAddress | KIND_ServiceCIDR | KIND_NetworkPolicy) => GROUP_networking
     (KIND_CSIDriver | KIND_CSINode | KIND_StorageClass | KIND_CSIStorageCapacity | KIND_VolumeAttachment | KIND_VolumeAttributesClass) => GROUP_storage
     (KIND_ClusterTrustBundle | KIND_CertificateSigningRequest) => GROUP_certificates
@@ -676,13 +722,14 @@ constraints
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec & SecretSpec & ConfigMapSpec => Spec
+    DeploymentSpec & PodSpec & ServiceSpec & SecretSpec & ConfigMapSpec & EndpointsSpec => Spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_Pod => PodSpec
     KIND_Deployment => DeploymentSpec & PodSpec
     KIND_Service => ServiceSpec
     KIND_ConfigMap => ConfigMapSpec
     KIND_Secret => SecretSpec
+    KIND_Endpoints => EndpointsSpec
     (maxUnavailable == 0) => (maxSurge > 0) 
     DeploymentSpec => PodSpec
     SERVICESPEC_clusterIP => !SERVICESPEC_clusterIPs

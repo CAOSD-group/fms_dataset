@@ -9,9 +9,13 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 
 {%if ConfigMapSpec%}
 {% include 'Kubernetes_manifest_spec_configMap.txt.jinja'%}
-{%endif%}
 
-{%if Spec%}spec:
+
+{%elif EndpointsSpec%}
+{% include 'Kubernetes_manifest_spec_endpoints.txt.jinja'%}
+
+
+{%elif Spec%}spec:
   {%if DeploymentSpec and PodSpec%}
   {% macro indent_deployment() %}{% include 'Kubernetes_manifest_spec_deployment.txt.jinja' %}{% endmacro %}
   {{ indent_deployment()|indent(first=false) }}

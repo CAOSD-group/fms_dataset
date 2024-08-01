@@ -1,0 +1,60 @@
+{
+  "file": "Kubernetes_manifest_v2.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "ApiVersion": true,
+    "Group": true,
+    "GROUP_core": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "Kind": true,
+    "Service_APIs": true,
+    "KIND_Endpoints": true,
+    "Metadata": true,
+    "METADATA_name": "my-endpoint",
+    "Spec": true,
+    "EndpointsSpec": true,
+    "ENDPOINT_subsets": [
+      {
+        "SUBSETS_addresses": [
+          {
+            "ADDRESSES_hostname": "host1",
+            "ADDRESSES_ip": "0.0.0.1",
+            "ADDRESSES_nodename": "node1",
+            "ADDRESSES_targetRef": true,
+            "ADDRESSES_TARGETREF_apiVersion": "v2",
+            "ADDRESSES_TARGETREF_fieldPath": "field/path",
+            "ADDRESSES_TARGETREF_kind": "Pod",
+            "ADDRESSES_TARGETREF_name": "pod-2",
+            "ADDRESSES_TARGETREF_namespace": "default",
+            "ADDRESSES_TARGETREF_resourceVersion": "ver",
+            "ADDRESSES_TARGETREF_uid": "uidfortargetref"
+          }
+        ],
+        "SUBSETS_notReadyAddresses": [
+          {
+            "NOTREADYADDRESSES_hostname": "host2",
+            "NOTREADYADDRESSES_ip": "0.0.0.2",
+            "NOTREADYADDRESSES_nodename": "node2",
+            "NOTREADYADDRESSES_targetRef": true,
+            "NOTREADYADDRESSES_TARGETREF_apiVersion": "v2",
+            "NOTREADYADDRESSES_TARGETREF_fieldPath": "field/path",
+            "NOTREADYADDRESSES_TARGETREF_kind": "Pod",
+            "NOTREADYADDRESSES_TARGETREF_name": "pod-3",
+            "NOTREADYADDRESSES_TARGETREF_namespace": "default",
+            "NOTREADYADDRESSES_TARGETREF_resourceVersion": "ver",
+            "NOTREADYADDRESSES_TARGETREF_uid": "uidfortargetref3"
+          }
+        ],
+        "SUBSETS_ports":[
+          {
+            "SUBSETS_PORTS_port": "443",
+            "SUBSETS_PORTS_name": "https",
+            "SUBSETS_PORTS_protocol": true,
+            "SUBSETS_PORTS_SCTP": true
+          }
+        ]
+      }
+    ]
+  }
+}

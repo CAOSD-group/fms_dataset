@@ -1,5 +1,8 @@
 {%if CONFIGMAPSPEC_immutable%}immutable: true{%else%}immutable: false{%endif%}
 
+{%if CONFIGMAPSPEC_kind%}kind: {{CONFIGMAPSPEC_kind}}{%endif%}
+
+
 {%if CONFIGMAPSPEC_BinaryData%}binaryData:
 {%for b in CONFIGMAPSPEC_BinaryData%}
   {{b.BINARYDATA_binaryFile_name}}: |

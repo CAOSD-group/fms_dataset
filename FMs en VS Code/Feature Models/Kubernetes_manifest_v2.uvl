@@ -480,12 +480,17 @@ features
                                             String VOLUMEMOUNTS_subPathExpr
                                     Boolean CONTAINER_workingDir
                         optional 
+                            Boolean PODSPEC_initContainers cardinality [0..*] {NO_TERMINADO}
+                                mandatory   
+                                    String INITCONTAINER_name
+                                optional   
+                                    String INITCONTAINER_image
                             Integer PODSPEC_activeDeadlineSeconds
                             Boolean PODSPEC_affinity {NO_TERMINADO}
                                 optional
-                                    Boolean AFFINITY_nodeAffinity
-                                    Boolean AFFINITY_podAffinity
-                                    Boolean AFFINITY_podAntiAffinity
+                                    Boolean AFFINITY_nodeAffinity {NO_TERMINADO}
+                                    Boolean AFFINITY_podAffinity {NO_TERMINADO}
+                                    Boolean AFFINITY_podAntiAffinity {NO_TERMINADO}
                             Boolean PODSPEC_automountServiceAccountToken                                    
                             Boolean PODSPEC_dnsPolicy 
                                 alternative
@@ -626,7 +631,7 @@ features
                                     Boolean TYPE_ClusterIP
                                     Boolean TYPE_NodePort
                                     Boolean TYPE_LoadBalancer
-                    Boolean ConfigMapSpec {abstract, NO_TERMINADO}
+                    Boolean ConfigMapSpec {abstract}
                         optional
                             Boolean CONFIGMAPSPEC_BinaryData cardinality [0..*] 
                                 mandatory
@@ -643,7 +648,8 @@ features
                                             String CONFFILE_name
                                             String CONFFILE_value
                             Boolean CONFIGMAPSPEC_immutable
-                    Boolean EndpointsSpec {abstract, NO_TERMINADO}
+                            String CONFIGMAPSPEC_kind
+                    Boolean EndpointsSpec {abstract}
                         mandatory
                             Boolean ENDPOINT_subsets 
                                 optional

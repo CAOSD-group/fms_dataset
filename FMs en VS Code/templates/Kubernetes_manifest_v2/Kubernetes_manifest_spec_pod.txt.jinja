@@ -308,6 +308,13 @@ containers:
 
 {%endfor%}
 
+{%if PODSPEC_initContainers%}initContainers:
+  {%for init in PODSPEC_initContainers%}
+  - name: {{init.INITCONTAINER_name}}
+    {%if init.INITCONTAINER_image%}image: {{init.INITCONTAINER_image}}{%endif%}
+  {%endfor%}
+{%endif%}
+
 {%if PODSPEC_activeDeadlineSeconds%}activeDeadlineSeconds: {{PODSPEC_activeDeadlineSeconds}}{%endif%}
 
 {%if PODSPEC_affinity%}affinity:

@@ -400,6 +400,12 @@
         "CONTAINER_workingDir": "/working/dir"
       }
     ],
+    "PODSPEC_initContainers":[
+      {
+        "INITCONTAINER_name": "contenedorInicial",
+        "INITCONTAINER_image": "imagen:1.13"
+      }
+    ],
     "PODSPEC_activeDeadlineSeconds": "10",
     "PODSPEC_affinity": true,
     "AFFINITY_nodeAffinity": true,

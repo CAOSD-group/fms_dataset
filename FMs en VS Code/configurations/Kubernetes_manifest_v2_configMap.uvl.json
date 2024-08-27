@@ -16,6 +16,7 @@
     "CONFIGMAPSPEC_BinaryData": "",
     "CONFIGMAPSPEC_Data": "myKey: myValue",
     "CONFIGMAPSPEC_immutable": false,
+    "CONFIGMAPSPEC_kind": "stringKind",
     "CONFIGMAPSPEC_BinaryData": [
       {
         "BINARYDATA_binaryFile_name": "binaryFile",

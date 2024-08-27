@@ -352,6 +352,9 @@ VOLUMEMOUNTS_recursiveReadOnly, VOLUMEMOUNTS_recursiveReadOnly,
 VOLUMEMOUNTS_subPath, VOLUMEMOUNTS_subPath, 
 VOLUMEMOUNTS_subPathExpr, VOLUMEMOUNTS_subPathExpr, 
 CONTAINER_workingDir, CONTAINER_workingDir, 
+PODSPEC_initContainers, PODSPEC_initContainers, -
+INITCONTAINER_name, INITCONTAINER_name, 
+INITCONTAINER_image, INITCONTAINER_image,
 PODSPEC_activeDeadlineSeconds, PODSPEC_activeDeadlineSeconds, 
 PODSPEC_affinity, PODSPEC_affinity, 
 AFFINITY_nodeAffinity, AFFINITY_nodeAffinity, 
@@ -454,6 +457,7 @@ SECRET_ITEMS_mode, SECRET_ITEMS_mode,
 SECRET_ITEMS_path, SECRET_ITEMS_path, 
 ConfigMapSpec, ConfigMapSpec, 
 CONFIGMAPSPEC_immutable, CONFIGMAPSPEC_immutable, -
+CONFIGMAPSPEC_kind, CONFIGMAPSPEC_kind, 
 CONFIGMAPSPEC_BinaryData, CONFIGMAPSPEC_BinaryData, -
 BINARYDATA_binaryFile_name, BINARYDATA_binaryFile_name, 
 BINARYDATA_binaryFile_value, BINARYDATA_binaryFile_value, 

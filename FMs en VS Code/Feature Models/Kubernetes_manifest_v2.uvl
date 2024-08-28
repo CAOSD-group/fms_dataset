@@ -696,6 +696,25 @@ features
                                                     Boolean SUBSETS_PORTS_SCTP
 
                     Boolean SecretSpec {abstract, NO_TERMINADO}
+            Boolean rules cardinality [0..*] {NO_TERMINADO} 
+                mandatory
+                    String RULES_apiGroups cardinality [0..*]
+                        mandatory
+                            String RULES_APIGROUPS_value
+                optional   
+                    String RULES_nonResourceURLs cardinality [0..*]
+                        mandatory
+                            String RULES_NONRESOURCEURLS_value
+                    String RULES_resourceNames cardinality [0..*]
+                        mandatory
+                            String RULES_RESOURCENAMES_value
+                    String RULES_resources cardinality [0..*]
+                        mandatory
+                            String RULES_RESOURCES_value
+                    String RULES_verbs cardinality [0..*]
+                        mandatory
+                            String RULES_VERBS_value
+
 constraints
     // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1
@@ -786,3 +805,5 @@ constraints
     (VOLUMEMOUNTS_subPathExpr == '') => !(VOLUMEMOUNTS_subPath == '')
     CONFIGMAP_defaultMode > 0 & CONFIGMAP_defaultMode < 511
     CONFIGMAP_defaultMode > 0 & CONFIGMAP_defaultMode < 511
+    rules => KIND_Role
+    (RULES_apiGroups == '') => (RULES_verbs == '')

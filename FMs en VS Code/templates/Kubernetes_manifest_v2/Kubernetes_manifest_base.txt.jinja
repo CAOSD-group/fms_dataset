@@ -28,8 +28,14 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {%elif ServiceSpec%}
   {% macro indent_service() %}{% include 'Kubernetes_manifest_spec_service.txt.jinja'%}{% endmacro %}
   {{ indent_service()|indent(first=false) }}
+  {%endif%}
+
+{%elif rules%}rules:
+  {% macro indent_rules() %}{% include 'Kubernetes_manifest_rules.txt.jinja'%}{% endmacro %}
+  {{ indent_rules()|indent }}
+
 {%endif%}
-  
-{%endif%}
+
+
 
   

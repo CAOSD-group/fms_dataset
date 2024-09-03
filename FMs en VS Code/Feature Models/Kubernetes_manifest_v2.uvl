@@ -384,49 +384,49 @@ features
                                                     String RESOURCES_CLAIMS_name
                                     Boolean CONTAINER_securityContext
                                         optional   
-                                            Boolean SECURITYCONTEXT_allowPrivilegeEscalation
-                                            Boolean SECURITYCONTEXT_privileged
-                                            String SECURITYCONTEXT_procMount
-                                            Boolean SECURITYCONTEXT_readOnlyRootFilesystem
-                                            Integer SECURITYCONTEXT_runAsGroup
-                                            Boolean SECURITYCONTEXT_runAsNonRoot
-                                            Integer SECURITYCONTEXT_runAsUser
-                                            Boolean SECURITYCONTEXT_appArmorProfile
+                                            Boolean CONTAINER_SECURITYCONTEXT_allowPrivilegeEscalation
+                                            Boolean CONTAINER_SECURITYCONTEXT_privileged
+                                            String CONTAINER_SECURITYCONTEXT_procMount
+                                            Boolean CONTAINER_SECURITYCONTEXT_readOnlyRootFilesystem
+                                            Integer CONTAINER_SECURITYCONTEXT_runAsGroup
+                                            Boolean CONTAINER_SECURITYCONTEXT_runAsNonRoot
+                                            Integer CONTAINER_SECURITYCONTEXT_runAsUser
+                                            Boolean CONTAINER_SECURITYCONTEXT_appArmorProfile
                                                 optional   
-                                                    String APPARMORPROFILE_localhostProfile
-                                                    Boolean APPARMORPROFILE_type
+                                                    String CONTAINER_APPARMORPROFILE_localhostProfile
+                                                    Boolean CONTAINER_APPARMORPROFILE_type
                                                         alternative   
-                                                            Boolean APPARMORPROFILE_Type_LocalHost
-                                                            Boolean APPARMORPROFILE_Type_RuntimeDefault 
-                                                            Boolean APPARMORPROFILE_Type_Unconfined 
-                                            Boolean SECURITYCONTEXT_capabilities
+                                                            Boolean CONTAINER_APPARMORPROFILE_Type_LocalHost
+                                                            Boolean CONTAINER_APPARMORPROFILE_Type_RuntimeDefault 
+                                                            Boolean CONTAINER_APPARMORPROFILE_Type_Unconfined 
+                                            Boolean CONTAINER_SECURITYCONTEXT_capabilities
                                                 optional   
-                                                    Boolean CAPABILITIES_add cardinality [0..*] 
+                                                    Boolean CONTAINER_CAPABILITIES_add cardinality [0..*] 
                                                         mandatory   
-                                                            String addedCapabilities
-                                                    Boolean CAPABILITIES_drop cardinality [0..*] 
+                                                            String CONTAINER_addedCapabilities
+                                                    Boolean CONTAINER_CAPABILITIES_drop cardinality [0..*] 
                                                         mandatory   
-                                                                String removedCapabilities
-                                            Boolean SECURITYCONTEXT_seLinuxOptions
+                                                                String CONTAINER_removedCapabilities
+                                            Boolean CONTAINER_SECURITYCONTEXT_seLinuxOptions
                                                 optional   
-                                                    String SELINUXOPTIONS_level
-                                                    String SELINUXOPTIONS_role
-                                                    String SELINUXOPTIONS_type
-                                                    String SELINUXOPTIONS_user
-                                            Boolean SECURITYCONTEXT_seccompProfile
+                                                    String CONTAINER_SELINUXOPTIONS_level
+                                                    String CONTAINER_SELINUXOPTIONS_role
+                                                    String CONTAINER_SELINUXOPTIONS_type
+                                                    String CONTAINER_SELINUXOPTIONS_user
+                                            Boolean CONTAINER_SECURITYCONTEXT_seccompProfile
                                                 optional   
-                                                    String SECCOMPROFILE_localhostProfile
-                                                    Boolean SECCOMPROFILE_type
+                                                    String CONTAINER_SECCOMPROFILE_localhostProfile
+                                                    Boolean CONTAINER_SECCOMPROFILE_type
                                                         alternative   
-                                                            Boolean SECCOMPROFILE_Type_LocalHost
-                                                            Boolean SECCOMPROFILE_Type_RuntimeDefault 
-                                                            Boolean SECCOMPROFILE_Type_Unconfined
-                                            Boolean SECURITYCONTEXT_windowsOptions
+                                                            Boolean CONTAINER_SECCOMPROFILE_Type_LocalHost
+                                                            Boolean CONTAINER_SECCOMPROFILE_Type_RuntimeDefault 
+                                                            Boolean CONTAINER_SECCOMPROFILE_Type_Unconfined
+                                            Boolean CONTAINER_SECURITYCONTEXT_windowsOptions
                                                 optional   
-                                                    String WINDOWSOPTIONS_gmsaCredentialSpec
-                                                    String WINDOWSOPTIONS_gmsaCredentialSpecName
-                                                    Boolean WINDOWSOPTIONS_hostProcess
-                                                    String WINDOWSOPTIONS_runAsUserName
+                                                    String CONTAINER_WINDOWSOPTIONS_gmsaCredentialSpec
+                                                    String CONTAINER_WINDOWSOPTIONS_gmsaCredentialSpecName
+                                                    Boolean CONTAINER_WINDOWSOPTIONS_hostProcess
+                                                    String CONTAINER_WINDOWSOPTIONS_runAsUserName
                                     Boolean CONTAINER_startupProbe
                                         mandatory
                                             Boolean STARTUPPROBE_exec cardinality [0..*]
@@ -485,6 +485,51 @@ features
                                     String INITCONTAINER_name
                                 optional   
                                     String INITCONTAINER_image
+                                    Boolean INITCONTAINER_securityContext
+                                        optional   
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_allowPrivilegeEscalation
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_privileged
+                                            String INITCONTAINER_SECURITYCONTEXT_procMount
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_readOnlyRootFilesystem
+                                            Integer INITCONTAINER_SECURITYCONTEXT_runAsGroup
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_runAsNonRoot
+                                            Integer INITCONTAINER_SECURITYCONTEXT_runAsUser
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_appArmorProfile
+                                                optional   
+                                                    String INITCONTAINER_APPARMORPROFILE_localhostProfile
+                                                    Boolean INITCONTAINER_APPARMORPROFILE_type
+                                                        alternative   
+                                                            Boolean INITCONTAINER_APPARMORPROFILE_Type_LocalHost
+                                                            Boolean INITCONTAINER_APPARMORPROFILE_Type_RuntimeDefault 
+                                                            Boolean INITCONTAINER_APPARMORPROFILE_Type_Unconfined 
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_capabilities
+                                                optional   
+                                                    Boolean INITCONTAINER_CAPABILITIES_add cardinality [0..*] 
+                                                        mandatory   
+                                                            String INITCONTAINER_addedCapabilities
+                                                    Boolean INITCONTAINER_CAPABILITIES_drop cardinality [0..*] 
+                                                        mandatory   
+                                                                String INITCONTAINER_removedCapabilities
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_seLinuxOptions
+                                                optional   
+                                                    String INITCONTAINER_SELINUXOPTIONS_level
+                                                    String INITCONTAINER_SELINUXOPTIONS_role
+                                                    String INITCONTAINER_SELINUXOPTIONS_type
+                                                    String INITCONTAINER_SELINUXOPTIONS_user
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_seccompProfile
+                                                optional   
+                                                    String INITCONTAINER_SECCOMPROFILE_localhostProfile
+                                                    Boolean INITCONTAINER_SECCOMPROFILE_type
+                                                        alternative   
+                                                            Boolean INITCONTAINER_SECCOMPROFILE_Type_LocalHost
+                                                            Boolean INITCONTAINER_SECCOMPROFILE_Type_RuntimeDefault 
+                                                            Boolean INITCONTAINER_SECCOMPROFILE_Type_Unconfined
+                                            Boolean INITCONTAINER_SECURITYCONTEXT_windowsOptions
+                                                optional   
+                                                    String INITCONTAINER_WINDOWSOPTIONS_gmsaCredentialSpec
+                                                    String INITCONTAINER_WINDOWSOPTIONS_gmsaCredentialSpecName
+                                                    Boolean INITCONTAINER_WINDOWSOPTIONS_hostProcess
+                                                    String INITCONTAINER_WINDOWSOPTIONS_runAsUserName
                             Integer PODSPEC_activeDeadlineSeconds
                             Boolean PODSPEC_affinity {NO_TERMINADO}
                                 optional
@@ -797,9 +842,9 @@ constraints
     (SERVICESPEC_healthCheckNodePort > 0) => TYPE_LoadBalancer & EXTERNALTRAFFICPOLICY_Local
     SERVICESPEC_ipFamilyPolicy => TYPE_LoadBalancer | TYPE_ClusterIP | TYPE_NodePort
     (SERVICESPEC_loadBalancerClass == '') => TYPE_LoadBalancer
-    (APPARMORPROFILE_localhostProfile == '') => APPARMORPROFILE_Type_LocalHost
-    SECURITYCONTEXT_allowPrivilegeEscalation => SECURITYCONTEXT_privileged
-    WINDOWSOPTIONS_hostProcess => PODSPEC_hostNetwork
+    (CONTAINER_APPARMORPROFILE_localhostProfile == '') => CONTAINER_APPARMORPROFILE_Type_LocalHost
+    CONTAINER_SECURITYCONTEXT_allowPrivilegeEscalation => CONTAINER_SECURITYCONTEXT_privileged
+    CONTAINER_WINDOWSOPTIONS_hostProcess => PODSPEC_hostNetwork
     VOLUMEMOUNTS_recursiveReadOnly == 'ifPossible'| VOLUMEMOUNTS_recursiveReadOnly == 'Enabled'=> VOLUMEMOUNTS_mountPropagation == 'None'
     (VOLUMEMOUNTS_subPath == '') => !(VOLUMEMOUNTS_subPathExpr == '')
     (VOLUMEMOUNTS_subPathExpr == '') => !(VOLUMEMOUNTS_subPath == '')

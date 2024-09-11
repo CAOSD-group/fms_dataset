@@ -1,20 +1,20 @@
   
 containers:
 {%for c in PODSPEC_Containers%}
-  - name: {{c.CONTAINER_name}}
+  - name: {{c.CONTAINERS_name}}
 
-    image: {{c.CONTAINER_image}}
+    image: {{c.CONTAINERS_image}}
 
-    {%if c.CONTAINER_args%}args: ["{%for arg in c.CONTAINER_args%}{{arg.CONTAINER_ARGS_value}};{%endfor%}"] {%endif%}
+    {%if c.CONTAINERS_args%}args: ["{%for arg in c.CONTAINERS_args%}{{arg.CONTAINERS_ARGS_value}};{%endfor%}"] {%endif%}
 
-    {%if c.CONTAINER_command%}command: [{%for comm in c.CONTAINER_command%}"{{comm.CONTAINER_COMMAND_value}}",{%endfor%}] {%endif%}
+    {%if c.CONTAINERS_command%}command: [{%for comm in c.CONTAINERS_command%}"{{comm.CONTAINERS_COMMAND_value}}",{%endfor%}] {%endif%}
 
-    {%if c.CONTAINER_env%}env: 
-      {%for env in c.CONTAINER_env%}
-      - name: {{env.CONTAINER_ENV_name}}
-        {%if env.CONTAINER_ENV_value%}value: "{{env.CONTAINER_ENV_value}}"{%endif%}
+    {%if c.CONTAINERS_env%}env: 
+      {%for env in c.CONTAINERS_env%}
+      - name: {{env.CONTAINERS_ENV_name}}
+        {%if env.CONTAINERS_ENV_value%}value: "{{env.CONTAINERS_ENV_value}}"{%endif%}
 
-        {%if env.CONTAINER_ENV_valueFrom%}valueFrom: {%endif%}
+        {%if env.CONTAINERS_ENV_valueFrom%}valueFrom: {%endif%}
           {%if env.configMapKeyRef%}configMapKeyRef: 
             name: {{env.CONFIGMAPKEYREF_name}}
             key: {{env.CONFIGMAPKEYREF_key}}
@@ -37,8 +37,8 @@ containers:
       {%endfor%}
     {%endif%}
 
-    {%if c.CONTAINER_envFrom%}envFrom:
-      {%for envF in c.CONTAINER_envFrom%}
+    {%if c.CONTAINERS_envFrom%}envFrom:
+      {%for envF in c.CONTAINERS_envFrom%}
       {%if envF.ENVFROM_configMapRef%}- configMapRef:
           name: {{envF.CONFIGMAPREF_name}}
       {%endif%}
@@ -48,9 +48,9 @@ containers:
       {%endfor%}
     {%endif%}
 
-    {%if c.CONTAINER_imagePullPolicy%}imagePullPolicy: {{c.IMAGEPULLPOLICY_always}}{{c.IMAGEPULLPOLICY_never}}{{c.IMAGEPULLPOLICY_ifNotPresent}} {%endif%}
+    {%if c.CONTAINERS_imagePullPolicy%}imagePullPolicy: {{c.IMAGEPULLPOLICY_always}}{{c.IMAGEPULLPOLICY_never}}{{c.IMAGEPULLPOLICY_ifNotPresent}} {%endif%}
   
-    {%if c.CONTAINER_lifecycle%}lifecycle: 
+    {%if c.CONTAINERS_lifecycle%}lifecycle: 
 
       {%if c.LIFECYCLE_postStart%}postStart:
         {%if c.POSTSTART_exec%}exec:
@@ -94,7 +94,7 @@ containers:
         {%endif%}
       {%endif%}
 
-    {%if c.CONTAINER_livenessProbe%}livenessProbe:
+    {%if c.CONTAINERS_livenessProbe%}livenessProbe:
       {%if c.LIVENESSPROBE_exec%}exec:
         command: [{%for exec in c.LIVENESSPROBE_exec%}"{{exec.LIVENESSPROBE_EXEC_command}}",{%endfor%}]
       {%endif%}
@@ -129,17 +129,17 @@ containers:
       {%if c.LIVENESSPROBE_terminationGracePeriodSeconds%}terminationGracePeriodSeconds: {{c.LIVENESSPROBE_terminationGracePeriodSeconds}}{%endif%}
     {%endif%}
 
-    {%if c.CONTAINER_ports%}ports: 
-    {%for p in c.CONTAINER_ports%} 
-      - containerPort: {{p.CONTAINER_PORTS_containerPort}}
-        {%if p.CONTAINER_PORTS_name%}name: {{p.CONTAINER_PORTS_name}}{%endif%}
-        {%if p.CONTAINER_PORTS_hostIP%}hostIP: {{p.CONTAINER_PORTS_hostIP}}{%endif%}
-        {%if p.CONTAINER_PORTS_hostPort%}hostPort: {{p.CONTAINER_PORTS_hostPort}}{%endif%}
-        {%if p.CONTAINER_PORTS_protocol%}protocol: {{p.PROTOCOL_UDP}}{{PROTOCOL_TCP}}{{PROTOCOL_SCTP}}{%endif%}
+    {%if c.CONTAINERS_ports%}ports: 
+    {%for p in c.CONTAINERS_ports%} 
+      - containerPort: {{p.CONTAINERS_PORTS_containerPort}}
+        {%if p.CONTAINERS_PORTS_name%}name: {{p.CONTAINERS_PORTS_name}}{%endif%}
+        {%if p.CONTAINERS_PORTS_hostIP%}hostIP: {{p.CONTAINERS_PORTS_hostIP}}{%endif%}
+        {%if p.CONTAINERS_PORTS_hostPort%}hostPort: {{p.CONTAINERS_PORTS_hostPort}}{%endif%}
+        {%if p.CONTAINERS_PORTS_protocol%}protocol: {{p.PROTOCOL_UDP}}{{PROTOCOL_TCP}}{{PROTOCOL_SCTP}}{%endif%}
     {%endfor%}
     {%endif%}
 
-    {%if c.CONTAINER_readinessProbe%}readinessProbe:
+    {%if c.CONTAINERS_readinessProbe%}readinessProbe:
       {%if c.READINESSPROBE_exec%}exec:
         command: [{%for exec in c.READINESSPROBE_exec%}"{{exec.READINESSPROBE_EXEC_command}}",{%endfor%}]
       {%endif%}
@@ -174,16 +174,16 @@ containers:
       {%if c.READINESSPROBE_terminationGracePeriodSeconds%}terminationGracePeriodSeconds: {{c.READINESSPROBE_terminationGracePeriodSeconds}}{%endif%}
     {%endif%}
 
-    {%if c.CONTAINER_resizePolicy%}resizePolicy:
-    {%for res in c.CONTAINER_resizePolicy%}
-      - resourceName: {{res.CONTAINER_RESIZEPOLICY_RESTARTPOLICY_cpu}}{{res.CONTAINER_RESIZEPOLICY_RESTARTPOLICY_memory}}
+    {%if c.CONTAINERS_resizePolicy%}resizePolicy:
+    {%for res in c.CONTAINERS_resizePolicy%}
+      - resourceName: {{res.CONTAINERS_RESIZEPOLICY_RESTARTPOLICY_cpu}}{{res.CONTAINERS_RESIZEPOLICY_RESTARTPOLICY_memory}}
         restartPolicy: {{res.RESIZEPOLICY_restartPolicy}}
     {%endfor%}
     {%endif%}
 
-    {%if c.CONTAINER_restartPolicy%}restartPolicy: {{c.CONTAINER_restartPolicy}}{%endif%}
+    {%if c.CONTAINERS_restartPolicy%}restartPolicy: {{c.CONTAINERS_restartPolicy}}{%endif%}
 
-    {%if c.CONTAINER_resources%}resources:
+    {%if c.CONTAINERS_resources%}resources:
       {%if c. RESOURCES_request%}request:
         cpu: {{c.REQUEST_cpu}}
         memory: {{c.REQUEST_memory}}
@@ -199,46 +199,46 @@ containers:
     {%endif%}
 
 
-    {%if c.CONTAINER_securityContext %}securityContext:
-      {%if c.CONTAINER_SECURITYCONTEXT_allowPrivilegeEscalation%}allowPrivilegeEscalation: {{c.CONTAINER_SECURITYCONTEXT_allowPrivilegeEscalation}}{%endif%}
-      {%if c.CONTAINER_SECURITYCONTEXT_privileged%}privileged: {{c.CONTAINER_SECURITYCONTEXT_privileged}}{%endif%}
-      {%if c.CONTAINER_SECURITYCONTEXT_procMount%}procMount: {{c.CONTAINER_SECURITYCONTEXT_procMount}}{%endif%}
-      {%if c.CONTAINER_SECURITYCONTEXT_readOnlyRootFilesystem%}readOnlyRootFilesystem: {{c.CONTAINER_SECURITYCONTEXT_readOnlyRootFilesystem}}{%endif%}
-      {%if c.CONTAINER_SECURITYCONTEXT_runAsGroup%}runAsGroup: {{c.CONTAINER_SECURITYCONTEXT_runAsGroup}}{%endif%}
-      {%if c.CONTAINER_SECURITYCONTEXT_runAsNonRoot%}runAsNonRoot: {{c.CONTAINER_SECURITYCONTEXT_runAsNonRoot}}{%endif%}
-      {%if c.CONTAINER_SECURITYCONTEXT_runAsUser%}runAsUser: {{c.CONTAINER_SECURITYCONTEXT_runAsUser}}{%endif%}
+    {%if c.CONTAINERS_securityContext %}securityContext:
+      {%if c.CONTAINERS_SECURITYCONTEXT_allowPrivilegeEscalation%}allowPrivilegeEscalation: {{c.CONTAINERS_SECURITYCONTEXT_allowPrivilegeEscalation}}{%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_privileged%}privileged: {{c.CONTAINERS_SECURITYCONTEXT_privileged}}{%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_procMount%}procMount: {{c.CONTAINERS_SECURITYCONTEXT_procMount}}{%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_readOnlyRootFilesystem%}readOnlyRootFilesystem: {{c.CONTAINERS_SECURITYCONTEXT_readOnlyRootFilesystem}}{%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_runAsGroup%}runAsGroup: {{c.CONTAINERS_SECURITYCONTEXT_runAsGroup}}{%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_runAsNonRoot%}runAsNonRoot: {{c.CONTAINERS_SECURITYCONTEXT_runAsNonRoot}}{%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_runAsUser%}runAsUser: {{c.CONTAINERS_SECURITYCONTEXT_runAsUser}}{%endif%}
 
-      {%if c.CONTAINER_SECURITYCONTEXT_capabilities%}capabilities:
-        {%if c.CONTAINER_CAPABILITIES_add%}add:
-          {%for add in c.CONTAINER_CAPABILITIES_add%}- {{add.CONTAINER_addedCapabilities}}{%endfor%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_capabilities%}capabilities:
+        {%if c.CONTAINERS_CAPABILITIES_add%}add:
+          {%for add in c.CONTAINERS_CAPABILITIES_add%}- {{add.CONTAINERS_addedCapabilities}}{%endfor%}
         {%endif%}
-        {%if c.CONTAINER_CAPABILITIES_drop%}drop:
-          {%for drop in c.CONTAINER_CAPABILITIES_drop%}- {{drop.CONTAINER_removedCapabilities}}{%endfor%}
+        {%if c.CONTAINERS_CAPABILITIES_drop%}drop:
+          {%for drop in c.CONTAINERS_CAPABILITIES_drop%}- {{drop.CONTAINERS_removedCapabilities}}{%endfor%}
         {%endif%}
       {%endif%}
 
-      {%if c.CONTAINER_SECURITYCONTEXT_seLinuxOptions%}seLinuxOptions: 
-        {%if c.CONTAINER_SELINUXOPTIONS_user%}user: "{{c.CONTAINER_SELINUXOPTIONS_user}}"{%endif%}
-        {%if c.CONTAINER_SELINUXOPTIONS_role%}role: "{{c.CONTAINER_SELINUXOPTIONS_role}}" {%endif%}
-        {%if c.CONTAINER_SELINUXOPTIONS_type%}type: "{{c.CONTAINER_SELINUXOPTIONS_type}}"{%endif%}
-        {%if c.CONTAINER_SELINUXOPTIONS_level%}level: "{{c.CONTAINER_SELINUXOPTIONS_level}}" {%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_seLinuxOptions%}seLinuxOptions: 
+        {%if c.CONTAINERS_SELINUXOPTIONS_user%}user: "{{c.CONTAINERS_SELINUXOPTIONS_user}}"{%endif%}
+        {%if c.CONTAINERS_SELINUXOPTIONS_role%}role: "{{c.CONTAINERS_SELINUXOPTIONS_role}}" {%endif%}
+        {%if c.CONTAINERS_SELINUXOPTIONS_type%}type: "{{c.CONTAINERS_SELINUXOPTIONS_type}}"{%endif%}
+        {%if c.CONTAINERS_SELINUXOPTIONS_level%}level: "{{c.CONTAINERS_SELINUXOPTIONS_level}}" {%endif%}
       {%endif%}
 
-      {%if c.CONTAINER_SECURITYCONTEXT_seccompProfile%}seccompProfile:
-        {%if c.CONTAINER_SECCOMPROFILE_localhostProfile%}localhostProfile: {{c.CONTAINER_SECCOMPROFILE_localhostProfile}} {%endif%}
-        {%if c.CONTAINER_SECCOMPROFILE_type%}type: {{c.CONTAINER_SECCOMPROFILE_Type_LocalHost}}{{c.CONTAINER_SECCOMPROFILE_Type_RuntimeDefault}}{{c.CONTAINER_SECCOMPROFILE_Type_Unconfined}} {%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_seccompProfile%}seccompProfile:
+        {%if c.CONTAINERS_SECCOMPROFILE_localhostProfile%}localhostProfile: {{c.CONTAINERS_SECCOMPROFILE_localhostProfile}} {%endif%}
+        {%if c.CONTAINERS_SECCOMPROFILE_type%}type: {{c.CONTAINERS_SECCOMPROFILE_Type_LocalHost}}{{c.CONTAINERS_SECCOMPROFILE_Type_RuntimeDefault}}{{c.CONTAINERS_SECCOMPROFILE_Type_Unconfined}} {%endif%}
       {%endif%}
 
-      {%if c.CONTAINER_SECURITYCONTEXT_windowsOptions%}windowsOptions:
-        {%if c.CONTAINER_WINDOWSOPTIONS_gmsaCredentialSpec%}gmsaCredentialSpec: {{c.CONTAINER_WINDOWSOPTIONS_gmsaCredentialSpec}} {%endif%}
-        {%if c.CONTAINER_WINDOWSOPTIONS_gmsaCredentialSpecName%}gmsaCredentialSpecName: "{{c.CONTAINER_WINDOWSOPTIONS_gmsaCredentialSpecName}}" {%endif%}
-        {%if c.CONTAINER_WINDOWSOPTIONS_hostProcess%}hostProcess: true {%endif%}
-        {%if c.CONTAINER_WINDOWSOPTIONS_runAsUserName%}runAsUserName: "{{c.CONTAINER_WINDOWSOPTIONS_runAsUserName}}" {%endif%}
+      {%if c.CONTAINERS_SECURITYCONTEXT_windowsOptions%}windowsOptions:
+        {%if c.CONTAINERS_WINDOWSOPTIONS_gmsaCredentialSpec%}gmsaCredentialSpec: {{c.CONTAINERS_WINDOWSOPTIONS_gmsaCredentialSpec}} {%endif%}
+        {%if c.CONTAINERS_WINDOWSOPTIONS_gmsaCredentialSpecName%}gmsaCredentialSpecName: "{{c.CONTAINERS_WINDOWSOPTIONS_gmsaCredentialSpecName}}" {%endif%}
+        {%if c.CONTAINERS_WINDOWSOPTIONS_hostProcess%}hostProcess: true {%endif%}
+        {%if c.CONTAINERS_WINDOWSOPTIONS_runAsUserName%}runAsUserName: "{{c.CONTAINERS_WINDOWSOPTIONS_runAsUserName}}" {%endif%}
       {%endif%}
 
     {%endif%}
 
-    {%if c.CONTAINER_startupProbe%}startUpProbe:
+    {%if c.CONTAINERS_startupProbe%}startUpProbe:
       {%if c.STARTUPPROBE_exec%}exec:
         command: [{%for exec in c.STARTUPPROBE_exec%}"{{exec.STARTUPPROBE_EXEC_command}}",{%endfor%}]
       {%endif%}
@@ -273,25 +273,25 @@ containers:
       {%if c.STARTUPPROBE_terminationGracePeriodSeconds%}terminationGracePeriodSeconds: {{c.STARTUPPROBE_terminationGracePeriodSeconds}}{%endif%}
     {%endif%}
     
-    {%if c.CONTAINER_stdin%}stdin: {{c.CONTAINER_stdin}}{%endif%}
+    {%if c.CONTAINERS_stdin%}stdin: {{c.CONTAINERS_stdin}}{%endif%}
 
-    {%if c.CONTAINER_stdinOnce%}stdinOnce: {{c.CONTAINER_stdinOnce}}{%endif%}
+    {%if c.CONTAINERS_stdinOnce%}stdinOnce: {{c.CONTAINERS_stdinOnce}}{%endif%}
 
-    {%if c.CONTAINER_terminationMessagePath%}terminationMessagePath: "{{c.CONTAINER_terminationMessagePath}}"{%endif%}
+    {%if c.CONTAINERS_terminationMessagePath%}terminationMessagePath: "{{c.CONTAINERS_terminationMessagePath}}"{%endif%}
 
-    {%if c.CONTAINER_terminationMessagePolicy%}terminationMessagePolicy: "{{c.CONTAINER_terminationMessagePolicy}}"{%endif%}
+    {%if c.CONTAINERS_terminationMessagePolicy%}terminationMessagePolicy: "{{c.CONTAINERS_terminationMessagePolicy}}"{%endif%}
 
-    {%if c.CONTAINER_tty%}tty: {{c.CONTAINER_tty}} {%endif%}
+    {%if c.CONTAINERS_tty%}tty: {{c.CONTAINERS_tty}} {%endif%}
 
-    {%if c.CONTAINER_volumeDevices%}VolumeDevices:
-      {%for dev in c.CONTAINER_volumeDevices%}
+    {%if c.CONTAINERS_volumeDevices%}VolumeDevices:
+      {%for dev in c.CONTAINERS_volumeDevices%}
       - name: {{dev.VOLUMEDEVICES_name}}
         devicePath: {{dev.VOLUMEDEVICES_devicePath}}
       {%endfor%}
     {%endif%}
 
-    {%if c.CONTAINER_volumeMounts%}volumeMounts:
-      {%for dev in c.CONTAINER_volumeMounts%}
+    {%if c.CONTAINERS_volumeMounts%}volumeMounts:
+      {%for dev in c.CONTAINERS_volumeMounts%}
       - name: {{dev.VOLUMEMOUNTS_name}}
         mountPath: {{dev.VOLUMEMOUNTS_mountPath}}
         {%if dev.VOLUMEMOUNTS_readonly%}readonly: {{dev.VOLUMEMOUNTS_readonly}}{%endif%}
@@ -302,7 +302,7 @@ containers:
       {%endfor%}
     {%endif%}
 
-    {%if c.CONTAINER_workingDir%}workingDir: {{c.CONTAINER_workingDir}}{%endif%}
+    {%if c.CONTAINERS_workingDir%}workingDir: {{c.CONTAINERS_workingDir}}{%endif%}
 
     {%endif%}
 
@@ -310,44 +310,44 @@ containers:
 
 {%if PODSPEC_initContainers%}initContainers:
   {%for init in PODSPEC_initContainers%}
-  - name: {{init.INITCONTAINER_name}}
-    {%if init.INITCONTAINER_image%}image: {{init.INITCONTAINER_image}}{%endif%}
+  - name: {{init.INITCONTAINERS_name}}
+    {%if init.INITCONTAINERS_image%}image: {{init.INITCONTAINERS_image}}{%endif%}
 
-    {%if init.INITCONTAINER_securityContext %}securityContext:
-      {%if init.INITCONTAINER_SECURITYCONTEXT_allowPrivilegeEscalation%}allowPrivilegeEscalation: {{init.INITCONTAINER_SECURITYCONTEXT_allowPrivilegeEscalation}}{%endif%}
-      {%if init.INITCONTAINER_SECURITYCONTEXT_privileged%}privileged: {{init.INITCONTAINER_SECURITYCONTEXT_privileged}}{%endif%}
-      {%if init.INITCONTAINER_SECURITYCONTEXT_procMount%}procMount: {{init.INITCONTAINER_SECURITYCONTEXT_procMount}}{%endif%}
-      {%if initc.INITCONTAINER_SECURITYCONTEXT_readOnlyRootFilesystem%}readOnlyRootFilesystem: {{init.INITCONTAINER_SECURITYCONTEXT_readOnlyRootFilesystem}}{%endif%}
-      {%if init.INITCONTAINER_SECURITYCONTEXT_runAsGroup%}runAsGroup: {{init.INITCONTAINER_SECURITYCONTEXT_runAsGroup}}{%endif%}
-      {%if init.INITCONTAINER_SECURITYCONTEXT_runAsNonRoot%}runAsNonRoot: {{init.INITCONTAINER_SECURITYCONTEXT_runAsNonRoot}}{%endif%}
-      {%if init.INITCONTAINER_SECURITYCONTEXT_runAsUser%}runAsUser: {{init.INITCONTAINER_SECURITYCONTEXT_runAsUser}}{%endif%}
+    {%if init.INITCONTAINERS_securityContext %}securityContext:
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_allowPrivilegeEscalation%}allowPrivilegeEscalation: {{init.INITCONTAINERS_SECURITYCONTEXT_allowPrivilegeEscalation}}{%endif%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_privileged%}privileged: {{init.INITCONTAINERS_SECURITYCONTEXT_privileged}}{%endif%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_procMount%}procMount: {{init.INITCONTAINERS_SECURITYCONTEXT_procMount}}{%endif%}
+      {%if initc.INITCONTAINERS_SECURITYCONTEXT_readOnlyRootFilesystem%}readOnlyRootFilesystem: {{init.INITCONTAINERS_SECURITYCONTEXT_readOnlyRootFilesystem}}{%endif%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_runAsGroup%}runAsGroup: {{init.INITCONTAINERS_SECURITYCONTEXT_runAsGroup}}{%endif%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_runAsNonRoot%}runAsNonRoot: {{init.INITCONTAINERS_SECURITYCONTEXT_runAsNonRoot}}{%endif%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_runAsUser%}runAsUser: {{init.INITCONTAINERS_SECURITYCONTEXT_runAsUser}}{%endif%}
 
-      {%if init.INITCONTAINER_SECURITYCONTEXT_capabilities%}capabilities:
-        {%if init.INITCONTAINER_CAPABILITIES_add%}add:
-          {%for add in init.INITCONTAINER_CAPABILITIES_add%}- {{add.INITCONTAINER_addedCapabilities}}{%endfor%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_capabilities%}capabilities:
+        {%if init.INITCONTAINERS_CAPABILITIES_add%}add:
+          {%for add in init.INITCONTAINERS_CAPABILITIES_add%}- {{add.INITCONTAINERS_addedCapabilities}}{%endfor%}
         {%endif%}
-        {%if init.INITCONTAINER_CAPABILITIES_drop%}drop:
-          {%for drop in init.INITCONTAINER_CAPABILITIES_drop%}- {{drop.INITCONTAINER_removedCapabilities}}{%endfor%}
+        {%if init.INITCONTAINERS_CAPABILITIES_drop%}drop:
+          {%for drop in init.INITCONTAINERS_CAPABILITIES_drop%}- {{drop.INITCONTAINERS_removedCapabilities}}{%endfor%}
         {%endif%}
       {%endif%}
 
-      {%if init.INITCONTAINER_SECURITYCONTEXT_seLinuxOptions%}seLinuxOptions: 
-        {%if init.INITCONTAINER_SELINUXOPTIONS_user%}user: "{{init.INITCONTAINER_SELINUXOPTIONS_user}}"{%endif%}
-        {%if init.INITCONTAINER_SELINUXOPTIONS_role%}role: "{{init.INITCONTAINER_SELINUXOPTIONS_role}}" {%endif%}
-        {%if c.INITCONTAINER_SELINUXOPTIONS_type%}type: "{{init.INITCONTAINER_SELINUXOPTIONS_type}}"{%endif%}
-        {%if init.INITCONTAINER_SELINUXOPTIONS_level%}level: "{{init.INITCONTAINER_SELINUXOPTIONS_level}}" {%endif%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_seLinuxOptions%}seLinuxOptions: 
+        {%if init.INITCONTAINERS_SELINUXOPTIONS_user%}user: "{{init.INITCONTAINERS_SELINUXOPTIONS_user}}"{%endif%}
+        {%if init.INITCONTAINERS_SELINUXOPTIONS_role%}role: "{{init.INITCONTAINERS_SELINUXOPTIONS_role}}" {%endif%}
+        {%if c.INITCONTAINERS_SELINUXOPTIONS_type%}type: "{{init.INITCONTAINERS_SELINUXOPTIONS_type}}"{%endif%}
+        {%if init.INITCONTAINERS_SELINUXOPTIONS_level%}level: "{{init.INITCONTAINERS_SELINUXOPTIONS_level}}" {%endif%}
       {%endif%}
 
-      {%if init.INITCONTAINER_SECURITYCONTEXT_seccompProfile%}seccompProfile:
-        {%if init.INITCONTAINER_SECCOMPROFILE_localhostProfile%}localhostProfile: {{init.INITCONTAINER_SECCOMPROFILE_localhostProfile}} {%endif%}
-        {%if init.INITCONTAINER_SECCOMPROFILE_type%}type: {{init.INITCONTAINER_SECCOMPROFILE_Type_LocalHost}}{{init.INITCONTAINER_SECCOMPROFILE_Type_RuntimeDefault}}{{init.INITCONTAINER_SECCOMPROFILE_Type_Unconfined}} {%endif%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_seccompProfile%}seccompProfile:
+        {%if init.INITCONTAINERS_SECCOMPROFILE_localhostProfile%}localhostProfile: {{init.INITCONTAINERS_SECCOMPROFILE_localhostProfile}} {%endif%}
+        {%if init.INITCONTAINERS_SECCOMPROFILE_type%}type: {{init.INITCONTAINERS_SECCOMPROFILE_Type_LocalHost}}{{init.INITCONTAINERS_SECCOMPROFILE_Type_RuntimeDefault}}{{init.INITCONTAINERS_SECCOMPROFILE_Type_Unconfined}} {%endif%}
       {%endif%}
 
-      {%if init.INITCONTAINER_SECURITYCONTEXT_windowsOptions%}windowsOptions:
-        {%if init.INITCONTAINER_WINDOWSOPTIONS_gmsaCredentialSpec%}gmsaCredentialSpec: {{init.INITCONTAINER_WINDOWSOPTIONS_gmsaCredentialSpec}} {%endif%}
-        {%if init.INITCONTAINER_WINDOWSOPTIONS_gmsaCredentialSpecName%}gmsaCredentialSpecName: "{{init.INITCONTAINER_WINDOWSOPTIONS_gmsaCredentialSpecName}}" {%endif%}
-        {%if init.INITCONTAINER_WINDOWSOPTIONS_hostProcess%}hostProcess: true {%endif%}
-        {%if init.INITCONTAINER_WINDOWSOPTIONS_runAsUserName%}runAsUserName: "{{init.INITCONTAINER_WINDOWSOPTIONS_runAsUserName}}" {%endif%}
+      {%if init.INITCONTAINERS_SECURITYCONTEXT_windowsOptions%}windowsOptions:
+        {%if init.INITCONTAINERS_WINDOWSOPTIONS_gmsaCredentialSpec%}gmsaCredentialSpec: {{init.INITCONTAINERS_WINDOWSOPTIONS_gmsaCredentialSpec}} {%endif%}
+        {%if init.INITCONTAINERS_WINDOWSOPTIONS_gmsaCredentialSpecName%}gmsaCredentialSpecName: "{{init.INITCONTAINERS_WINDOWSOPTIONS_gmsaCredentialSpecName}}" {%endif%}
+        {%if init.INITCONTAINERS_WINDOWSOPTIONS_hostProcess%}hostProcess: true {%endif%}
+        {%if init.INITCONTAINERS_WINDOWSOPTIONS_runAsUserName%}runAsUserName: "{{init.INITCONTAINERS_WINDOWSOPTIONS_runAsUserName}}" {%endif%}
       {%endif%}
 
     {%endif%}

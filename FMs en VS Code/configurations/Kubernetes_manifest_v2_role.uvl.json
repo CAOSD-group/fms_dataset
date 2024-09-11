@@ -12,7 +12,8 @@
     "Metadata": true,
     "METADATA_name": "ejemplo-role",
     "METADATA_namespace": "default",
-    "rules": [
+    "RoleSpec": true,
+    "ROLESPEC_rules": [
       {
         "RULES_apiGroups":[
           {

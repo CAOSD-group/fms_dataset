@@ -30,9 +30,9 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {{ indent_service()|indent(first=false) }}
   {%endif%}
 
-{%elif rules%}rules:
-  {% macro indent_rules() %}{% include 'Kubernetes_manifest_rules.txt.jinja'%}{% endmacro %}
-  {{ indent_rules()|indent }}
+{%elif RoleSpec%}rules:
+  {% macro indent_role() %}{% include 'Kubernetes_manifest_role.txt.jinja'%}{% endmacro %}
+  {{ indent_rle()|indent }}
 
 {%endif%}
 

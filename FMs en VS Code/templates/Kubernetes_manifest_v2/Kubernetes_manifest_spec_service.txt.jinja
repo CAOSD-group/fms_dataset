@@ -50,7 +50,7 @@
 {%endfor%}
 {%endif%}
 
-{%if SERVICESPEC_sessionAffinity%}sessionAffinity: {{SESSIONAFFINITY_ClientIP}}{{SESSIONAFFINITY_None}}{%endif%}
+{%if SERVICESPEC_sessionAffinity%}sessionAffinity: {{SESSIONAFFINITY_clientIP}}{{SESSIONAFFINITY_none}}{%endif%}
 
 {%if SERVICESPEC_sessionAffinityConfig%}sessionAffinityConfig: 
   clientIP:

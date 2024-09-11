@@ -3,15 +3,15 @@
 {%if CONFIGMAPSPEC_kind%}kind: {{CONFIGMAPSPEC_kind}}{%endif%}
 
 
-{%if CONFIGMAPSPEC_BinaryData%}binaryData:
-{%for b in CONFIGMAPSPEC_BinaryData%}
+{%if CONFIGMAPSPEC_binaryData%}binaryData:
+{%for b in CONFIGMAPSPEC_binaryData%}
   {{b.BINARYDATA_binaryFile_name}}: |
     {{b.BINARYDATA_binaryFile_value}}
 {%endfor%}
 {%endif%}
 
-{%if CONFIGMAPSPEC_Data%}data:
-{%for d in CONFIGMAPSPEC_Data%}
+{%if CONFIGMAPSPEC_data%}data:
+{%for d in CONFIGMAPSPEC_data%}
   {%if d.DATA_confSimple%}{{d.CONFSIMPLE_key}}: {{d.CONFSIMPLE_value}}{%endif%}
 
   {%if d.DATA_confFile%}{{d.CONFFILE_name}}: |

@@ -63,7 +63,7 @@
       }
     ],
     "SERVICESPEC_sessionAffinity": true,
-    "SESSIONAFFINITY_ClientIP": true,
+    "SESSIONAFFINITY_clientIP": true,
     "SERVICESPEC_sessionAffinityConfig": true,
     "SESSIONAFFINITYCONFIG_clientIP": true,
     "CLIENTIP_timeoutSeconds": 10800,

@@ -461,8 +461,8 @@ SERVICESPEC_Selector, SERVICESPEC_Selector, -
 SELECTOR_key, SELECTOR_key, 
 SELECTOR_value, SELECTOR_value
 SERVICESPEC_sessionAffinity, SERVICESPEC_sessionAffinity, -
-SESSIONAFFINITY_ClientIP, SESSIONAFFINITY_ClientIP, ClientIP
-SESSIONAFFINITY_None, SESSIONAFFINITY_None, None
+SESSIONAFFINITY_clientIP, SESSIONAFFINITY_clientIP, ClientIP
+SESSIONAFFINITY_none, SESSIONAFFINITY_none, None
 SERVICESPEC_sessionAffinityConfig, SERVICESPEC_sessionAffinityConfig, -
 CLIENTIP_timeoutSeconds, CLIENTIP_timeoutSeconds, 
 trafficDistribution, trafficDistribution, 
@@ -493,10 +493,10 @@ SECRET_ITEMS_path, SECRET_ITEMS_path,
 ConfigMapSpec, ConfigMapSpec, 
 CONFIGMAPSPEC_immutable, CONFIGMAPSPEC_immutable, -
 CONFIGMAPSPEC_kind, CONFIGMAPSPEC_kind, 
-CONFIGMAPSPEC_BinaryData, CONFIGMAPSPEC_BinaryData, -
+CONFIGMAPSPEC_binaryData, CONFIGMAPSPEC_binaryData, -
 BINARYDATA_binaryFile_name, BINARYDATA_binaryFile_name, 
 BINARYDATA_binaryFile_value, BINARYDATA_binaryFile_value, 
-CONFIGMAPSPEC_Data, CONFIGMAPSPEC_Data, -
+CONFIGMAPSPEC_data, CONFIGMAPSPEC_data, -
 DATA_confSimple, DATA_confSimple, -
 CONFSIMPLE_key, CONFSIMPLE_key, 
 CONFSIMPLE_value, CONFSIMPLE_value, 
@@ -537,7 +537,8 @@ SUBSETS_PORTS_protocol, SUBSETS_PORTS_protocol,
 SUBSETS_PORTS_UDP, SUBSETS_PORTS_UDP, UDP
 SUBSETS_PORTS_TCP, SUBSETS_PORTS_TCP, TCP
 SUBSETS_PORTS_SCTP, SUBSETS_PORTS_SCTP, SCTP
-rules, rules, -
+RoleSpec, RoleSpec, -
+ROLESPECrules, ROLESPECrules, -
 RULES_apiGroups, RULES_apiGroups, 
 RULES_APIGROUPS_value, RULES_APIGROUPS_value, 
 RULES_resources, RULES_resources, 

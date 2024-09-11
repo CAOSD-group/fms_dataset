@@ -13,17 +13,17 @@
     "METADATA_name": "extended-configmap",
     "METADATA_namespace": "default",
     "ConfigMapSpec": true,
-    "CONFIGMAPSPEC_BinaryData": "",
-    "CONFIGMAPSPEC_Data": "myKey: myValue",
+    "CONFIGMAPSPEC_binaryData": "",
+    "CONFIGMAPSPEC_data": "myKey: myValue",
     "CONFIGMAPSPEC_immutable": false,
     "CONFIGMAPSPEC_kind": "stringKind",
-    "CONFIGMAPSPEC_BinaryData": [
+    "CONFIGMAPSPEC_binaryData": [
       {
         "BINARYDATA_binaryFile_name": "binaryFile",
         "BINARYDATA_binaryFile_value": "QmluYXJ5IGRhdGEgZXhjYW1wbGUuLi4K"
       }
     ],
-    "CONFIGMAPSPEC_Data": [
+    "CONFIGMAPSPEC_data": [
       {
         "DATA_confSimple": true,
         "CONFSIMPLE_key": "myKey",

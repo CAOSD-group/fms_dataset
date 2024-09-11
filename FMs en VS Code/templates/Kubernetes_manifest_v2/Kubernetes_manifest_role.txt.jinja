@@ -1,5 +1,5 @@
 
-{%for r in rules%}
+{%for r in ROLESPEC_rules%}
 - apiGoups: [{%for api in r.RULES_apiGroups%}"{{api.RULES_APIGROUPS_value}}",{%endfor%}]
   {%if r.RULES_resources%}resources: [{%for res in r.RULES_resources%}"{{res.RULES_RESOURCES_value}}"{%endfor%},] {%endif%}
   {%if r.RULES_nonResourceURLs%}nonResourceURLs: [{%for non in r.RULES_nonResourceURLs%}"{{non.RULES_NONRESOURCEURLS_value}}",{%endfor%}]{%endif%}

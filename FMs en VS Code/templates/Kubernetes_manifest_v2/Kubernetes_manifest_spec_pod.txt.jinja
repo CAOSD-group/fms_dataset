@@ -1,6 +1,6 @@
   
 containers:
-{%for c in PODSPEC_Containers%}
+{%for c in PODSPEC_containers%}
   - name: {{c.CONTAINERS_name}}
 
     image: {{c.CONTAINERS_image}}
@@ -208,6 +208,11 @@ containers:
       {%if c.CONTAINERS_SECURITYCONTEXT_runAsNonRoot%}runAsNonRoot: {{c.CONTAINERS_SECURITYCONTEXT_runAsNonRoot}}{%endif%}
       {%if c.CONTAINERS_SECURITYCONTEXT_runAsUser%}runAsUser: {{c.CONTAINERS_SECURITYCONTEXT_runAsUser}}{%endif%}
 
+      {%if c.CONTAINERS_SECURITYCONTEXT_appArmorProfile%}appArmorProfile:
+      {%if c.CONTAINERS_APPARMORPROFILE_localhostProfile%}localhostProfile: {{c.CONTAINERS_APPARMORPROFILE_localhostProfile}}{%endif%}
+      {%if c.CONTAINERS_APPARMORPROFILE_type%}{{c.CONTAINERS_APPARMORPROFILE_TYPE_LocalHost}}{{c.CONTAINERS_APPARMORPROFILE_TYPE_RuntimeDefault}}{{c.CONTAINERS_APPARMORPROFILE_TYPE_Unconfined}}{%endif%}
+      {%endif%}
+
       {%if c.CONTAINERS_SECURITYCONTEXT_capabilities%}capabilities:
         {%if c.CONTAINERS_CAPABILITIES_add%}add:
           {%for add in c.CONTAINERS_CAPABILITIES_add%}- {{add.CONTAINERS_addedCapabilities}}{%endfor%}
@@ -321,6 +326,11 @@ containers:
       {%if init.INITCONTAINERS_SECURITYCONTEXT_runAsGroup%}runAsGroup: {{init.INITCONTAINERS_SECURITYCONTEXT_runAsGroup}}{%endif%}
       {%if init.INITCONTAINERS_SECURITYCONTEXT_runAsNonRoot%}runAsNonRoot: {{init.INITCONTAINERS_SECURITYCONTEXT_runAsNonRoot}}{%endif%}
       {%if init.INITCONTAINERS_SECURITYCONTEXT_runAsUser%}runAsUser: {{init.INITCONTAINERS_SECURITYCONTEXT_runAsUser}}{%endif%}
+
+      {%if c.CONTAINERS_SECURITYCONTEXT_appArmorProfile%}appArmorProfile:
+      {%if c.CONTAINERS_APPARMORPROFILE_localhostProfile%}localhostProfile: {{c.CONTAINERS_APPARMORPROFILE_localhostProfile}}{%endif%}
+      {%if c.CONTAINERS_APPARMORPROFILE_type%}{{c.CONTAINERS_APPARMORPROFILE_TYPE_LocalHost}}{{c.CONTAINERS_APPARMORPROFILE_TYPE_RuntimeDefault}}{{c.CONTAINERS_APPARMORPROFILE_TYPE_Unconfined}}{%endif%}
+      {%endif%}
 
       {%if init.INITCONTAINERS_SECURITYCONTEXT_capabilities%}capabilities:
         {%if init.INITCONTAINERS_CAPABILITIES_add%}add:

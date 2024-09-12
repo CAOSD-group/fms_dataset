@@ -140,7 +140,7 @@ features
                             Integer DEPLOYMENTSPEC_minReadySeconds {doc 'Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)'}
                             Boolean DEPLOYMENTSPEC_paused {doc 'Indicates that the deployment is paused.'}
                             Integer DEPLOYMENTSPEC_progressDeadlineSeconds {doc 'The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. Defaults to 600s.'}
-                            Integer DEPLOYMENTSPEC_Replicas {doc 'Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.'}
+                            Integer DEPLOYMENTSPEC_replicas {doc 'Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.'}
                             Integer DEPLOYMENTSPEC_revisionHistoryLimit {doc 'The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.'}
                             Boolean DEPLOYMENTSPEC_selector {doc 'Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment. It must match the pod templates labels.'}
                                 or 
@@ -174,7 +174,7 @@ features
                                                     Integer maxSurge {doc 'The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. Defaults to 25%. Example: when this is set to 30%, the new ReplicaSet can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new ReplicaSet can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.'}
                             Boolean DEPLOYMENTSPEC_template {doc 'Template describes the pods that will be created. The only allowed template.spec.restartPolicy value is "Always".'}
                                 mandatory
-                                    Boolean DEPLOYMENTSPEC_TEMPLATE_Metadata {NO_TERMINADO, doc 'Standard object´s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata'}
+                                    Boolean DEPLOYMENTSPEC_TEMPLATE_metadata {NO_TERMINADO, doc 'Standard object´s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata'}
                                         optional
                                             String TEMPLATE_METADATA_name {doc 'Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names'}
                                             String TEMPLATE_METADATA_namespace {doc 'Namespace defines the space within which each name must be unique. An empty namespace is equivalent to the "default" namespace, but "default" is the canonical representation. Not all objects are required to be scoped to a namespace - the value of this field for those objects will be empty. Must be a DNS_LABEL. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces'}
@@ -187,10 +187,10 @@ features
                                                 mandatory
                                                     String TEMPLATE__METADATA_ANNOTATIONS_key
                                                     String TEMPLATE__METADATA_ANNOTATIONS_value
-                                    Boolean DEPLOYMENTSPEC_TEMPLATE_Podspec {doc 'If true, PodSpec must be defined'}
+                                    Boolean DEPLOYMENTSPEC_TEMPLATE_podspec {doc 'If true, PodSpec must be defined'}
                     Boolean PodSpec {abstract, NO_TERMINADO, doc 'Specification of the desired behavior of the Pod.'} 
                         mandatory
-                            Boolean PODSPEC_Containers cardinality [0..*] {doc 'List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.'}
+                            Boolean PODSPEC_containers cardinality [0..*] {doc 'List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.'}
                                 mandatory   
                                     String CONTAINERS_name {doc 'Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.'}
                                 optional     
@@ -204,6 +204,7 @@ features
                                         mandatory
                                             String CONTAINERS_ENV_name {doc 'Name of the environment variable. Must be a C_IDENTIFIER.'}
                                             String CONTAINERS_ENV_value {doc 'Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "".'}
+                                        optional    
                                             Boolean CONTAINERS_ENV_valueFrom {doc 'Source for the environment variable´s value. Cannot be used if value is not empty.'}
                                                 alternative   
                                                     Boolean configMapKeyRef {doc 'Selects a key of a ConfigMap.'}
@@ -397,9 +398,9 @@ features
                                                     String CONTAINERS_APPARMORPROFILE_localhostProfile {doc 'localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost".'}
                                                     Boolean CONTAINERS_APPARMORPROFILE_type {doc 'type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime´s default profile. Unconfined - no AppArmor enforcement.'}
                                                         alternative   
-                                                            Boolean CONTAINERS_APPARMORPROFILE_Type_LocalHost
-                                                            Boolean CONTAINERS_APPARMORPROFILE_Type_RuntimeDefault 
-                                                            Boolean CONTAINERS_APPARMORPROFILE_Type_Unconfined 
+                                                            Boolean CONTAINERS_APPARMORPROFILE_TYPE_LocalHost
+                                                            Boolean CONTAINERS_APPARMORPROFILE_TYPE_RuntimeDefault 
+                                                            Boolean CONTAINERS_APPARMORPROFILE_TYPE_Unconfined 
                                             Boolean CONTAINERS_SECURITYCONTEXT_capabilities {doc 'The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.'}
                                                 optional   
                                                     Boolean CONTAINERS_CAPABILITIES_add cardinality [0..*] {doc 'Added capabilities'}
@@ -500,9 +501,9 @@ features
                                                     String INITCONTAINERS_APPARMORPROFILE_localhostProfile {doc 'localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is "Localhost".'}
                                                     Boolean INITCONTAINERS_APPARMORPROFILE_type {doc 'type indicates which kind of AppArmor profile will be applied. Valid options are: Localhost - a profile pre-loaded on the node. RuntimeDefault - the container runtime´s default profile. Unconfined - no AppArmor enforcement.'}
                                                         alternative   
-                                                            Boolean INITCONTAINERS_APPARMORPROFILE_Type_LocalHost
-                                                            Boolean INITCONTAINERS_APPARMORPROFILE_Type_RuntimeDefault 
-                                                            Boolean INITCONTAINERS_APPARMORPROFILE_Type_Unconfined 
+                                                            Boolean INITCONTAINERS_APPARMORPROFILE_TYPE_LocalHost
+                                                            Boolean INITCONTAINERS_APPARMORPROFILE_TYPE_RuntimeDefault 
+                                                            Boolean INITCONTAINERS_APPARMORPROFILE_TYPE_Unconfined 
                                             Boolean INITCONTAINERS_SECURITYCONTEXT_capabilities {doc 'The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime. Note that this field cannot be set when spec.os.name is windows.'}
                                                 optional   
                                                     Boolean INITCONTAINERS_CAPABILITIES_add cardinality [0..*] {doc 'Added capabilities'}
@@ -837,14 +838,14 @@ constraints
     STARTUPPROBE_successThreshold > 0
     STARTUPPROBE_terminationGracePeriodSeconds > 0
     STARTUPPROBE_timeoutSeconds > 0
-    DEPLOYMENTSPEC_TEMPLATE_Podspec => PodSpec
+    DEPLOYMENTSPEC_TEMPLATE_podspec => PodSpec
     CONTAINERS_tty => CONTAINERS_stdin
     SERVICESPEC_allocateLoadBalancerNodePorts => TYPE_LoadBalancer
     ServiceSpec => KIND_Service
     (SERVICESPEC_healthCheckNodePort > 0) => TYPE_LoadBalancer & EXTERNALTRAFFICPOLICY_Local
     SERVICESPEC_ipFamilyPolicy => TYPE_LoadBalancer | TYPE_ClusterIP | TYPE_NodePort
     (SERVICESPEC_loadBalancerClass == '') => TYPE_LoadBalancer
-    (CONTAINERS_APPARMORPROFILE_localhostProfile == '') => CONTAINERS_APPARMORPROFILE_Type_LocalHost
+    (CONTAINERS_APPARMORPROFILE_localhostProfile == '') => CONTAINERS_APPARMORPROFILE_TYPE_LocalHost
     CONTAINERS_SECURITYCONTEXT_allowPrivilegeEscalation => CONTAINERS_SECURITYCONTEXT_privileged
     CONTAINERS_WINDOWSOPTIONS_hostProcess => PODSPEC_hostNetwork
     VOLUMEMOUNTS_recursiveReadOnly == 'ifPossible'| VOLUMEMOUNTS_recursiveReadOnly == 'Enabled'=> VOLUMEMOUNTS_mountPropagation == 'None'
@@ -854,3 +855,4 @@ constraints
     CONFIGMAP_defaultMode > 0 & CONFIGMAP_defaultMode < 511
     RoleSpec => KIND_Role
     (RULES_apiGroups == '') => (RULES_verbs == '')
+    CONTAINERS_ENV_valueFrom => (CONTAINERS_ENV_value == '')

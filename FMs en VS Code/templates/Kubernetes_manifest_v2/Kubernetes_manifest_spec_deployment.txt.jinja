@@ -5,7 +5,7 @@
 
 {%if DEPLOYMENTSPEC_progressDeadlineSeconds%}progressDeadlineSeconds: {{DEPLOYMENTSPEC_progressDeadlineSeconds}}{%endif%}
 
-{%if DEPLOYMENTSPEC_Replicas%}Replicas: {{DEPLOYMENTSPEC_Replicas}}{%endif%}
+{%if DEPLOYMENTSPEC_replicas%}Replicas: {{DEPLOYMENTSPEC_replicas}}{%endif%}
 
 {%if DEPLOYMENTSPEC_revisionHistoryLimit%}revisionHistoryLimit: {{DEPLOYMENTSPEC_revisionHistoryLimit}}{%endif%}
 
@@ -40,7 +40,7 @@
   {%endif%}
 
 {%if DEPLOYMENTSPEC_template%}template:
-  {%if DEPLOYMENTSPEC_TEMPLATE_Metadata%}metadata:
+  {%if DEPLOYMENTSPEC_TEMPLATE_metadata%}metadata:
     name: {{TEMPLATE_METADATA_name}}
 
     {%if TEMPLATE_METADATA_deletionGracePeriodSeconds %}deletionGracePeriodSeconds: {{TEMPLATE_METADATA_deletionGracePeriodSeconds}} {%endif%}
@@ -61,7 +61,7 @@
 
   {%endif%}
 
-  {%if DEPLOYMENTSPEC_TEMPLATE_Podspec%}spec: 
+  {%if DEPLOYMENTSPEC_TEMPLATE_podspec%}spec: 
   {% macro indent_pod() %}{% include 'Kubernetes_manifest_spec_pod.txt.jinja'%}{% endmacro %}
   {{ indent_pod()|indent }}
   {%endif%}

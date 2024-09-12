@@ -38,7 +38,7 @@
     "DEPLOYMENTSPEC_minReadySeconds": 3,
     "DEPLOYMENTSPEC_paused": true,
     "DEPLOYMENTSPEC_progressDeadlineSeconds": 10,
-    "DEPLOYMENTSPEC_Replicas": 1,
+    "DEPLOYMENTSPEC_replicas": 1,
     "DEPLOYMENTSPEC_revisionHistoryLimit": 1,
     "DEPLOYMENTSPEC_selector": true,
     "SELECTOR_matchLabels": [
@@ -78,7 +78,7 @@
     "maxUnavailable": 1,
     "maxSurge": 1,
     "DEPLOYMENTSPEC_template": true,
-    "DEPLOYMENTSPEC_TEMPLATE_Metadata": true,
+    "DEPLOYMENTSPEC_TEMPLATE_metadata": true,
     "TEMPLATE_METADATA_name": "testname",
     "TEMPLATE_METADATA_namespace": "namepace_de_prueba",
     "TEMPLATE_METADATA_labels": [
@@ -104,7 +104,7 @@
     "TEMPLATE_METADATA_deletionGracePeriodSeconds": 3,
     "DEPLOYMENTSPEC_TEMPLATE_Podspec": true,
     "PodSpec": true,
-    "PODSPEC_Containers":[
+    "PODSPEC_containers":[
       {
         "CONTAINERS_name": "contenedor",
         "CONTAINERS_image": "imagen:1.13",

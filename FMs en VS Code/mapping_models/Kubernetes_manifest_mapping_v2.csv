@@ -116,10 +116,10 @@ DEPLOYMENTSPEC_progressDeadlineSeconds, DEPLOYMENTSPEC_progressDeadlineSeconds,
 DEPLOYMENTSPEC_Replicas, DEPLOYMENTSPEC_Replicas, 
 DEPLOYMENTSPEC_revisionHistoryLimit, DEPLOYMENTSPEC_revisionHistoryLimit, 
 DEPLOYMENTSPEC_selector, DEPLOYMENTSPEC_selector, -
-LABELSELECTOR_matchLabels, LABELSELECTOR_matchLabels, -
+SELECTOR_matchLabels, SELECTOR_matchLabels, -
 MATCHLABELS_key, MATCHLABELS_key,  
 MATCHLABELS_value,MATCHLABELS_value, 
-LABELSELECTOR_matchExpressions, LABELSELECTOR_matchExpressions, -
+SELECTOR_matchExpressions, SELECTOR_matchExpressions, -
 MATCHEXPRESSIONS_key, MATCHEXPRESSIONS_key, 
 MATCHEXPRESSIONS_operator, MATCHEXPRESSIONS_operator, -
 OPERATOR_in, OPERATOR_in, in

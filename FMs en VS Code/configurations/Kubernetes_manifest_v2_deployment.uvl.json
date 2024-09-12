@@ -41,7 +41,7 @@
     "DEPLOYMENTSPEC_Replicas": 1,
     "DEPLOYMENTSPEC_revisionHistoryLimit": 1,
     "DEPLOYMENTSPEC_selector": true,
-    "LABELSELECTOR_matchLabels": [
+    "SELECTOR_matchLabels": [
       {
         "MATCHLABELS_key": "key_1",
         "MATCHLABELS_value": "Value_1"
@@ -51,7 +51,7 @@
         "MATCHLABELS_value": "Value_2"
       }
     ],
-    "LABELSELECTOR_matchExpressions": [
+    "SELECTOR_matchExpressions": [
       {
         "MATCHEXPRESSIONS_key": "key_1",
         "MATCHEXPRESSIONS_operator": true,

@@ -144,11 +144,11 @@ features
                             Integer DEPLOYMENTSPEC_revisionHistoryLimit {doc 'The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.'}
                             Boolean DEPLOYMENTSPEC_selector {doc 'Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment. It must match the pod templates labels.'}
                                 or 
-                                    Boolean LABELSELECTOR_matchLabels cardinality [0..*] {doc 'matchExpressions is a list of label selector requirements. The requirements are ANDed.'}
+                                    Boolean SELECTOR_matchLabels cardinality [0..*] {doc 'matchExpressions is a list of label selector requirements. The requirements are ANDed.'}
                                         mandatory 
                                             String MATCHLABELS_key
                                             String MATCHLABELS_value
-                                    Boolean LABELSELECTOR_matchExpressions cardinality [0..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                    Boolean SELECTOR_matchExpressions cardinality [0..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
                                         mandatory   
                                             String MATCHEXPRESSIONS_key {doc 'key is the label key that the selector applies to.'}
                                             Boolean MATCHEXPRESSIONS_values cardinality [0..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}

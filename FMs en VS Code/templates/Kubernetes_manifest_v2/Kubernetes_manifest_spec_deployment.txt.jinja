@@ -11,14 +11,14 @@
 
 {%if DEPLOYMENTSPEC_selector%}selector:
 
-  {%if LABELSELECTOR_matchLabels%}matchLabels:
-    {%for matchlabel in LABELSELECTOR_matchLabels%}  
+  {%if SELECTOR_matchLabels%}matchLabels:
+    {%for matchlabel in SELECTOR_matchLabels%}  
     {{matchlabel.MATCHLABELS_key}}: {{matchlabel.MATCHLABELS_value}}
     {%endfor%}
   {%endif%}
 
-  {%if LABELSELECTOR_matchExpressions%}matchExpressions:
-    {%for matchExpressions in LABELSELECTOR_matchExpressions%}  
+  {%if SELECTOR_matchExpressions%}matchExpressions:
+    {%for matchExpressions in SELECTOR_matchExpressions%}  
     - key: {{matchExpressions.MATCHEXPRESSIONS_key}}
       operator: {{matchExpressions.OPERATOR_in}}{{matchExpressions.OPERATOR_notIn}}{{matchExpressions.OPERATOR_exist}}{{matchExpressions.OPERATOR_doesNotExist}}{{matchExpressions.OPERATOR_gt}}{{OPERATOR_lt}}
     {%if matchExpressions.MATCHEXPRESSIONS_values%}  values:

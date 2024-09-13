@@ -1,7 +1,7 @@
 features 
     Kubernetes_manifest
         mandatory
-            Boolean ApiVersion {doc 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'}
+            Boolean apiVersion {doc 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'}
                 mandatory
                     Boolean Group {abstract, doc 'refers to the API group that organizes related resources. Kubernetes divides its API into logical groups to make it easier to manage, extend, and evolve different types of resources. These groups are essentially namespaces for related API objects.'} 
                         alternative
@@ -35,7 +35,7 @@ features
                             Boolean VERSION_v1alpha1
                             Boolean VERSION_v1alpha2
                             Boolean VERSION_v2
-            Boolean Kind {doc 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'}
+            Boolean kind {doc 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'}
                 alternative
                     Boolean Workloads_APIs {abstract, doc 'Refer to the set of API resources that manage and run application workloads, such as containers and jobs. These resources are responsible for defining how applications are deployed, scaled, and managed across a cluster.'}
                         alternative
@@ -119,7 +119,7 @@ features
                             Boolean KIND_TokenReview
                             Boolean KIND_NetworkPolicy
         optional
-            Boolean Metadata {doc 'Standard object´s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata'}
+            Boolean metadata {doc 'Standard object´s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata'}
                 mandatory
                     String METADATA_name {doc 'Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names'}
                 optional
@@ -133,7 +133,7 @@ features
                         mandatory
                             String ANNOTATIONS_key
                             String ANNOTATIONS_value
-            Boolean Spec {doc 'Specification of the desired behavior of the object.'}
+            Boolean spec {doc 'Specification of the desired behavior of the object.'}
                 optional 
                     Boolean DeploymentSpec {abstract, doc 'Specification of the desired behavior of the Deployment.'}
                         optional   

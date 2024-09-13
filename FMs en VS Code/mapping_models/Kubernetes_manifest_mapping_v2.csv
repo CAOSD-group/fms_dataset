@@ -98,7 +98,7 @@ KIND_TokenReview, KIND_TokenReview, TokenReview
 KIND_NetworkPolicy, KIND_NetworkPolicy, NetworkPolicy
 KIND_ResourceClaimParameters, KIND_ResourceClaimParameters, ResourceClaimParameters
 KIND_ResourceSlice,KIND_ResourceSlice, ResourceSlice
-Metadata, Metadata, -
+metadata, metadata, -
 METADATA_name, METADATA_name,
 METADATA_namespace, METADATA_namespace, 
 METADATA_labels, METADATA_labels, -

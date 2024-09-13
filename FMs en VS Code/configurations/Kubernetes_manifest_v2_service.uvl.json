@@ -14,7 +14,7 @@
     "METADATA_name": "test-Service",
     "METADATA_deletionGracePeriodSeconds": 2.0,
     "METADATA_namespace": "test-namespace",
-    "Spec": true,
+    "spec": true,
     "ServiceSpec": true,
     "SERVICESPEC_allocateLoadBalancerNodePorts": false,
     "SERVICESPEC_clusterIP": true,

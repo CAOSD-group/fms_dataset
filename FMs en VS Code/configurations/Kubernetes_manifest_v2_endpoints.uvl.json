@@ -12,7 +12,7 @@
     "KIND_Endpoints": true,
     "metadata": true,
     "METADATA_name": "my-endpoint",
-    "Spec": true,
+    "spec": true,
     "EndpointsSpec": true,
     "ENDPOINT_subsets": [
       {

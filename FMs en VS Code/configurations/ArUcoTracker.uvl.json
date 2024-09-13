@@ -12,7 +12,7 @@
     "KIND_Deployment": true,
     "metadata": true,
     "METADATA_name": "aruco-tracker",
-    "Spec": true,
+    "spec": true,
     "SPEC_Replicas": 1.0,
     "SPEC_Selector": true,
     "SELECTOR_matchLabels": [

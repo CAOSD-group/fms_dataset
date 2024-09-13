@@ -33,7 +33,7 @@
       }
     ],
     "METADATA_deletionGracePeriodSeconds": 3,
-    "Spec": true,
+    "spec": true,
     "DeploymentSpec": true,
     "DEPLOYMENTSPEC_minReadySeconds": 3,
     "DEPLOYMENTSPEC_paused": true,

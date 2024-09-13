@@ -12,6 +12,7 @@
     "metadata": true,
     "METADATA_name": "ejemplo-role",
     "METADATA_namespace": "default",
+    "spec": true,
     "RoleSpec": true,
     "ROLESPEC_rules": [
       {

@@ -108,7 +108,7 @@ METADATA_annotations, METADATA_annotations, -
 ANNOTATIONS_key, ANNOTATIONS_key, 
 ANNOTATIONS_value, ANNOTATIONS_value, 
 METADATA_deletionGracePeriodSeconds, METADATA_deletionGracePeriodSeconds, 
-Spec, Spec, -
+spec, spec, -
 DeploymentSpec, DeploymentSpec, -
 DEPLOYMENTSPEC_minReadySeconds, DEPLOYMENTSPEC_minReadySeconds, 
 DEPLOYMENTSPEC_paused, DEPLOYMENTSPEC_paused, 

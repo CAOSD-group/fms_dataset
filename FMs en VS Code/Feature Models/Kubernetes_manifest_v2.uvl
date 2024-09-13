@@ -795,7 +795,7 @@ constraints
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec & SecretSpec & ConfigMapSpec & EndpointsSpec => Spec
+    DeploymentSpec & PodSpec & ServiceSpec & SecretSpec & ConfigMapSpec & EndpointsSpec => spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_Pod => PodSpec
     KIND_Deployment => DeploymentSpec & PodSpec

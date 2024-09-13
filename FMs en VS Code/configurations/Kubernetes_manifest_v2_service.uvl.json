@@ -51,7 +51,7 @@
         "SERVICESPEC_PORTS_appProtocol": "kubernetes.io/h2c"
       }
     ],
-    "publishNotReadyAddresses": true,
+    "SERVICESPEC_publishNotReadyAddresses": true,
     "SERVICESPEC_Selector":[
       {
         "SELECTOR_key": "app",
@@ -67,7 +67,7 @@
     "SERVICESPEC_sessionAffinityConfig": true,
     "SESSIONAFFINITYCONFIG_clientIP": true,
     "CLIENTIP_timeoutSeconds": 10800,
-    "trafficDistribution": "PreferClose",
+    "SERVICESPEC_trafficDistribution": "PreferClose",
     "SERVICESPEC_Type": true,
     "TYPE_LoadBalancer": true
   }

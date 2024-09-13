@@ -418,6 +418,7 @@ PODSPEC_hostname, PODSPEC_hostname,
 PODSPEC_nodeName, PODSPEC_nodeName, 
 PODSPEC_Volumes, PODSPEC_Volumes, -
 VOLUMES_name, VOLUMES_name, 
+VOLUMES_type, VOLUMES_type,
 emptyDir, emptyDir, -
 EMPTYDIR_medium, EMPTYDIR_medium, 
 EMPTYDIR_MEDIUM_memory, EMPTYDIR_MEDIUM_memory, Memory
@@ -426,6 +427,25 @@ EMPTYDIR_sizeLimit, EMPTYDIR_sizeLimit,
 hostPath, hostPath, -
 HOSTPATH_path, HOSTPATH_path, 
 HOSTPATH_type, HOSTPATH_type
+persistentVolumeClaim, persistentVolumeClaim, -
+PERSISTENTVOLUMECLAIM_claimName, PERSISTENTVOLUMECLAIM_claimName, 
+PERSISTENTVOLUMECLAIM_readOnly, PERSISTENTVOLUMECLAIM_readOnly,
+configMap, configMap, -
+CONFIGMAP_name, CONFIGMAP_name, 
+CONFIGMAP_optional, CONFIGMAP_optional, -
+CONFIGMAP_defaultMode, CONFIGMAP_defaultMode, 
+CONFIGMAP_items, CONFIGMAP_items, -
+CONFIGMAP_ITEMS_key, CONFIGMAP_ITEMS_key, 
+CONFIGMAP_ITEMS_mode, CONFIGMAP_ITEMS_mode, 
+CONFIGMAP_ITEMS_path, CONFIGMAP_ITEMS_path,
+secret, secret, -
+SECRET_secretName, SECRET_secretName, 
+SECRET_optional, SECRET_optional, -
+SECRET_defaultMode, SECRET_defaultMode, 
+SECRET_items, SECRET_items, -
+SECRET_ITEMS_key, SECRET_ITEMS_key, 
+SECRET_ITEMS_mode, SECRET_ITEMS_mode, 
+SECRET_ITEMS_path, SECRET_ITEMS_path, 
 ServiceSpec, ServiceSpec, 
 SERVICESPEC_allocateLoadBalancerNodePorts, SERVICESPEC_allocateLoadBalancerNodePorts, -
 SERVICESPEC_clusterIP, SERVICESPEC_clusterIP, -
@@ -464,7 +484,7 @@ PORTS_PROTOCOL_sctp, PORTS_PROTOCOL_sctp, SCTP
 SERVICESPEC_PORTS_nodePort, SERVICESPEC_PORTS_nodePort, 
 SERVICESPEC_PORTS_targetPort, SERVICESPEC_PORTS_targetPort, 
 SERVICESPEC_PORTS_appProtocol, SERVICESPEC_PORTS_appProtocol, 
-publishNotReadyAddresses, publishNotReadyAddresses, -
+SERVICESPEC_publishNotReadyAddresses, SERVICESPEC_publishNotReadyAddresses, -
 SERVICESPEC_Selector, SERVICESPEC_Selector, -
 SELECTOR_key, SELECTOR_key, 
 SELECTOR_value, SELECTOR_value
@@ -473,31 +493,12 @@ SESSIONAFFINITY_clientIP, SESSIONAFFINITY_clientIP, ClientIP
 SESSIONAFFINITY_none, SESSIONAFFINITY_none, None
 SERVICESPEC_sessionAffinityConfig, SERVICESPEC_sessionAffinityConfig, -
 CLIENTIP_timeoutSeconds, CLIENTIP_timeoutSeconds, 
-trafficDistribution, trafficDistribution, 
+SERVICESPEC_trafficDistribution, SERVICESPEC_trafficDistribution, 
 SERVICESPEC_Type, SERVICESPEC_Type, -
 TYPE_ExternalName, TYPE_ExternalName, ExternalName
 TYPE_ClusterIP, TYPE_ClusterIP, ClusterIP
 TYPE_NodePort, TYPE_NodePort, NodePort
-TYPE_LoadBalancer, TYPE_LoadBalancer, LoadBalancer
-persistentVolumeClaim, persistentVolumeClaim, -
-PERSISTENTVOLUMECLAIM_claimName, PERSISTENTVOLUMECLAIM_claimName, 
-PERSISTENTVOLUMECLAIM_readOnly, PERSISTENTVOLUMECLAIM_readOnly, 
-configMap, configMap, -
-CONFIGMAP_name, CONFIGMAP_name, 
-CONFIGMAP_optional, CONFIGMAP_optional, -
-CONFIGMAP_defaultMode, CONFIGMAP_defaultMode, 
-CONFIGMAP_items, CONFIGMAP_items, -
-CONFIGMAP_ITEMS_key, CONFIGMAP_ITEMS_key, 
-CONFIGMAP_ITEMS_mode, CONFIGMAP_ITEMS_mode, 
-CONFIGMAP_ITEMS_path, CONFIGMAP_ITEMS_path, 
-secret, secret, -
-SECRET_secretName, SECRET_secretName, 
-SECRET_optional, SECRET_optional, -
-SECRET_defaultMode, SECRET_defaultMode, 
-SECRET_items, SECRET_items, -
-SECRET_ITEMS_key, SECRET_ITEMS_key, 
-SECRET_ITEMS_mode, SECRET_ITEMS_mode, 
-SECRET_ITEMS_path, SECRET_ITEMS_path, 
+TYPE_LoadBalancer, TYPE_LoadBalancer, LoadBalancer 
 ConfigMapSpec, ConfigMapSpec, 
 CONFIGMAPSPEC_immutable, CONFIGMAPSPEC_immutable, -
 CONFIGMAPSPEC_kind, CONFIGMAPSPEC_kind, 
@@ -546,7 +547,7 @@ SUBSETS_PORTS_UDP, SUBSETS_PORTS_UDP, UDP
 SUBSETS_PORTS_TCP, SUBSETS_PORTS_TCP, TCP
 SUBSETS_PORTS_SCTP, SUBSETS_PORTS_SCTP, SCTP
 RoleSpec, RoleSpec, -
-ROLESPECrules, ROLESPECrules, -
+ROLESPEC_rules, ROLESPECrules, -
 RULES_apiGroups, RULES_apiGroups, 
 RULES_APIGROUPS_value, RULES_APIGROUPS_value, 
 RULES_resources, RULES_resources, 

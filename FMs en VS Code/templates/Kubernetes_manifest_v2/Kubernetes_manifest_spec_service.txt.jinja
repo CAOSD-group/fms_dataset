@@ -42,7 +42,7 @@
 {%endfor%}
 {%endif%}
 
-{%if publishNotReadyAddresses%}publishNotReadyAddresses: true{%endif%}
+{%if SERVICESPEC_publishNotReadyAddresses%}SERVICESPEC_publishNotReadyAddresses: true{%endif%}
 
 {%if SERVICESPEC_Selector%}selector:
 {%for s in SERVICESPEC_Selector%}
@@ -57,6 +57,6 @@
     timeoutSeconds: {{CLIENTIP_timeoutSeconds}}
 {%endif%}
 
-{%if trafficDistribution%}trafficDistribution: {{trafficDistribution}}{%endif%}
+{%if SERVICESPEC_trafficDistribution%}trafficDistribution: {{SERVICESPEC_trafficDistribution}}{%endif%}
 
 {%if SERVICESPEC_Type%}Type: {{TYPE_ExternalName}}{{TYPE_ClusterIP}}{{TYPE_NodePort}}{{TYPE_LoadBalancer}}{%endif%}

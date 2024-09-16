@@ -648,7 +648,7 @@ features
                                     Integer SERVICESPEC_PORTS_port {doc 'The port that will be exposed by this service.'}
                                 optional
                                     String SERVICESPEC_PORTS_name {doc 'The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the "name" field in the EndpointPort. Optional if only one ServicePort is defined on this service.'}
-                                    Boolean SERVICESPEC_PORTS_protocol {do 'The IP protocol for this port. Supports "TCP", "UDP", and "SCTP". Default is TCP.'}
+                                    Boolean SERVICESPEC_PORTS_protocol {doc 'The IP protocol for this port. Supports "TCP", "UDP", and "SCTP". Default is TCP.'}
                                         alternative
                                             Boolean PORTS_PROTOCOL_tcp
                                             Boolean PORTS_PROTOCOL_udp

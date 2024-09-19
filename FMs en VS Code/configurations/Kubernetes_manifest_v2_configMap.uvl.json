@@ -12,12 +12,19 @@
     "metadata": true,
     "METADATA_name": "extended-configmap",
     "METADATA_namespace": "default",
-    "ConfigMapSpec": true,
-    "CONFIGMAPSPEC_binaryData": "",
-    "CONFIGMAPSPEC_data": "myKey: myValue",
-    "CONFIGMAPSPEC_immutable": false,
-    "CONFIGMAPSPEC_kind": "stringKind",
-    "CONFIGMAPSPEC_binaryData": [
+    "data": [
+      {
+        "DATA_confSimple": true,
+        "CONFSIMPLE_key": "myKey",
+        "CONFSIMPLE_value": "myValue",
+        "DATA_confFile": true,
+        "CONFFILE_name": "config.properties",
+        "CONFFILE_value": "setting1=value1; setting2=value2"
+      }
+    ],
+    "immutable": true,
+    "IMMUTABLE_boolean": true,
+    "binaryData": [
       {
         "BINARYDATA_binaryFile_name": "binaryFile",
         "BINARYDATA_binaryFile_value": "QmluYXJ5IGRhdGEgZXhjYW1wbGUuLi4K"

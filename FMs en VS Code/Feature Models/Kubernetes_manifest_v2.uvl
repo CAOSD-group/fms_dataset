@@ -71,7 +71,7 @@ features
                         alternative
                             Boolean KIND_ClusterTrustBundle
                             Boolean KIND_ControllerRevision
-                            Boolean KIND_CustomerResourceDefinition
+                            Boolean KIND_CustomResourceDefinition
                             Boolean KIND_Event
                             Boolean KIND_LimitRange
                             Boolean KIND_HorizontalPodAutoscaler
@@ -622,7 +622,7 @@ features
                                     String CLUSTERIPS_IPs
                             Boolean SERVICESPEC_externalIPs cardinality [0..*] {doc 'externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service. These IPs are not managed by Kubernetes. The user is responsible for ensuring that traffic arrives at a node with this IP. A common example is external load-balancers that are not part of the Kubernetes system.'}
                                 mandatory
-                                    SERVIDESPEC_EXTERNALIPS_ip
+                                    SERVICESPEC_EXTERNALIPS_ip
                             String SERVICESPEC_externalName {doc 'externalName is the external reference that discovery mechanisms will return as an alias for this service (e.g. a DNS CNAME record). No proxying will be involved. Must be a lowercase RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires `type` to be "ExternalName".'}
                             Boolean SERVICESPEC_externalTrafficPolicy {doc 'externalTrafficPolicy describes how nodes distribute service traffic they receive on one of the Service´s "externally-facing" addresses (NodePorts, ExternalIPs, and LoadBalancer IPs). If set to "Local", the proxy will configure the service in a way that assumes that external load balancers will take care of balancing the service traffic between nodes, and so each node will deliver traffic only to the node-local endpoints of the service, without masquerading the client source IP. (Traffic mistakenly sent to a node with no endpoints will be dropped.) The default value, "Cluster", uses the standard behavior of routing to all endpoints evenly (possibly modified by topology and other features). Note that traffic sent to an External IP or LoadBalancer IP from within the cluster will always get "Cluster" semantics, but clients sending to a NodePort from within the cluster may need to take traffic policy into account when picking a node.'}
                                 alternative   
@@ -677,92 +677,119 @@ features
                                     Boolean TYPE_ClusterIP
                                     Boolean TYPE_NodePort
                                     Boolean TYPE_LoadBalancer
-                    Boolean ConfigMapSpec {doc 'Specification of the desired behavior of the ConfigMap.'}
-                        optional
-                            Boolean CONFIGMAPSPEC_binaryData cardinality [0..*] {doc 'BinaryData contains the binary data. Each key must consist of alphanumeric characters, "-", "_" or ".". BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.'}
-                                mandatory
-                                    String BINARYDATA_binaryFile_name
-                                    String BINARYDATA_binaryFile_value
-                            Boolean CONFIGMAPSPEC_data cardinality [0..*] {doc 'Data contains the configuration data. Each key must consist of alphanumeric characters, "-", "_" or ".". Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.'}
-                                optional   
-                                    Boolean DATA_confSimple {abstract}
-                                        mandatory
-                                            String CONFSIMPLE_key
-                                            String CONFSIMPLE_value
-                                    Boolean DATA_confFile {abstract}
-                                        mandatory   
-                                            String CONFFILE_name {doc 'name of configuration file'}
-                                            String CONFFILE_value {doc 'content of the file'}
-                            Boolean CONFIGMAPSPEC_immutable {doc 'Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.'}
-                            String CONFIGMAPSPEC_kind {doc 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'}
-                    Boolean EndpointsSpec {abstract, doc 'Specification of the desired behavior of the EndPoint.'}
-                        mandatory
-                            Boolean ENDPOINT_subsets {doc 'The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service.'}
+                    Boolean CustomResourceDefinitionSpec {NO_TERMINADO, doc 'CustomResourceDefinitionSpec describes how a user wants their resource to appear'}
+                        optional   
+                            Boolean CUSTOMRESOURCEDEFINITIONSPEC_conversion {NO_TERMINADO, doc 'conversion defines conversion settings for the CRD.'}
+                            String CUSTOMRESOURCEDEFINITIONSPEC_group {doc 'group is the API group of the defined custom resource. The custom resources are served under `/apis/<group>/...`. Must match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`).'}
+                            Boolean CUSTOMRESOURCEDEFINITIONSPEC_names {NO_TERMINADO, doc 'names specify the resource and kind names for the custom resource.'}
+                            Boolean CUSTOMRESOURCEDEFINITIONSPEC_scope {doc 'scope indicates whether the defined custom resource is cluster- or namespace-scoped. Allowed values are `Cluster` and `Namespaced`.'}
+                                alternative   
+                                    Boolean CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Cluster
+                                    Boolean CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Namespaced
+                            Boolean CUSTOMRESOURCEDEFINITIONSPEC_versions cardinality [0..*]  {NO_TERMINADO, doc 'Conversion describes conversion settings for the CRD.'}
                                 optional
-                                    Boolean SUBSETS_addresses {doc 'IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize.'}
-                                        mandatory
-                                            String ADDRESSES_ip {doc 'The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).'}
-                                        optional
-                                            String ADDRESSES_hostname {doc 'The Hostname of this endpoint'}
-                                            String ADDRESSES_nodename {doc 'Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.'}
-                                            Boolean ADDRESSES_targetRef {doc 'Reference to object providing the endpoint.'}
-                                                optional
-                                                    String ADDRESSES_TARGETREF_apiVersion {doc 'API version of the referent.'}
-                                                    String ADDRESSES_TARGETREF_fieldPath {doc 'If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.'}
-                                                    String ADDRESSES_TARGETREF_kind {doc 'Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'}
-                                                    String ADDRESSES_TARGETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
-                                                    String ADDRESSES_TARGETREF_namespace {doc 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'}
-                                                    String ADDRESSES_TARGETREF_resourceVersion {doc 'Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency'}
-                                                    String ADDRESSES_TARGETREF_uid {doc 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'}
-                                    Boolean SUBSETS_notReadyAddresses {doc 'IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check.'}
-                                        mandatory
-                                                String NOTREADYADDRESSES_ip {doc 'The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).'}
-                                            optional
-                                                String NOTREADYADDRESSES_hostname {doc 'The Hostname of this endpoint'}
-                                                String NOTREADYADDRESSES_nodename {doc 'Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.'}
-                                                Boolean NOTREADYADDRESSES_targetRef {doc 'Reference to object providing the endpoint.'}
-                                                    optional
-                                                        String NOTREADYADDRESSES_TARGETREF_apiVersion {doc 'API version of the referent.'}
-                                                        String NOTREADYADDRESSES_TARGETREF_fieldPath {doc 'If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.'}
-                                                        String NOTREADYADDRESSES_TARGETREF_kind {doc 'Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'}
-                                                        String NOTREADYADDRESSES_TARGETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
-                                                        String NOTREADYADDRESSES_TARGETREF_namespace {doc 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'}
-                                                        String NOTREADYADDRESSES_TARGETREF_resourceVersion {doc 'Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency'}
-                                                        String NOTREADYADDRESSES_TARGETREF_uid {doc 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'}
-                                    Boolean SUBSETS_ports {doc 'Port numbers available on the related IP addresses.'}
-                                        mandatory   
-                                            Integer SUBSETS_PORTS_port {doc 'The port number of the endpoint.'}
+                                    String VERSIONS_name {doc 'name is the version name, e.g. “v1”, “v2beta1”, etc. The custom resources are served under this version at `/apis/<group>/<version>/...` if `served` is true.'}
+                                    Boolean VERSIONS_served {doc 'served is a flag enabling/disabling this version from being served via REST APIs'}
+                                    Boolean VERSIONS_storage {doc 'storage indicates this version should be used when persisting custom resources to storage. There must be exactly one version with storage=true.'}
+                                    Boolean VERSIONS_subresources cardinality [0..*] {doc 'subresources specify what subresources this version of the defined custom resource have.'} 
                                         optional   
-                                            String SUBSETS_PORTS_appProtocol {doc 'The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * "kubernetes.io/h2c" - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior- * "kubernetes.io/ws" - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * "kubernetes.io/wss" - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.'}
-                                            String SUBSETS_PORTS_name {doc 'The name of this port. This must match the "name" field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.'}
-                                            Boolean SUBSETS_PORTS_protocol {doc 'The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.'}
-                                                alternative  
-                                                    Boolean SUBSETS_PORTS_UDP 
-                                                    Boolean SUBSETS_PORTS_TCP
-                                                    Boolean SUBSETS_PORTS_SCTP
-
+                                            Boolean SUBRESOURCES_status {doc 'status indicates the custom resource should serve a /status subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the status stanza of the object. 2. requests to the custom resource /status subresource ignore changes to anything other than the status stanza of the object.'}
+                                            Boolean SUBRESOURCES_scale {doc 'scale indicates the custom resource should serve a `/scale` subresource that returns an `autoscaling/v1` Scale object.'}
+                                    Boolean VERSIONS_schema cardinality [0..*] {doc 'schema describes the schema used for validation, pruning, and defaulting of this version of the custom resource.'}
+                                        mandatory      
+                                            Boolean SCHEMA_openAPIV3Schema {NO_TERMINADO, doc 'OpenAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.'}
+                                                optional   
+                                                    String OPENAPIV3SCHEMA_type {doc ''}        
+                                                    Boolean OPENAPIV3SCHEMA_properties {doc ''}
+                                                    String OPENAPIV3SCHEMA_description {doc ''}
+                                                    String OPENAPIV3SCHEMA_required {doc ''}                              
+                                    Boolean VERSIONS_additionalPrinterColumns cardinality [0..*] {doc 'AdditionalPrinterColumns are additional columns shown e.g. in kubectl next to the name. Defaults to a created-at column. More info: https://kubernetes.io/docs/reference/using-api/api-concepts/#additionalprintercolumns'}
+                                        optional
+                                            String ADDITIONALPRINTERCOLUMNS_name {doc 'name is a human readable name for the column.'}
+                                            String ADDITIONALPRINTERCOLUMNS_type {doc 'type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.'}
+                                            String ADDITIONALPRINTERCOLUMNS_JSONPath {doc 'jsonPath is a simple JSON path (i.e. with array notation) which is evaluated against each custom resource to produce the value for this column.'}
+                                            String ADDITIONALPRINTERCOLUMNS_description {doc 'description is a human readable description of this column.'}
+                                            Integer ADDITIONALPRINTERCOLUMNS_priority {doc 'priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.'}
+                                            String ADDITIONALPRINTERCOLUMNS_format {doc 'format is an optional OpenAPI type definition for this column. The "name" format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.'}
                     Boolean SecretSpec {NO_TERMINADO, doc 'Specification of the desired behavior of the Secret.'}
-                    Boolean RoleSpec {NO_TERMINADO, doc 'Specification of the desired behavior of the Role.'}
+            Boolean binaryData cardinality [0..*] {doc 'BinaryData contains the binary data. Each key must consist of alphanumeric characters, "-", "_" or ".". BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.'}
+                mandatory
+                    String BINARYDATA_binaryFile_name
+                    String BINARYDATA_binaryFile_value
+            Boolean data cardinality [0..*] {doc 'Data contains the configuration data. Each key must consist of alphanumeric characters, "-", "_" or ".". Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.'}
+                optional   
+                    Boolean DATA_confSimple {abstract}
+                        mandatory
+                            String CONFSIMPLE_key
+                            String CONFSIMPLE_value
+                    Boolean DATA_confFile {abstract}
                         mandatory   
-                            Boolean ROLESPEC_rules cardinality [0..*] {NO_TERMINADO, doc 'Rules holds all the PolicyRules for this Role'} 
-                                mandatory
-                                    String RULES_apiGroups cardinality [0..*] {doc 'APIGroups is the name of the APIGroup that contains the resources. If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. "" represents the core API group and "*" represents all API groups.'}
-                                        mandatory
-                                            String RULES_APIGROUPS_value
-                                optional   
-                                    String RULES_nonResourceURLs cardinality [0..*] {doc 'NonResourceURLs is a set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"), but not both.'}
-                                        mandatory
-                                            String RULES_NONRESOURCEURLS_value
-                                    String RULES_resourceNames cardinality [0..*] {doc 'ResourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed.'}
-                                        mandatory
-                                            String RULES_RESOURCENAMES_value
-                                    String RULES_resources cardinality [0..*] {doc 'Resources is a list of resources this rule applies to.'}
-                                        mandatory
-                                            String RULES_RESOURCES_value
-                                    String RULES_verbs cardinality [0..*] {doc 'Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule.'}
-                                        mandatory
-                                            String RULES_VERBS_value
-
+                            String CONFFILE_name {doc 'name of configuration file'}
+                            String CONFFILE_value {doc 'content of the file'}
+            Boolean immutable {doc 'Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil.'}
+                mandatory   
+                    Boolean IMMUTABLE_boolean
+            Boolean subsets {doc 'The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service.'}
+                optional
+                    Boolean SUBSETS_addresses {doc 'IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize.'}
+                        mandatory
+                            String ADDRESSES_ip {doc 'The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).'}
+                        optional
+                            String ADDRESSES_hostname {doc 'The Hostname of this endpoint'}
+                            String ADDRESSES_nodename {doc 'Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.'}
+                            Boolean ADDRESSES_targetRef {doc 'Reference to object providing the endpoint.'}
+                                optional
+                                    String ADDRESSES_TARGETREF_apiVersion {doc 'API version of the referent.'}
+                                    String ADDRESSES_TARGETREF_fieldPath {doc 'If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.'}
+                                    String ADDRESSES_TARGETREF_kind {doc 'Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'}
+                                    String ADDRESSES_TARGETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
+                                    String ADDRESSES_TARGETREF_namespace {doc 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'}
+                                    String ADDRESSES_TARGETREF_resourceVersion {doc 'Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency'}
+                                    String ADDRESSES_TARGETREF_uid {doc 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'}
+                    Boolean SUBSETS_notReadyAddresses {doc 'IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check.'}
+                        mandatory
+                                String NOTREADYADDRESSES_ip {doc 'The IP of this endpoint. May not be loopback (127.0.0.0/8 or ::1), link-local (169.254.0.0/16 or fe80::/10), or link-local multicast (224.0.0.0/24 or ff02::/16).'}
+                            optional
+                                String NOTREADYADDRESSES_hostname {doc 'The Hostname of this endpoint'}
+                                String NOTREADYADDRESSES_nodename {doc 'Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.'}
+                                Boolean NOTREADYADDRESSES_targetRef {doc 'Reference to object providing the endpoint.'}
+                                    optional
+                                        String NOTREADYADDRESSES_TARGETREF_apiVersion {doc 'API version of the referent.'}
+                                        String NOTREADYADDRESSES_TARGETREF_fieldPath {doc 'If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.'}
+                                        String NOTREADYADDRESSES_TARGETREF_kind {doc 'Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'}
+                                        String NOTREADYADDRESSES_TARGETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
+                                        String NOTREADYADDRESSES_TARGETREF_namespace {doc 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'}
+                                        String NOTREADYADDRESSES_TARGETREF_resourceVersion {doc 'Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency'}
+                                        String NOTREADYADDRESSES_TARGETREF_uid {doc 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'}
+                    Boolean SUBSETS_ports {doc 'Port numbers available on the related IP addresses.'}
+                        mandatory   
+                            Integer SUBSETS_PORTS_port {doc 'The port number of the endpoint.'}
+                        optional   
+                            String SUBSETS_PORTS_appProtocol {doc 'The application protocol for this port. This is used as a hint for implementations to offer richer behavior for protocols that they understand. This field follows standard Kubernetes label syntax. Valid values are either: * Un-prefixed protocol names - reserved for IANA standard service names (as per RFC-6335 and https://www.iana.org/assignments/service-names). * Kubernetes-defined prefixed names: * "kubernetes.io/h2c" - HTTP/2 prior knowledge over cleartext as described in https://www.rfc-editor.org/rfc/rfc9113.html#name-starting-http-2-with-prior- * "kubernetes.io/ws" - WebSocket over cleartext as described in https://www.rfc-editor.org/rfc/rfc6455 * "kubernetes.io/wss" - WebSocket over TLS as described in https://www.rfc-editor.org/rfc/rfc6455 * Other protocols should use implementation-defined prefixed names such as mycompany.com/my-custom-protocol.'}
+                            String SUBSETS_PORTS_name {doc 'The name of this port. This must match the "name" field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.'}
+                            Boolean SUBSETS_PORTS_protocol {doc 'The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.'}
+                                alternative  
+                                    Boolean SUBSETS_PORTS_UDP 
+                                    Boolean SUBSETS_PORTS_TCP
+                                    Boolean SUBSETS_PORTS_SCTP
+            Boolean rules cardinality [0..*] {doc 'Rules holds all the PolicyRules for this Role'} 
+                mandatory
+                    Boolean RULES_apiGroups cardinality [0..*] {doc 'APIGroups is the name of the APIGroup that contains the resources. If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed. "" represents the core API group and "*" represents all API groups.'}
+                        mandatory
+                            String RULES_APIGROUPS_value
+                optional   
+                    Boolean RULES_nonResourceURLs cardinality [0..*] {doc 'NonResourceURLs is a set of partial urls that a user should have access to. *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"), but not both.'}
+                        mandatory
+                            String RULES_NONRESOURCEURLS_value
+                    Boolean RULES_resourceNames cardinality [0..*] {doc 'ResourceNames is an optional white list of names that the rule applies to. An empty set means that everything is allowed.'}
+                        mandatory
+                            String RULES_RESOURCENAMES_value
+                    Boolean RULES_resources cardinality [0..*] {doc 'Resources is a list of resources this rule applies to.'}
+                        mandatory
+                            String RULES_RESOURCES_value
+                    Boolean RULES_verbs cardinality [0..*] {doc 'Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule.'}
+                        mandatory
+                            String RULES_VERBS_value
 constraints
     // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1
@@ -779,7 +806,7 @@ constraints
     (KIND_Ingress | KIND_IngressClass | KIND_IPAddress | KIND_ServiceCIDR | KIND_NetworkPolicy) => GROUP_networking
     (KIND_CSIDriver | KIND_CSINode | KIND_StorageClass | KIND_CSIStorageCapacity | KIND_VolumeAttachment | KIND_VolumeAttributesClass) => GROUP_storage
     (KIND_ClusterTrustBundle | KIND_CertificateSigningRequest) => GROUP_certificates
-    KIND_CustomerResourceDefinition => GROUP_apiextensions
+    KIND_CustomResourceDefinition => GROUP_apiextensions
     KIND_Event => GROUP_events
     KIND_HorizontalPodAutoscaler => GROUP_autoscaling
     (KIND_MutatingWebhookConfiguration | KIND_ValidatingWebhookConfiguration | KIND_ValidatingAdmissionPolicy | KIND_ValidatingAdmissionPolicyBinding) => GROUP_admission_registration
@@ -795,14 +822,16 @@ constraints
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec & SecretSpec & ConfigMapSpec & EndpointsSpec => spec
+    DeploymentSpec & PodSpec & ServiceSpec & SecretSpec => spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_Pod => PodSpec
     KIND_Deployment => DeploymentSpec & PodSpec
     KIND_Service => ServiceSpec
-    KIND_ConfigMap => ConfigMapSpec
+    KIND_ConfigMap => binaryData & data & immutable
     KIND_Secret => SecretSpec
-    KIND_Endpoints => EndpointsSpec
+    KIND_Endpoints => subsets
+    KIND_Role => rules
+    KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
     (maxUnavailable == 0) => (maxSurge > 0) 
     DeploymentSpec => PodSpec
     SERVICESPEC_clusterIP => !SERVICESPEC_clusterIPs
@@ -852,7 +881,5 @@ constraints
     (VOLUMEMOUNTS_subPath == '') => !(VOLUMEMOUNTS_subPathExpr == '')
     (VOLUMEMOUNTS_subPathExpr == '') => !(VOLUMEMOUNTS_subPath == '')
     CONFIGMAP_defaultMode > 0 & CONFIGMAP_defaultMode < 511
-    CONFIGMAP_defaultMode > 0 & CONFIGMAP_defaultMode < 511
-    RoleSpec => KIND_Role
-    (RULES_apiGroups == '') => (RULES_verbs == '')
+    RULES_apiGroups => RULES_verbs
     CONTAINERS_ENV_valueFrom => (CONTAINERS_ENV_value == '')

@@ -26,7 +26,7 @@
     ],
     "SERVICESPEC_externalIPs": [
       {
-        "SERVIDESPEC_EXTERNALIPS_ip": "192.168.1.1"
+        "SERVICESPEC_EXTERNALIPS_ip": "192.168.1.1"
       }
     ],
     "SERVICESPEC_externalName": "external-name",

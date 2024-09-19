@@ -53,7 +53,7 @@ KIND_VolumeAttachment, KIND_VolumeAttachment, VolumeAttachment
 KIND_VolumeAttributesClass, KIND_VolumeAttributesClass, VolumeAttributesClass
 KIND_ClusterTrustBundle, KIND_ClusterTrustBundle, ClusterTrustBundle
 KIND_ControllerRevision, KIND_ControllerRevision, ControllerRevision
-KIND_CustomerResourceDefinition, KIND_CustomerResourceDefinition, CustomerResourceDefinition
+KIND_CustomResourceDefinition, KIND_CustomResourceDefinition, CustomResourceDefinition
 KIND_Event, KIND_Event, Event
 KIND_LimitRange, KIND_LimitRange, LimitRange
 KIND_HorizontalPodAutoscaler, KIND_HorizontalPodAutoscaler, HorizontalPodAutoscaler
@@ -445,7 +445,20 @@ SECRET_defaultMode, SECRET_defaultMode,
 SECRET_items, SECRET_items, -
 SECRET_ITEMS_key, SECRET_ITEMS_key, 
 SECRET_ITEMS_mode, SECRET_ITEMS_mode, 
-SECRET_ITEMS_path, SECRET_ITEMS_path, 
+SECRET_ITEMS_path, SECRET_ITEMS_path,
+nfs, nfs, -
+csi, csi, -
+downwardAPI, downwardAPI, -
+ephemeral, ephemeral, -
+fc, fc, -
+flocker, flocker, -
+iscsi, iscsi, -
+photonPersistentDisk, photonPersistentDisk, -
+projected, projected, -
+quobyte, quobyte, -
+rbd, rbd, -
+scaleIO, scaleIO, -
+storageos, storageos, -
 ServiceSpec, ServiceSpec, 
 SERVICESPEC_allocateLoadBalancerNodePorts, SERVICESPEC_allocateLoadBalancerNodePorts, -
 SERVICESPEC_clusterIP, SERVICESPEC_clusterIP, -
@@ -457,7 +470,7 @@ CLUSTERIPS_emptyString, CLUSTERIPS_emptyString, emptyString
 CLUSTERIPS_none, CLUSTERIPS_none, none
 CLUSTERIPS_IPs, CLUSTERIPS_IPs,
 SERVICESPEC_externalIPs, SERVICESPEC_externalIPs, 
-SERVIDESPEC_EXTERNALIPS_ip, SERVIDESPEC_EXTERNALIPS_ip,  
+SERVICESPEC_EXTERNALIPS_ip, SERVICESPEC_EXTERNALIPS_ip,  
 SERVICESPEC_externalName, SERVICESPEC_externalName, 
 SERVICESPEC_externalTrafficPolicy, SERVICESPEC_externalTrafficPolicy, 
 EXTERNALTRAFFICPOLICY_Local, EXTERNALTRAFFICPOLICY_Local, Local
@@ -499,21 +512,46 @@ TYPE_ExternalName, TYPE_ExternalName, ExternalName
 TYPE_ClusterIP, TYPE_ClusterIP, ClusterIP
 TYPE_NodePort, TYPE_NodePort, NodePort
 TYPE_LoadBalancer, TYPE_LoadBalancer, LoadBalancer 
-ConfigMapSpec, ConfigMapSpec, 
-CONFIGMAPSPEC_immutable, CONFIGMAPSPEC_immutable, -
-CONFIGMAPSPEC_kind, CONFIGMAPSPEC_kind, 
-CONFIGMAPSPEC_binaryData, CONFIGMAPSPEC_binaryData, -
+CustomResourceDefinitionSpec, CustomResourceDefinitionSpec, -
+CUSTOMRESOURCEDEFINITIONSPEC_conversion, CUSTOMRESOURCEDEFINITIONSPEC_conversion, -
+CUSTOMRESOURCEDEFINITIONSPEC_group, CUSTOMRESOURCEDEFINITIONSPEC_group, 
+CUSTOMRESOURCEDEFINITIONSPEC_names, CUSTOMRESOURCEDEFINITIONSPEC_names, -
+CUSTOMRESOURCEDEFINITIONSPEC_scope, CUSTOMRESOURCEDEFINITIONSPEC_scope, 
+CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Cluster, CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Cluster, Cluster
+CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Namespaced, CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Namespaced, Namespaced
+CUSTOMRESOURCEDEFINITIONSPEC_versions, CUSTOMRESOURCEDEFINITIONSPEC_versions, -
+VERSIONS_name, VERSIONS_name, 
+VERSIONS_served, VERSIONS_served,
+VERSIONS_storage, VERSIONS_storage,
+VERSIONS_subresources, VERSIONS_subresources, -
+SUBRESOURCES_status, SUBRESOURCES_status,
+SUBRESOURCES_scale,SUBRESOURCES_scale,
+VERSIONS_schema, VERSIONS_schema, -
+SCHEMA_openAPIV3Schema, SCHEMA_openAPIV3Schema, -
+OPENAPIV3SCHEMA_type, OPENAPIV3SCHEMA_type, 
+OPENAPIV3SCHEMA_properties, OPENAPIV3SCHEMA_properties, -
+OPENAPIV3SCHEMA_description, OPENAPIV3SCHEMA_description, 
+OPENAPIV3SCHEMA_required, OPENAPIV3SCHEMA_required, 
+VERSIONS_additionalPrinterColumns, VERSIONS_additionalPrinterColumns, -
+ADDITIONALPRINTERCOLUMNS_name, ADDITIONALPRINTERCOLUMNS_name, 
+ADDITIONALPRINTERCOLUMNS_type, ADDITIONALPRINTERCOLUMNS_type, 
+ADDITIONALPRINTERCOLUMNS_JSONPath, ADDITIONALPRINTERCOLUMNS_JSONPath, 
+ADDITIONALPRINTERCOLUMNS_description, ADDITIONALPRINTERCOLUMNS_description, 
+ADDITIONALPRINTERCOLUMNS_priority, ADDITIONALPRINTERCOLUMNS_priority, 
+ADDITIONALPRINTERCOLUMNS_format, ADDITIONALPRINTERCOLUMNS_format, 
+immutable, immutable, -
+IMMUTABLE_boolean, IMMUTABLE_boolean,
+binaryData, binaryData, -
 BINARYDATA_binaryFile_name, BINARYDATA_binaryFile_name, 
 BINARYDATA_binaryFile_value, BINARYDATA_binaryFile_value, 
-CONFIGMAPSPEC_data, CONFIGMAPSPEC_data, -
+data, data, -
 DATA_confSimple, DATA_confSimple, -
 CONFSIMPLE_key, CONFSIMPLE_key, 
 CONFSIMPLE_value, CONFSIMPLE_value, 
 DATA_confFile, DATA_confFile, -
 CONFFILE_name, CONFFILE_name, 
 CONFFILE_value, CONFFILE_value, 
-EndpointsSpec, EndpointsSpec, -
-ENDPOINT_subsets, ENDPOINT_subsets, -
+subsets, subsets, -
 SUBSETS_addresses, SUBSETS_addresses, -
 SUBSETS_notReadyAddresses, SUBSETS_notReadyAddresses, -
 SUBSETS_ports, SUBSETS_ports, -
@@ -546,8 +584,7 @@ SUBSETS_PORTS_protocol, SUBSETS_PORTS_protocol,
 SUBSETS_PORTS_UDP, SUBSETS_PORTS_UDP, UDP
 SUBSETS_PORTS_TCP, SUBSETS_PORTS_TCP, TCP
 SUBSETS_PORTS_SCTP, SUBSETS_PORTS_SCTP, SCTP
-RoleSpec, RoleSpec, -
-ROLESPEC_rules, ROLESPECrules, -
+rules, rules, 
 RULES_apiGroups, RULES_apiGroups, 
 RULES_APIGROUPS_value, RULES_APIGROUPS_value, 
 RULES_resources, RULES_resources, 

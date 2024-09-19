@@ -422,6 +422,19 @@ containers:
       {%endif%}
     {%endif%}
 
+    {%if v.nfs%}nfs:{%endif%}
+    {%if v.csi%}csi:{%endif%}
+    {%if v.downwardAPI%}downwardAPI:{%endif%}
+    {%if v.ephemeral%}ephemeral:{%endif%}
+    {%if v.fc%}fc:{%endif%}
+    {%if v.flocker%}flocker:{%endif%}
+    {%if v.iscsi%}iscsi:{%endif%}
+    {%if v.photonPersistentDisk%}photonPersistentDisk:{%endif%}
+    {%if v.projected%}projected:{%endif%}
+    {%if v.quobyte%}quobyte:{%endif%}
+    {%if v.rbd%}rbd:{%endif%}
+    {%if v.scaleIO%}scaleIO:{%endif%}
+    {%if v.storageos%}storageos:{%endif%}
 
     {%if v.configMap%}configMap:
       {%if v.CONFIGMAP_name%}name: "{{v.CONFIGMAP_name}}"{%endif%}

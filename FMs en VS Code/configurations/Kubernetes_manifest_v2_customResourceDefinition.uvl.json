@@ -1,0 +1,59 @@
+{
+  "file": "Kubernetes_manifest_v2_customResourceDefinition.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_apiextensions": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Metadata_APIs": true,
+    "KIND_CustomResourceDefinition": true,
+    "spec": true,
+    "CustomResourceDefinitionSpec": true,
+    "CUSTOMRESOURCEDEFINITIONSPEC_group": "example.com",
+    "CUSTOMRESOURCEDEFINITIONSPEC_scope": true,
+    "CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Cluster": true,
+    "CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Namspaced": false,
+    "CUSTOMRESOURCEDEFINITIONSPEC_versions": [
+      {
+        "VERSIONS_name": "v1",
+        "VERSIONS_served": true,
+        "VERSIONS_storage": true,
+        "VERSIONS_subresources": [
+          {
+          "SUBRESOURCES_status": true,
+          "SUBRESOURCES_scale": true
+          }
+        ],
+        "VERSIONS_schema":[{
+          "SCHEMA_openAPIV3Schema": true,
+          "OPENAPIV3SCHEMA_type": "object",
+          "OPENAPIV3SCHEMA_properties": true,
+          "OPENAPIV3SCHEMA_description": "Example CRD",
+          "OPENAPIV3SCHEMA_required": "['spec']"
+        }],
+        "VERSIONS_additionalPrinterColumns":[
+          {
+            "ADDITIONALPRINTERCOLUMNS_name": "Name",
+            "ADDITIONALPRINTERCOLUMNS_type": "string",
+            "ADDITIONALPRINTERCOLUMNS_JSONPath": ".metadata.name",
+            "ADDITIONALPRINTERCOLUMNS_description": "The name of the custom resource",
+            "ADDITIONALPRINTERCOLUMNS_priority": 1,
+            "ADDITIONALPRINTERCOLUMNS_format": "name"
+          },
+          {
+            "ADDITIONALPRINTERCOLUMNS_name": "Age",
+            "ADDITIONALPRINTERCOLUMNS_type": "date",
+            "ADDITIONALPRINTERCOLUMNS_JSONPath": ".metadata.creationTimestamp",
+            "ADDITIONALPRINTERCOLUMNS_description": "The age of the custom resource",
+            "ADDITIONALPRINTERCOLUMNS_priority": 1,
+            "ADDITIONALPRINTERCOLUMNS_format": "date"
+          }
+        ]
+      }
+    ]
+    
+  }
+}

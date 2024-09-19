@@ -13,8 +13,7 @@
     "metadata": true,
     "METADATA_name": "my-endpoint",
     "spec": true,
-    "EndpointsSpec": true,
-    "ENDPOINT_subsets": [
+    "subsets": [
       {
         "SUBSETS_addresses": [
           {

@@ -827,13 +827,22 @@ constraints
     KIND_Pod => PodSpec
     KIND_Deployment => DeploymentSpec & PodSpec
     KIND_Service => ServiceSpec
-    KIND_ConfigMap => binaryData & data & immutable
+    KIND_ConfigMap => binaryData | data 
     KIND_Secret => SecretSpec
     KIND_Endpoints => subsets
     KIND_Role => rules
     KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
+    immutable => KIND_ConfigMap
+    CustomResourceDefinitionSpec => KIND_CustomResourceDefinition
+    data => KIND_ConfigMap
+    binaryData => KIND_ConfigMap
+    ServiceSpec => KIND_Service
     (maxUnavailable == 0) => (maxSurge > 0) 
     DeploymentSpec => PodSpec
+    PodSpec => KIND_Pod
+    SecretSpec => KIND_Secret
+    rules => KIND_Role
+    DeploymentSpec => KIND_Deployment
     SERVICESPEC_clusterIP => !SERVICESPEC_clusterIPs
     SERVICESPEC_clusterIPs => !SERVICESPEC_clusterIP
     SERVICESPEC_clusterIP => !TYPE_ExternalName

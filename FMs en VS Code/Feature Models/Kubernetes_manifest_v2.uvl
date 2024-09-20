@@ -839,7 +839,7 @@ constraints
     ServiceSpec => KIND_Service
     (maxUnavailable == 0) => (maxSurge > 0) 
     DeploymentSpec => PodSpec
-    PodSpec => KIND_Pod
+    PodSpec => KIND_Pod | KIND_Deployment
     SecretSpec => KIND_Secret
     rules => KIND_Role
     DeploymentSpec => KIND_Deployment

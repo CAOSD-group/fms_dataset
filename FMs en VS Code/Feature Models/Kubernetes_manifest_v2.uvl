@@ -213,7 +213,7 @@ features
                                                             String CONFIGMAPKEYREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
                                                         optional
                                                             Boolean CONFIGMAPKEYREF_optional {doc 'Specify whether the ConfigMap or its key must be defined'}
-                                                    Boolean fieldRef {doc 'Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels["<KEY>"]`, `metadata.annotations["<KEY>"]`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.'}
+                                                    Boolean fieldRef {doc 'Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels[<KEY>]`, `metadata.annotations["<KEY>"]`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.'}
                                                         mandatory
                                                             String FIELDREF_fieldPath {doc 'Version of the schema the FieldPath is written in terms of, defaults to "v1".'}
                                                         optional   
@@ -688,7 +688,7 @@ features
                                     Boolean CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Namespaced
                             Boolean CUSTOMRESOURCEDEFINITIONSPEC_versions cardinality [0..*]  {NO_TERMINADO, doc 'Conversion describes conversion settings for the CRD.'}
                                 optional
-                                    String VERSIONS_name {doc 'name is the version name, e.g. “v1”, “v2beta1”, etc. The custom resources are served under this version at `/apis/<group>/<version>/...` if `served` is true.'}
+                                    String VERSIONS_name {doc 'name is the version name, e.g. v1, v2beta1, etc. The custom resources are served under this version at `/apis/<group>/<version>/...` if `served` is true.'}
                                     Boolean VERSIONS_served {doc 'served is a flag enabling/disabling this version from being served via REST APIs'}
                                     Boolean VERSIONS_storage {doc 'storage indicates this version should be used when persisting custom resources to storage. There must be exactly one version with storage=true.'}
                                     Boolean VERSIONS_subresources cardinality [0..*] {doc 'subresources specify what subresources this version of the defined custom resource have.'} 

@@ -1,142 +1,150 @@
 features
 	Dockerfile
 		mandatory
-			Boolean FROM 
+			Boolean FROM {doc 'The FROM instruction initializes a new build stage and sets the base image for subsequent instructions. As such, a valid Dockerfile must start with a FROM instruction. The image can be any valid image.'}
 				mandatory
-					String FROM_image 
+					String FROM_image {doc 'The base image for the build stage.'}
 				optional
-					String FROM_platform 
-					String FROM_name 
+					String FROM_platform {doc 'The optional --platform flag can be used to specify the platform of the image in case FROM references a multi-platform image. For example, linux/amd64, linux/arm64, or windows/amd64. By default, the target platform of the build request is used.'}
+					String FROM_name {doc 'The name of the build stage.'}
 				alternative
-					String FROM_tag 
-					String FROM_digest 
+					String FROM_tag {doc 'The tag of the base image.'}
+					String FROM_digest {doc 'The digest of the base image.'}
 		optional
-			Boolean LABEL
+			Boolean LABEL {doc 'The LABEL instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABEL value, use quotes and backslashes as you would in command-line parsing.'}
 				mandatory
-					String LABEL_key
-					String LABEL_value
-			Boolean ENV 
+					String LABEL_key {doc 'The key of the metadata.'}
+					String LABEL_value {doc 'The value of the metadata.'}
+			Boolean ENV {doc 'The ENV instruction sets the environment variable <key> to the value <value>. This value will be in the environment for all subsequent instructions in the build stage and can be replaced inline in many as well.'}
 				mandatory
-					String ENV_key
-					String ENV_value
-			Boolean ADD 
+					String ENV_key {doc 'The key of the environment variable.'}
+					String ENV_value {doc 'The value of the environment variable.'}
+			Boolean ADD {doc 'The ADD instruction copies new files or directories from <src> and adds them to the filesystem of the image at the path <dest>. Files and directories can be copied from the build context, a remote URL, or a Git repository.'}
 				mandatory
-					String ADD_source
-					String ADD_destiny
-				alternative
-					Boolean ADD_keep_git_dir 
-					String ADD_checksum 
-					Boolean ADD_link
-					String ADD_exclude 
-					String ADD_chown //SOLO PARA SISTEMAS LINUX
-						optional
-							String ADD_CHOWN_group 
-							String ADD_chmod //SOLO PARA SISTEMAS LINUX
-			Boolean COPY 
-				mandatory
-					String COPY_source
-					String COPY_destiny
-				alternative
-					String COPY_from
-					Boolean COPY_link
-					Boolean COPY_parents
-					String COPY_exclude
-					String COPY_chown //SOLO PARA SISTEMAS LINUX
-						optional
-							String COPY_CHOWN_group
-							String COPY_chmod //SOLO PARA SISTEMAS LINUX
-			String EXPOSE 
+					String ADD_source {doc 'The source path.'}
+					String ADD_destiny {doc 'The destination path.'}
 				optional
-					Boolean EXPOSE_protocol {abstract}
+					Boolean ADD_keep_git_dir {doc 'The --keep-git-dir=true flag lets you preserve the .git directory. when the source is a git repository.'}
+					String ADD_checksum {doc 'The --checksum flag lets you verify the checksum of a remote resource. The checksum is formatted as <algorithm>:<hash>. The supported algorithms are sha256, sha384, and sha512.'}
+					Boolean ADD_link {doc 'Enabling this flag in ADD commands allows you to copy files with enhanced semantics where your files remain independent on their own layer and don`t get invalidated when commands on previous layers are changed. When --link is used your source files are copied into an empty destination directory. That directory is turned into a layer that is linked on top of your previous state.'}
+					String ADD_exclude {doc 'The --exclude flag lets you specify a path expression for files to be excluded.'}
+					Boolean ADD_chown {doc '(Linux system only) The --chown=<user>:<group> flag is used to set the owner (user and group) of the files copied into the container. This is useful to prevent the copied files from being owned by the root user by default.'}
+						mandatory
+							String ADD_CHOWN_user {doc 'The user of the owner.'}
+						optional
+							String ADD_CHOWN_group {doc 'The group of the owner.'}
+					String ADD_chmod {doc '(Linux system only) The --chmod=<permissions> flag sets the permissions of the copied files (similar to the chmod command in Linux). It is useful to configure access permissions, such as making a file executable or limiting who can read/write to it.'}
+			Boolean COPY {doc 'The COPY instruction copies new files or directories from <src> and adds them to the filesystem of the image at the path <dest>. Files and directories can be copied from the build context, build stage, named context, or an image.'}
+				mandatory
+					String COPY_source {doc 'The source path.'}
+					String COPY_destiny {doc 'The destination path.'}
+				optional
+					String COPY_from {doc 'By default, the COPY instruction copies files from the build context. The COPY --from flag lets you copy files from an image, a build stage, or a named context instead.'}
+					Boolean COPY_link {doc 'Enabling this flag in COPY commands allows you to copy files with enhanced semantics where your files remain independent on their own layer and don`t get invalidated when commands on previous layers are changed. When --link is used your source files are copied into an empty destination directory. That directory is turned into a layer that is linked on top of your previous state.'}
+					Boolean COPY_parents
+					String COPY_exclude {doc 'The --exclude flag lets you specify a path expression for files to be excluded.'}
+					Boolean COPY_chown {doc ' (Linux system only) The --chown=<user>:<group> flag is used to set the owner (user and group) of the files copied into the container. This is useful to prevent the copied files from being owned by the root user by default.'}
+						mandatory
+							String COPY_CHOWN_user {doc 'The user of the owner.'}
+						optional
+							String COPY_CHOWN_group {doc 'The group of the owner.'}
+					String COPY_chmod {doc '(Linux system only) The --chmod=<permissions> flag sets the permissions of the copied files (similar to the chmod command in Linux). It is useful to configure access permissions, such as making a file executable or limiting who can read/write to it.'}
+			String EXPOSE {doc 'The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime. You can specify whether the port listens on TCP or UDP, and the default is TCP if you don`t specify a protocol..'}
+				optional
+					Boolean EXPOSE_protocol {abstract, doc 'The protocol of the port. Can be either udp or tcp.'} 
 						or
 							Boolean PROTOCOL_udp
 							Boolean PROTOCOL_tcp
-			String WORKDIR 			
-			String VOLUME 
-			String RUN 
+			String WORKDIR {doc 'The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. If the WORKDIR doesn`t exist, it will be created even if it`s not used in any subsequent Dockerfile instruction.'}
+			String VOLUME {doc 'The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers.'}
+			String RUN {doc 'The RUN instruction will execute any commands to create a new layer on top of the current image. The added layer is used in the next step in the Dockerfile.'}
 				optional
-					Boolean mount 
+					Boolean mount {doc 'RUN --mount allows you to create filesystem mounts that the build can access.'}
 						mandatory
-							Boolean MOUNT_option {abstract}
+							Boolean MOUNT_option {abstract, doc 'The options to configure depending on the chosen MOUNT_type.'}
 								or
-									Boolean MOUNT_target
+									Boolean MOUNT_target {doc 'Mount path.'}
 										mandatory 
 											String MOUNT_TARGET_value
-									Boolean MOUNT_source
+									Boolean MOUNT_source {doc 'Source path in the from. Defaults to the root of the from.'}
 										mandatory 
 											String MOUNT_SOURCE_value
-									Boolean MOUNT_from 
+									Boolean MOUNT_from {doc 'Build stage, context, or image name for the root of the source. Defaults to the build context.'}
 										mandatory 
 											String MOUNT_FROM_value
-									Boolean MOUNT_readwrite
-									Boolean MOUNT_id
+									Boolean MOUNT_readwrite {doc 'Allow writes on the mount. Written data will be discarded.'}
+									Boolean MOUNT_id {doc 'Optional ID to identify separate/different caches. Defaults to value of target.'}
 										mandatory
 											Integer MOUNT_ID_value
-									Boolean MOUNT_readonly 
-									Boolean MOUNT_mode
+									Boolean MOUNT_readonly {doc 'Read-only if set.'}
+									Boolean MOUNT_mode {doc 'File mode for new cache directory in octal. Default 0755.'}
 										mandatory 
 											String MOUNT_MODE_value
-									Boolean MOUNT_uid 
+									Boolean MOUNT_uid {doc 'User ID for new cache directory. Default 0.'}
 										mandatory 
 											String MOUNT_UID_value
-									Boolean MOUNT_gid 
+									Boolean MOUNT_gid {doc 'Group ID for new cache directory. Default 0.'}
 										mandatory 
 											String MOUNT_GID_value
-									Boolean MOUNT_size 
+									Boolean MOUNT_size {doc '	Specify an upper limit on the size of the filesystem.'}
 										mandatory
 											String MOUNT_SIZE_value
-									Boolean MOUNT_required 
-									Boolean MOUNT_sharing 
+									Boolean MOUNT_required {doc 'If set to true, the instruction errors out when the secret is unavailable. Defaults to false.'}
+									Boolean MOUNT_sharing {doc 'One of shared, private, or locked. Defaults to shared.'}
 										alternative
-											Boolean MOUNT_SHARING_shared 
-											Boolean MOUNT_SHARING_private 
-											Boolean MOUNT_SHARING_locked 
-							Boolean MOUNT_type {abstract}
+											Boolean MOUNT_SHARING_shared {doc 'A shared cache mount can be used concurrently by multiple writers'}
+											Boolean MOUNT_SHARING_private {doc 'private creates a new mount if there are multiple writers.'}
+											Boolean MOUNT_SHARING_locked {doc 'locked pauses the second writer until the first one releases the mount.'}
+							Boolean MOUNT_type {abstract, doc 'The supported mount types'}
 								alternative
-									Boolean Mount_Type_bind
-									Boolean Mount_Type_cache
-									Boolean Mount_Type_tmpfs
-									Boolean Mount_Type_secret
-									Boolean Mount_Type_ssh
-					Boolean network
+									Boolean Mount_Type_bind {doc 'This mount type allows binding files or directories to the build container. A bind mount is read-only by default.'}
+									Boolean Mount_Type_cache {doc 'This mount type allows the build container to cache directories for compilers and package managers.'}
+									Boolean Mount_Type_tmpfs {doc 'This mount type allows mounting tmpfs in the build container.'}
+									Boolean Mount_Type_secret {doc 'This mount type allows the build container to access secret values, such as tokens or private keys, without baking them into the image. By default, the secret is mounted as a file. You can also mount the secret as an environment variable by setting the env option.'}
+									Boolean Mount_Type_ssh {doc 'This mount type allows the build container to access SSH keys via SSH agents, with support for passphrases.'}
+					Boolean network {doc 'RUN --network allows control over which networking environment the command is run in.'}
 						alternative
-							Boolean NETWORK_default
-							Boolean NETWORK_none
-							Boolean NETWORK_host
-				 	Boolean security 
+							Boolean NETWORK_default {doc 'uivalent to not supplying a flag at all, the command is run in the default network for the build.'}
+							Boolean NETWORK_none {doc 'The command is run with no network access (lo is still available, but is isolated to this process)'}
+							Boolean NETWORK_host {doc 'The command is run in the host`s network environment (similar to docker build --network=host, but on a per-instruction basis)'}
+				 	Boolean security {doc 'The default security mode is sandbox.'}
 						alternative
-							Boolean SECURITY_sandbox
-							Boolean SECURITY_insecure
-			Boolean ARG 
+							Boolean SECURITY_sandbox {doc 'Default security mode.'}
+							Boolean SECURITY_insecure {doc 'With --security=insecure, the builder runs the command without sandbox in insecure mode, which allows to run flows requiring elevated privileges (e.g. containerd). This is equivalent to running docker run --privileged.'}
+			Boolean ARG {doc 'The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag.'}
 				mandatory
-					String ARG_name
-					String ARG_value
-			String CMD
+					String ARG_name {doc 'The name of the variable.'}
+					String ARG_value {doc 'The value of the variable.'}
+			Boolean CMD {doc 'The CMD instruction sets the command to be executed when running a container from an image. You can specify CMD instructions using shell or exec forms'}
+				mandatory   
+					String CMD_command {doc 'The command to be executed.'}
 				optional
-					String CMD_param1
-					String CMD_param2
-			String ENTRYPOINT
+					String CMD_param1 {doc 'The first parameter of the command.'}
+					String CMD_param2 {doc 'The second parameter of the command.'}
+			Boolean ENTRYPOINT {doc 'An ENTRYPOINT allows you to configure a container that will run as an executable.'}
+				mandatory   
+					String ENTRYPOINT_command {doc 'The command to be executed.'}
 				optional
-					String ENTRYPOINT_param1
-					String ENTRYPOINT_param2
-			String USER
+					String ENTRYPOINT_param1 {doc 'The first parameter of the executable.'}
+					String ENTRYPOINT_param2 {doc 'The second parameter of the executable.'}
+			String USER {doc 'The USER instruction sets the user name (or UID) and optionally the user group (or GID) to use as the default user and group for the remainder of the current stage. The specified user is used for RUN instructions and at runtime, runs the relevant ENTRYPOINT and CMD commands.'}
 				optional
-					String USER_group
-			String ONBUILD
-			String STOPSIGNAL
-			Boolean HEALTHCHECK
+					String USER_group {doc 'The group of the user (or GID).'}
+			String ONBUILD {doc 'Specify instructions for when the image is used in a build.'}
+			String STOPSIGNAL {doc 'Specify the system call signal for exiting a container.'}
+			Boolean HEALTHCHECK {doc 'Check a container`s health on startup.'}
 				alternative
-					Boolean HEALTHCHECK_none
-					Boolean HEALTHCHECK_options {abstract}
+					Boolean HEALTHCHECK_none {doc 'Disables any healthcheck inherited from the base image.'}
+					Boolean HEALTHCHECK_options {abstract, doc 'The options of the healthcheck.'}
 						mandatory
-							String HEALTHCHECK_cmdCommand
+							String HEALTHCHECK_cmdCommand {doc 'The HEALTHCHECK instruction tells Docker how to test a container to check that it`s still working. This can detect cases such as a web server stuck in an infinite loop and unable to handle new connections, even though the server process is still running.'}
 						optional
-							String HEALTHCHECK_interval
-							String HEALTHCHECK_timeout
-							String HEALTHCHECK_startPeriod
-							String HEALTHCHECK_startInterval
-							String HEALTHCHECK_retries
-			String SHELL
+							String HEALTHCHECK_interval {doc 'The time to wait between checks.'}
+							String HEALTHCHECK_timeout {doc 'The time to allow the check to run.'}
+							String HEALTHCHECK_startPeriod {doc 'start period provides initialization time for containers that need time to bootstrap. Probe failure during that period will not be counted towards the maximum number of retries. However, if a health check succeeds during the start period, the container is considered started and all consecutive failures will be counted towards the maximum number of retries.'}
+							String HEALTHCHECK_startInterval {doc 'start interval is the time between health checks during the start period.'}
+							String HEALTHCHECK_retries {doc 'The number of consecutive failures needed to consider a container as unhealthy.'}
+			String SHELL {doc 'The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux is ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.'}
 constraints
 	Mount_Type_bind => (MOUNT_target | MOUNT_source | MOUNT_from | MOUNT_readwrite)
 	Mount_Type_cache => (MOUNT_id | MOUNT_target | MOUNT_readonly | MOUNT_sharing | MOUNT_from | MOUNT_source | MOUNT_mode | MOUNT_uid | MOUNT_gid)

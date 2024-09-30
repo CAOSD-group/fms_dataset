@@ -12,7 +12,7 @@
 
 {%if SERVICESPEC_externalIPs%}externalIPs:
 {%for ex in SERVICESPEC_externalIPs%}
-  - {{ex.SERVIDESPEC_EXTERNALIPS_ip}}
+  - {{ex.SERVICESPEC_EXTERNALIPS_ip}}
 {%endfor%}
 {%endif%}
 
@@ -42,7 +42,7 @@
 {%endfor%}
 {%endif%}
 
-{%if SERVICESPEC_publishNotReadyAddresses%}SERVICESPEC_publishNotReadyAddresses: true{%endif%}
+{%if SERVICESPEC_publishNotReadyAddresses%}publishNotReadyAddresses: true{%endif%}
 
 {%if SERVICESPEC_Selector%}selector:
 {%for s in SERVICESPEC_Selector%}

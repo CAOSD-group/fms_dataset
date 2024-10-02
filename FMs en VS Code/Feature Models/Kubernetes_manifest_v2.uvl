@@ -595,18 +595,148 @@ features
                                                         optional   
                                                             Integer SECRET_ITEMS_mode {doc 'mode is Optional: mode bits used to set permissions on this file. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.'}
                                             Boolean nfs {doc 'nfs represents an NFS mount on the host that shares a pod´s lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs'}
+                                                mandatory   
+                                                    String NFS_path {doc 'Path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs'}
+                                                    String NFS_server {doc 'Server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs'}
+                                                optional    
+                                                    Boolean NFS_readOnly {doc 'ReadOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false.'}
                                             Boolean csi {doc 'csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).'}
+                                                mandatory   
+                                                    String CSI_driver {doc 'Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.'}
+                                                optional  
+                                                    String CSI_volumeAttributes {doc 'VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver´s documentation for supported values.'}
+                                                    Boolean CSI_readOnly {doc 'ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.'}  
+                                                    String CSI_fsType {doc 'fsType to mount. Ex. "ext4", "xfs", "ntfs". If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.'}                                      
+                                                    Boolean CSI_nodePublichSecretRef {doc 'NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret is specified, it must be a secret object that is already visible to the Kubelet.'}
+                                                        mandatory   
+                                                            String CSI_NODEPUBLISHSECRETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
                                             Boolean downwardAPI {doc 'downwardAPI represents downward API about the pod that should populate this volume'}
+                                                mandatory   
+                                                    Boolean DOWNWARDAPI_items cardinality [0..*] {doc 'Items is a list of downward API volume file'}
+                                                        mandatory   
+                                                            String DOWNWARDAPI_ITEMS_fieldRef {doc 'FieldRef contains the field selector to populate this volume with.'}
+                                                                mandatory 
+                                                                    String DOWNWARDAPI_ITEMS_FIELDREF_apiVersion {doc 'Version of the schema the FieldPath is written in terms of, defaults to "v1".'}  
+                                                                    String DOWNWARDAPI_ITEMS_FIELDREF_fieldPath {doc 'Path of the field to select in the specified API version.'}
+                                                            String DOWNWARDAPI_ITEMS_path {doc 'Path is the relative path name of the file to be created. Must not be absolute or contain the ".." path. Must be utf-8 encoded. The first item of the relative path must not start with "..'}
+                                                        optional 
+                                                            Integer DOWNWARDAPI_mode {doc 'Optional: mode bits used to set permissions on this file, must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.'}  
+                                                            Boolean DOWNWARDAPI_ITEMS_resourceFieldRef {doc 'ResourceFieldRef contains the resource field selector to populate this volume with.'}
+                                                                mandatory   
+                                                                    String DOWNWARDAPI_ITEMS_RESOURCEFIELDREF_containerName {doc 'Container name: required for volumes, optional for env vars'}
+                                                                    String DOWNWARDAPI_ITEMS_RESOURCEFIELDREF_resource {doc 'Required: resource to select'}
+                                                                optional   
+                                                                    String DOWNWARDAPI_ITEMS_RESOURCEFIELDREF_divisor {doc 'Specifies the output format of the exposed resources, defaults to "1"'}
+                                                optional
+                                                    Integer DOWNWARDAPI_defaultMode {doc 'Optional: mode bits to use on created files by default. Must be a Optional: mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.'}
                                             Boolean ephemeral {doc 'ephemeral represents a volume that is handled by a cluster storage driver. The volume´s lifecycle is tied to the pod that defines it - it will be created before the pod starts, and deleted when the pod is removed. Use this if: a) the volume is only needed while the pod runs, b) features of normal volumes like restoring from snapshot or capacity tracking are needed, c) the storage driver is specified through a storage class, and d) the storage driver supports dynamic volume provisioning through a PersistentVolumeClaim (see EphemeralVolumeSource for more information on the connection between this volume type and PersistentVolumeClaim). Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes that persist for longer than the lifecycle of an individual pod. Use CSI for light-weight local ephemeral volumes if the CSI driver is meant to be used that way - see the documentation of the driver for more information. A pod can use both types of ephemeral volumes and persistent volumes at the same time.'}
+                                                mandatory   
+                                                    Boolean EPHEMERAL_volumeClaimTemplate {doc 'Will be used to create a stand-alone PVC to provision the volume. The pod in which this EphemeralVolumeSource is embedded will be the owner of the PVC, i.e. the PVC will be deleted together with the pod. The name of the PVC will be `<pod name>-<volume name>` where `<volume name>` is the name from the `PodSpec.Volumes` array entry. Pod validation will reject the pod if the concatenated name is not valid for a PVC (for example, too long). An existing PVC with that name that is not owned by the pod will *not* be used for the pod to avoid using an unrelated volume by mistake. Starting the pod is then blocked until the unrelated PVC is removed. If such a pre-created PVC is meant to be used by the pod, the PVC has to updated with an owner reference to the pod once the pod exists. Normally this should not be necessary, but it may be useful when manually reconstructing a broken cluster. This field is read-only and no changes will be made by Kubernetes to the PVC after it has been created. Required, must not be nil.'}
+                                                        mandatory   
+                                                            Boolean EPHEMERAL_VOLUMECLAIMTEMPLATE_spec {NO_TERMINADO, doc 'The specification for the PersistentVolumeClaim. The entire content is copied unchanged into the PVC that gets created from this template. The same fields as in a PersistentVolumeClaim are also valid here.'}
+                                                        optional   
+                                                            Boolean EPHEMERAL_VOLUMECLAIMTEMPLATE_metadata {NO_TERMINADO, doc 'May contain labels and annotations that will be copied into the PVC when creating it. No other fields are allowed and will be rejected during validation.'}
                                             Boolean fc {doc 'fc represents a Fibre Channel resource that is attached to a kubelet´s host machine and then exposed to the pod.'}
+                                                mandatory
+                                                    String FC_fsType {doc 'fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.'}   
+                                                optional    
+                                                    Boolean FC_readOnly {doc 'readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                                                    Integer FC_lun {doc 'lun is Optional: FC target lun number'}
+                                                    String FC_targetWWNs cardinality [0..*] {doc 'targetWWNs is Optional: FC target worldwide names (WWNs)'}
+                                                        mandatory   
+                                                            String FC_TARGETWWNS_targetWWN
+                                                    String FC_wwids cardinality [0..*] {doc 'wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.'}
+                                                        mandatory   
+                                                            String FC_WWIDS_wwid
                                             Boolean flocker {doc 'flocker represents a Flocker volume attached to a kubelet´s host machine. This depends on the Flocker control service being running'}
-                                            Boolean iscsi {doc 'iscsi represents an ISCSI Disk resource that is attached to a kubelet´s host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md'}
+                                                mandatory
+                                                    String FLOCKER_datsetUUID {doc 'datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset'}
+                                                    String FLOCKER_datasetName {doc 'Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated'}
+                                            Boolean iscsi {doc 'iscsi represents an ISCSI Disk resource that is attached to a kubelet´s host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md'} 
+                                                mandatory 
+                                                    String ISCSI_targetPortal {doc 'targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).'}  
+                                                    Integer ISCSI_lun {doc 'lun represents iSCSI Target Lun number.'}
+                                                    String ISCSI_iqn {doc 'iqn is the target iSCSI Qualified Name.'}
+                                                optional 
+                                                    String ISCSI_fsType {doc 'fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi'} 
+                                                    Boolean ISCSI_chapAuthDiscovery {doc 'chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication'}
+                                                    Boolean ISCSI_chapAuthSession {doc 'chapAuthSession defines whether support iSCSI Session CHAP authentication'}
+                                                    String ISCSI_initiatorName {doc 'initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.'}
+                                                    String ISCSI_iscsiInterface {doc 'iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to "default" (tcp).'}
+                                                    String ISCSI_portals cardinality [0..*] {doc 'portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).'}
+                                                        mandatory   
+                                                            String ISCSI_PORTALS_portal
+                                                    Boolean ISCSI_readOnly {doc 'readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.'}
+                                                    Boolean ISCSI_secretRef {doc 'secretRef is the CHAP Secret for iSCSI target and initiator authentication'}
+                                                        mandatory   
+                                                            String ISCSI_SECRETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
                                             Boolean photonPersistentDisk {doc 'photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine.'}
+                                                mandatory   
+                                                    String PHOTONPERSISTENTDISK_pdID {doc 'pdID is the ID that identifies Photon Controller persistent disk.'}
+                                                optional    
+                                                    String PHOTONPERSISTENTDISK_fsType {doc 'fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.'}
                                             Boolean projected {doc 'projected items for all in one resources secrets, configmaps, and downward API.'}
+                                                mandatory   
+                                                    Integer PROJECTED_defaultmode {doc 'defaultMode are the mode bits used to set permissions on created files by default. Must be an octal value between 0000 and 0777 or a decimal value between 0 and 511. YAML accepts both octal and decimal values, JSON requires decimal values for mode bits. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.'}
+                                                    Boolean PROJECTED_sources cardinality [0..*] {doc 'sources is the list of volume projections'}
+                                                        alternative   
+                                                            Boolean PROJECTED_SOURCES_clusterTrustBundle {NO_TERMINADO, doc 'ClusterTrustBundle allows a pod to access the `.spec.trustBundle` field of ClusterTrustBundle objects in an auto-updating file. Alpha, gated by the ClusterTrustBundleProjection feature gate. ClusterTrustBundle objects can either be selected by name, or by the combination of signer name and a label selector. Kubelet performs aggressive normalization of the PEM contents written into the pod filesystem. Esoteric PEM features such as inter-block comments and block headers are stripped. Certificates are deduplicated. The ordering of certificates within the file is arbitrary, and Kubelet may change the order over time.'}
+                                                            Boolean PROJECTED_SOURCES_configMap {NO_TERMINADO, doc 'configMap information about the configMap data to project'}
+                                                            Boolean PROJECTED_SOURCES_downwardAPI {NO_TERMINADO, doc 'downwardAPI information about the downwardAPI data to project'}
+                                                            Boolean PROJECTED_SOURCES_secret {NO_TERMINADO, doc 'secret information about the secret data to project'}
+                                                            Boolean PROJECTED_SOURCES_serviceAccountToken {NO_TERMINADO, doc 'serviceAccountToken is information about the serviceAccountToken data to project'}
                                             Boolean quobyte {doc 'quobyte represents a Quobyte mount on the host that shares a pod´s lifetime.'}
+                                                mandatory   
+                                                    String QUOBYTE_volume {doc 'volume is a string that references an already created Quobyte volume by name.'}
+                                                    String QUOBYTE_registry {doc 'registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes'}
+                                                optional
+                                                    String QUOBYTE_group {doc 'group to map volume access to Default is no group'}
+                                                    Boolean QUOBYTE_readOnly {doc 'readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.'}
+                                                    String QUOBYTE_tenant {doc 'tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin'}
+                                                    String QUOBYTE_user {doc 'user to map volume access to Defaults to serivceaccount user'}
                                             Boolean rbd {doc 'rbd represents a Rados Block Device mount on the host that shares a pod´s lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md'}
+                                                mandatory    
+                                                    String RBD_image {doc 'image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                                    Boolean RBD_monitors cardinality [0..*] {doc 'monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                                        mandatory   
+                                                            String RBD_MONITORS_monitor
+                                                    String RBD_pool {doc 'pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}                                                
+                                                optional  
+                                                    String RBD_fsType {doc 'fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd'}  
+                                                    Boolean RBD_readOnly {doc 'readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                                    Boolean RBD_secretRef {doc 'secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                                        mandatory   
+                                                            String RBD_SECRETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
+                                                    String RBD_keyring {doc 'keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                                    String RBD_user {doc 'user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}                                                    
                                             Boolean scaleIO {doc 'scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.'}
+                                                mandatory   
+                                                    String SCALEIO_gateway {doc 'gateway is the host address of the ScaleIO API Gateway.'}
+                                                    String SCALEIO_volumeName {doc 'volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.'}
+                                                    String SCALEIO_system {doc 'system is the name of the storage system as configured in ScaleIO.'}
+                                                    String SCALEIO_protectionDomain {doc 'protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.'}
+                                                optional  
+                                                    String SCALEIO_fsType {doc 'fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs".'} 
+                                                    Boolean SCALEIO_readOnly {doc 'readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                                                    Boolean SCALEIO_secretRef {doc 'secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.'}
+                                                        mandatory
+                                                            String SCALEIO_SECRETREF_name
+                                                    Boolean SCALEIO_sslEnabled {doc 'sslEnabled Flag enable/disable SSL communication with Gateway, default false'}
+                                                    Boolean SCALEIO_storageMode {doc 'storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.'}
+                                                        alternative   
+                                                            Boolean SCALEIO_STORAGEMODE_thickProvisioned
+                                                            Boolean SCALEIO_STORAGEMODE_thinProvisioned
+                                                    String SCALEIO_storagePool {doc 'storagePool is the ScaleIO Storage Pool associated with the protection domain.'}
                                             Boolean storageos {doc 'storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.'}
+                                                mandatory   
+                                                    String STORAGEOS_volumeName {doc 'volumeName is the human-readable name of the StorageOS volume. Volume names are only unique within a namespace.'}
+                                                optional   
+                                                    String STORAGEOS_fsType {doc 'fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.'}
+                                                    Boolean STORAGEOS_readOnly {doc 'readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                                                    Boolean STORAGEOS_secretRef {doc 'secretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.'}
+                                                        mandatory   
+                                                            String STORAGEOS_SECRETREF_name
+                                                    String STORAGEOS_volumeNamespace {doc 'volumeNamespace specifies the scope of the volume within StorageOS. If no namespace is specified then the Pod`s namespace will be used. This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.'}
                     Boolean ServiceSpec {abstract, doc 'Specification of the desired behavior of the Service.'}
                         optional
                             Boolean SERVICESPEC_allocateLoadBalancerNodePorts {doc 'allocateLoadBalancerNodePorts defines if NodePorts will be automatically allocated for services with type LoadBalancer. Default is "true". It may be set to "false" if the cluster load-balancer does not rely on NodePorts. If the caller requests specific NodePorts (by specifying a value), those requests will be respected, regardless of this field. This field may only be set for services with type LoadBalancer and will be cleared if the type is changed to any other type.'}
@@ -892,3 +1022,6 @@ constraints
     CONFIGMAP_defaultMode > 0 & CONFIGMAP_defaultMode < 511
     RULES_apiGroups => RULES_verbs
     CONTAINERS_ENV_valueFrom => (CONTAINERS_ENV_value == '')
+    DOWNWARDAPI_defaultMode < 511 & DOWNWARDAPI_defaultMode > 0
+    DOWNWARDAPI_mode < 511 & DOWNWARDAPI_mode > 0
+    PROJECTED_defaultmode < 511 & PROJECTED_defaultmode > 0

@@ -102,7 +102,7 @@
       }
     ],
     "TEMPLATE_METADATA_deletionGracePeriodSeconds": 3,
-    "DEPLOYMENTSPEC_TEMPLATE_Podspec": true,
+    "DEPLOYMENTSPEC_TEMPLATE_podspec": true,
     "PodSpec": true,
     "PODSPEC_containers":[
       {
@@ -479,9 +479,145 @@
             "CONFIGMAP_ITEMS_path": "another-config.ini"
           }
         ]
-        
-        
+      },
+      {
+        "VOLUMES_name": "nfs-volume",
+        "VOLUMES_type": true,
+        "nfs": true,
+        "NFS_path": "path/to/nfs",
+        "NFS_server": "server-nfs",
+        "NFS_readOnly": true
+      },
+      {
+        "VOLUMES_name": "csi-volume",
+        "VOLUMES_type": true,
+        "csi": true,
+        "CSI_driver": "driver-csi",
+        "CSI_readOnly": true,
+        "CSI_fsType": "fsType",
+        "CSI_nodePublichSecretRef": true,
+        "CSI_NODEPUBLISHSECRETREF_name": "name-secret"
+      },
+      {
+        "VOLUMES_name": "downwardAPI-volume",
+        "VOLUMES_type": true,
+        "downwardAPI": true,
+        "DOWNWARDAPI_items": [
+          {
+            "DOWNWARDAPI_ITEMS_fieldRef": true,
+            "DOWNWARDAPI_ITEMS_FIELDREF_apiVersion": "metadata.name",
+            "DOWNWARDAPI_ITEMS_FIELDREF_fieldPath": "name",
+            "DOWNWARDAPI_ITEMS_path": "path/to/item",
+            "DOWNWARDAPI_mode": 3,
+            "DOWNWARDAPI_ITEMS_resourceFieldRef": true,
+            "DOWNWARDAPI_ITEMS_RESOURCEFIELDREF_resource": "requests.cpu",
+            "DOWNWARDAPI_ITEMS_RESOURCEFIELDREF_containerName": "containerName",
+            "DOWNWARDAPI_ITEMS_RESOURCEFIELDREF_divisor": "divisor"
+          }
+        ],
+        "DOWNWARDAPI_defaultMode": 231
+      },
+      {
+        "VOLUMES_name": "fc-volume",
+        "VOLUMES_type": true,
+        "fc": true,
+        "FC_fsType": "fsType",
+        "FC_readOnly": true,
+        "FC_lun": 1,
+        "FC_targetWWNs":[
+          {
+          "FC_TARGETWWNS_targetWWN": "targetWWN"
+          }
+        ],
+        "FC_wwids":[
+          {
+          "FC_WWIDS_wwid": "wwid"
+          }
+        ]
+      },
+      {
+        "VOLUMES_name": "iscsi-volume",
+        "VOLUMES_type": true,
+        "iscsi": true,
+        "ISCSI_targetPortal": "targetPortal",
+        "ISCSI_lun": 1,
+        "ISCSI_iqn": "iqn",
+        "ISCSI_fsType": "fsType",
+        "ISCSI_chapAuthDiscovery": true,
+        "ISCSI_chapAuthSession": true,
+        "ISCSI_initiatorName": "initiator",
+        "ISCSI_portals": [
+          {
+            "ISCSI_PORTALS_portal": "192.168.1.101:3260"
+          }
+        ],
+        "ISCSI_readOnly": true,
+        "ISCSI_secretRef": true,
+        "ISCSI_SECRETREF_name": "name-secret"
+      },
+      {
+        "VOLUMES_name": "photonPersistentDisk-volume",
+        "VOLUMES_type": true,
+        "photonPersistentDisk": true,
+        "PHOTONPERSISTENTDISK_pdID": "pdID",
+        "PHOTONPERSISTENTDISK_fsType": "fsType"
+      },
+      {
+        "VOLUMES_name": "quobyte-volume",
+        "VOLUMES_type": true,
+        "quobyte": true,
+        "QUOBYTE_registry": "registry",
+        "QUOBYTE_volume": "volume",
+        "QUOBYTE_group": "group",
+        "QUOBYTE_readOnly": true,
+        "QUOBYTE_tenant": "tenant",
+        "QUOBYTE_user": "user"
+      },
+      {
+        "VOLUMES_name": "rbd-volume",
+        "VOLUMES_type": true,
+        "rbd": true,
+        "RBD_image": "image",
+        "RBD_monitors": [
+          {
+            "RBD_MONITORS_monitor": "192.168.1.102:6789"
+          }
+        ],
+        "RBD_pool": "pool",
+        "RBD_fsType": "fsType",
+        "RBD_readOnly": true,
+        "RBD_secretRef": true,
+        "RBD_SECRETREF_name": "name-secret",
+        "RBD_keyring": "keyring",
+        "RBD_user": "user"
+      },
+      {
+        "VOLUMES_name": "scaleIO-volume",
+        "VOLUMES_type": true,
+        "scaleIO": true,
+        "SCALEIO_gateway": "gateway",
+        "SCALEIO_volumeName": "volumeName",
+        "SCALEIO_system": "system",
+        "SCALEIO_protectionDomain": "protectionDomain",
+        "SCALEIO_fsType": "fsType",
+        "SCALEIO_readOnly": true,
+        "SCALEIO_secretRef": true,
+        "SCALEIO_SECRETREF_name": "name-secret",
+        "SCALEIO_sslEnabled": true,
+        "SCALEIO_storageMode": true,
+        "SCALEIO_STORAGEMODE_thinProvisioned": true,
+        "SCALEIO_storagePool": "storagePool"
+      },
+      {
+        "VOLUMES_name": "storageos-volume",
+        "VOLUMES_type": true,
+        "storageos": true,
+        "STORAGEOS_volumeName": "volumeName",
+        "STORAGEOS_fsType": "fsType",
+        "STORAGEOS_readOnly": true,
+        "secretRef": true,
+        "STORAGEOS_SECRETREF_name": "name-secret"
       }
-    ]
-  } 
-}
+    ]   
+  }  
+} 

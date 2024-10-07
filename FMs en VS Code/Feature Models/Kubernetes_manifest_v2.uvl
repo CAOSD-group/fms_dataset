@@ -552,10 +552,10 @@ features
                             Boolean PODSPEC_hostUsers {doc 'Use the host´s user namespace. Optional: Default to true. If set to true or not present, the pod will be run in the host user namespace, useful for when the pod needs a feature only available to the host user namespace, such as loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns is created for the pod. Setting false is useful for mitigating container breakout vulnerabilities even allowing users to run their containers as root without actually having root privileges on the host. This field is alpha-level and is only honored by servers that enable the UserNamespacesSupport feature.'}
                             String PODSPEC_hostname {doc 'Specifies the hostname of the Pod If not specified, the pod´s hostname will be set to a system-defined value.'}
                             String PODSPEC_nodeName {doc 'NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.'}
-                            Boolean PODSPEC_Volumes cardinality [0..*] {NO_TERMINADO, doc 'List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes'}
+                            Boolean PODSPEC_Volumes cardinality [0..*] {doc 'List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes'}
                                 mandatory   
                                     String VOLUMES_name {doc 'name of the volume. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
-                                    Boolean VOLUMES_type {abstract, NO_TERMINADO, doc 'It contains all the types of volumes that can be defined in the pod.'}
+                                    Boolean VOLUMES_type {abstract, doc 'It contains all the types of volumes that can be defined in the pod.'}
                                         or   
                                             Boolean emptyDir {doc 'emptyDir represents a temporary directory that shares a pod´s lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir'}
                                                 optional
@@ -920,6 +920,11 @@ features
                     Boolean RULES_verbs cardinality [0..*] {doc 'Verbs is a list of Verbs that apply to ALL the ResourceKinds contained in this rule.'}
                         mandatory
                             String RULES_VERBS_value
+            String type {doc 'Used to facilitate programmatic handling of secret data. More info: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types'}
+            Boolean stringData cardinality [0..*]  {doc 'stringData allows specifying non-binary secret data in string form. It is provided as a write-only input field for convenience. All keys and values are merged into the data field on write, overwriting any existing values. The stringData field is never output when reading from the API.'}
+                mandatory   
+                    String STRINGDATA_key
+                    String STRINGDATA_value
 constraints
     // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1
@@ -952,25 +957,25 @@ constraints
     KIND_StorageVersion => GROUP_internal_apiserver
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec & SecretSpec => spec
+    DeploymentSpec & PodSpec & ServiceSpec => spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_Pod => PodSpec
     KIND_Deployment => DeploymentSpec & PodSpec
     KIND_Service => ServiceSpec
     KIND_ConfigMap => binaryData | data 
-    KIND_Secret => SecretSpec
+    KIND_Secret => data & (type == '')
     KIND_Endpoints => subsets
     KIND_Role => rules
     KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
-    immutable => KIND_ConfigMap
+    immutable => KIND_ConfigMap | KIND_Secret
+    stringData => KIND_Secret
     CustomResourceDefinitionSpec => KIND_CustomResourceDefinition
-    data => KIND_ConfigMap
+    data => KIND_ConfigMap | KIND_Secret
     binaryData => KIND_ConfigMap
     ServiceSpec => KIND_Service
     (maxUnavailable == 0) => (maxSurge > 0) 
     DeploymentSpec => PodSpec
     PodSpec => KIND_Pod | KIND_Deployment
-    SecretSpec => KIND_Secret
     rules => KIND_Role
     DeploymentSpec => KIND_Deployment
     SERVICESPEC_clusterIP => !SERVICESPEC_clusterIPs

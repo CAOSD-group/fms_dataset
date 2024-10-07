@@ -108,6 +108,8 @@ METADATA_annotations, METADATA_annotations, -
 ANNOTATIONS_key, ANNOTATIONS_key, 
 ANNOTATIONS_value, ANNOTATIONS_value, 
 METADATA_deletionGracePeriodSeconds, METADATA_deletionGracePeriodSeconds, 
+METADATA_finalizers, METADATA_finalizers,
+METADATA_generateName, METADATA_generateName
 spec, spec, -
 DeploymentSpec, DeploymentSpec, -
 DEPLOYMENTSPEC_minReadySeconds, DEPLOYMENTSPEC_minReadySeconds, 
@@ -147,6 +149,8 @@ TEMPLATE_METADATA_annotations, TEMPLATE_METADATA_annotations, -
 TEMPLATE_METADATA_ANNOTATIONS_key, TEMPLATE_METADATA_ANNOTATIONS_key, 
 TEMPLATE_METADATA_ANNOTATIONS_value, TEMPLATE_METADATA_ANNOTATIONS_value, 
 TEMPLATE_METADATA_deletionGracePeriodSeconds, METADATA_deletionGracePeriodSeconds,
+TEMPLATE_METADATA_finalizers, TEMPLATE_METADATA_finalizers
+TEMPLATE_METADATA_generateName, TEMPLATE_METADATA_generateName, 
 DEPLOYMENTSPEC_TEMPLATE_podspec, DEPLOYMENTSPEC_TEMPLATE_podspec, -
 PodSpec, PodSpec, -
 PODSPEC_containers, PODSPEC_containers, 
@@ -360,6 +364,7 @@ VOLUMEMOUNTS_recursiveReadOnly, VOLUMEMOUNTS_recursiveReadOnly,
 VOLUMEMOUNTS_subPath, VOLUMEMOUNTS_subPath, 
 VOLUMEMOUNTS_subPathExpr, VOLUMEMOUNTS_subPathExpr, 
 CONTAINERS_workingDir, CONTAINERS_workingDir, 
+PODSPEC_serviceAccountName, PODSPEC_serviceAccountName, 
 PODSPEC_initContainers, PODSPEC_initContainers, -
 INITCONTAINERS_name, INITCONTAINERS_name, 
 INITCONTAINERS_image, INITCONTAINERS_image,

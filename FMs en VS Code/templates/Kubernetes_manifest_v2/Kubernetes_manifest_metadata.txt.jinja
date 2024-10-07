@@ -16,3 +16,7 @@ name: {{METADATA_name}}
   {{annotation.ANNOTATIONS_key}}: {{annotation.ANNOTATIONS_value}}
   {%endfor%}
 {%endif%}
+
+{%if METADATA_finalizers%}finalizers: {{METADATA_finalizers}}{%endif}
+
+{%if METADATA_generateName%}generateName: {{METADATA_generateName}}{%endif}

@@ -400,6 +400,7 @@
         "CONTAINERS_workingDir": "/working/dir"
       }
     ],
+    "PODSPEC_serviceAccountName": "serviceAccount",
     "PODSPEC_initContainers":[
       {
         "INITCONTAINERS_name": "contenedorInicial",

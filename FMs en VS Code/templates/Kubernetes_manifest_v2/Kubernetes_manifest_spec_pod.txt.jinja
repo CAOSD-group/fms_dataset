@@ -313,6 +313,8 @@ containers:
 
 {%endfor%}
 
+{%if PODSPEC_serviceAccountName%}serviceAccountName: {{PODSPEC_serviceAccountName}}{%endif%}
+
 {%if PODSPEC_initContainers%}initContainers:
   {%for init in PODSPEC_initContainers%}
   - name: {{init.INITCONTAINERS_name}}

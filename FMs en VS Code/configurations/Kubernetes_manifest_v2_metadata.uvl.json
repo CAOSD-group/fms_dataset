@@ -1,0 +1,58 @@
+{
+  "file": "Kubernetes_manifest_v2_metadata.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_apps": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "KIND_Deployment": true,
+    "metadata": true,
+    "METADATA_name": "testDeployment",
+    "METADATA_namespace": "testNamespace",
+    "METADATA_labels": [
+      {
+        "LABELS_key": "key_1",
+        "LABELS_value": "Value_1"
+      },
+      {
+        "LABELS_key": "Key_2",
+        "LABELS_value": "Value_2"
+      }
+    ],
+    "METADATA_annotations": [
+      {
+        "ANNOTATIONS_key": "key_1",
+        "ANNOTATIONS_value": "Value_1"
+      },
+      {
+        "ANNOTATIONS_key": "Key_2",
+        "ANNOTATIONS_value": "Value_2"
+      }
+    ],
+    "METADATA_deletionGracePeriodSeconds": 3,
+    "METADATA_managedFields": [
+      {
+        "METADATA_MANAGEFIELDS_apiversion": "v1",
+        "METADATA_MANAGEFIELDS_fieldsType": "FieldsV1",
+        "METADATA_MANAGEFIELDS_manager": "Manager",
+        "METADATA_MANAGEFIELDS_operation": true,
+        "METADATA_MANAGEFIELDS_OPERATION_update": true,
+        "METADATA_MANAGEFIELDS_subresource": "Subresource",
+        "METADATA_MANAGEFIELDS_time": "2024-10-04T10:00:00Z"
+      }
+    ],
+    "METADATA_ownerReferences":[
+      {
+        "METADATA_OWNERREFERENCES_apiVersion": "v1",
+        "METADATA_OWNERREFERENCES_kind": "Kind",
+        "METADATA_OWNERREFERENCES_name": "Name",
+        "METADATA_OWNERREFERENCES_uid": "12345678-1234-1234-1234-123456789ab",
+        "METADATA_OWNERREFERENCES_blockOwnerDeletion": true,
+        "METADATA_OWNERREFERENCES_controller": true
+      }
+    ]
+  }
+}

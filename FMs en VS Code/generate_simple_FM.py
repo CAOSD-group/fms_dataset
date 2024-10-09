@@ -1,5 +1,5 @@
 # script para simplificar y adaptar un modelo de caracteristicas para poder trabajar
-# con la herramienta de flamapy
+# con la herramienta de flamapy (tambien borra las restricciones)
 
 import re
 
@@ -17,6 +17,8 @@ def generate_fm_simplified(fm_original, fm_simplified, palabras_a_eliminar):
     for palabra in palabras_a_eliminar:
         texto = texto.replace(palabra, '')  
     texto = texto.replace('.', '_')
+    # Eliminar restricciones
+    texto = re.split(r'^\s*constraints', texto, maxsplit=1, flags=re.MULTILINE)[0]
 
     # Guardar el texto modificado en un nuevo archivo
     with open(fm_simplified, 'w', encoding='utf-8') as f:

@@ -3,7 +3,7 @@
 
 import re
 
-fm_original = 'Feature Models\Kubernetes_manifest_v2 copy.uvl'
+fm_original = 'Feature Models\Kubernetes_manifest_v2.uvl'
 fm_simplified = 'Feature Models\Kubernetes_manifest_v2_simplified.uvl'
 
 

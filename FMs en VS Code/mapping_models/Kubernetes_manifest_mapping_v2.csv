@@ -1,4 +1,5 @@
 Feature, Handler, Value
+apiVersion, apiVersion, 
 VERSION_v1, VERSION_v1, v1
 VERSION_v1beta1, VERSION_v1beta1, v1beta1
 VERSION_v1beta3, VERSION_v1beta3, v1beta3
@@ -18,15 +19,16 @@ GROUP_coordination, GROUP_coordination, coordination.k8s.io
 GROUP_core, GROUP_core, core
 GROUP_discovery, GROUP_discovery, discovery.k8s.io
 GROUP_events, GROUP_events, events.k8s.io
-GROUP_flowcontrol_apiserver, GROUP_flowcontrol_apiserver, flowcontrol.apiserver.k8s.io
-GROUP_internal_apiserver, GROUP_internal_apiserver, internal.apiserver.k8s.io
+GROUP_flowcontrol, GROUP_flowcontrol, flowcontrol.apiserver.k8s.io
+GROUP_internal, GROUP_internal, internal.apiserver.k8s.io
 GROUP_networking, GROUP_networking, networking.k8s.io
 GROUP_node, GROUP_node, node.k8s.io
 GROUP_policy, GROUP_policy, policy
-GROUP_rbac_authorization, GROUP_rbac_authorization, rbac.authorization.k8s.io
+GROUP_rbac, GROUP_rbac, rbac.authorization.k8s.io
 GROUP_resource, GROUP_resource, resource.k8s.io
 GROUP_scheduling, GROUP_scheduling, scheduling.k8s.io
 GROUP_storage, GROUP_storage, storage.k8s.io
+kind, kind, 
 KIND_Container, KIND_Container, Container
 KIND_CronJob, KIND_CronJob, CronJob
 KIND_DaemonSet, KIND_DaemonSet, DaemonSet
@@ -669,7 +671,7 @@ ADDRESSES_ip, ADDRESSES_ip,
 ADDRESSES_nodename, ADDRESSES_nodename, 
 ADDRESSES_targetRef, ADDRESSES_targetRef, 
 ADDRESSES_TARGETREF_apiVersion, ADDRESSES_TARGETREF_apiVersion, 
-ADDRESSES_TARGETREF_fieldPathm, ADDRESSES_TARGETREF_fieldPathm, 
+ADDRESSES_TARGETREF_fieldPath, ADDRESSES_TARGETREF_fieldPath, 
 ADDRESSES_TARGETREF_kind, ADDRESSES_TARGETREF_kind, 
 ADDRESSES_TARGETREF_name, ADDRESSES_TARGETREF_name, 
 ADDRESSES_TARGETREF_namespace, ADDRESSES_TARGETREF_namespace, 
@@ -681,7 +683,7 @@ NOTREADYADDRESSES_ip, NOTREADYADDRESSES_ip,
 NOTREADYADDRESSES_nodename, NOTREADYADDRESSES_nodename, 
 NOTREADYADDRESSES_targetRef, NOTREADYADDRESSES_targetRef, 
 NOTREADYADDRESSES_TARGETREF_apiVersion, NOTREADYADDRESSES_TARGETREF_apiVersion, 
-NOTREADYADDRESSES_TARGETREF_fieldPathm, NOTREADYADDRESSES_TARGETREF_fieldPathm, 
+NOTREADYADDRESSES_TARGETREF_fieldPath, NOTREADYADDRESSES_TARGETREF_fieldPath, 
 NOTREADYADDRESSES_TARGETREF_kind, NOTREADYADDRESSES_TARGETREF_kind, 
 NOTREADYADDRESSES_TARGETREF_name, NOTREADYADDRESSES_TARGETREF_name, 
 NOTREADYADDRESSES_TARGETREF_namespace, NOTREADYADDRESSES_TARGETREF_namespace, 

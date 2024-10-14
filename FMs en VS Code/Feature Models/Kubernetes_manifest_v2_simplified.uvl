@@ -5,7 +5,7 @@ features
                 mandatory
                     Group {abstract, doc 'refers to the API group that organizes related resources_ Kubernetes divides its API into logical groups to make it easier to manage, extend, and evolve different types of resources_ These groups are essentially namespaces for related API objects_'} 
                         alternative
-                            GROUP_admission_registration
+                            GROUP_admissionregistration
                             GROUP_apiextensions
                             GROUP_apiregistration
                             GROUP_apps
@@ -18,12 +18,12 @@ features
                             GROUP_core
                             GROUP_discovery
                             GROUP_events
-                            GROUP_flowcontrol_apiserver
-                            GROUP_internal_apiserver
+                            GROUP_flowcontrol
+                            GROUP_internal
                             GROUP_networking
                             GROUP_node
                             GROUP_policy
-                            GROUP_rbac_authorization
+                            GROUP_rbac
                             GROUP_resource
                             GROUP_scheduling
                             GROUP_storage
@@ -140,7 +140,7 @@ features
                             METADATA_MANAGEFIELDS_apiversion {doc 'APIVersion defines the version of this resource that this field set applies to_ The format is "group/version" just like the top-level APIVersion field_ It is necessary to track the version of a field set because it cannot be automatically converted_'}
                         optional
                             METADATA_MANAGEFIELDS_fieldsType {doc 'FieldsType is the discriminator for the different fields format and version_ There is currently only one possible value: "FieldsV1"'}
-                            METADATA_MANAGEFIELDS_fieldsV1 {unnavalible, doc 'FieldsV1 holds the first JSON version format as described in the "FieldsV1" type_'}
+                            METADATA_MANAGEFIELDS_fieldsV1 {doc 'FieldsV1 holds the first JSON version format as described in the "FieldsV1" type_'}
                             METADATA_MANAGEFIELDS_manager {doc 'Manager is an identifier of the workflow managing these fields_'}
                             METADATA_MANAGEFIELDS_operation {doc 'Operation is the type of operation which lead to this ManagedFieldsEntry being created_ The only valid values for this field are "Apply" and "Update"_'}
                                 alternative   
@@ -951,3 +951,62 @@ features
                 mandatory   
                     STRINGDATA_key
                     STRINGDATA_value
+constraints
+    (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac | GROUP_scheduling) => VERSION_v1
+    (GROUP_admissionregistration | GROUP_authentication) => VERSION_v1 | VERSION_v1beta1 | VERSION_v1alpha1
+    (GROUP_certificates | GROUP_internal | GROUP_networking | GROUP_storage) => VERSION_v1 | VERSION_v1alpha1 
+    GROUP_autoscaling => VERSION_v2 | VERSION_v1 
+    GROUP_flowcontrol => VERSION_v1beta3 | VERSION_v1
+    GROUP_resource => VERSION_v1alpha2 | VERSION_v1
+    (KIND_DaemonSet | KIND_Deployment | KIND_ReplicaSet | KIND_StatefullSet | KIND_ControllerRevision) => GROUP_apps
+    (KIND_Container | KIND_Pod | KIND_ReplicationController | KIND_Service | KIND_Endpoints | KIND_ConfigMap | KIND_Secret | KIND_PersistentVolumeClaim | KIND_Volume | KIND_LimitRange | KIND_PodTemplate | KIND_Binding | KIND_ComponentStatus | KIND_Namespace | KIND_Node | KIND_PersistentVolume | KIND_ResourceQuota | KIND_ServiceAccount) => GROUP_core
+    (KIND_CronJob | KIND_Job) => GROUP_batch
+    KIND_EndpointSlice => GROUP_discovery
+    (KIND_Ingress | KIND_IngressClass | KIND_IPAddress | KIND_ServiceCIDR | KIND_NetworkPolicy) => GROUP_networking
+    (KIND_CSIDriver | KIND_CSINode | KIND_StorageClass | KIND_CSIStorageCapacity | KIND_VolumeAttachment | KIND_VolumeAttributesClass) => GROUP_storage
+    (KIND_ClusterTrustBundle | KIND_CertificateSigningRequest) => GROUP_certificates
+    KIND_CustomResourceDefinition => GROUP_apiextensions
+    KIND_Event => GROUP_events
+    KIND_HorizontalPodAutoscaler => GROUP_autoscaling
+    (KIND_MutatingWebhookConfiguration | KIND_ValidatingWebhookConfiguration | KIND_ValidatingAdmissionPolicy | KIND_ValidatingAdmissionPolicyBinding) => GROUP_admissionregistration
+    (KIND_PodSchedulingContext | KIND_ResourceClaim | KIND_ResourceClaimTemplate | KIND_ResourceClass | KIND_ResourceClaimParameters | KIND_ResourceSlice) => GROUP_resource
+    KIND_PodDisruptionBudget => GROUP_policy
+    KIND_PriorityClass => GROUP_scheduling
+    KIND_APIService => GROUP_apiregistration
+    (KIND_LocalSubjectAccessReview | KIND_SelfSubjectAccessReview | KIND_SelfSubjectRulesReview | KIND_SubjectAccessReview) => GROUP_authorization
+    (KIND_FlowSchema | KIND_PriorityLevelConfiguration) => GROUP_flowcontrol
+    KIND_Lease => GROUP_coordination
+    KIND_RuntimeClass => GROUP_node
+    (KIND_SelfSubjectReview | KIND_TokenRequest | KIND_TokenReview) => GROUP_authentication
+    KIND_StorageVersion => GROUP_internal
+    (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac
+    DeploymentSpec & PodSpec & ServiceSpec => spec
+    KIND_Pod => PodSpec
+    KIND_Deployment => DeploymentSpec & PodSpec
+    KIND_Service => ServiceSpec
+    KIND_ConfigMap => binaryData | data 
+    KIND_Endpoints => subsets
+    KIND_Role => rules
+    KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
+    immutable => KIND_ConfigMap | KIND_Secret
+    stringData => KIND_Secret
+    CustomResourceDefinitionSpec => KIND_CustomResourceDefinition
+    data => KIND_ConfigMap | KIND_Secret
+    binaryData => KIND_ConfigMap
+    DeploymentSpec => PodSpec
+    PodSpec => KIND_Pod | KIND_Deployment
+    rules => KIND_Role
+    DeploymentSpec => KIND_Deployment
+    SERVICESPEC_clusterIP => !SERVICESPEC_clusterIPs
+    SERVICESPEC_clusterIPs => !SERVICESPEC_clusterIP
+    SERVICESPEC_clusterIP => !TYPE_ExternalName
+    SERVICESPEC_ipFamilyPolicy => !TYPE_ExternalName
+    SERVICESPEC_ipFamilies => TYPE_ClusterIP | TYPE_NodePort | TYPE_LoadBalancer
+    DEPLOYMENTSPEC_TEMPLATE_podspec => PodSpec
+    CONTAINERS_tty => CONTAINERS_stdin
+    SERVICESPEC_allocateLoadBalancerNodePorts => TYPE_LoadBalancer
+    ServiceSpec => KIND_Service
+    SERVICESPEC_ipFamilyPolicy => TYPE_LoadBalancer | TYPE_ClusterIP | TYPE_NodePort
+    CONTAINERS_SECURITYCONTEXT_allowPrivilegeEscalation => CONTAINERS_SECURITYCONTEXT_privileged
+    CONTAINERS_WINDOWSOPTIONS_hostProcess => PODSPEC_hostNetwork
+    RULES_apiGroups => RULES_verbs

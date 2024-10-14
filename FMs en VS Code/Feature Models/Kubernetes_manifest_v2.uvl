@@ -953,11 +953,11 @@ features
                     String STRINGDATA_value
 constraints
     // Restrincciones de Group
-    (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac_authorization | GROUP_scheduling) => VERSION_v1
-    (GROUP_admission_registration | GROUP_authentication) => VERSION_v1 | VERSION_v1beta1 | VERSION_v1alpha1
-    (GROUP_certificates | GROUP_internal_apiserver | GROUP_networking | GROUP_storage) => VERSION_v1 | VERSION_v1alpha1 
+    (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac | GROUP_scheduling) => VERSION_v1
+    (GROUP_admissionregistration | GROUP_authentication) => VERSION_v1 | VERSION_v1beta1 | VERSION_v1alpha1
+    (GROUP_certificates | GROUP_internal | GROUP_networking | GROUP_storage) => VERSION_v1 | VERSION_v1alpha1 
     GROUP_autoscaling => VERSION_v2 | VERSION_v1 
-    GROUP_flowcontrol_apiserver => VERSION_v1beta3 | VERSION_v1
+    GROUP_flowcontrol => VERSION_v1beta3 | VERSION_v1
     GROUP_resource => VERSION_v1alpha2 | VERSION_v1
     // Restricciones de Kind
     (KIND_DaemonSet | KIND_Deployment | KIND_ReplicaSet | KIND_StatefullSet | KIND_ControllerRevision) => GROUP_apps
@@ -970,18 +970,18 @@ constraints
     KIND_CustomResourceDefinition => GROUP_apiextensions
     KIND_Event => GROUP_events
     KIND_HorizontalPodAutoscaler => GROUP_autoscaling
-    (KIND_MutatingWebhookConfiguration | KIND_ValidatingWebhookConfiguration | KIND_ValidatingAdmissionPolicy | KIND_ValidatingAdmissionPolicyBinding) => GROUP_admission_registration
+    (KIND_MutatingWebhookConfiguration | KIND_ValidatingWebhookConfiguration | KIND_ValidatingAdmissionPolicy | KIND_ValidatingAdmissionPolicyBinding) => GROUP_admissionregistration
     (KIND_PodSchedulingContext | KIND_ResourceClaim | KIND_ResourceClaimTemplate | KIND_ResourceClass | KIND_ResourceClaimParameters | KIND_ResourceSlice) => GROUP_resource
     KIND_PodDisruptionBudget => GROUP_policy
     KIND_PriorityClass => GROUP_scheduling
     KIND_APIService => GROUP_apiregistration
     (KIND_LocalSubjectAccessReview | KIND_SelfSubjectAccessReview | KIND_SelfSubjectRulesReview | KIND_SubjectAccessReview) => GROUP_authorization
-    (KIND_FlowSchema | KIND_PriorityLevelConfiguration) => GROUP_flowcontrol_apiserver
+    (KIND_FlowSchema | KIND_PriorityLevelConfiguration) => GROUP_flowcontrol
     KIND_Lease => GROUP_coordination
     KIND_RuntimeClass => GROUP_node
     (KIND_SelfSubjectReview | KIND_TokenRequest | KIND_TokenReview) => GROUP_authentication
-    KIND_StorageVersion => GROUP_internal_apiserver
-    (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac_authorization
+    KIND_StorageVersion => GROUP_internal
+    (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac
     // Resto de restricciones
     DeploymentSpec & PodSpec & ServiceSpec => spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)

@@ -423,8 +423,8 @@ features
                                         or
                                             Boolean RESOURCES_request {doc 'Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. Requests cannot exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'}
                                                 mandatory
-                                                    String REQUEST_cpu
-                                                    String REQUEST_memory
+                                                    String REQUESTS_cpu
+                                                    String REQUESTS_memory
                                             Boolean RESOURCES_limits {doc 'Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'}
                                                 mandatory
                                                     String LIMITS_cpu
@@ -878,10 +878,10 @@ features
                                         mandatory      
                                             Boolean SCHEMA_openAPIV3Schema {incomplete, doc 'OpenAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.'}
                                                 optional   
-                                                    String OPENAPIV3SCHEMA_type {unnavalible}        
-                                                    Boolean OPENAPIV3SCHEMA_properties {unnavalible}
-                                                    String OPENAPIV3SCHEMA_description {unnavalible}
-                                                    String OPENAPIV3SCHEMA_required {unnavalible}                              
+                                                    String OPENAPIV3SCHEMA_type {unavalible}        
+                                                    Boolean OPENAPIV3SCHEMA_properties {unavalible}
+                                                    String OPENAPIV3SCHEMA_description {unavalible}
+                                                    String OPENAPIV3SCHEMA_required {unavalible}                              
                                     Boolean VERSIONS_additionalPrinterColumns cardinality [1..*] {doc 'AdditionalPrinterColumns are additional columns shown e.g. in kubectl next to the name. Defaults to a created-at column. More info: https://kubernetes.io/docs/reference/using-api/api-concepts/#additionalprintercolumns'}
                                         optional
                                             String ADDITIONALPRINTERCOLUMNS_name {doc 'name is a human readable name for the column.'}

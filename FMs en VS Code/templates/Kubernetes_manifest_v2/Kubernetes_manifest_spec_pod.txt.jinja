@@ -185,8 +185,8 @@ containers:
 
     {%if c.CONTAINERS_resources%}resources:
       {%if c. RESOURCES_request%}request:
-        cpu: {{c.REQUEST_cpu}}
-        memory: {{c.REQUEST_memory}}
+        cpu: {{c.REQUESTS_cpu}}
+        memory: {{c.REQUESTS_memory}}
       {%endif%}
       {%if c. RESOURCES_limits%}limits:
         cpu: {{c.LIMITS_cpu}}

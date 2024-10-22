@@ -317,8 +317,8 @@ CONTAINERS_restartPolicy, CONTAINERS_restartPolicy,
 CONTAINERS_resources, CONTAINERS_resources, -
 RESOURCES_request, RESOURCES_request, -
 RESOURCES_limits, RESOURCES_limits, -
-REQUEST_cpu, REQUEST_cpu, 
-REQUEST_memory, REQUEST_memory, 
+REQUESTS_cpu, REQUESTS_cpu, 
+REQUESTS_memory, REQUESTS_memory, 
 LIMITS_cpu, LIMITS_cpu, 
 LIMITS_memory, LIMITS_memory, 
 RESOURCES_CLAIMS_name, RESOURCES_CLAIMS_name, 

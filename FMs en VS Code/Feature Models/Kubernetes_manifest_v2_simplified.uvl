@@ -423,8 +423,8 @@ features
                                         or
                                             RESOURCES_request {doc 'Requests describes the minimum amount of compute resources required_ If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value_ Requests cannot exceed Limits_ More info: https://kubernetes_io/docs/concepts/configuration/manage-resources-containers/'}
                                                 mandatory
-                                                    REQUEST_cpu
-                                                    REQUEST_memory
+                                                    REQUESTS_cpu
+                                                    REQUESTS_memory
                                             RESOURCES_limits {doc 'Limits describes the maximum amount of compute resources allowed_ More info: https://kubernetes_io/docs/concepts/configuration/manage-resources-containers/'}
                                                 mandatory
                                                     LIMITS_cpu
@@ -878,10 +878,10 @@ features
                                         mandatory      
                                             SCHEMA_openAPIV3Schema {incomplete, doc 'OpenAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning_'}
                                                 optional   
-                                                    OPENAPIV3SCHEMA_type {unnavalible}        
-                                                    OPENAPIV3SCHEMA_properties {unnavalible}
-                                                    OPENAPIV3SCHEMA_description {unnavalible}
-                                                    OPENAPIV3SCHEMA_required {unnavalible}                              
+                                                    OPENAPIV3SCHEMA_type {unavalible}        
+                                                    OPENAPIV3SCHEMA_properties {unavalible}
+                                                    OPENAPIV3SCHEMA_description {unavalible}
+                                                    OPENAPIV3SCHEMA_required {unavalible}                              
                                     VERSIONS_additionalPrinterColumns   {doc 'AdditionalPrinterColumns are additional columns shown e_g_ in kubectl next to the name_ Defaults to a created-at column_ More info: https://kubernetes_io/docs/reference/using-api/api-concepts/#additionalprintercolumns'}
                                         optional
                                             ADDITIONALPRINTERCOLUMNS_name {doc 'name is a human readable name for the column_'}

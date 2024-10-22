@@ -41,7 +41,7 @@ def generate_fm_simplified(fm_original, fm_simplified, palabras_a_eliminar):
 
 
 # Palabras o caracteres a eliminar
-words_to_delete = ['String ', 'Integer ', 'Boolean ', 'cardinality', '[0..*]']  # Ajusta estas palabras
+words_to_delete = ['String ', 'Integer ', 'Boolean ', 'cardinality', '[1..*]']  # Ajusta estas palabras
 characters_to_delete = [' < ', ' > ', ' <=> ', ' == ', '//']
 
 # Llamar a la función para procesar el archivo

@@ -1067,7 +1067,6 @@ constraints
     SERVICESPEC_ipFamilyPolicy => SingleStack | PreferDualStack | RequireDualStack
     (SERVICESPEC_loadBalancerClass == '') => TYPE_LoadBalancer
     (CONTAINERS_APPARMORPROFILE_localhostProfile == '') => CONTAINERS_APPARMORPROFILE_TYPE_LocalHost
-    CONTAINERS_SECURITYCONTEXT_allowPrivilegeEscalation => CONTAINERS_SECURITYCONTEXT_privileged
     CONTAINERS_WINDOWSOPTIONS_hostProcess => PODSPEC_hostNetwork
     VOLUMEMOUNTS_recursiveReadOnly == 'ifPossible'| VOLUMEMOUNTS_recursiveReadOnly == 'Enabled'=> VOLUMEMOUNTS_mountPropagation == 'None'
     (VOLUMEMOUNTS_subPath == '') => !(VOLUMEMOUNTS_subPathExpr == '')

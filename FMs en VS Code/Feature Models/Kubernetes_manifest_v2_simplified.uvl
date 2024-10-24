@@ -1003,19 +1003,14 @@ constraints
     KIND_StorageVersion => GROUP_internal
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac
     DeploymentSpec & PodSpec & ServiceSpec => spec
-    KIND_Pod => PodSpec
-    KIND_Deployment => DeploymentSpec & PodSpec
-    KIND_Service => ServiceSpec
     KIND_ConfigMap => binaryData | data 
     KIND_Endpoints => subsets
     KIND_Role => rules
-    KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
     CustomResourceDefinitionSpec => KIND_CustomResourceDefinition
     data => KIND_ConfigMap | KIND_Secret
     binaryData => KIND_ConfigMap
-    DeploymentSpec => PodSpec
     PodSpec => KIND_Pod | KIND_Deployment
     rules => KIND_Role
     DeploymentSpec => KIND_Deployment
@@ -1025,6 +1020,7 @@ constraints
     SERVICESPEC_ipFamilyPolicy => !TYPE_ExternalName
     SERVICESPEC_ipFamilies => TYPE_ClusterIP | TYPE_NodePort | TYPE_LoadBalancer
     DEPLOYMENTSPEC_TEMPLATE_podspec => PodSpec
+    PodSpec => DEPLOYMENTSPEC_TEMPLATE_podspec
     CONTAINERS_tty => CONTAINERS_stdin
     SERVICESPEC_allocateLoadBalancerNodePorts => TYPE_LoadBalancer
     ServiceSpec => KIND_Service

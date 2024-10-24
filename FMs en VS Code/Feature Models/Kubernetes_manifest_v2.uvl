@@ -1007,21 +1007,16 @@ constraints
     // Resto de restricciones
     DeploymentSpec & PodSpec & ServiceSpec => spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
-    KIND_Pod => PodSpec
-    KIND_Deployment => DeploymentSpec & PodSpec
-    KIND_Service => ServiceSpec
     KIND_ConfigMap => binaryData | data 
     KIND_Secret => data & (type == '')
     KIND_Endpoints => subsets
     KIND_Role => rules
-    KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
     CustomResourceDefinitionSpec => KIND_CustomResourceDefinition
     data => KIND_ConfigMap | KIND_Secret
     binaryData => KIND_ConfigMap
     (maxUnavailable == 0) => (maxSurge > 0) 
-    DeploymentSpec => PodSpec
     PodSpec => KIND_Pod | KIND_Deployment
     rules => KIND_Role
     DeploymentSpec => KIND_Deployment

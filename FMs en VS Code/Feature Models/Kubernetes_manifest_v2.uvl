@@ -1057,9 +1057,7 @@ constraints
     CONTAINERS_tty => CONTAINERS_stdin
     SERVICESPEC_allocateLoadBalancerNodePorts => TYPE_LoadBalancer
     ServiceSpec => KIND_Service
-    SERVICESPEC_Type => TYPE_LoadBalancer | TYPE_ClusterIP | TYPE_NodePort
     (SERVICESPEC_healthCheckNodePort > 0) => TYPE_LoadBalancer & EXTERNALTRAFFICPOLICY_Local
-    SERVICESPEC_ipFamilyPolicy => SingleStack | PreferDualStack | RequireDualStack
     (SERVICESPEC_loadBalancerClass == '') => TYPE_LoadBalancer
     (CONTAINERS_APPARMORPROFILE_localhostProfile == '') => CONTAINERS_APPARMORPROFILE_TYPE_LocalHost
     CONTAINERS_WINDOWSOPTIONS_hostProcess => PODSPEC_hostNetwork

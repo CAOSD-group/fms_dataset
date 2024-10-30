@@ -21,18 +21,18 @@
         "VERSIONS_name": "v1",
         "VERSIONS_served": true,
         "VERSIONS_storage": true,
-        "VERSIONS_subresources": [
-          {
-          "SUBRESOURCES_status": true,
-          "SUBRESOURCES_scale": true
-          }
-        ],
+        "VERSIONS_subresources": true,
+        "SUBRESOURCES_status": "{}",
+        "SUBRESOURCES_scale": true,
+        "SUBRESOURCES_SCALE_specReplicasPath": ".spec.replicas",
+        "SUBRESOURCES_SCALE_statusReplicasPath": ".status.replicas",
+        "SUBRESOURCES_SCALE_labelSelectorPath": ".spec.selector",
         "VERSIONS_schema":[{
           "SCHEMA_openAPIV3Schema": true,
           "OPENAPIV3SCHEMA_type": "object",
           "OPENAPIV3SCHEMA_properties": true,
           "OPENAPIV3SCHEMA_description": "Example CRD",
-          "OPENAPIV3SCHEMA_required": "['spec']"
+          "OPENAPIV3SCHEMA_required": "spec"
         }],
         "VERSIONS_additionalPrinterColumns":[
           {
@@ -53,7 +53,46 @@
           }
         ]
       }
+    ], 
+    "CUSTOMRESOURCEDEFINITIONSPEC_conversion": true,
+    "CONVERSION_strategy": true,
+    "CONVERSION_STRATEGY_Webhook": true,
+    "CONVERSION_webhook": true,
+    "WEBHOOK_clientConfig": true,
+    "CLIENTCONFIG_URL_service": true,
+    "CLIENTCONFIG_URL_SERVICE_name": "webhook-service",
+    "CLIENTCONFIG_URL_SERVICE_namespace": "default",
+    "CLIENTCONFIG_URL_port": 443,
+    "CLIENTCONFIG_URL_SERVICE_path": "/convert",
+    "CLIENTCONFIG_URL_caBundle": "base64 encoded caBundle",
+    "WEEBHOOK_conversionReviewVersions": [
+      {
+        "CONVERSIONREVIEWVERSIONS_version": "v1"
+      },
+      {
+        "CONVERSIONREVIEWVERSIONS_version": "v1beta1"
+      }
+    ],
+    "CUSTOMRESOURCEDEFINITIONSPEC_names": true,
+    "CUSTOMRESOURCEDEFINITIONSPEC_NAMES_categories": [
+      {
+        "NAMES_CATEGORIES_resource": "all"
+      },
+      {
+        "NAMES_CATEGORIES_resource": "inventory"
+      }
+    ],
+    "CUSTOMRESOURCEDEFINITIONSPEC_NAMES_kind": "Widget",
+    "CUSTOMRESOURCEDEFINITIONSPEC_NAMES_listKind": "WidgetList",
+    "CUSTOMRESOURCEDEFINITIONSPEC_NAMES_plural": "widgets",
+    "CUSTOMRESOURCEDEFINITIONSPEC_NAMES_singular": "widget",
+    "CUSTOMRESOURCEDEFINITIONSPEC_NAMES_shortNames": [
+      {
+        "SHORTNAMES_shortName": "wdgt"
+      },
+      {
+        "SHORTNAMES_shortName": "wdg"
+      }
     ]
-    
   }
 }

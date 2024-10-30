@@ -899,7 +899,7 @@ features
                                 alternative   
                                     Boolean CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Cluster
                                     Boolean CUSTOMRESOURCEDEFINITIONSPEC_SCOPE_Namespaced
-                            Boolean CUSTOMRESOURCEDEFINITIONSPEC_versions cardinality [1..*]  {incomplete, doc 'Conversion describes conversion settings for the CRD.'}
+                            Boolean CUSTOMRESOURCEDEFINITIONSPEC_versions cardinality [1..*]  {doc 'Conversion describes conversion settings for the CRD.'}
                                 optional
                                     String VERSIONS_name {doc 'name is the version name, e.g. v1, v2beta1, etc. The custom resources are served under this version at `/apis/<group>/<version>/...` if `served` is true.'}
                                     Boolean VERSIONS_served {doc 'served is a flag enabling/disabling this version from being served via REST APIs'}

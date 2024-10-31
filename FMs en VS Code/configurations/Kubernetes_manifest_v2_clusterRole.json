@@ -1,0 +1,110 @@
+{
+  "file": "Kubernetes_manifest_v2_role.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_rbac": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "KIND_ClusterRole": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-ClusterRole",
+    "METADATA_namespace": "default",
+    "rules": [
+      {
+        "RULES_apiGroups":[
+          {
+            "RULES_APIGROUPS_value": ""
+          }
+        ],
+        "RULES_resources": [
+          {
+            "RULES_RESOURCES_value": "pods"
+          }
+        ],
+        "RULES_verbs": [
+          {
+            "RULES_VERBS_value": "get"
+          },
+          {
+            "RULES_VERBS_value": "list"
+          },
+          {
+            "RULES_VERBS_value": "watch"
+          }
+        ],
+        "RULES_nonResourceURLs": [
+          {
+            "RULES_NONRESOURCEURLS_value": "nonResURL"
+          }
+        ],
+        "RULES_resourceNames": [
+          {
+            "RULES_RESOURCENAMES_value": "rscName"
+          }
+        ]
+      },
+      {
+        "RULES_apiGroups":[
+          {
+            "RULES_APIGROUPS_value": "apps"
+          }
+        ],
+        "RULES_resources": [
+          {
+            "RULES_RESOURCES_value": "deployments"
+          }
+        ],
+        "RULES_verbs": [
+          {
+            "RULES_VERBS_value": "get"
+          },
+          {
+            "RULES_VERBS_value": "list"
+          },
+          {
+            "RULES_VERBS_value": "watch"
+          },
+          {
+            "RULES_VERBS_value": "create"
+          },
+          {
+            "RULES_VERBS_value": "update"
+          },
+          {
+            "RULES_VERBS_value": "delete"
+          }
+        ]
+      }
+    ],
+    "aggregationRule": true,
+    "AGGREGATIONRULE_clusterRoleSelectors": true,
+    "CLUSTERROLESELECTORS_matchExpressions": [
+      {
+        "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_key": "key-1",
+        "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_operator": true,
+        "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_In": true,
+        "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_values": [
+          {
+            "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_VALUES_value": "value-1"
+          },
+          {
+            "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_VALUES_value": "value-2"
+          }
+        ]
+      },
+      {
+        "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_key": "key-2",
+        "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_operator": true,
+        "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_Exists": true,
+        "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_values": [
+          {
+            "CLUSTERROLESELECTORS_MATCHEXPRESSIONS_VALUES_value": "value-1"
+          }
+        ]
+      }
+    ]
+  }
+}

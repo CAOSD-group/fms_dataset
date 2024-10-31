@@ -1012,6 +1012,26 @@ features
                 mandatory   
                     String STRINGDATA_key
                     String STRINGDATA_value
+            Boolean aggregationRule {doc 'AggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller.'}
+                mandatory 
+                    Boolean AGGREGATIONRULE_clusterRoleSelectors {doc 'ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole`s permissions will be added'}
+                        alternative
+                            Boolean CLUSTERROLESELECTORS_matchExpressions cardinality [1..*] {doc 'matchExpressions is a list of label selector requirements. The requirements are ANDed.'}
+                                mandatory
+                                    String CLUSTERROLESELECTORS_MATCHEXPRESSIONS_key {doc 'key is the label key that the selector applies to.'}
+                                    Boolean CLUSTERROLESELECTORS_MATCHEXPRESSIONS_operator {doc 'operator represents a key`s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.'}
+                                        alternative   
+                                            Boolean CLUSTERROLESELECTORS_MATCHEXPRESSIONS_In
+                                            Boolean CLUSTERROLESELECTORS_MATCHEXPRESSIONS_NotIn
+                                            Boolean CLUSTERROLESELECTORS_MATCHEXPRESSIONS_Exists
+                                            Boolean CLUSTERROLESELECTORS_MATCHEXPRESSIONS_DoesNotExist
+                                    Boolean CLUSTERROLESELECTORS_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
+                                        mandatory
+                                            String CLUSTERROLESELECTORS_MATCHEXPRESSIONS_VALUES_value
+                            Boolean CLUSTERROLESELECTORS_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                mandatory
+                                    String CLUSTERROLESELECTORS_MATCHLABELS_key
+                                    String CLUSTERROLESELECTORS_MATCHLABELS_value
 constraints
     // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac | GROUP_scheduling) => VERSION_v1
@@ -1050,6 +1070,7 @@ constraints
     KIND_Secret => data & (type == '')
     KIND_Endpoints => subsets
     KIND_Role => rules
+    KIND_ClusterRole => rules
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
     CustomResourceDefinitionSpec => KIND_CustomResourceDefinition
@@ -1057,7 +1078,7 @@ constraints
     binaryData => KIND_ConfigMap
     (maxUnavailable == 0) => (maxSurge > 0) 
     PodSpec => KIND_Pod | KIND_Deployment
-    rules => KIND_Role
+    rules => KIND_Role | KIND_ClusterRole
     DeploymentSpec => KIND_Deployment
     SERVICESPEC_clusterIP => !SERVICESPEC_clusterIPs
     SERVICESPEC_clusterIPs => !SERVICESPEC_clusterIP
@@ -1111,3 +1132,4 @@ constraints
     PROJECTED_defaultmode < 511 & PROJECTED_defaultmode > 0
     CONVERSION_STRATEGY_Webhook => CONVERSION_webhook
     CLIENTCONFIG_URL_port > 0 & CLIENTCONFIG_URL_port < 65536
+    aggregationRule => KIND_ClusterRole

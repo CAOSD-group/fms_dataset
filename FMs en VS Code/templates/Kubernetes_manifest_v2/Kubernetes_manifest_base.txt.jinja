@@ -21,6 +21,9 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 {%elif KIND_Secret%}
 {% include 'Kubernetes_manifest_secret.txt.jinja'%}
 
+{%elif KIND_ClusterRole%}
+{% include 'Kubernetes_manifest_clusterRole.txt.jinja'%}
+
 {%elif spec%}spec:
 
   {%if DeploymentSpec and PodSpec%}
@@ -34,7 +37,6 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {%elif ServiceSpec%}
   {% macro indent_service() %}{% include 'Kubernetes_manifest_spec_service.txt.jinja'%}{% endmacro %}
   {{ indent_service()|indent(first=false) }}
-
 
   {%elif CustomResourceDefinitionSpec%}
   {% macro indent_customResourceDefinition() %}{% include 'Kubernetes_manifest_spec_customResourceDefinition.txt.jinja'%}{% endmacro %}

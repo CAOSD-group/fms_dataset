@@ -1,0 +1,40 @@
+{
+  "file": "Kubernetes_manifest_v2_role.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_rbac": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "KIND_ClusterRoleBinding": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-ClusterRoleBinding",
+    "METADATA_namespace": "default",
+    "subjects": [
+      {
+        "SUBJECTS_kind": true,
+        "SUBJECTS_KIND_User": true,
+        "SUBJECTS_name": "user1",
+        "SUBJECTS_apiGroup": "rbac.authorization.k8s.io"
+      },
+      {
+        "SUBJECTS_kind": true,
+        "SUBJECTS_KIND_Group": true,
+        "SUBJECTS_name": "dev-team",
+        "SUBJECTS_apiGroup": "rbac.authorization.k8s.io"
+      },
+      {
+        "SUBJECTS_kind": true,
+        "SUBJECTS_KIND_ServiceAccount": true,
+        "SUBJECTS_name": "app-service-account",
+        "SUBJECTS_namespace": "default"
+      }
+    ],
+    "roleRef": true,
+    "ROLEREF_apiGroup": "rbac.authorization.k8s.io",
+    "ROLEREF_kind": "ClusterRole",
+    "ROLEREF_name": "ejemplo-ClusterRole"
+  }
+}

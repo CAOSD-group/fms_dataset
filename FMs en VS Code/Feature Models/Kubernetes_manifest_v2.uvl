@@ -1032,6 +1032,22 @@ features
                                 mandatory
                                     String CLUSTERROLESELECTORS_MATCHLABELS_key
                                     String CLUSTERROLESELECTORS_MATCHLABELS_value
+            Boolean subjects cardinality [1..*] {doc 'Subjects holds references to the objects the role applies to.'}
+                mandatory   
+                    Boolean SUBJECTS_kind {doc 'Kind of object being referenced. Values defined by this API group are "User", "Group", and "ServiceAccount". If the Authorizer does not recognized the kind value, the Authorizer should report an error.'}
+                        alternative
+                            Boolean SUBJECTS_KIND_User
+                            Boolean SUBJECTS_KIND_Group
+                            Boolean SUBJECTS_KIND_ServiceAccount
+                    String SUBJECTS_name {doc 'Name of the object being referenced.'}
+                optional   
+                    String SUBJECTS_apiGroup {doc 'APIGroup holds the API group of the referenced subject. Defaults to "" for ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io" for User and Group subjects.'}
+                    String SUBJECTS_namespace {doc 'Namespace of the referenced object. If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error.'}
+            Boolean roleRef {doc 'RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error. This field is immutable.'}
+                mandatory   
+                    String ROLEREF_apiGroup {doc 'APIGroup is the group for the resource being referenced'}
+                    String ROLEREF_kind {doc 'Kind is the type of resource being referenced'}
+                    String ROLEREF_name {doc 'Name is the name of resource being referenced'}
 constraints
     // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac | GROUP_scheduling) => VERSION_v1
@@ -1071,6 +1087,7 @@ constraints
     KIND_Endpoints => subsets
     KIND_Role => rules
     KIND_ClusterRole => rules
+    KIND_ClusterRoleBinding => subjects & roleRef
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
     CustomResourceDefinitionSpec => KIND_CustomResourceDefinition

@@ -778,3 +778,8 @@ roleRef, roleRef, -
 ROLEREF_apiGroup, ROLEREF_apiGroup, 
 ROLEREF_kind, ROLEREF_kind, 
 ROLEREF_name, ROLEREF_name, 
+automountServiceAccountToken, automountServiceAccountToken, 
+imagePullSecrets, imagePullSecrets, -
+IMAGEPULLSECRETS_name, IMAGEPULLSECRETS_name, 
+secrets, secrets, -
+SECRETS_name, SECRETS_name, 

@@ -1,0 +1,117 @@
+{
+  "file": "Kubernetes_manifest_v2_role.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_batch": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "KIND_Job": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-Job",
+    "METADATA_namespace": "default",
+    "spec":true,
+    "JobSpec": true,
+    "JOBSPEC_activeDeadlineSeconds": 100,
+    "JOBSPEC_backoffLimit": 6,
+    "JOBSPEC_backoffLimitPerIndex": true,
+    "BACKOFFLIMITPERINDEX_value": 3,
+    "JOBSPEC_completionMode": true,
+    "COMPLETIONMODE_NonIndexed": true,
+    "JOBSPEC_completions": 1,
+    "JOBSPEC_managedBy": "acme.io/foo",
+    "JOBSPEC_manualSelector": true,
+    "JOBSPEC_failedIndexes": 2,
+    "JOBSPEC_parallelism": 1,
+    "JOBSPEC_podFailurePolicy": true,
+    "JOBSPEC_PODFAILUREPOLICY_rules":[
+      {
+        "PODFAILUREPOLICY_RULES_action": true,
+        "PODFAILUREPOLICY_RULES_FailIndex": true,
+        "PODFAILUREPOLICY_RULES_onPodConditions": [
+          {
+            "ONPODCONDITIONS_type": "Ready",
+            "ONPODCONDITIONS_status": "True"
+          }
+        ],
+        "PODFAILUREPOLICY_RULES_onExitCodes": true,
+        "ONEXITCODES_containerName": "test-container1",
+        "ONEXITCODES_operator": true,
+        "ONEXITCODES_NotIn": true,
+        "ONEXITCODES_values": [
+          {
+            "ONEXITCODES_VALUES_value": 1
+          }
+        ]
+      },
+      {
+        "PODFAILUREPOLICY_RULES_action": true,
+        "PODFAILUREPOLICY_RULES_Count": true,
+        "PODFAILUREPOLICY_RULES_onPodConditions": [
+          {
+            "ONPODCONDITIONS_type": "Ready",
+            "ONPODCONDITIONS_status": "True"
+          }
+        ],
+        "PODFAILUREPOLICY_RULES_onExitCodes": true,
+        "ONEXITCODES_containerName": "test-container2",
+        "ONEXITCODES_operator": true,
+        "ONEXITCODES_In": true,
+        "ONEXITCODES_values": [
+          {
+            "ONEXITCODES_VALUES_value": 3
+          },
+          {
+            "ONEXITCODES_VALUES_value": 1
+          },
+          {
+            "ONEXITCODES_VALUES_value": 2
+          }
+        ]
+      }
+    ],
+    "JOBSPEC_podReplacementPolicy": true,
+    "PODREPLACEMENTPOLICY_TerminatingOrFailed": true,
+    "JOBSPEC_selector": true,
+    "JOBSPEC_SELECTOR_matchLabels": [
+      {
+        "JOBSPEC_SELECTOR_MATCHLABELS_key": "key_1",
+        "JOBSPEC_SELECTOR_MATCHLABELS_value": "Value_1"
+      }
+    ],
+    "JOBSPEC_successPolicy": true,
+    "JOBSPEC_SUCCESSPOLICY_rules": [
+      {
+        "SUCCESSPOLICY_RULES_succededCount": 1,
+        "SUCCESSPOLICY_RULES_succededIndexes": true
+      }
+    ],
+    "JOBSPEC_suspend": true,
+    "JOBSPEC_template": true,
+    "JOBSPEC_TEMPLATE_metadata": true,
+    "JOBSPEC_TEMPLATE_podSpecTemplate": true,
+    "JOBSPEC_ttlSecondsAfterFinished": 100,
+    "PodSpec": true,
+    "PODSPEC_containers": [
+      {
+        "CONTAINERS_name": "example-container",
+        "CONTAINERS_image": "busybox",
+        "CONTAINERS_command":[
+          {
+            "CONTAINERS_COMMAND_value": "sh"
+          },
+          {
+            "CONTAINERS_COMMAND_value": "-c"
+          },
+          {
+            "CONTAINERS_COMMAND_value": "echo 'Hello from Kubernetes Job!' && sleep 30"
+          }
+        ],
+        "CONTAINERS_restartPolicy": "Never"
+      }
+    ]
+
+  }
+}

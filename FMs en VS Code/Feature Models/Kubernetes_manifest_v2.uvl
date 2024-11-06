@@ -929,6 +929,101 @@ features
                                             String ADDITIONALPRINTERCOLUMNS_description {doc 'description is a human readable description of this column.'}
                                             Integer ADDITIONALPRINTERCOLUMNS_priority {doc 'priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.'}
                                             String ADDITIONALPRINTERCOLUMNS_format {doc 'format is an optional OpenAPI type definition for this column. The "name" format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.'}
+                    Boolean CronJobSpec {doc 'Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status'}
+                        mandatory 
+                            Boolean CRONJOBSPEC_jobTemplate {doc 'Specifies the job that will be created when executing a CronJob.'}
+                                mandatory   
+                                    Boolean JOBTEMPLATE_metadataReference {doc 'Reference to metadata object to not duplicate it'}
+                                    Boolean JOBTEMPLATE_jobSpecReference {doc 'Reference to job spec to not duplicate it'}
+                            String CRONJOBSPEC_schedule {doc 'The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron.'}
+                        optional  
+                            String CRONJOBSPEC_concurrencyPolicy {doc 'pecifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn`t finished yet; - "Replace": cancels currently running job and replaces it with a new one'}
+                                alternative   
+                                    Boolean CRONJOBSPEC_CONCURRENCYPOLICY_Allow {default}
+                                    Boolean CRONJOBSPEC_CONCURRENCYPOLICY_Forbid
+                                    Boolean CRONJOBSPEC_CONCURRENCYPOLICY_Replace
+                            Integer CRONJOBSPEC_failedJobsHistoryLimit {default 1, doc 'Specifies the job that will be created when executing a CronJob.'}
+                            Integer CRONJOBSPEC_successfulJobHistoryLimit {default 3, doc 'The number of successful finished jobs to retain. Value must be non-negative integer. Defaults to 3.'}
+                            Boolean CRONJOBSPEC_suspend {default false, doc 'This flag tells the controller to suspend subsequent executions, it does not apply to already started executions. Defaults to false.'}
+                            String CRONJOBSPEC_timezone {doc 'The time zone name for the given schedule, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. If not specified, this will default to the time zone of the kube-controller-manager process. The set of valid time zone names and the time zone offset is loaded from the system-wide time zone database by the API server during CronJob validation and the controller manager during execution. If no system-wide time zone database can be found a bundled version of the database is used instead. If the time zone name becomes invalid during the lifetime of a CronJob or due to a change in host configuration, the controller will stop creating new new Jobs and will create a system event with the reason UnknownTimeZone. More information can be found in https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones'}
+                            Integer CRONJOBSPEC_startingDeadlineSeconds {doc 'Optional deadline in seconds for starting the job if it misses scheduled time for any reason. Missed jobs executions will be counted as failed ones.'}        
+                    Boolean JobSpec {doc 'Specification of the desired behavior of the job.'}
+                        mandatory   
+                            Integer JOBSPEC_activeDeadlineSeconds {doc 'Specifies the duration in seconds relative to the startTime that the job may be continuously active before the system tries to terminate it; value must be positive integer. If a Job is suspended (at creation or through an update), this timer will effectively be stopped and reset when the Job is resumed again.'}
+                            Integer JOBSPEC_backoffLimit {default 6, doc 'Specifies the number of retries before marking this job failed. Defaults to 6'}
+                            Boolean JOBSPEC_backoffLimitPerIndex {doc 'Specifies the limit for the number of retries within an index before marking this index as failed. When enabled the number of failures per index is kept in the pod`s batch.kubernetes.io/job-index-failure-count annotation. It can only be set when Job`s completionMode=Indexed, and the Pod`s restart policy is Never. The field is immutable. This field is beta-level. It can be used when the `JobBackoffLimitPerIndex` feature gate is enabled (enabled by default).'}
+                                mandatory    
+                                    Integer BACKOFFLIMITPERINDEX_value
+                            String JOBSPEC_completionMode {doc 'completionMode specifies how Pod completions are tracked. It can be `NonIndexed` (default) or `Indexed`. `NonIndexed` means that the Job is considered complete when there have been .spec.completions successfully completed Pods. Each Pod completion is homologous to each other. `Indexed` means that the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1), available in the annotation batch.kubernetes.io/job-completion-index. The Job is considered complete when there is one successfully completed Pod for each index. When value is `Indexed`, .spec.completions must be specified and `.spec.parallelism` must be less than or equal to 10^5. In addition, The Pod name takes the form `$(job-name)-$(index)-$(random-string)`, the Pod hostname takes the form `$(job-name)-$(index)`. More completion modes can be added in the future. If the Job controller observes a mode that it doesn`t recognize, which is possible during upgrades due to version skew, the controller skips updates for the Job.'}
+                                alternative   
+                                    Boolean COMPLETIONMODE_NonIndexed {default}
+                                    Boolean COMPLETIONMODE_Indexed
+                            String JOBSPEC_completions {doc 'Specifies the desired number of successfully finished pods the job should be run with. Setting to null means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value. Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/'}
+                            String JOBSPEC_managedBy {doc 'ManagedBy field indicates the controller that manages a Job. The k8s Job controller reconciles jobs which don`t have this field at all or the field value is the reserved string `kubernetes.io/job-controller`, but skips reconciling Jobs with a custom value for this field. The value must be a valid domain-prefixed path (e.g. acme.io/foo) - all characters before the first "/" must be a valid subdomain as defined by RFC 1123. All characters trailing the first "/" must be valid HTTP Path characters as defined by RFC 3986. The value cannot exceed 64 characters. This field is alpha-level. The job controller accepts setting the field when the feature gate JobManagedBy is enabled (disabled by default).'}
+                            String JOBSPEC_manualSelector {doc 'manualSelector controls generation of pod labels and pod selectors. Leave `manualSelector` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template. When true, the user is responsible for picking unique labels and specifying the selector. Failure to pick a unique label may cause this and other jobs to not function correctly. However, You may see `manualSelector=true` in jobs that were created with the old `extensions/v1beta1` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector'}
+                            Integer JOBSPEC_failedIndexes {doc 'Specifies the maximal number of failed indexes before marking the Job as failed, when backoffLimitPerIndex is set. Once the number of failed indexes exceeds this number the entire Job is marked as Failed and its execution is terminated. When left as null the job continues execution of all of its indexes and is marked with the `Complete` Job condition. It can only be specified when backoffLimitPerIndex is set. It can be null or up to completions. It is required and must be less than or equal to 10^4 when is completions greater than 10^5. This field is beta-level. It can be used when the `JobBackoffLimitPerIndex` feature gate is enabled (enabled by default).'}
+                            Integer JOBSPEC_parallelism {doc 'Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/'}
+                            Boolean JOBSPEC_podFailurePolicy {doc 'Specifies the policy of handling failed pods. In particular, it allows to specify the set of actions and conditions which need to be satisfied to take the associated action. If empty, the default behaviour applies - the counter of failed pods, represented by the jobs`s .status.failed field, is incremented and it is checked against the backoffLimit. This field cannot be used in combination with restartPolicy=OnFailure. This field is beta-level. It can be used when the `JobPodFailurePolicy` feature gate is enabled (enabled by default).'}
+                                mandatory 
+                                    Boolean JOBSPEC_PODFAILUREPOLICY_rules cardinality [1..*] {doc 'A list of pod failure policy rules. The rules are evaluated in order. Once a rule matches a Pod failure, the remaining of the rules are ignored. When no rule matches the Pod failure, the default handling applies - the counter of pod failures is incremented and it is checked against the backoffLimit. At most 20 elements are allowed.'} 
+                                        mandatory   
+                                            String PODFAILUREPOLICY_RULES_action {doc 'Specifies the action taken on a pod failure when the requirements are satisfied. Possible values are: - FailJob: indicates that the pod`s job is marked as Failed and all running pods are terminated. - FailIndex: indicates that the pod`s index is marked as Failed and will not be restarted. This value is beta-level. It can be used when the `JobBackoffLimitPerIndex` feature gate is enabled (enabled by default). - Ignore: indicates that the counter towards the .backoffLimit is not incremented and a replacement pod is created. - Count: indicates that the pod is handled in the default way - the counter towards the .backoffLimit is incremented. Additional values are considered to be added in the future. Clients should react to an unknown action by skipping the rule.'}
+                                                alternative   
+                                                    Boolean PODFAILUREPOLICY_RULES_FailJob
+                                                    Boolean PODFAILUREPOLICY_RULES_FailIndex
+                                                    Boolean PODFAILUREPOLICY_RULES_Ignore
+                                                    Boolean PODFAILUREPOLICY_RULES_Count
+                                            Boolean PODFAILUREPOLICY_RULES_onPodConditions cardinality [1..*]  {doc 'Represents the requirement on the pod conditions. The requirement is represented as a list of pod condition patterns. The requirement is satisfied if at least one pattern matches an actual pod condition. At most 20 elements are allowed.'}
+                                                mandatory   
+                                                    String ONPODCONDITIONS_type {doc 'Specifies the required Pod condition type. To match a pod condition it is required that specified type equals the pod condition type.'}
+                                                    String ONPODCONDITIONS_status {default true, doc 'Specifies the required Pod condition status. To match a pod condition it is required that the specified status equals the pod condition status. Defaults to True.'}
+                                        optional   
+                                            Boolean PODFAILUREPOLICY_RULES_onExitCodes {doc 'Represents the requirement on the container exit codes.'}
+                                                mandatory
+                                                    String ONEXITCODES_containerName {doc 'Restricts the check for exit codes to the container with the specified name. When null, the rule applies to all containers. When specified, it should match one the container or initContainer names in the pod template.'}
+                                                    String ONEXITCODES_operator {doc 'Represents the relationship between the container exit code(s) and the specified values. Containers completed with success (exit code 0) are excluded from the requirement check. Possible values are: - In: the requirement is satisfied if at least one container exit code (might be multiple if there are multiple containers not restricted by the `containerName` field) is in the set of specified values. - NotIn: the requirement is satisfied if at least one container exit code (might be multiple if there are multiple containers not restricted by the `containerName` field) is not in the set of specified values. Additional values are considered to be added in the future. Clients should react to an unknown operator by assuming the requirement is not satisfied.'}
+                                                        alternative   
+                                                            Boolean ONEXITCODES_In
+                                                            Boolean ONEXITCODES_NotIn
+                                                    Boolean ONEXITCODES_values cardinality [1..*]  {doc 'Specifies the set of values. Each returned container exit code (might be multiple in case of multiple containers) is checked against this set of values with respect to the operator. The list of values must be ordered and must not contain duplicates. Value 0 cannot be used for the In operator. At least one element is required. At most 255 elements are allowed.'}
+                                                        mandatory   
+                                                            Integer ONEXITCODES_VALUES_value   
+                            Boolean JOBSPEC_podReplacementPolicy {doc 'podReplacementPolicy specifies when to create replacement Pods. Possible values are: - TerminatingOrFailed means that we recreate pods when they are terminating (has a metadata.deletionTimestamp) or failed. - Failed means to wait until a previously created Pod is fully terminated (has phase Failed or Succeeded) before creating a replacement Pod. When using podFailurePolicy, Failed is the the only allowed value. TerminatingOrFailed and Failed are allowed values when podFailurePolicy is not in use. This is an beta field. To use this, enable the JobPodReplacementPolicy feature toggle. This is on by default.'}
+                                alternative   
+                                    Boolean PODREPLACEMENTPOLICY_TerminatingOrFailed
+                                    Boolean PODREPLACEMENTPOLICY_Failed
+                            Boolean JOBSPEC_selector {default false, doc 'A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors'}
+                                or   
+                                    Boolean JOBSPEC_SELECTOR_matchExpressions cardinality [1..*] {doc 'matchExpressions is a list of label selector requirements. The requirements are ANDed.'}
+                                        mandatory   
+                                            String JOBSPEC_SELECTOR_MATCHEXPRESSIONS_key {doc 'key is the label key that the selector applies to.'}
+                                            String JOBSPEC_SELECTOR_MATCHEXPRESSIONS_operator {doc 'operator represents a key`s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.'}
+                                                alternative   
+                                                    Boolean JOBSPEC_OPERATOR_in
+                                                    Boolean JOBSPEC_OPERATOR_notIn
+                                                    Boolean JOBSPEC_OPERATOR_exist
+                                                    Boolean JOBSPEC_OPERATOR_doesNotExist
+                                                    Boolean JOBSPEC_OPERATOR_gt
+                                                    Boolean JOBSPEC_OPERATOR_lt
+                                            String JOBSPEC_SELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.'}
+                                                mandatory   
+                                                    String JOBSPEC_SELECTOR_MATCHEXPRESSIONS_value
+                                    Boolean JOBSPEC_SELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                        mandatory   
+                                            String JOBSPEC_SELECTOR_MATCHLABELS_key
+                                            String JOBSPEC_SELECTOR_MATCHLABELS_value
+                            Boolean JOBSPEC_successPolicy {doc 'successPolicy specifies the policy when the Job can be declared as succeeded. If empty, the default behavior applies - the Job is declared as succeeded only when the number of succeeded pods equals to the completions. When the field is specified, it must be immutable and works only for the Indexed Jobs. Once the Job meets the SuccessPolicy, the lingering pods are terminated. This field is alpha-level. To use this field, you must enable the `JobSuccessPolicy` feature gate (disabled by default).'}
+                                mandatory   
+                                    Boolean JOBSPEC_SUCCESSPOLICY_rules cardinality [1..*]  {doc 'rules represents the list of alternative rules for the declaring the Jobs as successful before `.status.succeeded >= .spec.completions`. Once any of the rules are met, the "SucceededCriteriaMet" condition is added, and the lingering pods are removed. The terminal state for such a Job has the "Complete" condition. Additionally, these rules are evaluated in order; Once the Job meets one of the rules, other rules are ignored. At most 20 elements are allowed.'}
+                                        mandatory   
+                                            Integer SUCCESSPOLICY_RULES_succededCount {doc 'succeededCount specifies the minimal required size of the actual set of the succeeded indexes for the Job. When succeededCount is used along with succeededIndexes, the check is constrained only to the set of indexes specified by succeededIndexes. For example, given that succeededIndexes is "1-4", succeededCount is "3", and completed indexes are "1", "3", and "5", the Job isn`t declared as succeeded because only "1" and "3" indexes are considered in that rules. When this field is null, this doesn`t default to any value and is never evaluated at any time. When specified it needs to be a positive integer.'}
+                                            Integer SUCCESSPOLICY_RULES_succededIndexes {doc 'succeededIndexes specifies the set of indexes which need to be contained in the actual set of the succeeded indexes for the Job. The list of indexes must be within 0 to ".spec.completions-1" and must not contain duplicates. At least one element is required. The indexes are represented as intervals separated by commas. The intervals can be a decimal integer or a pair of decimal integers separated by a hyphen. The number are listed in represented by the first and last element of the series, separated by a hyphen. For example, if the completed indexes are 1, 3, 4, 5 and 7, they are represented as "1,3-5,7". When this field is null, this field doesn`t default to any value and is never evaluated at any time.'}
+                            Boolean JOBSPEC_suspend {default false, doc 'suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.'}
+                            Boolean JOBSPEC_template {doc 'Describes the pod that will be created when executing a job. The only allowed template.spec.restartPolicy values are "Never" or "OnFailure". More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/'}
+                                mandatory   
+                                    Boolean JOBSPEC_TEMPLATE_metadata {doc 'Reference to metadata to not duplicate it'}
+                                    Boolean JOBSPEC_TEMPLATE_podSpecTemplate {doc 'Reference to pod spec to not duplicate it'}
+                            Integer JOBSPEC_ttlSecondsAfterFinished {doc 'ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won`t be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes.'}
             Boolean binaryData cardinality [1..*] {doc 'BinaryData contains the binary data. Each key must consist of alphanumeric characters, "-", "_" or ".". BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.'}
                 mandatory
                     String BINARYDATA_binaryFile_name
@@ -1087,7 +1182,7 @@ constraints
     KIND_StorageVersion => GROUP_internal
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec => spec
+    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec => spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_ConfigMap => binaryData | data 
     KIND_Secret => data & (type == '')
@@ -1095,9 +1190,11 @@ constraints
     KIND_Role => rules
     KIND_ClusterRole => rules
     KIND_ClusterRoleBinding => subjects & roleRef
+    KIND_CronJob => CronJobSpec
+    KIND_Job => JobSpec
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
-    CustomResourceDefinitionSpec => KIND_CustomResourceDefinition
+    KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
     data => KIND_ConfigMap | KIND_Secret
     binaryData => KIND_ConfigMap
     (maxUnavailable == 0) => (maxSurge > 0) 
@@ -1159,3 +1256,4 @@ constraints
     aggregationRule => KIND_ClusterRole
     subjects & roleRef => KIND_ClusterRoleBinding
     automountServiceAccountToken & imagePullSecrets & secrets => KIND_ServiceAccount
+    JOBSPEC_backoffLimitPerIndex => COMPLETIONMODE_Indexed

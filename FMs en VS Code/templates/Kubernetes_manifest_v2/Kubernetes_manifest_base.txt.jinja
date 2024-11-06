@@ -32,7 +32,15 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 
 {%elif spec%}spec:
 
-  {%if DeploymentSpec and PodSpec%}
+  {%if CronJobSpec and JobSpec%}
+  {% macro indent_cronjob() %}{% include 'Kubernetes_manifest_spec_cronJob.txt.jinja'%}{% endmacro %}
+  {{ indent_cronjob()|indent(first=false) }}
+
+  {%elif JobSpec%}
+  {% macro indent_cronjob() %}{% include 'Kubernetes_manifest_spec_job.txt.jinja'%}{% endmacro %}
+  {{ indent_cronjob()|indent(first=false) }}
+
+  {%elif DeploymentSpec and PodSpec%}
   {% macro indent_deployment() %}{% include 'Kubernetes_manifest_spec_deployment.txt.jinja' %}{% endmacro %}
   {{ indent_deployment()|indent(first=false) }}
   

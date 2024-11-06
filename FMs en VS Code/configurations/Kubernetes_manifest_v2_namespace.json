@@ -1,0 +1,33 @@
+{
+  "file": "Kubernetes_manifest_v2.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_core": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Service_APIs": true,
+    "KIND_Namespace": true,
+    "metadata": true,
+    "METADATA_name": "example-namespace",
+    "spec": true,
+    "NamespaceSpec": true,
+    "METADATA_labels": [
+      {
+        "LABELS_key": "environment",
+        "LABELS_value": "development  "
+      },
+      {
+        "LABELS_key": "team",
+        "LABELS_value": "backend"
+      }
+    ],
+    "NAMESPACE_SPEC_finalizers": [
+      {
+        "FINALIZERS_finalizer": "kubernetes"
+      }
+    ]
+  }
+}

@@ -1024,6 +1024,11 @@ features
                                     Boolean JOBSPEC_TEMPLATE_metadata {doc 'Reference to metadata to not duplicate it'}
                                     Boolean JOBSPEC_TEMPLATE_podSpecTemplate {doc 'Reference to pod spec to not duplicate it'}
                             Integer JOBSPEC_ttlSecondsAfterFinished {doc 'ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won`t be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes.'}
+                    Boolean NamespaceSpec {doc 'Spec defines the behavior of the Namespace.'}
+                        mandatory   
+                            Boolean NAMESPACE_SPEC_finalizers cardinality [1..*] {doc 'Finalizers is an opaque list of values that must be empty to permanently remove object from storage. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/'}
+                                mandatory   
+                                    String FINALIZERS_finalizer
             Boolean binaryData cardinality [1..*] {doc 'BinaryData contains the binary data. Each key must consist of alphanumeric characters, "-", "_" or ".". BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.'}
                 mandatory
                     String BINARYDATA_binaryFile_name
@@ -1190,8 +1195,9 @@ constraints
     KIND_Role => rules
     KIND_ClusterRole => rules
     KIND_ClusterRoleBinding => subjects & roleRef
-    KIND_CronJob => CronJobSpec
+    KIND_CronJob => CronJobSpec 
     KIND_Job => JobSpec
+    KIND_Namespace => NamespaceSpec
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
     KIND_CustomResourceDefinition => CustomResourceDefinitionSpec

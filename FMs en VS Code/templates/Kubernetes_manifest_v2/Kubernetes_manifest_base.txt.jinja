@@ -55,6 +55,11 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {%elif CustomResourceDefinitionSpec%}
   {% macro indent_customResourceDefinition() %}{% include 'Kubernetes_manifest_spec_customResourceDefinition.txt.jinja'%}{% endmacro %}
   {{ indent_customResourceDefinition()|indent(first=false) }}
+
+  {%elif NamespaceSpec%}
+  {% macro indent_namespace() %}{% include 'Kubernetes_manifest_spec_namespace.txt.jinja'%}{% endmacro %}
+  {{ indent_namespace()|indent(first=false) }}
+
   {%endif%}
 
 {%endif%}

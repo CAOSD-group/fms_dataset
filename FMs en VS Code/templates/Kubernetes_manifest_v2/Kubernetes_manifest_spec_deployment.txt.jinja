@@ -20,7 +20,7 @@
   {%if SELECTOR_matchExpressions%}matchExpressions:
     {%for matchExpressions in SELECTOR_matchExpressions%}  
     - key: {{matchExpressions.MATCHEXPRESSIONS_key}}
-      operator: {{matchExpressions.OPERATOR_in}}{{matchExpressions.OPERATOR_notIn}}{{matchExpressions.OPERATOR_exist}}{{matchExpressions.OPERATOR_doesNotExist}}{{matchExpressions.OPERATOR_gt}}{{OPERATOR_lt}}
+      operator: {{matchExpressions.OPERATOR_in}}{{matchExpressions.OPERATOR_notIn}}{{matchExpressions.OPERATOR_exist}}{{matchExpressions.OPERATOR_doesNotExist}}{{matchExpressions.OPERATOR_gt}}{{matchExpressions.OPERATOR_lt}}
     {%if matchExpressions.MATCHEXPRESSIONS_values%}  values:
     {%for value in matchExpressions.MATCHEXPRESSIONS_values%}
         - {{value.MATCHEXPRESSIONS_value}}

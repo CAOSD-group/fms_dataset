@@ -1,0 +1,69 @@
+{
+  "file": "Kubernetes_manifest_v2.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_Networking": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Service_APIs": true,
+    "KIND_Ingress": true,
+    "metadata": true,
+    "METADATA_name": "example-ingress",
+    "spec": true,
+    "IngressSpec": true,
+    "METADATA_annotations": [
+      {
+        "ANNOTATIONS_key": "nginx.ingress.kubernetes.io/rewrite-target",
+        "ANNOTATIONS_value": "/"
+      }
+    ],
+    "INGRESSSPEC_ingressClassName": "nginx",
+    "INGRESSSPEC_defaultBackend": true,
+    "INGRESSSPEC_DEFAULTBACKEND_resource": true,
+    "INGRESSSPEC_DEFAULTBACKEND_RESOURCE_name": "default-backend-service",
+    "INGRESSSPEC_DEFAULTBACKEND_RESOURCE_kind": "Service",
+    "INGRESSSPEC_DEFAULTBACKEND_RESOURCE_apiGroup": "v1",
+    "INGRESSSPEC_DEFAULTBACKEND_service": true,
+    "INGRESSSPEC_DEFAULTBACKEND_SERVICE_name": "default-backend-service",
+    "INGRESSSPEC_DEFAULTBACKEND_port": true,
+    "INGRESSSPEC_DEFAULTBACKEND_SERVICE_PORT_number": 80,
+    "INGRESSSPEC_tls": true,
+    "INGRESSSPEC_TLS_hosts": [
+      {
+        "INGRESSSPEC_TLS_HOSTS_host": "myapp.example.com"
+      }
+    ],
+    "INGRESSSPEC_TLS_secretName": "myapp-tls-secret",
+    "INGRESSSPEC_rules": [
+      {
+        "INGRESSSPEC_RULES_host": "myapp.example.com",
+        "INGRESSSPEC_RULES_http": true,
+        "INGRESSSPEC_RULES_HTTP_paths": [
+          {
+            "HTTP_PATHS_path": "/service1",
+            "HTTP_PATHS_pathType": "Prefix",
+            "HTTP_PATHS_PATHTYPE_Prefix": true,
+            "HTTP_PATHS_backend": true,
+            "INGRESSSPEC_RULES_HTTP_PATHS_resource": true,
+            "INGRESSSPEC_RULES_HTTP_PATHS_RESOURCE_kind": "Service",
+            "INGRESSSPEC_RULES_HTTP_PATHS_RESOURCE_name": "service1",
+            "INGRESSSPEC_RULES_HTTP_PATHS_RESOURCE_apiGroup": "v1"
+          },
+          {
+            "HTTP_PATHS_path": "/service2",
+            "HTTP_PATHS_pathType": true,
+            "HTTP_PATHS_PATHTYPE_Exact": true,
+            "HTTP_PATHS_backend": true,
+            "INGRESSSPEC_RULES_HTTP_PATHS_service": true,
+            "INGRESSSPEC_RULES_HTTP_PATHS_SERVICE_name": "service2",
+            "INGRESSSPEC_RULES_HTTP_PATHS_port": true,
+            "INGRESSSPEC_RULES_HTTP_PATHS_SERVICE_PORT_number": 80
+          }
+        ]
+      }
+    ]
+  }
+}

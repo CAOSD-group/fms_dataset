@@ -60,6 +60,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {% macro indent_namespace() %}{% include 'Kubernetes_manifest_spec_namespace.txt.jinja'%}{% endmacro %}
   {{ indent_namespace()|indent(first=false) }}
 
+  {%elif IngressSpec%}
+  {% macro indent_ingress() %}{% include 'Kubernetes_manifest_spec_ingress.txt.jinja'%}{% endmacro %}
+  {{ indent_ingress()|indent(first=false) }}
+
   {%endif%}
 
 {%endif%}

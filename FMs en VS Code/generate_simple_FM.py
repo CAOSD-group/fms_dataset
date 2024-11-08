@@ -7,12 +7,12 @@ fm_original = 'Feature Models\Kubernetes_manifest_v2.uvl'
 fm_simplified = 'Feature Models\Kubernetes_manifest_v2_simplified.uvl'
 
 # Palabras o caracteres a eliminar (comentar las que no se deseen eliminar)
-# words_to_delete = ['String ', 'Integer ', 'Boolean ', 'cardinality', '[1..*]']  
-words_to_delete = [] 
+words_to_delete = ['String ', 'Integer ', 'Boolean ', 'cardinality', '[1..*]']  
+# words_to_delete = [] 
 
 # Caracteres a eliminar de las restricciones (comentar los que no se deseen eliminar)
-# characters_to_delete = [' < ', ' > ', ' <=> ', ' == ', '//']
-characters_to_delete = ['//']
+characters_to_delete = [' < ', ' > ', ' <=> ', ' == ', '//']
+#characters_to_delete = ['//']
 
 # Función para simplificar las restricciones
 def simplified_constraints(restrictions):

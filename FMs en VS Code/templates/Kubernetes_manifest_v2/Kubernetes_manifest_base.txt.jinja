@@ -64,6 +64,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {% macro indent_ingress() %}{% include 'Kubernetes_manifest_spec_ingress.txt.jinja'%}{% endmacro %}
   {{ indent_ingress()|indent(first=false) }}
 
+  {%elif PersistentVolumeClaimSpec%}
+  {% macro indent_persistentVolumeClaim() %}{% include 'Kubernetes_manifest_spec_persistentVolumeClaim.txt.jinja'%}{% endmacro %}
+  {{ indent_persistentVolumeClaim()|indent(first=false) }}
+
   {%endif%}
 
 {%endif%}

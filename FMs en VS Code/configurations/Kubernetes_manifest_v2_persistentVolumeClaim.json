@@ -1,0 +1,61 @@
+{
+  "file": "Kubernetes_manifest_v2.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_core": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Metadata_APIs": true,
+    "KIND_PersistentVolumeClaim": true,
+    "metadata": true,
+    "METADATA_name": "test-PersistentVolumeClaim",
+    "METADATA_deletionGracePeriodSeconds": 2.0,
+    "METADATA_namespace": "test-namespace",
+    "spec": true,
+    "PersistentVolumeClaimSpec": true,
+    "PRESISTENTVOLUMECLAIMSPEC_accessModes": [
+      {
+        "PRESISTENTVOLUMECLAIMSPEC_ACCESSMODES_accessMode": "ReadWriteOnce"
+      }
+    ],
+    "PRESISTENTVOLUMECLAIMSPEC_resources": true,
+    "PRESISTENTVOLUMECLAIMSPEC_RESOURCES_limits": true,
+    "PRESISTENTVOLUMECLAIMSPEC_RESOURCES_LIMITS_storage": "10Gi",
+    "PRESISTENTVOLUMECLAIMSPEC_RESOURCES_requests": true,
+    "PRESISTENTVOLUMECLAIMSPEC_RESOURCES_REQUESTS_storage": "5Gi",
+    "PRESISTENTVOLUMECLAIMSPEC_dataSource": true,
+    "PRESISTENTVOLUMECLAIMSPEC_DATASOURCE_name": "test-PersistentVolume",
+    "PRESISTENTVOLUMECLAIMSPEC_DATASOURCE_kind" : "PersistentVolume",
+    "PRESISTENTVOLUMECLAIMSPEC_DATASOURCE_apigroup" : "storage.k8s.io",
+    "PRESISTENTVOLUMECLAIMSPEC_dataSourceRef": true,
+    "PRESISTENTVOLUMECLAIMSPEC_DATASOURCEREF_name": "test-PersistentVolume",
+    "PRESISTENTVOLUMECLAIMSPEC_DATASOURCEREF_kind" : "PersistentVolume",
+    "PRESISTENTVOLUMECLAIMSPEC_DATASOURCEREF_apigroup" : "storage.k8s.io",
+    "PRESISTENTVOLUMECLAIMSPEC_selector": true,
+    "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_matchLabels": [
+      {
+        "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_MATCHLABELS_key": "test-key",
+        "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_MATCHLABELS_value": "test-value"
+      }
+    ],
+    "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_matchExpressions": [
+      {
+        "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_MATCHEXPRESSIONS_key": "test-key",
+        "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_MATCHEXPRESSIONS_values": [
+          {
+            "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_MATCHEXPRESSIONS_value": "test-value"
+          }
+        ],
+        "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_MATCHEXPRESSIONS_operator": true,
+        "PRESISTENTVOLUMECLAIMSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_in": true
+      }
+    ],
+    "PRESISTENTVOLUMECLAIMSPEC_storageClassName": "test-storageClassName",
+    "PRESISTENTVOLUMECLAIMSPEC_volumeAttributesClassName": "test-volumeAttributesClassName",
+    "PRESISTENTVOLUMECLAIMSPEC_volumeMode": "test-volumeMode",
+    "PRESISTENTVOLUMECLAIMSPEC_volumeName": "test-volumeName"
+  }
+}

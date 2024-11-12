@@ -4,7 +4,7 @@
     "Kubernetes_manifest": true,
     "apiVersion": true,
     "Group": true,
-    "GROUP_rbac_authorization": true,
+    "GROUP_rbac": true,
     "Version": true,
     "VERSION_v1": true,
     "kind": true,

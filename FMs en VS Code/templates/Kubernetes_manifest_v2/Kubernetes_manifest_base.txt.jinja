@@ -27,6 +27,9 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 {%elif KIND_ClusterRoleBinding%}
 {% include 'Kubernetes_manifest_clusterRoleBinding.txt.jinja'%}
 
+{%elif KIND_RoleBinding%}
+{% include 'Kubernetes_manifest_roleBinding.txt.jinja'%}
+
 {%elif KIND_ServiceAccount%}
 {% include 'Kubernetes_manifest_serviceAccount.txt.jinja'%}
 

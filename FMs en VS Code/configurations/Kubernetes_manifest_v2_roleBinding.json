@@ -1,0 +1,28 @@
+{
+  "file": "Kubernetes_manifest_v2_role.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_rbac": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "KIND_RoleBinding": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-roleBinding",
+    "METADATA_namespace": "default",
+    "subjects": [
+      {
+        "SUBJECTS_kind": true,
+        "SUBJECTS_KIND_User": true,
+        "SUBJECTS_name": "Jane",
+        "SUBJECTS_apiGroup": "rbac.authorization.k8s.io"
+      }
+    ],
+    "roleRef": true,
+    "ROLEREF_apiGroup": "rbac.authorization.k8s.io",
+    "ROLEREF_kind": "Role",
+    "ROLEREF_name": "roleBinding-example"
+  }
+}

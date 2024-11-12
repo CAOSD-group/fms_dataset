@@ -1299,6 +1299,7 @@ constraints
     KIND_Role => rules
     KIND_ClusterRole => rules
     KIND_ClusterRoleBinding => subjects & roleRef
+    KIND_RoleBinding => subjects & roleRef
     KIND_CronJob => CronJobSpec 
     KIND_Job => JobSpec
     KIND_Namespace => NamespaceSpec
@@ -1367,5 +1368,5 @@ constraints
     CONVERSION_STRATEGY_Webhook => CONVERSION_webhook
     CLIENTCONFIG_URL_port > 0 & CLIENTCONFIG_URL_port < 65536
     aggregationRule => KIND_ClusterRole
-    subjects & roleRef => KIND_ClusterRoleBinding
+    subjects & roleRef => KIND_ClusterRoleBinding | KIND_RoleBinding
     JOBSPEC_backoffLimitPerIndex => COMPLETIONMODE_Indexed

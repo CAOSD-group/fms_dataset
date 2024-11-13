@@ -27,6 +27,9 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 {%elif KIND_ClusterRoleBinding%}
 {% include 'Kubernetes_manifest_clusterRoleBinding.txt.jinja'%}
 
+{%elif KIND_RoleBinding%}
+{% include 'Kubernetes_manifest_roleBinding.txt.jinja'%}
+
 {%elif KIND_ServiceAccount%}
 {% include 'Kubernetes_manifest_serviceAccount.txt.jinja'%}
 
@@ -67,6 +70,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {%elif PersistentVolumeClaimSpec%}
   {% macro indent_persistentVolumeClaim() %}{% include 'Kubernetes_manifest_spec_persistentVolumeClaim.txt.jinja'%}{% endmacro %}
   {{ indent_persistentVolumeClaim()|indent(first=false) }}
+
+  {%elif PersistentVolumeSpec%}
+  {% macro indent_persistentVolume() %}{% include 'Kubernetes_manifest_spec_persistentVolume.txt.jinja'%}{% endmacro %}
+  {{ indent_persistentVolume()|indent(first=false) }}
 
   {%endif%}
 

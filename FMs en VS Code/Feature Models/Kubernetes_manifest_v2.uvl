@@ -1133,6 +1133,283 @@ features
                             String PRESISTENTVOLUMECLAIMSPEC_volumeAttributesClassName {doc 'volumeAttributesClassName may be used to set the VolumeAttributesClass used by this claim. If specified, the CSI driver will create or update the volume with the attributes defined in the corresponding VolumeAttributesClass. This has a different purpose than storageClassName, it can be changed after the claim is created. An empty string value means that no VolumeAttributesClass will be applied to the claim but it`s not allowed to reset this field to empty string once it is set. If unspecified and the PersistentVolumeClaim is unbound, the default VolumeAttributesClass will be set by the persistentvolume controller if it exists. If the resource referred to by volumeAttributesClass does not exist, this PersistentVolumeClaim will be set to a Pending state, as reflected by the modifyVolumeStatus field, until such as a resource exists. More info: https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/ (Alpha) Using this field requires the VolumeAttributesClass feature gate to be enabled.'}
                             String PRESISTENTVOLUMECLAIMSPEC_volumeMode {doc 'volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.'}
                             String PRESISTENTVOLUMECLAIMSPEC_volumeName {doc 'volumeName is the binding reference to the PersistentVolume backing this claim.'}
+                    Boolean PersistentVolumeSpec {doc 'spec defines a specification of a persistent volume owned by the cluster. Provisioned by an administrator. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes'}
+                        mandatory   
+                            Boolean PERSISTENTVOLUME_accessModes cardinality [1..*]  {doc 'accessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_ACCESSMODES_accessMode
+                            Boolean PERSISTENTVOLUME_capacity {doc 'capacity is the description of the persistent volume`s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_CAPACITY_storage
+                            Boolean PERSISTENTVOLUME_persistentVolumeReclaimPolicy {doc 'persistentVolumeReclaimPolicy defines what happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming'}
+                                alternative
+                                    Boolean PERSISTENTVOLUME_RECLAIMPOLICY_Retain
+                                    Boolean PERSISTENTVOLUME_RECLAIMPOLICY_Delete
+                                    Boolean PERSISTENTVOLUME_RECLAIMPOLICY_Recycle
+                            String PERSISTENTVOLUME_storageClassName {doc 'storageClassName is the name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.'}
+                            String PERSISTENTVOLUME_volumeMode {doc 'volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.'}
+                        optional 
+                            String PERSISTENTVOLUME_volumeAttributesClassName {doc 'Name of VolumeAttributesClass to which this persistent volume belongs. Empty value is not allowed. When this field is not set, it indicates that this volume does not belong to any VolumeAttributesClass. This field is mutable and can be changed by the CSI driver after a volume has been updated successfully to a new class. For an unbound PersistentVolume, the volumeAttributesClassName will be matched with unbound PersistentVolumeClaims during the binding process. This is an alpha field and requires enabling VolumeAttributesClass feature.'}  
+                            Boolean PERSISTENTVOLUME_mountOptions {doc 'mountOptions is the list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_MOUNTOPTIONS_mountOption
+                        or
+                            Boolean PERSISTENTVOLUME_hostPath {doc 'hostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath'}
+                                optional
+                                    String PERSISTENTVOLUME_HOSTPATH_path {doc 'path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath'}
+                                    String PERSISTENTVOLUME_HOSTPATH_type {default ' ', doc 'type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath'}
+                            Boolean PERSISTENTVOLUME_nfs {doc 'nfs represents an NFS mount on the host that shares a pod`s lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_NFS_path {doc 'Path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs'}
+                                    String PERSISTENTVOLUME_NFS_server {doc 'Server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs'}
+                                optional    
+                                    Boolean PERSISTENTVOLUME_NFS_readOnly {default false, doc 'ReadOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false.'}
+                            Boolean PERSISTENTVOLUME_csi {doc 'csi (Container Storage Interface) represents ephemeral storage that is handled by certain external CSI drivers (Beta feature).'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_CSI_driver {doc 'Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.'}
+                                optional  
+                                    String PERSISTENTVOLUME_CSI_volumeAttributes {doc 'VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver`s documentation for supported values.'}
+                                    Boolean PERSISTENTVOLUME_CSI_readOnly {default false, doc 'ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.'}  
+                                    String PERSISTENTVOLUME_CSI_fsType {doc 'fsType to mount. Ex. "ext4", "xfs", "ntfs". If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.'}                                      
+                                    Boolean PERSISTENTVOLUME_CSI_nodePublichSecretRef {doc 'NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret is specified, it must be a secret object that is already visible to the Kubelet.'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_CSI_NODEPUBLISHSECRETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
+                            Boolean PERSISTENTVOLUME_fc {doc 'fc represents a Fibre Channel resource that is attached to a kubelet`s host machine and then exposed to the pod.'}
+                                mandatory
+                                    String PERSISTENTVOLUME_FC_fsType {doc 'fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.'}   
+                                optional    
+                                    Boolean PERSISTENTVOLUME_FC_readOnly {default false, doc 'readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                                    Integer PERSISTENTVOLUME_FC_lun {doc 'lun is Optional: FC target lun number'}
+                                    String PERSISTENTVOLUME_FC_targetWWNs cardinality [1..*] {doc 'targetWWNs is Optional: FC target worldwide names (WWNs)'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_FC_TARGETWWNS_targetWWN
+                                    String PERSISTENTVOLUME_FC_wwids cardinality [1..*] {doc 'wwids Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_FC_WWIDS_wwid
+                            Boolean PERSISTENTVOLUME_flocker {doc 'flocker represents a Flocker volume attached to a kubelet`s host machine. This depends on the Flocker control service being running'}
+                                mandatory
+                                    String PERSISTENTVOLUME_FLOCKER_datsetUUID {doc 'datasetUUID is the UUID of the dataset. This is unique identifier of a Flocker dataset'}
+                                    String PERSISTENTVOLUME_FLOCKER_datasetName {doc 'Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated'}
+                            Boolean PERSISTENTVOLUME_iscsi {doc 'iscsi represents an ISCSI Disk resource that is attached to a kubelet`s host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md'} 
+                                mandatory 
+                                    String PERSISTENTVOLUME_ISCSI_targetPortal {doc 'targetPortal is iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).'}  
+                                    Integer PERSISTENTVOLUME_ISCSI_lun {doc 'lun represents iSCSI Target Lun number.'}
+                                    String PERSISTENTVOLUME_ISCSI_iqn {doc 'iqn is the target iSCSI Qualified Name.'}
+                                optional 
+                                    String PERSISTENTVOLUME_ISCSI_fsType {doc 'fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi'} 
+                                    Boolean PERSISTENTVOLUME_ISCSI_chapAuthDiscovery {doc 'chapAuthDiscovery defines whether support iSCSI Discovery CHAP authentication'}
+                                    Boolean PERSISTENTVOLUME_ISCSI_chapAuthSession {doc 'chapAuthSession defines whether support iSCSI Session CHAP authentication'}
+                                    String PERSISTENTVOLUME_ISCSI_initiatorName {doc 'initiatorName is the custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.'}
+                                    String PERSISTENTVOLUME_ISCSI_iscsiInterface {default 'default', doc 'iscsiInterface is the interface Name that uses an iSCSI transport. Defaults to "default" (tcp).'}
+                                    String PERSISTENTVOLUME_ISCSI_portals cardinality [1..*] {doc 'portals is the iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_ISCSI_PORTALS_portal
+                                    Boolean PERSISTENTVOLUME_ISCSI_readOnly {default false, doc 'readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.'}
+                                    Boolean PERSISTENTVOLUME_ISCSI_secretRef {doc 'secretRef is the CHAP Secret for iSCSI target and initiator authentication'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_ISCSI_SECRETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
+                            Boolean PERSISTENTVOLUME_photonPersistentDisk {doc 'photonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine.'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_PHOTONPERSISTENTDISK_pdID {doc 'pdID is the ID that identifies Photon Controller persistent disk.'}
+                                optional    
+                                    String PERSISTENTVOLUME_PHOTONPERSISTENTDISK_fsType {doc 'fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.'}
+                            Boolean PERSISTENTVOLUME_quobyte {doc 'quobyte represents a Quobyte mount on the host that shares a pod`s lifetime.'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_QUOBYTE_volume {doc 'volume is a string that references an already created Quobyte volume by name.'}
+                                    String PERSISTENTVOLUME_QUOBYTE_registry {doc 'registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes'}
+                                optional
+                                    String PERSISTENTVOLUME_QUOBYTE_group {doc 'group to map volume access to Default is no group'}
+                                    Boolean PERSISTENTVOLUME_QUOBYTE_readOnly {default false, doc 'readOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.'}
+                                    String PERSISTENTVOLUME_QUOBYTE_tenant {doc 'tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin'}
+                                    String PERSISTENTVOLUME_QUOBYTE_user {doc 'user to map volume access to Defaults to serivceaccount user'}
+                            Boolean PERSISTENTVOLUME_rbd {doc 'rbd represents a Rados Block Device mount on the host that shares a pod`s lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md'}
+                                mandatory    
+                                    String PERSISTENTVOLUME_RBD_image {doc 'image is the rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                    Boolean PERSISTENTVOLUME_RBD_monitors cardinality [1..*] {doc 'monitors is a collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_RBD_MONITORS_monitor
+                                    String PERSISTENTVOLUME_RBD_pool {default 'rbd', doc 'pool is the rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}                                                
+                                optional  
+                                    String PERSISTENTVOLUME_RBD_fsType {doc 'fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd'}  
+                                    Boolean PERSISTENTVOLUME_RBD_readOnly {default false,doc 'readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                    Boolean PERSISTENTVOLUME_RBD_secretRef {default false, doc 'secretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_RBD_SECRETREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'}
+                                    String PERSISTENTVOLUME_RBD_keyring {default '/etc/ceph/keyring', doc 'keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}
+                                    String PERSISTENTVOLUME_RBD_user {default 'admin', doc 'user is the rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it'}                                                    
+                            Boolean PERSISTENTVOLUME_scaleIO {doc 'scaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_SCALEIO_gateway {doc 'gateway is the host address of the ScaleIO API Gateway.'}
+                                    String PERSISTENTVOLUME_SCALEIO_volumeName {doc 'volumeName is the name of a volume already created in the ScaleIO system that is associated with this volume source.'}
+                                    String PERSISTENTVOLUME_SCALEIO_system {doc 'system is the name of the storage system as configured in ScaleIO.'}
+                                    String PERSISTENTVOLUME_SCALEIO_protectionDomain {doc 'protectionDomain is the name of the ScaleIO Protection Domain for the configured storage.'}
+                                optional  
+                                    String PERSISTENTVOLUME_SCALEIO_fsType {default 'xfs', doc 'fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs".'} 
+                                    Boolean PERSISTENTVOLUME_SCALEIO_readOnly {default false, doc 'readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                                    Boolean PERSISTENTVOLUME_SCALEIO_secretRef {doc 'secretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.'}
+                                        mandatory
+                                            String PERSISTENTVOLUME_SCALEIO_SECRETREF_name
+                                    Boolean PERSISTENTVOLUME_SCALEIO_sslEnabled {default false, doc 'sslEnabled Flag enable/disable SSL communication with Gateway, default false'}
+                                    Boolean PERSISTENTVOLUME_SCALEIO_storageMode {doc 'storageMode indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.'}
+                                        alternative   
+                                            Boolean PERSISTENTVOLUME_SCALEIO_STORAGEMODE_thickProvisioned
+                                            Boolean PERSISTENTVOLUME_SCALEIO_STORAGEMODE_thinProvisioned {default}
+                                    String PERSISTENTVOLUME_SCALEIO_storagePool {doc 'storagePool is the ScaleIO Storage Pool associated with the protection domain.'}
+                            Boolean PERSISTENTVOLUME_storageos {doc 'storageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_STORAGEOS_volumeName {doc 'volumeName is the human-readable name of the StorageOS volume. Volume names are only unique within a namespace.'}
+                                optional   
+                                    String PERSISTENTVOLUME_STORAGEOS_fsType {doc 'fsType is the filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.'}
+                                    Boolean PERSISTENTVOLUME_STORAGEOS_readOnly {default false, doc 'readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                                    Boolean PERSISTENTVOLUME_STORAGEOS_secretRef {doc 'secretRef specifies the secret to use for obtaining the StorageOS API credentials. If not specified, default values will be attempted.'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_STORAGEOS_SECRETREF_name
+                                    String PERSISTENTVOLUME_STORAGEOS_volumeNamespace {doc 'volumeNamespace specifies the scope of the volume within StorageOS. If no namespace is specified then the Pod`s namespace will be used. This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.'}
+                            Boolean PERSISTENTVOLUME_awsElasticBlockStore {doc 'awsElasticBlockStore represents an AWS Disk resource that is attached to a kubelet`s host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_AWSELASTICBLOCKSTORE_volumeID {doc 'volumeID is unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore'}
+                                    String PERSISTENTVOLUME_AWSELASTICBLOCKSTORE_fsType { default 'ext4', doc 'fsType is the filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore'}
+                                optional
+                                    String PERSISTENTVOLUME_AWSELASTICBLOCKSTORE_partition {doc 'partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).'}
+                                    Boolean PERSISTENTVOLUME_AWSELASTICBLOCKSTORE_readOnly {doc 'readOnly value true will force the readOnly setting in VolumeMounts. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore'}
+                            Boolean PERSISTENTVOLUME_azureDisk {doc 'azureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.'}
+                                mandatory
+                                    String PERSISTENTVOLUME_AZUREDISTK_diskName {doc 'diskName is the Name of the data disk in the blob storage'}
+                                    String PERSISTENTVOLUME_AZUREDISTK_diskURI {doc 'diskURI is the URI of data disk in the blob storage'}
+                                optional
+                                    String PERSISTENTVOLUME_AZUREDISTK_cachingMode {doc 'cachingMode is the Host Caching mode: None, Read Only, Read Write.'}
+                                        alternative   
+                                            Boolean PERSISTENTVOLUME_AZUREDISTK_CACHINGMODE_none
+                                            Boolean PERSISTENTVOLUME_AZUREDISTK_CACHINGMODE_readOnly
+                                            Boolean PERSISTENTVOLUME_AZUREDISTK_CACHINGMODE_readWrite
+                                    String PERSISTENTVOLUME_AZUREDISTK_fsType {default 'ext4', doc 'fsType is Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.'}
+                                    String PERSISTENTVOLUME_AZUREDISTK_kind {doc 'kind expected values are Shared: multiple blob disks per storage account Dedicated: single blob disk per storage account Managed: azure managed data disk (only in managed availability set). defaults to shared'}
+                                        alternative   
+                                            Boolean PERSISTENTVOLUME_AZUREDISTK_KIND_shared {default}
+                                            Boolean PERSISTENTVOLUME_AZUREDISTK_KIND_dedicated
+                                            Boolean PERSISTENTVOLUME_AZUREDISTK_KIND_managed
+                                    Boolean PERSISTENTVOLUME_AZUREDISTK_readOnly {default false, doc 'readOnly Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                            Boolean PERSISTENTVOLUME_azureFile {doc 'azureFile represents an Azure File Service mount on the host and bind mount to the pod.'}
+                                mandatory
+                                    String PERSISTENTVOLUME_AZUREFILE_secretName {doc 'secretName is the name of secret that contains Azure Storage Account Name and Key'}
+                                    String PERSISTENTVOLUME_AZUREFILE_shareName {doc 'shareName is the azure Share Name'}
+                                optional
+                                    String PERSISTENTVOLUME_AZUREFILE_secretNamespace {doc 'secretNamespace is the namespace of the secret that contains Azure Storage Account Name and Key default is the same as the Pod'}
+                                    Boolean PERSISTENTVOLUME_AZUREFILE_readOnly {doc 'readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                            Boolean PERSISTENTVOLUME_cephfs {doc 'cephFS represents a Ceph FS mount on the host that shares a pod`s lifetime'}
+                                mandatory 
+                                    Boolean PERSISTENTVOLUME_CEFS_monitors cardinality [1..*] {doc 'monitors is Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it'} 
+                                        mandatory   
+                                            String PERSISTENTVOLUME_CEFS_MONITORS_monitor
+                                optional
+                                    String PERSISTENTVOLUME_CEFS_path {default '/', doc 'path is Optional: Used as the mounted root, rather than the full Ceph tree, default is /'}
+                                    Boolean PERSISTENTVOLUME_CEFS_readOnly {default false, doc 'readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it'}
+                                    String PERSISTENTVOLUME_CEFS_secretFile {doc 'secretFile is Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it'}
+                                    Boolean PERSISTENTVOLUME_CEFS_secretRef {doc 'secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it'}
+                                        mandatory   
+                                            String PERSISTENTVOLUME_CEFS_SECRETREF_name {doc 'name is unique within a namespace to reference a secret resource.'}
+                                            String PERSISTENTVOLUME_CEFS_SECRETREF_namespace {doc 'namespace defines the space within which the secret name must be unique.'}
+                                    String PERSISTENTVOLUME_CEFS_user {doc 'user is Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it'}
+                            Boolean PERSISTENTVOLUME_cinder {doc 'cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_CINDER_fsType {doc 'fsType Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md'}
+                                    String PERSISTENTVOLUME_CINDER_volumeID {doc 'volumeID used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md'}
+                                optional        
+                                    Boolean PERSISTENTVOLUME_CINDER_readOnly {doc 'readOnly is Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md'}  
+                                    Boolean PERSISTENTVOLUME_CINDER_secretRef {doc 'secretRef is Optional: points to a secret object containing parameters used to connect to OpenStack.'}   
+                                        mandatory   
+                                            String PERSISTENTVOLUME_CINDER_SECRETREF_name {doc 'name is unique within a namespace to reference a secret resource.'}    
+                                            String PERSISTENTVOLUME_CINDER_SECRETREF_namespace {doc 'namespace defines the space within which the secret name must be unique.'}             
+                            Boolean PERSISTENTVOLUME_claimRef {doc 'claimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding'}
+                                mandatory
+                                    String PERSISTENTVOLUME_CLAIMREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'} 
+                                    String PERSISTENTVOLUME_CLAIMREF_namespace {doc 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'}  
+                                optional
+                                    String PERSISTENTVOLUME_CLAIMREF_apiVersion {doc 'API version of the referent.'}
+                                    String PERSISTENTVOLUME_CLAIMREF_kind {doc 'Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'} 
+                                    String PERSISTENTVOLUME_CLAIMREF_fieldPath {doc 'If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.'} 
+                                    String PERSISTENTVOLUME_CLAIMREF_resourceVersion {doc 'Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency'} 
+                                    String PERSISTENTVOLUME_CLAIMREF_uid {doc 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'} 
+                            Boolean PERSISTENTVOLUME_flexVolume {doc 'flexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.'}
+                                mandatory 
+                                    String PERSISTENTVOLUME_FLEXVOLUME_driver {doc 'driver is the name of the driver to use for this volume.'} 
+                                    String PERSISTENTVOLUME_FLEXVOLUME_fsType {doc 'fsType is the Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.'} 
+                                optional
+                                    Boolean PERSISTENTVOLUME_FLEXVOLUME_options cardinality [1..*]  {doc 'options is Optional: this field holds extra command options if any.'}
+                                        mandatory  
+                                            String PERSISTENTVOLUME_FLEXVOLUME_OPTIONS_key 
+                                            String PERSISTENTVOLUME_FLEXVOLUME_OPTIONS_value 
+                                    Boolean PERSISTENTVOLUME_FLEXVOLUME_readOnly {default false, doc 'readOnly is Optional: defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                                    Boolean PERSISTENTVOLUME_FLEXVOLUME_secretRef {doc 'secretRef is Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.'}
+                                        mandatory
+                                            String PERSISTENTVOLUME_FLEXVOLUME_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'} 
+                                            String PERSISTENTVOLUME_FLEXVOLUME_namespace {doc 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'}  
+                            Boolean PERSISTENTVOLUME_gcePersistentDisk {doc 'gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet`s host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk'}
+                                mandatory  
+                                    String PERSISTENTVOLUME_GCEPERSISTENTDISK_fsType {default 'ext4', doc 'fsType is filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk'}
+                                    String PERSISTENTVOLUME_GCEPERSISTENTDISK_pdName {doc 'pdName is unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk'}
+                                optional
+                                    Integer PERSISTENTVOLUME_GCEPERSISTENTDISK_partition {doc 'partition is the partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk'}
+                                    Boolean PERSISTENTVOLUME_GCEPERSISTENTDISK_readOnly {doc 'readOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk'}
+                            Boolean PERSISTENTVOLUME_glusterfs {doc 'glusterfs represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. More info: https://examples.k8s.io/volumes/glusterfs/README.md'}
+                                mandatory
+                                    String PERSISTENTVOLUME_GLUSTERFS_endpoints {doc 'endpoints is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod'}
+                                    String PERSISTENTVOLUME_GLUSTERFS_path {doc 'path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod'}
+                                optional 
+                                    String PERSISTENTVOLUME_GLUSTERFS_endpointsNamespace {doc 'endpointsNamespace is the namespace that contains Glusterfs endpoint. If this field is empty, the EndpointNamespace defaults to the same namespace as the bound PVC. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod'}
+                                    Boolean PERSISTENTVOLUME_GLUSTERFS_readOnly {default false, doc 'readOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod'}
+                            Boolean PERSISTENTVOLUME_local {doc 'local represents directly-attached storage with node affinity'}
+                                mandatory 
+                                    String PERSISTENTVOLUME_LOCAL_path {doc 'path of the full path to the volume on the node. It can be either a directory or block device (disk, partition, ...).'}
+                                optional
+                                    String PERSISTENTVOLUME_LOCAL_fsType {doc 'fsType is the filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default value is to auto-select a filesystem if unspecified.'}
+                            Boolean PERSISTENTVOLUME_nodeAffinity {doc 'nodeAffinity defines constraints that limit what nodes this volume can be accessed from. This field influences the scheduling of pods that use this volume.'}
+                                mandatory   
+                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_required {doc 'required specifies hard node constraints that must be met.'}
+                                        mandatory  
+                                            Boolean PERSISTENTVOLUME_NODEAFFINITY_nodeSelectorTerms cardinality [1..*] {doc 'Required. A list of node selector terms. The terms are ORed.'}
+                                                or
+                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_matchExpressions {doc 'A list of node selector requirements by node`s labels.'}
+                                                        mandatory   
+                                                            String PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_key {doc 'The label key that the selector applies to.'}
+                                                            Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_operator {doc 'Represents a key`s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.'}
+                                                                alternative
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_OPERATOR_In
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_OPERATOR_NotIn
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_OPERATOR_Exist
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_OPERATOR_NotExist
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_OPERATOR_Gt
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_OPERATOR_Lt
+                                                            Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_values cardinality [1..*]  {doc 'An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.'}
+                                                                mandatory   
+                                                                    String PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_VALUES_value 
+                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_matchFields {doc 'A list of node selector requirements by node`s fields.'}
+                                                        mandatory   
+                                                            String PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_key {doc 'The label key that the selector applies to.'}
+                                                            Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_operator {doc 'Represents a key`s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.'}
+                                                                alternative
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_OPERATOR_In
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_OPERATOR_NotIn
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_OPERATOR_Exist
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_OPERATOR_NotExist
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_OPERATOR_Gt
+                                                                    Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_OPERATOR_Lt
+                                                            Boolean PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_values cardinality [1..*]  {doc 'An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.'}
+                                                                mandatory   
+                                                                    String PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_VALUES_value
+                            Boolean PERSISTENTVOLUME_portworxVolume {doc 'portworxVolume represents a portworx volume attached and mounted on kubelets host machine'}
+                                mandatory   
+                                    String PERSISTENTVOLUME_PORTWORXVOLUME_volumeID {doc 'volumeID uniquely identifies a Portworx volume'}
+                                optional   
+                                    String PERSISTENTVOLUME_PORTWORXVOLUME_fsType {default 'ext4', doc 'fSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified.'}
+                                    Boolean PERSISTENTVOLUME_PORTWORXVOLUME_readOnly {deafult false, doc 'readOnly defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.'}
+                            Boolean PERSISTENTVOLUME_vsphereVolume {doc 'vsphereVolume represents a vSphere volume attached and mounted on kubelets host machine'}
+                                mandatory
+                                    String PERSISTENTVOLUME_VSPHEREVOLUME_volumePath {doc 'volumePath is the path that identifies vSphere volume vmdk'} 
+                                optional   
+                                    String PERSISTENTVOLUME_VSPHEREVOLUME_fsType {default 'ext4', doc 'fsType is filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.'}
+                                    String PERSISTENTVOLUME_VSPHEREVOLUME_storagePolicyID {doc 'storagePolicyID is the storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.'}
+                                    String PERSISTENTVOLUME_VSPHEREVOLUME_storagePolicyName {doc 'storagePolicyName is the storage Policy Based Management (SPBM) profile name.'}  
             Boolean binaryData cardinality [1..*] {doc 'BinaryData contains the binary data. Each key must consist of alphanumeric characters, "-", "_" or ".". BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.'}
                 mandatory
                     String BINARYDATA_binaryFile_name
@@ -1291,7 +1568,7 @@ constraints
     KIND_StorageVersion => GROUP_internal
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec & IngressSpec & PersistentVolumeClaimSpec=> spec
+    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec & IngressSpec & PersistentVolumeClaimSpec & PersistentVolumeSpec=> spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_ConfigMap => binaryData | data 
     KIND_Secret => data & (type == '')
@@ -1306,6 +1583,7 @@ constraints
     KIND_Ingress => IngressSpec
     KIND_PersistentVolumeClaim => PersistentVolumeClaimSpec
     KIND_ServiceAccount => automountServiceAccountToken & imagePullSecrets & secrets
+    KIND_PersistentVolume => PersistentVolumeSpec
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
     KIND_CustomResourceDefinition => CustomResourceDefinitionSpec

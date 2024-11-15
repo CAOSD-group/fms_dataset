@@ -91,7 +91,7 @@
     "JOBSPEC_suspend": true,
     "JOBSPEC_template": true,
     "JOBSPEC_TEMPLATE_metadata": true,
-    "JOBSPEC_TEMPLATE_podSpecTemplate": true,
+    "JOBSPEC_TEMPLATE_podSpecReference": true,
     "JOBSPEC_ttlSecondsAfterFinished": 100,
     "PodSpec": true,
     "PODSPEC_containers": [

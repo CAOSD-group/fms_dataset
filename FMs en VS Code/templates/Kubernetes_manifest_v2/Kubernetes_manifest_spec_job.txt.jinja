@@ -77,7 +77,7 @@
 {%if JOBSPEC_template%}template:
   {%if JOBSPEC_TEMPLATE_metadata%}metadata:{%endif%}
 
-  {%if JOBSPEC_TEMPLATE_podSpecTemplate%}spec:
+  {%if JOBSPEC_TEMPLATE_podSpecReference%}spec:
     {% macro indent_pod() %}{% include 'Kubernetes_manifest_spec_pod.txt.jinja'%}{% endmacro %}
     {{ indent_pod()|indent(first=false) }}
   {%endif%}

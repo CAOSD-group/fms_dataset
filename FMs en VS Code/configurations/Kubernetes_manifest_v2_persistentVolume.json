@@ -33,6 +33,132 @@
       {
         "PERSISTENTVOLUME_MOUNTOPTIONS_mountOption": "nodiratime"
       }
-    ]
+    ],
+    "PERSISTENTVOLUME_awsElasticBlockStore": true,
+    "PERSISTENTVOLUME_AWSELASTICBLOCKSTORE_volumeID": "vol-0a1b2c3d4e5f6g7h8",
+    "PERSISTENTVOLUME_AWSELASTICBLOCKSTORE_fsType": "ext4",
+    "PERSISTENTVOLUME_AWSELASTICBLOCKSTORE_partition": "0",
+    "PERSISTENTVOLUME_AWSELASTICBLOCKSTORE_readOnly": false,
+
+    "PERSISTENTVOLUME_azureDisk": true,
+    "PERSISTENTVOLUME_AZUREDISTK_diskName": "myDisk",
+    "PERSISTENTVOLUME_AZUREDISTK_diskURI": "https://example.com/disk/path.vhd",
+    "PERSISTENTVOLUME_AZUREDISTK_cachingMode": true,
+    "PERSISTENTVOLUME_AZUREDISTK_CACHINGMODE_readWrite": true,
+    "PERSISTENTVOLUME_AZUREDISTK_fsType": "ext4",
+    "PERSISTENTVOLUME_AZUREDISTK_kind": true,
+    "PERSISTENTVOLUME_AZUREDISTK_KIND_shared": true,
+    "PERSISTENTVOLUME_AZUREDISTK_readOnly": false,
+
+    "PERSISTENTVOLUME_azureFile": true,
+    "PERSISTENTVOLUME_AZUREFILE_secretName": "azure-secret",
+    "PERSISTENTVOLUME_AZUREFILE_shareName": "myshare",
+    "PERSISTENTVOLUME_AZUREFILE_secretNamespace": "default",
+    "PERSISTENTVOLUME_AZUREFILE_readOnly": false,
+
+    "PERSISTENTVOLUME_cephfs": true,
+    "PERSISTENTVOLUME_CEFS_monitors": [
+      {
+        "PERSISTENTVOLUME_CEFS_MONITORS_monitor": "10.0.0.1:6789"
+      },
+      {
+        "PERSISTENTVOLUME_CEFS_MONITORS_monitor": "10.0.0.2:6789"
+      }
+    ],
+    "PERSISTENTVOLUME_CEFS_path": "/my-cephfs-path",
+    "PERSISTENTVOLUME_CEFS_readOnly": false,
+    "PERSISTENTVOLUME_CEFS_secretFile": "/etc/ceph/user.secret",
+    "PERSISTENTVOLUME_CEFS_secretRef": true,
+    "PERSISTENTVOLUME_CEFS_SECRETREF_name": "my-ceph",
+    "PERSISTENTVOLUME_CEFS_SECRETREF_namespace": "default",
+    "PERSISTENTVOLUME_CEFS_user": "admin",
+
+    "PERSISTENTVOLUME_cinder": true,
+    "PERSISTENTVOLUME_CINDER_fsType": "ext4",
+    "PERSISTENTVOLUME_CINDER_volumeID": "cinder-volume-id",
+    "PERSISTENTVOLUME_CINDER_secretRef": true,
+    "PERSISTENTVOLUME_CINDER_SECRETREF_name": "my-cinder",
+    "PERSISTENTVOLUME_CINDER_SECRETREF_namespace": "default",
+
+    "PERSISTENTVOLUME_claimRef": true, 
+    "PERSISTENTVOLUME_CLAIMREF_name": "my-cinder-pvc",
+    "PERSISTENTVOLUME_CLAIMREF_namespace": "default",
+    "PERSISTENTVOLUME_CLAIMREF_apiVersion": "v1",
+    "PERSISTENTVOLUME_CLAIMREF_kind": "PersistentVolumeClaim",
+    "PERSISTENTVOLUME_CLAIMREF_resourceVersion": "4562851",
+    "PERSISTENTVOLUME_CLAIMREF_uid": "12345678-1234-5678-1234-567812345678",
+
+    "PERSISTENTVOLUME_flexVolume": true,
+    "PERSISTENTVOLUME_FLEXVOLUME_driver": "example.com/csi",
+    "PERSISTENTVOLUME_FLEXVOLUME_fsType": "ext4",
+    "PERSISTENTVOLUME_FLEXVOLUME_options": [
+      {
+        "PERSISTENTVOLUME_FLEXVOLUME_OPTIONS_key": "option1",
+        "PERSISTENTVOLUME_FLEXVOLUME_OPTIONS_value": "value1"
+      },
+      {
+        "PERSISTENTVOLUME_FLEXVOLUME_OPTIONS_key": "option2",
+        "PERSISTENTVOLUME_FLEXVOLUME_OPTIONS_value": "value2"
+      }
+    ],
+    "PERSISTENTVOLUME_FLEXVOLUME_readOnly": false,
+    "PERSISTENTVOLUME_FLEXVOLUME_secretRef": true,
+    "PERSISTENTVOLUME_FLEXVOLUME_name": "my-volume",
+    "PERSISTENTVOLUME_FLEXVOLUME_namespace": "default",
+
+    "PERSISTENTVOLUME_gcePersistentDisk": true,
+    "PERSISTENTVOLUME_GCEPERSISTENTDISK_fsType": "ext4",
+    "PERSISTENTVOLUME_GCEPERSISTENTDISK_pdName": "my-data-disk",
+    "PERSISTENTVOLUME_GCEPERSISTENTDISK_partition": "0",
+    "PERSISTENTVOLUME_GCEPERSISTENTDISK_readOnly": false,
+
+    "PERSISTENTVOLUME_glusterfs": true,
+    "PERSISTENTVOLUME_GLUSTERFS_endpoints": "glusterfs-endpoints",
+    "PERSISTENTVOLUME_GLUSTERFS_path": "my-glusterfs-path",
+    "PERSISTENTVOLUME_GLUSTERFS_endpointsNamespace": "default",
+    "PERSISTENTVOLUME_GLUSTERFS_readOnly": false,
+
+    "PERSISTENTVOLUME_local": true,
+    "PERSISTENTVOLUME_LOCAL_path": "/mnt/disks/ssd1",
+    "PERSISTENTVOLUME_LOCAL_fsType": "ext4",
+
+    "PERSISTENTVOLUME_nodeAffinity": true,
+    "PERSISTENTVOLUME_NODEAFFINITY_required": true,
+    "PERSISTENTVOLUME_NODEAFFINITY_nodeSelectorTerms": [
+      {
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_matchExpressions": true,
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_key": "kubernetes.io/e2e-az-name",
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_operator": true,
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_OPERATOR_In": true,
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_values": [
+          {
+            "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHEXPRESSIONS_VALUES_value": "valor1"
+          }
+        ]
+      },
+      {
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_matchFields": true,
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_key": "kubernetes.io/e2e-az-name",
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_operator": true,
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_OPERATOR_In": true,
+        "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_values": [
+          {
+            "PERSISTENTVOLUME_NODEAFFINITY_NODESELECTORTERMS_MATCHFIELDS_VALUES_value": "valor1"
+          }
+        ]
+      }
+    ],
+
+    "PERSISTENTVOLUME_portworxVolume": true,
+    "PERSISTENTVOLUME_PORTWORXVOLUME_volumeID": "px-volume-id",
+    "PERSISTENTVOLUME_PORTWORXVOLUME_fsType": "ext4",
+    "PERSISTENTVOLUME_PORTWORXVOLUME_readOnly": false,
+
+    "PERSISTENTVOLUME_vsphereVolume": true,
+    "PERSISTENTVOLUME_VSPHEREVOLUME_volumePath": "/datastore-name",
+    "PERSISTENTVOLUME_VSPHEREVOLUME_fsType": "ext4",
+    "PERSISTENTVOLUME_VSPHEREVOLUME_storagePolicyID": "policy-id",
+    "PERSISTENTVOLUME_VSPHEREVOLUME_storagePolicyName": "policy-name"
+
   }
 }

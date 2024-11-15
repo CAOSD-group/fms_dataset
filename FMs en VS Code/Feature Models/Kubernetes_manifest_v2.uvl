@@ -1308,6 +1308,7 @@ features
                                     Boolean PERSISTENTVOLUME_CEFS_secretRef {doc 'secretRef is Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it'}
                                         mandatory   
                                             String PERSISTENTVOLUME_CEFS_SECRETREF_name {doc 'name is unique within a namespace to reference a secret resource.'}
+                                        optional    
                                             String PERSISTENTVOLUME_CEFS_SECRETREF_namespace {doc 'namespace defines the space within which the secret name must be unique.'}
                                     String PERSISTENTVOLUME_CEFS_user {doc 'user is Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it'}
                             Boolean PERSISTENTVOLUME_cinder {doc 'cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md'}
@@ -1319,10 +1320,12 @@ features
                                     Boolean PERSISTENTVOLUME_CINDER_secretRef {doc 'secretRef is Optional: points to a secret object containing parameters used to connect to OpenStack.'}   
                                         mandatory   
                                             String PERSISTENTVOLUME_CINDER_SECRETREF_name {doc 'name is unique within a namespace to reference a secret resource.'}    
+                                        optional    
                                             String PERSISTENTVOLUME_CINDER_SECRETREF_namespace {doc 'namespace defines the space within which the secret name must be unique.'}             
                             Boolean PERSISTENTVOLUME_claimRef {doc 'claimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding'}
                                 mandatory
                                     String PERSISTENTVOLUME_CLAIMREF_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'} 
+                                optional    
                                     String PERSISTENTVOLUME_CLAIMREF_namespace {doc 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'}  
                                 optional
                                     String PERSISTENTVOLUME_CLAIMREF_apiVersion {doc 'API version of the referent.'}
@@ -1343,6 +1346,7 @@ features
                                     Boolean PERSISTENTVOLUME_FLEXVOLUME_secretRef {doc 'secretRef is Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.'}
                                         mandatory
                                             String PERSISTENTVOLUME_FLEXVOLUME_name {doc 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'} 
+                                        optional
                                             String PERSISTENTVOLUME_FLEXVOLUME_namespace {doc 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'}  
                             Boolean PERSISTENTVOLUME_gcePersistentDisk {doc 'gcePersistentDisk represents a GCE Disk resource that is attached to a kubelet`s host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk'}
                                 mandatory  

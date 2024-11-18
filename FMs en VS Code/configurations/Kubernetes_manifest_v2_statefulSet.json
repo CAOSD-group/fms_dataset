@@ -1,0 +1,84 @@
+{
+  "file": "Kubernetes_manifest_v2_statefulSet.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_apps": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Workloads_APIs": true,
+    "KIND_StatefulSet": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-StatefulSet",
+    "METADATA_namespace": "default",
+    "spec": true,
+    "StatefulSetSpec": true,
+    "STATEFULSETSPEC_selector": true,
+    "STATEFULSETSPEC_SELECTOR_matchExpressions": [
+      {
+        "STATEFULSETSPEC_SELECTOR_MATCHEXPRESSIONS_key": "tier",
+        "STATEFULSETSPEC_SELECTOR_MATCHEXPRESSIONS_operator": true,
+        "STATEFULSETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_In": true,
+        "STATEFULSETSPEC_SELECTOR_MATCHEXPRESSIONS_values": [
+          {
+            "STATEFULSETSPEC_SELECTOR_MATCHEXPRESSIONS_VALUES_value": "backend"
+          },
+          {
+            "STATEFULSETSPEC_SELECTOR_MATCHEXPRESSIONS_VALUES_value": "frontend"
+          }
+        ]
+      }
+    ],
+    "STATEFULSETSPEC_SELECTOR_matchLabels": true,
+    "STATEFULSETSPEC_SELECTOR_MATCHLABELS_key": "app",
+    "STATEFULSETSPEC_SELECTOR_MATCHLABELS_value": "example-app",
+    "STATEFULSETSPEC_serviceName": "example-service",
+    "STATEFULSETSPEC_template": true,
+    "STATEFULSETSPEC_TEMPLATE_podSpecReference": true,
+    "STATEFULSETSPEC_TEMPLATE_metadataReference": true,
+    "PodSpec": true,
+    "PODSPEC_containers": [
+      {
+        "CONTAINERS_name": "example-container",
+        "CONTAINERS_image": "busybox",
+        "CONTAINERS_command":[
+          {
+            "CONTAINERS_COMMAND_value": "sh"
+          },
+          {
+            "CONTAINERS_COMMAND_value": "-c"
+          },
+          {
+            "CONTAINERS_COMMAND_value": "echo 'Hello from Kubernetes Job!' && sleep 30"
+          }
+        ],
+        "CONTAINERS_restartPolicy": "Never"
+      }
+    ],
+    "STATEFULSETSPEC_replicas": 3,
+    "STATEFULSETSPEC_revisionHistoryLimit": 10,
+    "STATEFULSETSPEC_updateStrategy": true,
+    "STATEFULSETSPEC_UPDATESTRATEGY_type": "RollingUpdate",
+    "STATEFULSETSPEC_UPDATESTRATEGY_rollingUpdate": true,
+    "STATEFULSETSPEC_UPDATESTRATEGY_ROLLINGUPDATE_partition": 1,
+    "STATEFULSETSPEC_UPDATESTRATEGY_ROLLINGUPDATE_maxUnavailable": 1,
+
+
+    "STATEFULSETSPEC_volumeClaimTemplates": [
+      {
+        "STATEFULSETSPEC_VOLUMECLAIMTEMPLATES_persistentVolumeClaimReference": true,
+        "STATEFULSETSPEC_VOLUMECLAIMTEMPLATES_metadataReference": true
+      }
+    ],
+
+    "STATEFULSETSPEC_minReadySeconds": 10,
+    "STATEFULSETSPEC_ordinals": true,
+    "STATEFULSETSPEC_ORDINALS_start": 0,
+    "STATEFULSETSPEC_persistentVolumeClaimRetentionPolicy": true,
+    "STATEFULSETSPEC_PERSISTENTVOLUMECLAIMRETENTIONPOLICY_whenDeleted": "Retain",
+    "STATEFULSETSPEC_PERSISTENTVOLUMECLAIMRETENTIONPOLICY_whenScaled": "Retain",
+    "STATEFULSETSPEC_podManagementPolicy": "OrderedReady"
+  }
+}

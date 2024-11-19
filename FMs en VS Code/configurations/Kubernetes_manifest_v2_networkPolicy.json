@@ -1,0 +1,88 @@
+{
+  "file": "Kubernetes_manifest_v2_networkPolicy.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_networking": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Cluster_APIs": true,
+    "KIND_NetworkPolicy": true,
+    "metadata": true,
+    "METADATA_name": "my-networkPolicy",
+    "spec": true,
+    "NetworkPolicySpec": true,
+    "NETWORKPOLICYSPEC_podSelector": true,
+    "NETWORKPOLICYSPEC_PODSELECTOR_matchLabels": true,
+    "NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_key": "app",
+    "NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_value": "myapp",
+    "NETWORKPOLICYSPEC": true,
+    "NETWORKPOLICYSPEC_POLICYTYPES_IngressAndEgress": true,
+    "NETWORKPOLICYSPEC_egress": [
+      {
+        "NETWORKPOLICYSPEC_EGRESS_ports": [
+          {
+            "NETWORKPOLICYSPEC_EGRESS_PORTS_port": 5000,
+            "NETWORKPOLICYSPEC_EGRESS_PORTS_protocol": true,
+            "NETWORKPOLICYSPEC_EGRESS_PORTS_PROTOCOL_TCP": true,
+            "NETWORKPOLICYSPEC_EGRESS_PORTS_endPort": 5005
+          }
+        ],
+        "NETWORKPOLICYSPEC_EGRESS_to": [
+          {
+            "NETWORKPOLICYSPEC_EGRESS_TO_ipBlock": true,
+            "NETWORKPOLICYSPEC_EGRESS_TO_IPBLOCK_cidr": "10.0.0.0/16",
+            "NETWORKPOLICYSPEC_EGRESS_TO_IPBLOCK_except": [
+              {
+                "NETWORKPOLICYSPEC_EGRESS_TO_IPBLOCK_EXCEPT_value": "10.0.5.0/24"
+              }
+            ],
+            "NETWORKPOLICYSPEC_EGRESS_TO_namespaceSelector": true,
+            "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_matchLabels": true,
+            "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHLABELS_key": "project",
+            "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHLABELS_value": "backend",
+
+            "NETWORKPOLICYSPEC_EGRESS_TO_podSelector": true,
+            "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_matchLabels": true,
+            "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHLABELS_key": "app",
+            "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHLABELS_value": "database"
+          }
+        ]
+      }
+    ],
+    "NETWORKPOLICYSPEC_ingress":[
+      {
+        "NETWORKPOLICYSPEC_INGRESS_ports": [
+          {
+            "NETWORKPOLICYSPEC_INGRESS_PORTS_port": 80,
+            "NETWORKPOLICYSPEC_INGRESS_PORTS_protocol": true,
+            "NETWORKPOLICYSPEC_INGRESS_PORTS_PROTOCOL_TCP": true,
+            "NETWORKPOLICYSPEC_INGRESS_PORTS_endPort": 90
+          }
+        ],
+        "NETWORKPOLICYSPEC_INGRESS_from": [
+          {
+            "NETWORKPOLICYSPEC_INGRESS_FROM_ipBlock": true,
+            "NETWORKPOLICYSPEC_INGRESS_FROM_IPBLOCK_cidr": "192.168.1.0/24",
+            "NETWORKPOLICYSPEC_INGRESS_FROM_IPBLOCK_except": [
+              {
+                "NETWORKPOLICYSPEC_INGRESS_FROM_IPBLOCK_EXCEPT_value": "192.168.1.100/32"
+              }
+            ],
+            "NETWORKPOLICYSPEC_INGRESS_FROM_namespaceSelector": true,
+            "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_matchLabels": true,
+            "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHLABELS_key": "enviroment",
+            "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHLABELS_value": "production",
+
+            "NETWORKPOLICYSPEC_INGRESS_FROM_podSelector": true,
+            "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_matchLabels": true,
+            "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHLABELS_key": "role",
+            "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHLABELS_value": "frontend"
+          }
+        ]
+      }
+    ]
+  }
+}

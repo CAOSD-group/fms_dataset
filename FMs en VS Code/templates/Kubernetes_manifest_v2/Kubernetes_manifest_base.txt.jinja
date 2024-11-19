@@ -79,6 +79,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {% macro indent_persistentVolume() %}{% include 'Kubernetes_manifest_spec_persistentVolume.txt.jinja'%}{% endmacro %}
   {{ indent_persistentVolume()|indent(first=false) }}
 
+  {%elif NetworkPolicySpec%}
+  {% macro indent_networkPolicy() %}{% include 'Kubernetes_manifest_spec_networkPolicy.txt.jinja'%}{% endmacro %}
+  {{ indent_networkPolicy()|indent(first=false) }}
+
   {%endif%}
 
 {%endif%}

@@ -31,9 +31,12 @@
         ]
       }
     ],
-    "STATEFULSETSPEC_SELECTOR_matchLabels": true,
-    "STATEFULSETSPEC_SELECTOR_MATCHLABELS_key": "app",
-    "STATEFULSETSPEC_SELECTOR_MATCHLABELS_value": "example-app",
+    "STATEFULSETSPEC_SELECTOR_matchLabels":[
+      {
+        "STATEFULSETSPEC_SELECTOR_MATCHLABELS_key": "app",
+        "STATEFULSETSPEC_SELECTOR_MATCHLABELS_value": "example-app",
+      }
+    ],
     "STATEFULSETSPEC_serviceName": "example-service",
     "STATEFULSETSPEC_template": true,
     "STATEFULSETSPEC_TEMPLATE_podSpecReference": true,

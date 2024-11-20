@@ -1430,7 +1430,7 @@ features
                                             Boolean STATEFULSETSPEC_SELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
                                                 mandatory   
                                                     String STATEFULSETSPEC_SELECTOR_MATCHEXPRESSIONS_VALUES_value
-                                    Boolean STATEFULSETSPEC_SELECTOR_matchLabels {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                    Boolean STATEFULSETSPEC_SELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
                                         mandatory   
                                             String STATEFULSETSPEC_SELECTOR_MATCHLABELS_key
                                             String STATEFULSETSPEC_SELECTOR_MATCHLABELS_value
@@ -1479,7 +1479,7 @@ features
                                             Boolean NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc ''}
                                                 mandatory   
                                                     String NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_VALUES_value
-                                    Boolean NETWORKPOLICYSPEC_PODSELECTOR_matchLabels {doc ''}
+                                    Boolean NETWORKPOLICYSPEC_PODSELECTOR_matchLabels cardinality [1..*] {doc ''}
                                         mandatory   
                                             String NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_key
                                             String NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_value
@@ -1524,7 +1524,7 @@ features
                                                             Boolean NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
                                                                 mandatory   
                                                                     String NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHEXPRESSIONS_VALUES_value
-                                                    Boolean NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_matchLabels {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                                    Boolean NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
                                                         mandatory   
                                                             String NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHLABELS_key
                                                             String NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHLABELS_value
@@ -1542,7 +1542,7 @@ features
                                                             Boolean NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
                                                                 mandatory   
                                                                     String NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHEXPRESSIONS_VALUES_value
-                                                    Boolean NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_matchLabels {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                                    Boolean NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
                                                         mandatory   
                                                             String NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHLABELS_key
                                                             String NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHLABELS_value
@@ -1571,7 +1571,7 @@ features
                                                             Boolean NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
                                                                 mandatory   
                                                                     String NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHEXPRESSIONS_VALUES_value
-                                                    Boolean NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_matchLabels {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                                    Boolean NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
                                                         mandatory   
                                                             String NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHLABELS_key
                                                             String NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHLABELS_value
@@ -1589,7 +1589,7 @@ features
                                                             Boolean NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
                                                                 mandatory   
                                                                     String NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHEXPRESSIONS_VALUES_value
-                                                    Boolean NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_matchLabels {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                                    Boolean NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
                                                         mandatory   
                                                             String NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHLABELS_key
                                                             String NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHLABELS_value
@@ -1603,6 +1603,56 @@ features
                                                     Boolean NETWORKPOLICYSPEC_INGRESS_PORTS_PROTOCOL_SCTP
                                         optional
                                             Integer NETWORKPOLICYSPEC_INGRESS_PORTS_endPort {doc 'endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.'}
+                    Boolean DaemonSetSpec {doc 'The desired behavior of this daemon set.'}
+                        mandatory
+                            Boolean DAEMONSETSPEC_selector {doc 'A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template´s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors'}
+                                or 
+                                    Boolean DAEMONSETSPEC_SELECTOR_matchExpressions cardinality [1..*] {doc 'matchExpressions is a list of label selector requirements. The requirements are ANDed.'}
+                                        mandatory   
+                                            String DAEMONSETSPEC_SELECTOR_MATCHEXPRESSIONS_key
+                                            Boolean DAEMONSETSPEC_SELECTOR_MATCHEXPRESSIONS_operator
+                                                alternative
+                                                    Boolean DAEMONSETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_In
+                                                    Boolean DAEMONSETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_NotIn
+                                                    Boolean DAEMONSETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_Exist
+                                                    Boolean DAEMONSETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_NotExist
+                                            Boolean DAEMONSETSPEC_SELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
+                                                mandatory   
+                                                    String DAEMONSETSPEC_SELECTOR_MATCHEXPRESSIONS_VALUES_value
+                                    Boolean DAEMONSETSPEC_SELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                        mandatory   
+                                            String DAEMONSETSPEC_SELECTOR_MATCHLABELS_key
+                                            String DAEMONSETSPEC_SELECTOR_MATCHLABELS_value
+                            Boolean DAEMONSETSPEC_template {doc 'An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template`s node selector (or on every node if no node selector is specified). The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template'}
+                                mandatory   
+                                    Boolean DAEMONSETSPEC_TEMPLATE_metadataReference {doc 'Reference to metadata object to not duplicate it'}
+                                    Boolean DAEMONSETSPEC_TEMPLATE_podSpecReference {doc 'Reference to Pod spec object to not duplicate it'}
+                        optional
+                            Integer DAEMONSETSPEC_minReadySeconds {default 0, doc 'The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready).'}
+                            Integer DAEMONSETSPEC_revisionHistoryLimit {default 10, doc 'The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.'}
+                            Boolean DAEMONSETSPEC_updateStrategy {doc 'An update strategy to replace existing DaemonSet pods with new pods.'}
+                                mandatory   
+                                    String DAEMONSETSPEC_UPDATESTRATEGY_type { default 'RollingUpdate', doc 'Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is RollingUpdate.'}
+                                optional
+                                    Boolean DAEMONSETSPEC_UPDATESTRATEGY_rollingUpdate {doc 'Rolling update config params. Present if and only if type is RollingUpdate.'}
+                                        mandatory   
+                                            String DAEMONSETSPEC_UPDATESTRATEGY_ROLLINGUPDATE_maxUnavailable {default 1, doc 'The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). This can not be 0 if MaxSurge is 0. Defaults to 1.'}
+                                            String DAEMONSETSPEC_UPDATESTRATEGY_ROLLINGUPDATE_maxSurge {default '0', doc 'he maximum number of nodes with an existing available DaemonSet pod that can have an updated DaemonSet pod during during an update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up to a minimum of 1. Default value is 0. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their a new pod created before the old pod is marked as deleted. The update starts by launching new pods on 30% of nodes. Once an updated pod is available (Ready for at least minReadySeconds) the old DaemonSet pod on that node is marked deleted. If the old pod becomes unavailable for any reason (Ready transitions to false, is evicted, or is drained) an updated pod is immediatedly created on that node without considering surge limits. Allowing surge implies the possibility that the resources consumed by the daemonset on any given node can double if the readiness check fails, and so resource intensive daemonsets should take into account that they may cause evictions during disruption.'}
+                    Boolean ReplicationControllerSpec {doc 'Spec defines the specification of the desired behavior of the replication controller.'}
+                        mandatory  
+                            Boolean REPLICATIONCONTROLLERSPEC_selector {doc 'Selector is a label query over pods that should match the Replicas count. If Selector is empty, it is defaulted to the labels present on the Pod template. Label keys and values that must match in order to be controlled by this replication controller, if empty defaulted to labels on Pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors'} 
+                                mandatory
+                                    Boolean REPLICATIONCONTROLLERSPEC_SELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                        mandatory   
+                                            String REPLICATIONCONTROLLERSPEC_SELECTOR_MATCHLABELS_key
+                                            String REPLICATIONCONTROLLERSPEC_SELECTOR_MATCHLABELS_value
+                            Boolean REPLICATIONCONTROLLERSPEC_template {doc 'Template is the object that describes the pod that will be created if insufficient replicas are detected. This takes precedence over a TemplateRef. The only allowed template.spec.restartPolicy value is "Always". More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template'} 
+                                mandatory   
+                                    Boolean REPLICATIONCONTROLLERSPEC_TEMPLATE_metadataReference {doc 'Reference to metadata object to not duplicate it'}
+                                    Boolean REPLICATIONCONTROLLERSPEC_TEMPLATE_podSpecReference {doc 'Reference to Pod spec object to not duplicate it'}
+                        optional
+                            Integer REPLICATIONCONTROLLERSPEC_minReadySeconds {default 0, doc 'Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)'} 
+                            Integer REPLICATIONCONTROLLERSPEC_replicas {default 1, doc 'Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller'} 
             Boolean binaryData cardinality [1..*] {doc 'BinaryData contains the binary data. Each key must consist of alphanumeric characters, "-", "_" or ".". BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.'}
                 mandatory
                     String BINARYDATA_binaryFile_name
@@ -1761,7 +1811,7 @@ constraints
     KIND_StorageVersion => GROUP_internal
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec & IngressSpec & PersistentVolumeClaimSpec & PersistentVolumeSpec & StatefulSetSpec & NetworkPolicySpec => spec
+    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec & IngressSpec & PersistentVolumeClaimSpec & PersistentVolumeSpec & StatefulSetSpec & NetworkPolicySpec & DaemonSetSpec & ReplicationControllerSpec => spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_ConfigMap => binaryData | data 
     KIND_Secret => data & (type == '')
@@ -1779,6 +1829,8 @@ constraints
     KIND_PersistentVolume => PersistentVolumeSpec
     KIND_StatefulSet => StatefulSetSpec
     KIND_NetworkPolicy => NetworkPolicySpec
+    KIND_DaemonSet => DaemonSetSpec
+    KIND_ReplicationController => ReplicationControllerSpec
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
     KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
@@ -1824,6 +1876,8 @@ constraints
     DEPLOYMENTSPEC_TEMPLATE_podspec => PodSpec
     STATEFULSETSPEC_TEMPLATE_podSpecReference => PodSpec
     JOBSPEC_TEMPLATE_podSpecReference => PodSpec
+    DAEMONSETSPEC_TEMPLATE_podSpecReference => PodSpec
+    REPLICATIONCONTROLLERSPEC_TEMPLATE_podSpecReference => PodSpec
     JOBTEMPLATE_jobSpecReference => JobSpec
     CONTAINERS_tty => CONTAINERS_stdin
     SERVICESPEC_allocateLoadBalancerNodePorts => TYPE_LoadBalancer

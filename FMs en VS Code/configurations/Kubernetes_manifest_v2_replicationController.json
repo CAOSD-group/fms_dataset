@@ -1,0 +1,43 @@
+{
+  "file": "Kubernetes_manifest_v2_customResourceDefinition.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_core": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Workloads_APIs": true,
+    "KIND_ReplicationController": true,
+    "metadata": true,
+    "METADATA_name": "example-ReplicationController",
+    "METADATA_namespace": "default",
+    "spec": true,
+    "ReplicationControllerSpec": true,
+    "PodSpec": true,
+    "PODSPEC_containers": [
+      {
+        "CONTAINERS_name": "example-container",
+        "CONTAINERS_image": "nginx:1.21",
+        "CONTAINERS_restartPolicy": "Never"
+      }
+    ],
+    "REPLICATIONCONTROLLERSPEC_selector": true,
+    "REPLICATIONCONTROLLERSPEC_SELECTOR_matchLabels":[
+      {
+        "REPLICATIONCONTROLLERSPEC_SELECTOR_MATCHLABELS_key": "app",
+        "REPLICATIONCONTROLLERSPEC_SELECTOR_MATCHLABELS_value": "my-app"
+      },
+      {
+        "REPLICATIONCONTROLLERSPEC_SELECTOR_MATCHLABELS_key": "tier",
+        "REPLICATIONCONTROLLERSPEC_SELECTOR_MATCHLABELS_value": "frontend"
+      }
+    ],
+    "REPLICATIONCONTROLLERSPEC_template": true,
+    "REPLICATIONCONTROLLERSPEC_TEMPLATE_metadataReference": true,
+    "REPLICATIONCONTROLLERSPEC_TEMPLATE_podSpecReference": true,
+    "REPLICATIONCONTROLLERSPEC_minReadySeconds": 0,
+    "REPLICATIONCONTROLLERSPEC_replicas": 1
+  }
+}

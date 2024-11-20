@@ -1,0 +1,48 @@
+{
+  "file": "Kubernetes_manifest_v2_customResourceDefinition.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_apps": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Workloads_APIs": true,
+    "KIND_DaemonSet": true,
+    "metadata": true,
+    "METADATA_name": "example-daemonset",
+    "METADATA_namespace": "default",
+    "spec": true,
+    "DaemonSetSpec": true,
+    "DAEMONSETSPEC_selector": true, 
+    "DAEMONSETSPEC_SELECTOR_matchLabels":[
+      {
+        "DAEMONSETSPEC_SELECTOR_MATCHLABELS_key": "app",
+        "DAEMONSETSPEC_SELECTOR_MATCHLABELS_value": "nginx-daemon"
+      }
+    ],
+
+    "DAEMONSETSPEC_template": true,
+    "DAEMONSETSPEC_TEMPLATE_metadataReference": true,
+    "DAEMONSETSPEC_TEMPLATE_podSpecReference": true,
+
+    "PodSpec": true,
+    "PODSPEC_containers": [
+      {
+        "CONTAINERS_name": "example-container",
+        "CONTAINERS_image": "nginx:1.21",
+        "CONTAINERS_restartPolicy": "Never"
+      }
+    ],
+
+    "DAEMONSETSPEC_minReadySeconds": 10,
+    "DAEMONSETSPEC_revisionHistoryLimit": 10,
+    "DAEMONSETSPEC_updateStrategy": true,
+    "DAEMONSETSPEC_UPDATESTRATEGY_type": "RollingUpdate",
+    "DAEMONSETSPEC_UPDATESTRATEGY_rollingUpdate": true,
+    "DAEMONSETSPEC_UPDATESTRATEGY_ROLLINGUPDATE_maxUnavailable": 1,
+    "DAEMONSETSPEC_UPDATESTRATEGY_ROLLINGUPDATE_maxSurge": 1 
+
+  }
+}

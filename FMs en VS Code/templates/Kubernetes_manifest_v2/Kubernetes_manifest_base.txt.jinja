@@ -47,6 +47,14 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {% macro indent_cronjob() %}{% include 'Kubernetes_manifest_spec_job.txt.jinja'%}{% endmacro %}
   {{ indent_cronjob()|indent(first=false) }}
 
+  {%elif DaemonSetSpec and PodSpec%}
+  {% macro indent_daemonSet() %}{% include 'Kubernetes_manifest_spec_daemonSet.txt.jinja'%}{% endmacro %}
+  {{ indent_daemonSet()|indent(first=false) }}
+
+  {%elif ReplicationControllerSpec and PodSpec%}
+  {% macro indent_replicationController() %}{% include 'Kubernetes_manifest_spec_replicationController.txt.jinja'%}{% endmacro %}
+  {{ indent_replicationController()|indent(first=false) }}
+
   {%elif DeploymentSpec and PodSpec%}
   {% macro indent_deployment() %}{% include 'Kubernetes_manifest_spec_deployment.txt.jinja' %}{% endmacro %}
   {{ indent_deployment()|indent(first=false) }}

@@ -15,9 +15,12 @@
     "spec": true,
     "NetworkPolicySpec": true,
     "NETWORKPOLICYSPEC_podSelector": true,
-    "NETWORKPOLICYSPEC_PODSELECTOR_matchLabels": true,
-    "NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_key": "app",
-    "NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_value": "myapp",
+    "NETWORKPOLICYSPEC_PODSELECTOR_matchLabels":[
+      {
+        "NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_key": "app",
+        "NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_value": "myapp"
+      }
+    ],
     "NETWORKPOLICYSPEC": true,
     "NETWORKPOLICYSPEC_POLICYTYPES_IngressAndEgress": true,
     "NETWORKPOLICYSPEC_egress": [
@@ -40,14 +43,21 @@
               }
             ],
             "NETWORKPOLICYSPEC_EGRESS_TO_namespaceSelector": true,
-            "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_matchLabels": true,
-            "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHLABELS_key": "project",
-            "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHLABELS_value": "backend",
+            "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_matchLabels": [
+              {
+                "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHLABELS_key": "project",
+                "NETWORKPOLICYSPEC_EGRESS_TO_NAMESPACESELECTOR_MATCHLABELS_value": "backend"
+              }
+            ],
+            
 
             "NETWORKPOLICYSPEC_EGRESS_TO_podSelector": true,
-            "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_matchLabels": true,
-            "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHLABELS_key": "app",
-            "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHLABELS_value": "database"
+            "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_matchLabels":[
+              {
+                "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHLABELS_key": "app",
+                "NETWORKPOLICYSPEC_EGRESS_TO_PODSELECTOR_MATCHLABELS_value": "database"
+              }
+            ]
           }
         ]
       }
@@ -72,14 +82,20 @@
               }
             ],
             "NETWORKPOLICYSPEC_INGRESS_FROM_namespaceSelector": true,
-            "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_matchLabels": true,
-            "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHLABELS_key": "enviroment",
-            "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHLABELS_value": "production",
-
+            "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_matchLabels": [
+              {
+                "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHLABELS_key": "enviroment",
+                "NETWORKPOLICYSPEC_INGRESS_FROM_NAMESPACESELECTOR_MATCHLABELS_value": "production"
+              }
+            ],
             "NETWORKPOLICYSPEC_INGRESS_FROM_podSelector": true,
-            "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_matchLabels": true,
-            "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHLABELS_key": "role",
-            "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHLABELS_value": "frontend"
+            "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_matchLabels": [
+              {
+                "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHLABELS_key": "role",
+                "NETWORKPOLICYSPEC_INGRESS_FROM_PODSELECTOR_MATCHLABELS_value": "frontend"
+              }
+            ]
+
           }
         ]
       }

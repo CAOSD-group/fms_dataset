@@ -1467,7 +1467,7 @@ features
                         mandatory
                             Boolean NETWORKPOLICYSPEC_podSelector {doc 'podSelector selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.'}
                                 or   
-                                    Boolean NETWORKPOLICYSPEC_PODSELECTOR_matchExpressions cardinality [1..*] {doc ''}
+                                    Boolean NETWORKPOLICYSPEC_PODSELECTOR_matchExpressions cardinality [1..*] {doc 'matchExpressions is a list of label selector requirements. The requirements are ANDed.'}
                                         mandatory   
                                             String NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_key
                                             Boolean NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_operator
@@ -1476,10 +1476,10 @@ features
                                                     Boolean NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_OPERATOR_NotIn
                                                     Boolean NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_OPERATOR_Exist
                                                     Boolean NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_OPERATOR_NotExist
-                                            Boolean NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc ''}
+                                            Boolean NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
                                                 mandatory   
                                                     String NETWORKPOLICYSPEC_PODSELECTOR_MATCHEXPRESSIONS_VALUES_value
-                                    Boolean NETWORKPOLICYSPEC_PODSELECTOR_matchLabels cardinality [1..*] {doc ''}
+                                    Boolean NETWORKPOLICYSPEC_PODSELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
                                         mandatory   
                                             String NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_key
                                             String NETWORKPOLICYSPEC_PODSELECTOR_MATCHLABELS_value
@@ -1491,7 +1491,7 @@ features
                                     Boolean NETWORKPOLICYSPEC_POLICYTYPES_IngressAndEgress
                             Boolean NETWORKPOLICYSPEC_egress cardinality [1..*] {doc 'egress is a list of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8'} 
                                 or 
-                                    Boolean NETWORKPOLICYSPEC_EGRESS_ports cardinality [1..*] {doc ''}
+                                    Boolean NETWORKPOLICYSPEC_EGRESS_ports cardinality [1..*] {doc 'ports is a list of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.'}
                                         mandatory  
                                             String NETWORKPOLICYSPEC_EGRESS_PORTS_port {doc 'port represents the port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.'}
                                             String NETWORKPOLICYSPEC_EGRESS_PORTS_protocol {doc 'protocol represents the protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.'} 
@@ -1605,7 +1605,7 @@ features
                                             Integer NETWORKPOLICYSPEC_INGRESS_PORTS_endPort {doc 'endPort indicates that the range of ports from port to endPort if set, inclusive, should be allowed by the policy. This field cannot be defined if the port field is not defined or if the port field is defined as a named (string) port. The endPort must be equal or greater than port.'}
                     Boolean DaemonSetSpec {doc 'The desired behavior of this daemon set.'}
                         mandatory
-                            Boolean DAEMONSETSPEC_selector {doc 'A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template´s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors'}
+                            Boolean DAEMONSETSPEC_selector {doc 'A label query over pods that are managed by the daemon set. Must match in order to be controlled. It must match the pod template`s labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors'}
                                 or 
                                     Boolean DAEMONSETSPEC_SELECTOR_matchExpressions cardinality [1..*] {doc 'matchExpressions is a list of label selector requirements. The requirements are ANDed.'}
                                         mandatory   

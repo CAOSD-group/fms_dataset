@@ -91,6 +91,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {% macro indent_networkPolicy() %}{% include 'Kubernetes_manifest_spec_networkPolicy.txt.jinja'%}{% endmacro %}
   {{ indent_networkPolicy()|indent(first=false) }}
 
+  {%elif HorizontalPodAutoscalerSpec%}
+  {% macro indent_horizontalPodAutoscaler() %}{% include 'Kubernetes_manifest_spec_horizontalPodAutoscaler.txt.jinja'%}{% endmacro %}
+  {{ indent_horizontalPodAutoscaler()|indent(first=false) }}
+
   {%endif%}
 
 {%endif%}

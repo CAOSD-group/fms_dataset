@@ -1925,6 +1925,25 @@ features
             Boolean secrets cardinality [1..*] {doc 'Secrets is a list of the secrets in the same namespace that pods running using this ServiceAccount are allowed to use. Pods are only limited to this list if this service account has a "kubernetes.io/enforce-mountable-secrets" annotation set to "true". This field should not be used to find auto-generated service account token secrets for use outside of pods. Instead, tokens can be requested directly using the TokenRequest API, or service account token secrets can be manually created. More info: https://kubernetes.io/docs/concepts/configuration/secret'} 
                 mandatory
                     String SECRETS_name {doc 'Name of the referent. '}
+            Boolean allowVolumeExpansion {doc 'allowVolumeExpansion shows whether the storage class allow volume expand.'}
+            Boolean allowedTopologies cardinality [1..*] {doc 'allowedTopologies restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.'}
+                mandatory   
+                    Boolean ALLOWEDTOPOLOGIES_matchLabelExpressions cardinality [1..*] {doc 'A list of topology selector requirements by labels.'}
+                        mandatory   
+                            String ALLOWEDTOPOLOGIES_MATCHLABELEXPRESSIONS_key {doc 'The label key that the selector applies to.'}
+                            Boolean ALLOWEDTOPOLOGIES_MATCHLABELEXPRESSIONS_values cardinality [1..*]  {doc 'An array of string values. One value must match the label to be selected. Each entry in Values is ORed.'}
+                                mandatory   
+                                    String ALLOWEDTOPOLOGIES_MATCHLABELEXPRESSIONS_VALUES_value
+            String mountOptions cardinality [0..1] {doc 'mountOptions controls the mountOptions for dynamically provisioned PersistentVolumes of this storage class. e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.'}
+                mandatory   
+                    String MOUNTOPTIONS_value
+            Boolean parameters cardinality [1..*]  {doc 'parameters holds the parameters for the provisioner that should create volumes of this storage class.'}
+                mandatory   
+                    String PARAMETERS_key
+                    String PARAMETERS_value
+            String provisioner {doc 'provisioner indicates the type of the provisioner.'}
+            String reclaimPolicy {default 'Delete', doc 'reclaimPolicy controls the reclaimPolicy for dynamically provisioned PersistentVolumes of this storage class. Defaults to Delete.'}
+            String volumeBindingMode {doc 'volumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound. When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.'}
 constraints
     // Restrincciones de Group
     (GROUP_apiextensions | GROUP_apiregistration | GROUP_apps | GROUP_authorization | GROUP_batch | GROUP_coordination | GROUP_core | GROUP_discovery | GROUP_events | GROUP_node | GROUP_policy | GROUP_rbac | GROUP_scheduling) => VERSION_v1
@@ -1978,9 +1997,11 @@ constraints
     KIND_DaemonSet => DaemonSetSpec
     KIND_ReplicationController => ReplicationControllerSpec
     KIND_HorizontalPodAutoscaler => HorizontalPodAutoscalerSpec
+    allowVolumeExpansion | allowedTopologies | (provisioner == '') | parameters | (mountOptions == '') | (reclaimPolicy == '') | (volumeBindingMode == '') => KIND_StorageClass
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
     KIND_CustomResourceDefinition => CustomResourceDefinitionSpec
+    KIND_StorageClass => (provisioner == '')
     data => KIND_ConfigMap | KIND_Secret
     binaryData => KIND_ConfigMap
     (maxUnavailable == 0) => (maxSurge > 0) 

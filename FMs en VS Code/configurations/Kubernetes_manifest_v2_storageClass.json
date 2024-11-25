@@ -1,0 +1,55 @@
+{
+  "file": "Kubernetes_manifest_v2_role.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_storage": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "KIND_StorageClass": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-storageClass",
+    "allowVolumeExpansion": true,
+    "allowedTopologies": [
+      {
+        "ALLOWEDTOPOLOGIES_matchLabelExpressions": [
+          {
+            "ALLOWEDTOPOLOGIES_MATCHLABELEXPRESSIONS_key": "topology.kubernetes.io/zone",
+            "ALLOWEDTOPOLOGIES_MATCHLABELEXPRESSIONS_values": [
+              {
+                "ALLOWEDTOPOLOGIES_MATCHLABELEXPRESSIONS_VALUES_value": "us-east-1a"
+              },
+              {
+                "ALLOWEDTOPOLOGIES_MATCHLABELEXPRESSIONS_VALUES_value": "us-east-1b"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "mountOptions": [
+      {
+        "MOUNTOPTIONS_value": "rw"
+      }
+    ],
+    "parameters": [
+      {
+        "PARAMETERS_key": "type",
+        "PARAMETERS_value": "gp2"
+      },
+      {
+        "PARAMETERS_key": "fsType",
+        "PARAMETERS_value": "ext4"
+      },
+      {
+        "PARAMETERS_key": "encrypted",
+        "PARAMETERS_value": "'true'"
+      }
+    ],
+    "provisioner": "kubernetes.io/aws-ebs",
+    "reclaimPolicy": "Delete",
+    "volumeBindingMode": "WaitForFirstConsumer"
+  }
+}

@@ -61,6 +61,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {%elif DeploymentSpec and PodSpec%}
   {% macro indent_deployment() %}{% include 'Kubernetes_manifest_spec_deployment.txt.jinja' %}{% endmacro %}
   {{ indent_deployment()|indent(first=false) }}
+
+  {%elif ReplicaSetSpec%}
+  {% macro indent_replicaSetSpec() %}{% include 'Kubernetes_manifest_spec_replicaSet.txt.jinja'%}{% endmacro %}
+  {{ indent_replicaSetSpec()|indent(first=false) }}
   
   {%elif PodSpec%}
   {% macro indent_pod() %}{% include 'Kubernetes_manifest_spec_pod.txt.jinja'%}{% endmacro %}

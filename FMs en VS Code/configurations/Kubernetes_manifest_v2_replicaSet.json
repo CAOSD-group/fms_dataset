@@ -1,0 +1,41 @@
+{
+  "file": "Kubernetes_manifest_v2_replicaSet.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_apps": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "KIND_ReplicaSet": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-ReplicaSet",
+    "spec": true,
+    "ReplicaSetSpec": true,
+    "REPLICASETSPEC_replicas": 3,
+    "REPLICASETSPEC_selector": true,
+    "REPLICASETSPEC_SELECTOR_matchExpressions": [
+      {
+        "REPLICASETSPEC_SELECTOR_MATCHEXPRESSIONS_key": "app",
+        "REPLICASETSPEC_SELECTOR_MATCHEXPRESSIONS_operator": true,
+        "REPLICASETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_In": true,
+        "REPLICASETSPEC_SELECTOR_MATCHEXPRESSIONS_values": [
+          {
+            "REPLICASETSPEC_SELECTOR_MATCHEXPRESSIONS_VALUES_value": "ejemplo"
+          }
+        ]
+      }
+    ],
+    "REPLICASETSPEC_SELECTOR_matchLabels": [
+      {
+        "REPLICASETSPEC_SELECTOR_MATCHLABELS_key": "app",
+        "REPLICASETSPEC_SELECTOR_MATCHLABELS_value": "ejemplo"
+      }
+    ],
+    "REPLICASETSPEC_minReadySeconds": 30,
+    "REPLICASETSPEC_template": true,
+    "REPLICASETSPEC_TEMPLATE_metadataReference": true,
+    "REPLICASETSPEC_TEMPLATE_podSpecReference": true
+  }
+}

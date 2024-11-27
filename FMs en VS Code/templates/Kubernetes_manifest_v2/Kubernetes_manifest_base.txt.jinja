@@ -36,6 +36,9 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 {%elif KIND_StorageClass%}
 {% include 'Kubernetes_manifest_storageClass.txt.jinja'%}
 
+{%elif KIND_ValidatingWebhookConfiguration%}
+{% include 'Kubernetes_manifest_validatingWebhookConfiguration.txt.jinja'%}
+
 {%elif spec%}spec:
 
   {%if StatefulSetSpec and PodSpec%}

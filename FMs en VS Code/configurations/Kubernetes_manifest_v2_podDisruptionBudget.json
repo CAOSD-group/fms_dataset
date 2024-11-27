@@ -1,0 +1,28 @@
+{
+  "file": "Kubernetes_manifest_v2_role.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_policy": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Metadata_APIs": true,
+    "KIND_PodDisruptionBudget": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-PodDisruptionBudget",
+    "spec": true,
+    "PodDisruptionBudgetSpec": true,
+    "PODDISRUPTIONBUDGETSPEC_unhealthyPodEvictionPolicy": true,
+    "PODDISRUPTIONBUDGETSPEC_UNHEALTHYPODEVICTIONPOLICY_IfHealthyBudget": true,
+    "PODDISRUPTIONBUDGETSPEC_minAvailable": "2",
+    "PODDISRUPTIONBUDGETSPEC_selector": true,
+    "PODDISRUPTIONBUDGETSPEC_SELECTOR_matchLabels": [
+      {
+        "PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHLABELS_key": "app",
+        "PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHLABELS_value": "nginx"
+      }
+    ]
+  }
+}

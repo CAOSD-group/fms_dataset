@@ -105,6 +105,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {% macro indent_horizontalPodAutoscaler() %}{% include 'Kubernetes_manifest_spec_horizontalPodAutoscaler.txt.jinja'%}{% endmacro %}
   {{ indent_horizontalPodAutoscaler()|indent(first=false) }}
 
+  {%elif PodDisruptionBudgetSpec%}
+  {% macro indent_podDisruptionBudget() %}{% include 'Kubernetes_manifest_spec_podDisruptionBudget.txt.jinja'%}{% endmacro %}
+  {{ indent_podDisruptionBudget()|indent(first=false) }}
+
   {%endif%}
 
 {%endif%}

@@ -1826,6 +1826,34 @@ features
                                 mandatory   
                                     Boolean REPLICASETSPEC_TEMPLATE_metadataReference {doc 'Reference to metadata object to not duplicate it'}
                                     Boolean REPLICASETSPEC_TEMPLATE_podSpecReference {doc 'Reference to Pod spec object to not duplicate it'}
+                    Boolean PodDisruptionBudgetSpec {doc 'Specification of the desired behavior of the PodDisruptionBudget.'}
+                        mandatory   
+                            Boolean PODDISRUPTIONBUDGETSPEC_unhealthyPodEvictionPolicy {doc 'UnhealthyPodEvictionPolicy defines the criteria for when unhealthy pods should be considered for eviction. Current implementation considers healthy pods, as pods that have status.conditions item with type="Ready",status="True". Valid policies are IfHealthyBudget and AlwaysAllow. If no policy is specified, the default behavior will be used, which corresponds to the IfHealthyBudget policy. IfHealthyBudget policy means that running pods (status.phase="Running"), but not yet healthy can be evicted only if the guarded application is not disrupted (status.currentHealthy is at least equal to status.desiredHealthy). Healthy pods will be subject to the PDB for eviction. AlwaysAllow policy means that all running pods (status.phase="Running"), but not yet healthy are considered disrupted and can be evicted regardless of whether the criteria in a PDB is met. This means perspective running pods of a disrupted application might not get a chance to become healthy. Healthy pods will be subject to the PDB for eviction. Additional policies may be added in the future. Clients making eviction decisions should disallow eviction of unhealthy pods if they encounter an unrecognized policy in this field. This field is beta-level. The eviction API uses this field when the feature gate PDBUnhealthyPodEvictionPolicy is enabled (enabled by default).'}
+                                alternative
+                                    Boolean PODDISRUPTIONBUDGETSPEC_UNHEALTHYPODEVICTIONPOLICY_IfHealthyBudget 
+                                    Boolean PODDISRUPTIONBUDGETSPEC_UNHEALTHYPODEVICTIONPOLICY_AlwaysAllow 
+                        alternative   
+                            String PODDISRUPTIONBUDGETSPEC_maxUnavailable {doc 'An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable".'}
+                            String PODDISRUPTIONBUDGETSPEC_minAvailable {doc 'An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod. So for example you can prevent all voluntary evictions by specifying "100%".'}
+                        optional
+                            Boolean PODDISRUPTIONBUDGETSPEC_selector {doc 'Label query over pods whose evictions are managed by the disruption budget. A null selector will match no pods, while an empty selector will select all pods within the namespace.'}
+                                or
+                                    Boolean PODDISRUPTIONBUDGETSPEC_SELECTOR_matchExpressions cardinality [0..1]  {doc 'matchExpressions is a list of label selector requirements. The requirements are ANDed.'}
+                                        mandatory   
+                                            String PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHEXPRESSIONS_key {doc 'key is the label key that the selector applies to.'}
+                                            Boolean PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHEXPRESSIONS_operator {doc 'operator represents a key`s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.'}
+                                                alternative
+                                                    Boolean PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_In
+                                                    Boolean PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_NotIn
+                                                    Boolean PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_Exist
+                                                    Boolean PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHEXPRESSIONS_OPERATOR_DoesNotExist
+                                            Boolean PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
+                                                mandatory   
+                                                    String PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHEXPRESSIONS_VALUES_value   
+                                    Boolean PODDISRUPTIONBUDGETSPEC_SELECTOR_matchLabels cardinality [1..*] {doc 'matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.'}
+                                        mandatory   
+                                            String PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHLABELS_key
+                                            String PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHLABELS_value
             Boolean binaryData cardinality [1..*] {doc 'BinaryData contains the binary data. Each key must consist of alphanumeric characters, "-", "_" or ".". BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.'}
                 mandatory
                     String BINARYDATA_binaryFile_name
@@ -2097,7 +2125,7 @@ constraints
     KIND_StorageVersion => GROUP_internal
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec & IngressSpec & PersistentVolumeClaimSpec & PersistentVolumeSpec & StatefulSetSpec & NetworkPolicySpec & DaemonSetSpec & ReplicationControllerSpec & HorizontalPodAutoscalerSpec=> spec
+    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec & IngressSpec & PersistentVolumeClaimSpec & PersistentVolumeSpec & StatefulSetSpec & NetworkPolicySpec & DaemonSetSpec & ReplicationControllerSpec & HorizontalPodAutoscalerSpec & ReplicaSetSpec & PodDisruptionBudgetSpec=> spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_ConfigMap => binaryData | data 
     KIND_Secret => data & (type == '')
@@ -2120,6 +2148,7 @@ constraints
     KIND_HorizontalPodAutoscaler => HorizontalPodAutoscalerSpec
     KIND_ReplicaSet => ReplicaSetSpec
     KIND_ValidatingWebhookConfiguration => webhooks
+    KIND_PodDisruptionBudget => PodDisruptionBudgetSpec
     allowVolumeExpansion | allowedTopologies | (provisioner == '') | parameters | (mountOptions == '') | (reclaimPolicy == '') | (volumeBindingMode == '') => KIND_StorageClass
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret

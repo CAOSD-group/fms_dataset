@@ -1,0 +1,27 @@
+{
+  "file": "Kubernetes_manifest_v2_apiService.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_apiregistration": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Cluster_APIs": true,
+    "KIND_APIService": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-ClusterRole",
+    "spec": true,
+    "APIServiceSpec": true,
+    "APISERVICESPEC_groupPriorityMinimum": 1000,
+    "APISERVICESPEC_versionPriority": 15,
+    "APISERVICESPEC_caBundle": "ejemplo-caBundle",
+    "APISERVICESPEC_group": "ejemplo-group",
+    "APISERVICESPEC_insecureSkipTLSVerify": false,
+    "APISERVICESPEC_service": true,
+    "APISERVICESPEC_SERVICE_namespace": "ejemplo-namespace",
+    "APISERVICESPEC_SERVICE_port": 443,
+    "APISERVICESPEC_version": "v1"
+  }
+}

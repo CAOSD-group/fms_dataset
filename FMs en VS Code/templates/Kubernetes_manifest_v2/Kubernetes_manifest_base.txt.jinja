@@ -120,6 +120,10 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {% macro indent_ingressClass() %}{% include 'Kubernetes_manifest_spec_ingressClass.txt.jinja'%}{% endmacro %}
   {{ indent_ingressClass()|indent(first=false) }}
 
+  {%elif APIServiceSpec%}
+  {% macro indent_apiService() %}{% include 'Kubernetes_manifest_spec_apiService.txt.jinja'%}{% endmacro %}
+  {{ indent_apiService()|indent(first=false) }}
+
   {%endif%}
 
 {%endif%}

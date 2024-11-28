@@ -1,0 +1,40 @@
+{
+  "file": "Kubernetes_manifest_v2_resourceQuota.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_core": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Cluster_APIs": true,
+    "KIND_ResourceQuota": true,
+    "metadata": true,
+    "METADATA_name": "ejemplo-ResourceQuota",
+    "spec": true,
+    "ResourceQuotaSpec": true,
+    "RESOURCEQUOTASPEC_hard": true,
+    "RESOURCEQUOTASPEC_HARD_cpu": "1Gi",
+    "RESOURCEQUOTASPEC_HARD_memory": "1Gi",
+    "RESOURCEQUOTASPEC_HARD_pods": "10",
+    "RESOURCEQUOTASPEC_scopeSelector": true,
+    "RESOURCEQUOTASPEC_SCOPESELECTOR_matchExpressions": [
+      {
+        "RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_scopeName": "PriorityClass",
+        "RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_operator": true,
+        "RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_In": true,
+        "RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_values": [
+          {
+            "RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_VALUES_value": "high"
+          }
+        ]
+      }
+    ],
+    "RESOURCEQUOTASPEC_scopes": [
+      {
+        "RESOURCEQUOTASPEC_scopes": "NotTerminating"
+      }
+    ]
+  }
+}

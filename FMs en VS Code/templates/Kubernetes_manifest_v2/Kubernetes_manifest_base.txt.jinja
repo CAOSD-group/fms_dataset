@@ -39,6 +39,9 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
 {%elif KIND_ValidatingWebhookConfiguration%}
 {% include 'Kubernetes_manifest_validatingWebhookConfiguration.txt.jinja'%}
 
+{%elif KIND_MutatingWebhookConfiguration%}
+{% include 'Kubernetes_manifest_mutatingWebhookConfiguration.txt.jinja'%}
+
 {%elif spec%}spec:
 
   {%if StatefulSetSpec and PodSpec%}
@@ -108,6 +111,14 @@ kind: {{KIND_Container}}{{KIND_CronJob}}{{KIND_DaemonSet}}{{KIND_Deployment}}{{K
   {%elif PodDisruptionBudgetSpec%}
   {% macro indent_podDisruptionBudget() %}{% include 'Kubernetes_manifest_spec_podDisruptionBudget.txt.jinja'%}{% endmacro %}
   {{ indent_podDisruptionBudget()|indent(first=false) }}
+
+  {%elif ResourceQuotaSpec%}
+  {% macro indent_resourceQuota() %}{% include 'Kubernetes_manifest_spec_resourceQuota.txt.jinja'%}{% endmacro %}
+  {{ indent_resourceQuota()|indent(first=false) }}
+
+  {%elif IngressClassSpec%}
+  {% macro indent_ingressClass() %}{% include 'Kubernetes_manifest_spec_ingressClass.txt.jinja'%}{% endmacro %}
+  {{ indent_ingressClass()|indent(first=false) }}
 
   {%endif%}
 

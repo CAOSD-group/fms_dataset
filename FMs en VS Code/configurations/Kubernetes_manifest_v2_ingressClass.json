@@ -1,0 +1,26 @@
+{
+  "file": "Kubernetes_manifest_v2_ingressClass.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_networking": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Service_APIs": true,
+    "KIND_IngressClass": true,
+    "metadata": true,
+    "METADATA_name": "example-ingressClass",
+    "spec": true,
+    "IngressClassSpec": true,
+    "INGRESSCLASSSPEC_controller": "example.com/ingress-controller",
+    "INGRESSCLASSSPEC_parameters": true,
+    "INGRESSCLASSSPEC_PARAMETERS_kind": "CustomConfig",
+    "INGRESSCLASSSPEC_PARAMETERS_name": "custom-ingress-settings",
+    "INGRESSCLASSSPEC_PARAMETERS_scope": true,
+    "INGRESSCLASSSPEC_PARAMETERS_SCOPE_Cluster": true,
+    "INGRESSCLASSSPEC_PARAMETERS_namespace": "example-namespce",
+    "INGRESSCLASSSPEC_PARAMETERS_apiGroup": "networking.example.com"
+  }
+}

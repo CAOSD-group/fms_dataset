@@ -1,0 +1,117 @@
+{
+  "file": "Kubernetes_manifest_v2_mutatingWebhookConfiguration.uvl",
+  "config": {
+    "Kubernetes_manifest": true,
+    "apiVersion": true,
+    "Group": true,
+    "GROUP_admissionregistration": true,
+    "Version": true,
+    "VERSION_v1": true,
+    "kind": true,
+    "Metadata_APIs": true,
+    "KIND_MutatingWebhookConfiguration": true,
+    "metadata": true,
+    "METADATA_name": "example-mutating-webhook",
+    "webhooks": [
+      {
+        "WEBHOOKS_name": "my-webhook.example.com",
+        "WEBHOOKS_clientConfig": true,
+        "WEBHOOKS_CLIENTCONFIG_url": "https://my-webhook.example.com",
+        "WEBHOOKS_CLIENTCONFIG_service": true,
+        "WEBHOOKS_CLIENTCONFIG_SERVICE_name": "my-webhook-service",
+        "WEBHOOKS_CLIENTCONFIG_SERVICE_namespace": "default",
+        "WEBHOOKS_CLIENTCONFIG_SERVICE_path": "/webhook",
+        "WEBHOOKS_CLIENTCONFIG_SERVICE_port": 443,
+        "WEBHOOKS_CLIENTCONFIG_caBundle": "BASE64_ENCODED_CA_CERT",
+        "WEBHOOKS_admissionReviewVersions": [
+          {
+            "WEBHOOKS_ADMISSIONREVIEWVERSIONS_value": "v1"
+          }
+        ],
+        "WEBHOOKS_sideEffects": true,
+        "WEBHOOKS_SIDEEFFECTS_None": true,
+        "WEBHOOKS_failurePolicy": true,
+        "WEBHOOKS_FAILUREPOLICY_Fail": true,
+
+        "WEBHOOKS_rules": [
+          {
+            "WEBHOOKS_RULES_apigroups": [
+              {
+                "WEBHOOKS_RULES_APIGROUPS_value": ""
+              }
+            ],
+
+            "WEBHOOKS_RULES_apiVersions": [
+              {
+                "WEBHOOKS_RULES_APIVERSIONS_value": "v1"
+              }
+            ],
+            "WEBHOOKS_RULES_operations": [
+              {
+                "WEBHOOKS_RULES_OPERATIONS_value": "CREATE"
+              }
+            ],
+            "WEBHOOKS_RULES_resources": [
+              {
+                "WEBHOOKS_RULES_RESOURCES_value": "pods"
+              }
+            ],
+            "WEBHOOKS_RULES_scope": true,
+            "WEBHOOKS_RULES_SCOPE_NoRestrictions": true
+          }
+        ],
+
+        "WEBHOOKS_matchConditions": [
+          {
+            "WEBHOOKS_MATCHCONDITIONS_name": "is-special-namespace",
+            "WEBHOOKS_MATCHCONDITIONS_expression": "object.metadata.namespace == 'special-namespace'"
+          }
+        ],
+
+        "WEBHOOKS_matchPolicy": true,
+        "WEBHOOKS_MATCHPOLICY_Equivalent": true,
+        "WEBHOOKS_namespaceSelector": true,
+        "WEBHOOKS_NAMESPACESELECTOR_matchExpressions": [
+          {
+            "WEBHOOKS_NAMESPACESELECTOR_MATCHEXPRESSIONS_key": "my-label",
+            "WEBHOOKS_NAMESPACESELECTOR_MATCHEXPRESSIONS_operator": true,
+            "WEBHOOKS_NAMESPACESELECTOR_MATCHEXPRESSIONS_OPERATOR_In": true,
+            "WEBHOOKS_NAMESPACESELECTOR_MATCHEXPRESSIONS_values": [
+              {
+                "WEBHOOKS_NAMESPACESELECTOR_MATCHEXPRESSIONS_VALUES_value": "my-value"
+              }
+            ]
+          }
+        ],
+        "WEBHOOKS_NAMESPACESELECTOR_matchLabels": [
+          {
+            "WEBHOOKS_NAMESPACESELECTOR_MATCHLABELS_key": "my-label",
+            "WEBHOOKS_NAMESPACESELECTOR_MATCHLABELS_value": "my-value"
+          }
+        ],
+
+        "WEBHOOKS_objectSelector": true,
+        "WEBHOOKS_OBJECTSELECTOR_matchExpressions": [
+          {
+            "WEBHOOKS_OBJECTSELECTOR_MATCHEXPRESSIONS_key": "my-label",
+            "WEBHOOKS_OBJECTSELECTOR_MATCHEXPRESSIONS_operator": true,
+            "WEBHOOKS_OBJECTSELECTOR_MATCHEXPRESSIONS_OPERATOR_In": true,
+            "WEBHOOKS_OBJECTSELECTOR_MATCHEXPRESSIONS_values": [
+              {
+                "WEBHOOKS_OBJECTSELECTOR_MATCHEXPRESSIONS_VALUES_value": "my-value"
+              }
+            ]
+          }
+        ],
+        "WEBHOOKS_OBJECTSELECTOR_matchLabels": [
+          {
+            "WEBHOOKS_OBJECTSELECTOR_MATCHLABELS_key": "my-label",
+            "WEBHOOKS_OBJECTSELECTOR_MATCHLABELS_value": "my-value"
+          }
+        ],
+        "WEBHOOKS_timeoutSeconds": 30
+      }
+    ]
+    
+  }
+}

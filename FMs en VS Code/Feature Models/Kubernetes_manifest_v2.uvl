@@ -1854,6 +1854,46 @@ features
                                         mandatory   
                                             String PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHLABELS_key
                                             String PODDISRUPTIONBUDGETSPEC_SELECTOR_MATCHLABELS_value
+                    Boolean ResourceQuotaSpec {doc 'Spec defines the desired quota.'}
+                        mandatory  
+                            Boolean RESOURCEQUOTASPEC_hard  {doc 'hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/'}
+                                or   
+                                    String RESOURCEQUOTASPEC_HARD_cpu 
+                                    String RESOURCEQUOTASPEC_HARD_memory 
+                                    Integer RESOURCEQUOTASPEC_HARD_pods     
+                        optional
+                            Boolean RESOURCEQUOTASPEC_scopeSelector {doc 'scopeSelector is also a collection of filters like scopes that must match each object tracked by a quota but expressed using ScopeSelectorOperator in combination with possible values. For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched.'}
+                                mandatory   
+                                    Boolean RESOURCEQUOTASPEC_SCOPESELECTOR_matchExpressions cardinality [1..*] {doc 'matchExpressions is a list of scope selector requirements. The requirements are ANDed.'}
+                                        mandatory   
+                                            String RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_scopeName {doc 'The name of the scope that the selector applies to.'}
+                                            Boolean RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_operator {doc 'Represents a scope`s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.'}
+                                                alternative
+                                                    Boolean RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_In
+                                                    Boolean RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_NotIn
+                                                    Boolean RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_Exist
+                                                    Boolean RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_DoesNotExist
+                                            Boolean RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_values cardinality [1..*] {doc 'An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.'}
+                                                mandatory   
+                                                    String RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_VALUES_value
+                            Boolean RESOURCEQUOTASPEC_scopes cardinality [1..*] {doc 'A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects.'}
+                                mandatory   
+                                    String RESOURCEQUOTASPEC_SCOPES_scope
+                    Boolean IngressClassSpec {doc 'spec is the desired state of the IngressClass.'}
+                        mandatory   
+                            String INGRESSCLASSSPEC_controller {doc 'controller refers to the name of the controller that should handle this class. This allows for different "flavors" that are controlled by the same controller. For example, you may have different parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable.'}
+                        optional
+                            Boolean INGRESSCLASSSPEC_parameters {doc 'parameters is a link to a custom resource containing additional configuration for the controller. This is optional if the controller does not require extra parameters.'}
+                                mandatory   
+                                    String INGRESSCLASSSPEC_PARAMETERS_kind {doc 'kind is the type of resource being referenced.'}
+                                    String INGRESSCLASSSPEC_PARAMETERS_name {doc 'name is the name of resource being referenced.'}
+                                    String INGRESSCLASSSPEC_PARAMETERS_scope {doc 'scope represents if this refers to a cluster or namespace scoped resource. This may be set to "Cluster" (default) or "Namespace".'}
+                                        alternative   
+                                            Boolean INGRESSCLASSSPEC_PARAMETERS_SCOPE_Cluster {default}
+                                            Boolean INGRESSCLASSSPEC_PARAMETERS_SCOPE_Namespace
+                                optional   
+                                    String INGRESSCLASSSPEC_PARAMETERS_namespace {doc 'namespace is the namespace of the resource being referenced. This field is required when scope is set to "Namespace" and must be unset when scope is set to "Cluster".'}
+                                    String INGRESSCLASSSPEC_PARAMETERS_apiGroup {doc 'apiGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.'}
             Boolean binaryData cardinality [1..*] {doc 'BinaryData contains the binary data. Each key must consist of alphanumeric characters, "-", "_" or ".". BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.'}
                 mandatory
                     String BINARYDATA_binaryFile_name
@@ -2125,7 +2165,7 @@ constraints
     KIND_StorageVersion => GROUP_internal
     (KIND_ClusterRole | KIND_ClusterRoleBinding | KIND_Role | KIND_RoleBinding)=> GROUP_rbac
     // Resto de restricciones
-    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec & IngressSpec & PersistentVolumeClaimSpec & PersistentVolumeSpec & StatefulSetSpec & NetworkPolicySpec & DaemonSetSpec & ReplicationControllerSpec & HorizontalPodAutoscalerSpec & ReplicaSetSpec & PodDisruptionBudgetSpec=> spec
+    DeploymentSpec & PodSpec & ServiceSpec & CronJobSpec & JobSpec & CustomResourceDefinitionSpec & IngressSpec & PersistentVolumeClaimSpec & PersistentVolumeSpec & StatefulSetSpec & NetworkPolicySpec & DaemonSetSpec & ReplicationControllerSpec & HorizontalPodAutoscalerSpec & ReplicaSetSpec & PodDisruptionBudgetSpec & ResourceQuotaSpec => spec
     (TYPE_NodePort | TYPE_LoadBalancer) => (SERVICESPEC_PORTS_nodePort > 0)
     KIND_ConfigMap => binaryData | data 
     KIND_Secret => data & (type == '')
@@ -2148,7 +2188,9 @@ constraints
     KIND_HorizontalPodAutoscaler => HorizontalPodAutoscalerSpec
     KIND_ReplicaSet => ReplicaSetSpec
     KIND_ValidatingWebhookConfiguration => webhooks
+    KIND_MutatingWebhookConfiguration => webhooks
     KIND_PodDisruptionBudget => PodDisruptionBudgetSpec
+    KIND_ResourceQuota => ResourceQuotaSpec
     allowVolumeExpansion | allowedTopologies | (provisioner == '') | parameters | (mountOptions == '') | (reclaimPolicy == '') | (volumeBindingMode == '') => KIND_StorageClass
     immutable => KIND_ConfigMap | KIND_Secret
     stringData => KIND_Secret
@@ -2234,3 +2276,7 @@ constraints
     (HORIZONTALPODAUTOSCALERSPEC_METRICS_CONTAINERRESOURCE_TARGET_averageValue > 0)  => HORIZONTALPODAUTOSCALERSPEC_METRICS_CONTAINERRESOURCE_TARGET_TYPE_AverageValue
     (HORIZONTALPODAUTOSCALERSPEC_METRICS_CONTAINERRESOURCE_TARGET_averageUtilization > 0) => HORIZONTALPODAUTOSCALERSPEC_METRICS_CONTAINERRESOURCE_TARGET_TYPE_Utilization
     WEBHOOKS_CLIENTCONFIG_SERVICE_port > 0 & WEBHOOKS_CLIENTCONFIG_SERVICE_port < 65536
+    RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_In | RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_NotIn => RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_values
+    RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_Exist | RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_OPERATOR_DoesNotExist => !RESOURCEQUOTASPEC_SCOPESELECTOR_MATCHEXPRESSIONS_values
+    INGRESSCLASSSPEC_PARAMETERS_SCOPE_Namespace => (INGRESSCLASSSPEC_PARAMETERS_namespace == '')
+    INGRESSCLASSSPEC_PARAMETERS_SCOPE_Cluster => !(INGRESSCLASSSPEC_PARAMETERS_namespace == '')

@@ -1,0 +1,68 @@
+// Sources: 
+// * Horcas2019_SPLC_WeaFQAs: https://doi.org/10.1145/3336294.3336304
+
+namespace WeaFQAs
+
+features
+	FQAs
+		or
+			Logging cardinality [1..*] 
+				optional
+					Logging_Context
+						mandatory
+							Integer LC_MessageSize
+							LC_MessageType
+								alternative
+									LC_MT_String
+									LC_MT_Object
+									LC_MT_File
+					CypheredMessages
+				mandatory
+					Format
+						alternative
+							XML
+							TXT
+					Handler
+						alternative
+							Console
+							FileSystem
+			Hashing cardinality [1..*]
+				optional
+					Hashing_Context
+						mandatory
+							Integer HC_MessageSize
+							HC_MessageType
+								alternative
+									HC_MT_String
+									HC_MT_Object
+									HC_MT_File
+				mandatory
+					Function
+						alternative
+							SHA1
+							SHA2
+			Encryption cardinality [1..*]
+				optional
+					Encryption_Context
+						mandatory
+							Integer EC_MessageSize
+							EC_MessageType
+								alternative
+									EC_MT_String
+									EC_MT_Object
+									EC_MT_File
+					Integer Key
+				mandatory
+					Algorithm
+						alternative
+							AES
+							RSA {ExecutionTime {min 150, max 700, unit 'ms'}, EnergyConsumption {min 4, max 16, unit 'J'}}
+					Implementation
+						alternative
+							"Javax.crypto"
+							BouncyCastle
+constraints
+	CypheredMessages => Encryption
+	XML => ! Console
+	RSA => BouncyCastle
+	2 <= Key <= 2048
